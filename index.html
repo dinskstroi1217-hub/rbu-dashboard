@@ -93,7 +93,7 @@ let DATA = null;
 let excludedDays = new Set();
 
 async function init() {
-  const res = await fetch('data.json?v=1775725955527');
+  const res = await fetch('data.json?v=' + Date.now());
   DATA = await res.json();
   document.getElementById('updated').textContent = 'Обновлено: ' + new Date(DATA.updated).toLocaleString('ru-RU');
 
