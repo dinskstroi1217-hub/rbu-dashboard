@@ -75,7 +75,7 @@ td{padding:6px 10px;border-top:1px solid #21262d}
   <thead>
     <tr>
       <th style="width:1%"><input type="checkbox" id="checkAllDays" title="Показать все дни" onchange="toggleAllDays(this.checked)"></th>
-      <th style="width:45%">Дата / Рецепт / Машина</th>
+      <th style="width:45%;min-width:200px">Дата / Рецепт / Машина</th>
       <th>Объём РБУ</th>
       <th>Объём Дисп.</th>
       <th>Δ Объём</th>
@@ -260,7 +260,7 @@ function render() {
     dayRow.className = 'day-row';
     dayRow.id = dayId;
     dayRow.innerHTML = '<td><input type="checkbox" class="day-checkbox" data-day-id="'+dayId+'" ' + (excludedDays.has(dayId) ? '' : 'checked') + ' onchange="onDayCheckChange(this)"></td>' +
-      '<td style="white-space:nowrap"><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
+      '<td style="white-space:nowrap;word-break:keep-all;min-width:200px"><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
       (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
       '</td><td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
       '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
