@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дашборд РБУ — ДКБИ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;padding:16px}
+h1{color:#58a6ff;font-size:22px;margin-bottom:4px}
+.sub{color:#484f58;font-size:12px;margin-bottom:12px}
+.filters{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap;align-items:center}
+select{background:#161b22;border:1px solid #30363d;color:#c9d1d9;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer}
+select:focus{border-color:#58a6ff;outline:none}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;min-width:130px}
+.stat .n{font-size:24px;font-weight:bold;color:#58a6ff}
+.stat .l{color:#8b949e;font-size:12px}
+.stat.red .n{color:#f85149}
+.stat.red{border-color:#f8514940}
+.stat.green .n{color:#3fb950}
+.stat.green{border-color:#3fb95040}
+.stat.blue .n{color:#58a6ff}
+.stat.blue{border-color:#58a6ff40}
+.stat-sep{width:1px;background:#30363d;align-self:stretch;margin:0 4px}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
+th{background:#21262d;color:#8b949e;text-align:left;padding:8px 10px;position:sticky;top:0;z-index:1}
+td{padding:6px 10px;border-top:1px solid #21262d}
+.day-row{background:#161b22;cursor:pointer;font-weight:bold}
+.day-row:hover{background:#1c2128}
+.recipe-row{background:#0d1117;cursor:pointer;padding-left:20px}
+.recipe-row:hover{background:#161b22}
+.batch-row{background:#0d1117;color:#8b949e}
+.batch-row:hover{background:#161b22}
+.toggle{display:inline-block;width:16px;color:#484f58;font-size:12px;text-align:center;margin-right:4px}
+.red{color:#f85149;font-weight:bold}
+.blue{color:#58a6ff}
+.green{color:#3fb950}
+.hidden{display:none}
+.delta-pos{color:#f85149}
+.delta-neg{color:#58a6ff}
+.badge{display:inline-block;background:#f8514920;color:#f85149;border-radius:4px;padding:1px 6px;font-size:11px;margin-left:6px}
+.badge.ok{background:#3fb95020;color:#3fb950}
+.indent1{padding-left:28px !important}
+.indent2{padding-left:48px !important}
+.compare{display:flex;gap:4px;align-items:center}
+.compare .v{font-weight:bold}
+.compare .d{font-size:11px}
+.month-picker{position:relative;display:inline-block}
+.month-btn{background:#161b22;border:1px solid #30363d;color:#c9d1d9;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer;min-width:160px;text-align:left}
+.month-btn:hover{border-color:#58a6ff}
+.month-dropdown{display:none;position:absolute;top:100%;left:0;background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 0;z-index:10;min-width:200px;max-height:300px;overflow-y:auto;margin-top:4px}
+.month-dropdown.open{display:block}
+.month-item{display:flex;align-items:center;padding:6px 12px;cursor:pointer;gap:8px;font-size:14px}
+.month-item:hover{background:#21262d}
+.month-item input{accent-color:#58a6ff;cursor:pointer}
+.month-item.all{border-bottom:1px solid #30363d;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>📊 Дашборд РБУ — ДКБИ</h1>
+<div class="sub" id="updated"></div>
+
+<div class="filters">
+  <select id="baseFilter"><option value="all">Все базы</option></select>
+  <div class="month-picker">
+    <button class="month-btn" id="monthBtn" onclick="toggleMonthDropdown()">Выберите месяц ▾</button>
+    <div class="month-dropdown" id="monthDropdown"></div>
+  </div>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:30%">Дата / Рецепт / Машина</th>
+      <th>Объём РБУ</th>
+      <th>Объём Дисп.</th>
+      <th>Δ Объём</th>
+      <th>Цемент</th>
+      <th>Песок</th>
+      <th>Щебень</th>
+      <th>Химия</th>
+    </tr>
+  </thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<script>
+let DATA = null;
+
+async function init() {
+  const res = await fetch('data.json?v=1775725955527');
+  DATA = await res.json();
+  document.getElementById('updated').textContent = 'Обновлено: ' + new Date(DATA.updated).toLocaleString('ru-RU');
+
+  // Populate base filter
+  const bf = document.getElementById('baseFilter');
+  DATA.bases.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bf.appendChild(o); });
+  bf.addEventListener('change', render);
+
+  // Populate month checkboxes
+  const md = document.getElementById('monthDropdown');
+  const names = ['','Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+
+  // "Все" checkbox
+  const allItem = document.createElement('label');
+  allItem.className = 'month-item all';
+  allItem.innerHTML = '<input type="checkbox" id="monthAll" onchange="toggleAllMonths(this)"> Все месяцы';
+  md.appendChild(allItem);
+
+  DATA.months.slice().reverse().forEach(m => {
+    const [y, mo] = m.split('-');
+    const item = document.createElement('label');
+    item.className = 'month-item';
+    item.innerHTML = '<input type="checkbox" class="monthCb" value="' + m + '" onchange="onMonthChange()"> ' + names[parseInt(mo)] + ' ' + y;
+    md.appendChild(item);
+  });
+
+  // Default: select latest month
+  const cbs = document.querySelectorAll('.monthCb');
+  if (cbs.length > 0) { cbs[0].checked = true; }
+  updateMonthBtnText();
+
+  // Close dropdown on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.month-picker')) {
+      document.getElementById('monthDropdown').classList.remove('open');
+    }
+  });
+
+  render();
+}
+
+function devClass(pct) {
+  if (Math.abs(pct) > 3) return pct > 0 ? 'red' : 'blue';
+  return 'green';
+}
+
+function devStr(pct) {
+  if (pct === null || pct === undefined || isNaN(pct)) return '';
+  const s = pct > 0 ? '+' + pct.toFixed(1) + '%' : pct.toFixed(1) + '%';
+  return '<span class="' + devClass(pct) + '">' + s + '</span>';
+}
+
+function getSelectedMonths() {
+  const allCb = document.getElementById('monthAll');
+  if (allCb && allCb.checked) return DATA.months;
+  const checked = [...document.querySelectorAll('.monthCb:checked')].map(c => c.value);
+  return checked.length > 0 ? checked : DATA.months;
+}
+
+function toggleMonthDropdown() {
+  document.getElementById('monthDropdown').classList.toggle('open');
+}
+
+function toggleAllMonths(cb) {
+  document.querySelectorAll('.monthCb').forEach(c => c.checked = cb.checked);
+  updateMonthBtnText();
+  render();
+}
+
+function onMonthChange() {
+  const allCb = document.getElementById('monthAll');
+  const cbs = document.querySelectorAll('.monthCb');
+  const allChecked = [...cbs].every(c => c.checked);
+  allCb.checked = allChecked;
+  updateMonthBtnText();
+  render();
+}
+
+function updateMonthBtnText() {
+  const names = ['','Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+  const selected = getSelectedMonths();
+  const btn = document.getElementById('monthBtn');
+  if (selected.length === DATA.months.length) {
+    btn.textContent = 'Все месяцы ▾';
+  } else if (selected.length <= 2) {
+    btn.textContent = selected.map(m => { const [y,mo] = m.split('-'); return names[parseInt(mo)] + ' ' + y; }).join(', ') + ' ▾';
+  } else {
+    btn.textContent = selected.length + ' мес. ▾';
+  }
+}
+
+function render() {
+  const base = document.getElementById('baseFilter').value;
+  const selectedMonths = getSelectedMonths();
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+
+  let totalVol = 0, totalDispVol = 0, totalBatches = 0, totalAnomalies = 0;
+  let totalFactCem = 0, totalNormCem = 0;
+  let totalFactSand = 0, totalNormSand = 0;
+  let totalFactGrav = 0, totalNormGrav = 0;
+  let totalFactChem = 0, totalNormChem = 0;
+
+  // Filter days by selected months
+  const days = Object.entries(DATA.days)
+    .filter(([d]) => selectedMonths.some(m => d.startsWith(m)))
+    .sort((a, b) => a[0].localeCompare(b[0]));
+
+  days.forEach(([date, bases]) => {
+    const basesToShow = base === 'all' ? DATA.bases : [base];
+    let dayVol = 0, dayDispVol = 0, dayBatches = 0, dayAnomalies = 0;
+    const dayId = 'day-' + date;
+
+    // Collect per-base data
+    const dayBases = [];
+    basesToShow.forEach(b => {
+      const bd = bases[b];
+      if (!bd) return;
+      const bVol = bd.totalVolume || 0;
+      const bDispVol = bd.dispatcherVolume || 0;
+      let bBatches = 0, bAnomalies = 0;
+      const recs = [];
+      Object.entries(bd.recipes || {}).forEach(([rName, rd]) => {
+        const batches = rd.batches || [];
+        bBatches += batches.length;
+        batches.forEach(bt => {
+          if (Math.abs(bt.devCement||0) > 3 || Math.abs(bt.devSand||0) > 3 || Math.abs(bt.devGravel||0) > 3 || Math.abs(bt.devChem||0) > 3) bAnomalies++;
+        });
+        recs.push({ name: rName, data: rd, batches });
+      });
+      dayVol += bVol; dayDispVol += bDispVol; dayBatches += bBatches; dayAnomalies += bAnomalies;
+      if (recs.length > 0) dayBases.push({ base: b, vol: bVol, dispVol: bDispVol, batches: bBatches, anomalies: bAnomalies, recipes: recs });
+    });
+
+    totalVol += dayVol; totalDispVol += dayDispVol; totalBatches += dayBatches; totalAnomalies += dayAnomalies;
+    if (dayBases.length === 0) return;
+
+    const volDelta = dayDispVol > 0 ? ((dayVol - dayDispVol) / dayDispVol * 100).toFixed(1) : '';
+
+    // Level 1: Day row
+    const dayRow = document.createElement('tr');
+    dayRow.className = 'day-row';
+    dayRow.innerHTML = '<td><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
+      (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
+      '</td><td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
+      '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
+      '<td></td><td></td><td></td><td></td>';
+    dayRow.onclick = () => toggle(dayId);
+    tbody.appendChild(dayRow);
+
+    // Level 2: Base rows
+    dayBases.forEach((db, bi) => {
+      const bid = dayId + '-b' + bi;
+      const bDelta = db.dispVol > 0 ? ((db.vol - db.dispVol) / db.dispVol * 100).toFixed(1) : '';
+
+      const baseRow = document.createElement('tr');
+      baseRow.className = 'recipe-row hidden';
+      baseRow.dataset.parent = dayId;
+      baseRow.innerHTML = '<td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b> (' + db.batches + ' зам.)' +
+        (db.anomalies > 0 ? '<span class="badge">' + db.anomalies + '</span>' : '') +
+        '</td><td>' + db.vol.toFixed(1) + '</td><td>' + (db.dispVol > 0 ? db.dispVol.toFixed(1) : '—') + '</td>' +
+        '<td class="' + (Math.abs(parseFloat(bDelta)) > 3 ? 'red' : '') + '">' + (bDelta ? bDelta + '%' : '') + '</td>' +
+        '<td></td><td></td><td></td><td></td>';
+      baseRow.onclick = (e) => { e.stopPropagation(); toggle(bid); };
+      tbody.appendChild(baseRow);
+
+      // Level 3: Recipe rows
+      db.recipes.forEach((rec, ri) => {
+        const rid = bid + '-r' + ri;
+        const rd = rec.data;
+        const rVol = rd.totalVolume || 0;
+        const norm = DATA.recipes[rec.name];
+
+        let rDevCem = '', rDevSand = '', rDevGrav = '', rDevChem = '';
+        if (norm && rVol > 0) {
+          const nc = norm.cement * rVol, ns = norm.sand * rVol, ng = norm.gravel * rVol, nch = norm.chem * rVol;
+          if (nc > 0) { rDevCem = devStr((rd.factCement - nc) / nc * 100); totalFactCem += rd.factCement; totalNormCem += nc; }
+          if (ns > 0) { rDevSand = devStr((rd.factSand - ns) / ns * 100); totalFactSand += rd.factSand; totalNormSand += ns; }
+          if (ng > 0) { rDevGrav = devStr((rd.factGravel - ng) / ng * 100); totalFactGrav += rd.factGravel; totalNormGrav += ng; }
+          if (nch > 0) { rDevChem = devStr((rd.factChem - nch) / nch * 100); totalFactChem += rd.factChem; totalNormChem += nch; }
+        }
+
+        const rDispVol = rd.dispatcherVolume || 0;
+        const rVolDelta = rDispVol > 0 ? ((rVol - rDispVol) / rDispVol * 100).toFixed(1) : (rVol > 0 && rDispVol === 0 ? '⚠' : '');
+
+        const recRow = document.createElement('tr');
+        recRow.className = 'batch-row hidden';
+        recRow.dataset.parent = bid;
+        recRow.style.color = '#c9d1d9';
+        recRow.innerHTML = '<td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + ' (' + rec.batches.length + ')' +
+          '</td><td>' + rVol.toFixed(1) + '</td><td>' + (rDispVol > 0 ? rDispVol.toFixed(1) : '—') + '</td>' +
+          '<td class="' + (rVolDelta === '⚠' || Math.abs(parseFloat(rVolDelta)) > 3 ? 'red' : '') + '">' + (rVolDelta === '⚠' ? '⚠' : (rVolDelta ? rVolDelta + '%' : '')) + '</td>' +
+          '<td>' + rDevCem + '</td><td>' + rDevSand + '</td><td>' + rDevGrav + '</td><td>' + rDevChem + '</td>';
+        recRow.onclick = (e) => { e.stopPropagation(); toggle(rid); };
+        tbody.appendChild(recRow);
+
+        // Level 4: Batch rows
+        rec.batches.forEach(bt => {
+          const bRow = document.createElement('tr');
+          bRow.className = 'batch-row hidden';
+          bRow.dataset.parent = rid;
+          bRow.style.paddingLeft = '68px';
+          bRow.innerHTML = '<td style="padding-left:68px">🚛 ' + bt.truck + '</td>' +
+            '<td>' + bt.volume + '</td><td></td><td></td>' +
+            '<td>' + devStr(bt.devCement) + '</td>' +
+            '<td>' + devStr(bt.devSand) + '</td>' +
+            '<td>' + devStr(bt.devGravel) + '</td>' +
+            '<td>' + devStr(bt.devChem) + '</td>';
+          tbody.appendChild(bRow);
+        });
+      });
+    });
+  });
+
+  // Stats
+  const volDeltaTotal = totalDispVol > 0 ? ((totalVol - totalDispVol) / totalDispVol * 100) : null;
+  const devCemTotal  = totalNormCem  > 0 ? ((totalFactCem  - totalNormCem)  / totalNormCem  * 100) : null;
+  const devSandTotal = totalNormSand > 0 ? ((totalFactSand - totalNormSand) / totalNormSand * 100) : null;
+  const devGravTotal = totalNormGrav > 0 ? ((totalFactGrav - totalNormGrav) / totalNormGrav * 100) : null;
+  const devChemTotal = totalNormChem > 0 ? ((totalFactChem - totalNormChem) / totalNormChem * 100) : null;
+
+  function statClass(val) { if (val === null) return ''; return Math.abs(val) > 3 ? (val > 0 ? 'red' : 'blue') : 'green'; }
+  function statStr(val, label) {
+    if (val === null) return '<div class="stat"><div class="n">—</div><div class="l">' + label + '</div></div>';
+    const sign = val > 0 ? '+' : '';
+    return '<div class="stat ' + statClass(val) + '"><div class="n">' + sign + val.toFixed(1) + '%</div><div class="l">' + label + '</div></div>';
+  }
+
+  document.getElementById('stats').innerHTML =
+    '<div class="stat"><div class="n">' + totalVol.toFixed(0) + ' м³</div><div class="l">Объём РБУ</div></div>' +
+    '<div class="stat"><div class="n">' + totalDispVol.toFixed(0) + ' м³</div><div class="l">Объём Дисп.</div></div>' +
+    statStr(volDeltaTotal, 'Δ Объём') +
+    '<div class="stat"><div class="n">' + totalBatches + '</div><div class="l">Замесов</div></div>' +
+    '<div class="stat ' + (totalAnomalies > 0 ? 'red' : 'green') + '"><div class="n">' + totalAnomalies + '</div><div class="l">Аномалий >3%</div></div>' +
+    '<div class="stat-sep"></div>' +
+    statStr(devCemTotal,  'Δ Цемент') +
+    statStr(devSandTotal, 'Δ Песок') +
+    statStr(devGravTotal, 'Δ Щебень') +
+    statStr(devChemTotal, 'Δ Химия');
+}
+
+function toggle(id) {
+  const rows = document.querySelectorAll('[data-parent="' + id + '"]');
+  const tog = document.getElementById('t-' + id);
+  if (!tog) return;
+  const show = tog.textContent === '▶';
+  tog.textContent = show ? '▼' : '▶';
+  rows.forEach(r => {
+    r.classList.toggle('hidden', !show);
+    if (!show) collapseChildren(r);
+  });
+}
+
+function collapseChildren(row) {
+  const childToggle = row.querySelector('.toggle');
+  if (!childToggle) return;
+  const childId = childToggle.id?.replace('t-', '');
+  if (!childId) return;
+  childToggle.textContent = '▶';
+  document.querySelectorAll('[data-parent="' + childId + '"]').forEach(cr => {
+    cr.classList.add('hidden');
+    collapseChildren(cr);
+  });
+}
+
+init();
+</script>
+</body>
+</html>
