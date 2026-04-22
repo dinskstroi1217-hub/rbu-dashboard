@@ -41,8 +41,8 @@ td{padding:6px 10px;border-top:1px solid #21262d}
 .delta-neg{color:#58a6ff}
 .badge{display:inline-block;background:#f8514920;color:#f85149;border-radius:4px;padding:1px 6px;font-size:11px;margin-left:6px}
 .badge.ok{background:#3fb95020;color:#3fb950}
-.indent1{padding-left:28px !important}
-.indent2{padding-left:48px !important}
+.indent1{padding-left:20px !important}
+.indent2{padding-left:90px !important}
 .compare{display:flex;gap:4px;align-items:center}
 .compare .v{font-weight:bold}
 .compare .d{font-size:11px}
@@ -75,7 +75,7 @@ td{padding:6px 10px;border-top:1px solid #21262d}
   <thead>
     <tr>
       <th style="width:1%"><input type="checkbox" id="checkAllDays" title="Показать все дни" onchange="toggleAllDays(this.checked)"></th>
-      <th style="width:45%;min-width:200px">Дата / Рецепт / Машина</th>
+      <th style="width:45%;min-width:250px;padding:8px 0 8px 10px"><span style="display:inline-block;width:90px">Дата</span><span style="display:inline-block;width:90px">Рецепт</span><span>Машина</span></th>
       <th>Объём РБУ</th>
       <th>Объём Дисп.</th>
       <th>Δ Объём</th>
@@ -320,7 +320,7 @@ function render() {
           bRow.className = 'batch-row hidden';
           bRow.dataset.parent = rid;
           bRow.style.paddingLeft = '68px';
-          bRow.innerHTML = '<td></td><td style="padding-left:68px">🚛 ' + bt.truck + '</td>' +
+          bRow.innerHTML = '<td></td><td style="padding-left:170px">🚛 ' + bt.truck + '</td>' +
             '<td>' + bt.volume + '</td><td></td><td></td>' +
             '<td>' + devStr(bt.devCement) + '</td>' +
             '<td>' + devStr(bt.devSand) + '</td>' +
