@@ -276,7 +276,7 @@ function render() {
       const baseRow = document.createElement('tr');
       baseRow.className = 'recipe-row hidden';
       baseRow.dataset.parent = dayId;
-      baseRow.innerHTML = '<td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b> (' + db.batches + ' зам.)' +
+      baseRow.innerHTML = '<td></td><td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b> (' + db.batches + ' зам.)' +
         (db.anomalies > 0 ? '<span class="badge">' + db.anomalies + '</span>' : '') +
         '</td><td>' + db.vol.toFixed(1) + '</td><td>' + (db.dispVol > 0 ? db.dispVol.toFixed(1) : '—') + '</td>' +
         '<td class="' + (Math.abs(parseFloat(bDelta)) > 3 ? 'red' : '') + '">' + (bDelta ? bDelta + '%' : '') + '</td>' +
@@ -307,7 +307,7 @@ function render() {
         recRow.className = 'batch-row hidden';
         recRow.dataset.parent = bid;
         recRow.style.color = '#c9d1d9';
-        recRow.innerHTML = '<td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + ' (' + rec.batches.length + ')' +
+        recRow.innerHTML = '<td></td><td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + ' (' + rec.batches.length + ')' +
           '</td><td>' + rVol.toFixed(1) + '</td><td>' + (rDispVol > 0 ? rDispVol.toFixed(1) : '—') + '</td>' +
           '<td class="' + (rVolDelta === '⚠' || Math.abs(parseFloat(rVolDelta)) > 3 ? 'red' : '') + '">' + (rVolDelta === '⚠' ? '⚠' : (rVolDelta ? rVolDelta + '%' : '')) + '</td>' +
           '<td>' + rDevCem + '</td><td>' + rDevSand + '</td><td>' + rDevGrav + '</td><td>' + rDevChem + '</td>';
@@ -320,7 +320,7 @@ function render() {
           bRow.className = 'batch-row hidden';
           bRow.dataset.parent = rid;
           bRow.style.paddingLeft = '68px';
-          bRow.innerHTML = '<td style="padding-left:68px">🚛 ' + bt.truck + '</td>' +
+          bRow.innerHTML = '<td></td><td style="padding-left:68px">🚛 ' + bt.truck + '</td>' +
             '<td>' + bt.volume + '</td><td></td><td></td>' +
             '<td>' + devStr(bt.devCement) + '</td>' +
             '<td>' + devStr(bt.devSand) + '</td>' +
