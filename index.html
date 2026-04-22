@@ -74,7 +74,8 @@ td{padding:6px 10px;border-top:1px solid #21262d}
 <table>
   <thead>
     <tr>
-      <th style="width:30%">Дата / Рецепт / Машина</th>
+      <th style="width:3%"><input type="checkbox" id="checkAllDays" title="Показать все дни" onchange="toggleAllDays(this.checked)"></th>
+      <th style="width:27%">Дата / Рецепт / Машина</th>
       <th>Объём РБУ</th>
       <th>Объём Дисп.</th>
       <th>Δ Объём</th>
@@ -89,6 +90,7 @@ td{padding:6px 10px;border-top:1px solid #21262d}
 
 <script>
 let DATA = null;
+let excludedDays = new Set();
 
 async function init() {
   const res = await fetch('data.json?v=1775725955527');
@@ -183,6 +185,25 @@ function updateMonthBtnText() {
   }
 }
 
+function updateExcludedDays() {
+  excludedDays.clear();
+  document.querySelectorAll('.day-checkbox:not(:checked)').forEach(cb => {
+    const dayId = cb.getAttribute('data-day-id');
+    if (dayId) excludedDays.add(dayId);
+  });
+}
+
+function toggleAllDays(checked) {
+  document.querySelectorAll('.day-checkbox').forEach(cb => cb.checked = checked);
+  updateExcludedDays();
+  render();
+}
+
+function onDayCheckChange(checkbox) {
+  updateExcludedDays();
+  render();
+}
+
 function render() {
   const base = document.getElementById('baseFilter').value;
   const selectedMonths = getSelectedMonths();
@@ -204,6 +225,7 @@ function render() {
     const basesToShow = base === 'all' ? DATA.bases : [base];
     let dayVol = 0, dayDispVol = 0, dayBatches = 0, dayAnomalies = 0;
     const dayId = 'day-' + date;
+    const isExcluded = excludedDays.has(dayId);
 
     // Collect per-base data
     const dayBases = [];
@@ -226,7 +248,9 @@ function render() {
       if (recs.length > 0) dayBases.push({ base: b, vol: bVol, dispVol: bDispVol, batches: bBatches, anomalies: bAnomalies, recipes: recs });
     });
 
-    totalVol += dayVol; totalDispVol += dayDispVol; totalBatches += dayBatches; totalAnomalies += dayAnomalies;
+    if (!isExcluded) {
+      totalVol += dayVol; totalDispVol += dayDispVol; totalBatches += dayBatches; totalAnomalies += dayAnomalies;
+    }
     if (dayBases.length === 0) return;
 
     const volDelta = dayDispVol > 0 ? ((dayVol - dayDispVol) / dayDispVol * 100).toFixed(1) : '';
@@ -234,12 +258,13 @@ function render() {
     // Level 1: Day row
     const dayRow = document.createElement('tr');
     dayRow.className = 'day-row';
-    dayRow.innerHTML = '<td><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
+    dayRow.id = dayId;
+    dayRow.innerHTML = '<td><input type="checkbox" class="day-checkbox" data-day-id="'+dayId+'" ' + (excludedDays.has(dayId) ? '' : 'checked') + ' onchange="onDayCheckChange(this)"> <span class="toggle" id="t-'+dayId+'">▶</span>' + date +
       (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
       '</td><td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
       '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
       '<td></td><td></td><td></td><td></td>';
-    dayRow.onclick = () => toggle(dayId);
+    dayRow.onclick = (e) => { if (e.target.type !== 'checkbox') toggle(dayId); };
     tbody.appendChild(dayRow);
 
     // Level 2: Base rows
@@ -268,10 +293,10 @@ function render() {
         let rDevCem = '', rDevSand = '', rDevGrav = '', rDevChem = '';
         if (norm && rVol > 0) {
           const nc = norm.cement * rVol, ns = norm.sand * rVol, ng = norm.gravel * rVol, nch = norm.chem * rVol;
-          if (nc > 0) { rDevCem = devStr((rd.factCement - nc) / nc * 100); totalFactCem += rd.factCement; totalNormCem += nc; }
-          if (ns > 0) { rDevSand = devStr((rd.factSand - ns) / ns * 100); totalFactSand += rd.factSand; totalNormSand += ns; }
-          if (ng > 0) { rDevGrav = devStr((rd.factGravel - ng) / ng * 100); totalFactGrav += rd.factGravel; totalNormGrav += ng; }
-          if (nch > 0) { rDevChem = devStr((rd.factChem - nch) / nch * 100); totalFactChem += rd.factChem; totalNormChem += nch; }
+          if (nc > 0) { rDevCem = devStr((rd.factCement - nc) / nc * 100); if (!isExcluded) { totalFactCem += rd.factCement; totalNormCem += nc; } }
+          if (ns > 0) { rDevSand = devStr((rd.factSand - ns) / ns * 100); if (!isExcluded) { totalFactSand += rd.factSand; totalNormSand += ns; } }
+          if (ng > 0) { rDevGrav = devStr((rd.factGravel - ng) / ng * 100); if (!isExcluded) { totalFactGrav += rd.factGravel; totalNormGrav += ng; } }
+          if (nch > 0) { rDevChem = devStr((rd.factChem - nch) / nch * 100); if (!isExcluded) { totalFactChem += rd.factChem; totalNormChem += nch; } }
         }
 
         const rDispVol = rd.dispatcherVolume || 0;
