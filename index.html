@@ -259,7 +259,8 @@ function render() {
     const dayRow = document.createElement('tr');
     dayRow.className = 'day-row';
     dayRow.id = dayId;
-    dayRow.innerHTML = '<td><input type="checkbox" class="day-checkbox" data-day-id="'+dayId+'" ' + (excludedDays.has(dayId) ? '' : 'checked') + ' onchange="onDayCheckChange(this)"> <span class="toggle" id="t-'+dayId+'">▶</span>' + date +
+    dayRow.innerHTML = '<td><input type="checkbox" class="day-checkbox" data-day-id="'+dayId+'" ' + (excludedDays.has(dayId) ? '' : 'checked') + ' onchange="onDayCheckChange(this)"></td>' +
+      '<td style="white-space:nowrap"><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
       (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
       '</td><td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
       '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
