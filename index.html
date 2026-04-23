@@ -222,7 +222,8 @@ function render() {
     .sort((a, b) => a[0].localeCompare(b[0]));
 
   days.forEach(([date, bases]) => {
-    const basesToShow = base === 'all' ? DATA.bases : [base];
+    // When 'all': exclude ДИН 1 and ДИН 2 — they are already included in ДИН aggregate
+    const basesToShow = base === 'all' ? DATA.bases.filter(b => b !== 'ДИН 1' && b !== 'ДИН 2') : [base];
     let dayVol = 0, dayDispVol = 0, dayBatches = 0, dayAnomalies = 0;
     const dayId = 'day-' + date;
     const isExcluded = excludedDays.has(dayId);
