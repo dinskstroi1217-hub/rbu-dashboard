@@ -76,9 +76,9 @@ td{padding:6px 10px;border-top:1px solid #21262d}
     <tr>
       <th style="width:1%"><input type="checkbox" id="checkAllDays" title="Показать все дни" onchange="toggleAllDays(this.checked)"></th>
       <th style="width:45%;min-width:250px;padding:8px 0 8px 10px"><span style="display:inline-block;width:90px">Дата</span><span style="display:inline-block;width:90px">Рецепт</span><span>Машина</span></th>
+      <th>1С Выпуск</th>
       <th>Объём РБУ</th>
       <th>Объём Дисп.</th>
-      <th>1С Выпуск</th>
       <th>Δ Объём</th>
       <th>Цемент</th>
       <th>Песок</th>
@@ -265,8 +265,8 @@ function render() {
     dayRow.innerHTML = '<td><input type="checkbox" class="day-checkbox" data-day-id="'+dayId+'" ' + (excludedDays.has(dayId) ? '' : 'checked') + ' onchange="onDayCheckChange(this)"></td>' +
       '<td style="white-space:nowrap;word-break:keep-all;min-width:200px"><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
       (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
-      '</td><td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
-      '<td>' + (dayShipVol > 0 ? dayShipVol.toFixed(1) : '—') + '</td>' +
+      '</td><td>' + (dayShipVol > 0 ? dayShipVol.toFixed(1) : '—') + '</td>' +
+      '<td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
       '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
       '<td></td><td></td><td></td><td></td>';
     dayRow.onclick = (e) => { if (e.target.type !== 'checkbox') toggle(dayId); };
@@ -282,8 +282,8 @@ function render() {
       baseRow.dataset.parent = dayId;
       baseRow.innerHTML = '<td></td><td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b> (' + db.batches + ' зам.)' +
         (db.anomalies > 0 ? '<span class="badge">' + db.anomalies + '</span>' : '') +
-        '</td><td>' + db.vol.toFixed(1) + '</td><td>' + (db.dispVol > 0 ? db.dispVol.toFixed(1) : '—') + '</td>' +
-        '<td>' + (db.shipVol > 0 ? db.shipVol.toFixed(1) : '—') + '</td>' +
+        '</td><td>' + (db.shipVol > 0 ? db.shipVol.toFixed(1) : '—') + '</td>' +
+        '<td>' + db.vol.toFixed(1) + '</td><td>' + (db.dispVol > 0 ? db.dispVol.toFixed(1) : '—') + '</td>' +
         '<td class="' + (Math.abs(parseFloat(bDelta)) > 3 ? 'red' : '') + '">' + (bDelta ? bDelta + '%' : '') + '</td>' +
         '<td></td><td></td><td></td><td></td>';
       baseRow.onclick = (e) => { e.stopPropagation(); toggle(bid); };
@@ -314,8 +314,8 @@ function render() {
         recRow.dataset.parent = bid;
         recRow.style.color = '#c9d1d9';
         recRow.innerHTML = '<td></td><td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + ' (' + rec.batches.length + ')' +
-          '</td><td>' + rVol.toFixed(1) + '</td><td>' + (rDispVol > 0 ? rDispVol.toFixed(1) : '—') + '</td>' +
-          '<td>' + (rShipVol > 0 ? rShipVol.toFixed(1) : '—') + '</td>' +
+          '</td><td>' + (rShipVol > 0 ? rShipVol.toFixed(1) : '—') + '</td>' +
+          '<td>' + rVol.toFixed(1) + '</td><td>' + (rDispVol > 0 ? rDispVol.toFixed(1) : '—') + '</td>' +
           '<td class="' + (rVolDelta === '⚠' || Math.abs(parseFloat(rVolDelta)) > 3 ? 'red' : '') + '">' + (rVolDelta === '⚠' ? '⚠' : (rVolDelta ? rVolDelta + '%' : '')) + '</td>' +
           '<td>' + rDevCem + '</td><td>' + rDevSand + '</td><td>' + rDevGrav + '</td><td>' + rDevChem + '</td>';
         recRow.onclick = (e) => { e.stopPropagation(); toggle(rid); };
@@ -328,7 +328,7 @@ function render() {
           bRow.dataset.parent = rid;
           bRow.style.paddingLeft = '68px';
           bRow.innerHTML = '<td></td><td style="padding-left:170px">🚛 ' + bt.truck + '</td>' +
-            '<td>' + bt.volume + '</td><td></td><td></td><td></td>' +
+            '<td></td><td>' + bt.volume + '</td><td></td><td></td>' +
             '<td>' + devStr(bt.devCement) + '</td>' +
             '<td>' + devStr(bt.devSand) + '</td>' +
             '<td>' + devStr(bt.devGravel) + '</td>' +
