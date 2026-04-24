@@ -78,6 +78,7 @@ td{padding:6px 10px;border-top:1px solid #21262d}
       <th style="width:45%;min-width:250px;padding:8px 0 8px 10px"><span style="display:inline-block;width:90px">Дата</span><span style="display:inline-block;width:90px">Рецепт</span><span>Машина</span></th>
       <th>Объём РБУ</th>
       <th>Объём Дисп.</th>
+      <th>1С Выпуск</th>
       <th>Δ Объём</th>
       <th>Цемент</th>
       <th>Песок</th>
@@ -210,7 +211,7 @@ function render() {
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
 
-  let totalVol = 0, totalDispVol = 0, totalBatches = 0, totalAnomalies = 0;
+  let totalVol = 0, totalDispVol = 0, totalShipVol = 0, totalBatches = 0, totalAnomalies = 0;
   let totalFactCem = 0, totalNormCem = 0;
   let totalFactSand = 0, totalNormSand = 0;
   let totalFactGrav = 0, totalNormGrav = 0;
@@ -224,7 +225,7 @@ function render() {
   days.forEach(([date, bases]) => {
     // When 'all': exclude ДИН 1 and ДИН 2 — they are already included in ДИН aggregate
     const basesToShow = base === 'all' ? DATA.bases.filter(b => b !== 'ДИН 1' && b !== 'ДИН 2') : [base];
-    let dayVol = 0, dayDispVol = 0, dayBatches = 0, dayAnomalies = 0;
+    let dayVol = 0, dayDispVol = 0, dayShipVol = 0, dayBatches = 0, dayAnomalies = 0;
     const dayId = 'day-' + date;
     const isExcluded = excludedDays.has(dayId);
 
@@ -235,6 +236,7 @@ function render() {
       if (!bd) return;
       const bVol = bd.totalVolume || 0;
       const bDispVol = bd.dispatcherVolume || 0;
+      const bShipVol = bd.shipmentVolume || 0;
       let bBatches = 0, bAnomalies = 0;
       const recs = [];
       Object.entries(bd.recipes || {}).forEach(([rName, rd]) => {
@@ -245,12 +247,12 @@ function render() {
         });
         recs.push({ name: rName, data: rd, batches });
       });
-      dayVol += bVol; dayDispVol += bDispVol; dayBatches += bBatches; dayAnomalies += bAnomalies;
-      if (recs.length > 0) dayBases.push({ base: b, vol: bVol, dispVol: bDispVol, batches: bBatches, anomalies: bAnomalies, recipes: recs });
+      dayVol += bVol; dayDispVol += bDispVol; dayShipVol += bShipVol; dayBatches += bBatches; dayAnomalies += bAnomalies;
+      if (recs.length > 0) dayBases.push({ base: b, vol: bVol, dispVol: bDispVol, shipVol: bShipVol, batches: bBatches, anomalies: bAnomalies, recipes: recs });
     });
 
     if (!isExcluded) {
-      totalVol += dayVol; totalDispVol += dayDispVol; totalBatches += dayBatches; totalAnomalies += dayAnomalies;
+      totalVol += dayVol; totalDispVol += dayDispVol; totalShipVol += dayShipVol; totalBatches += dayBatches; totalAnomalies += dayAnomalies;
     }
     if (dayBases.length === 0) return;
 
@@ -264,6 +266,7 @@ function render() {
       '<td style="white-space:nowrap;word-break:keep-all;min-width:200px"><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
       (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
       '</td><td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
+      '<td>' + (dayShipVol > 0 ? dayShipVol.toFixed(1) : '—') + '</td>' +
       '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
       '<td></td><td></td><td></td><td></td>';
     dayRow.onclick = (e) => { if (e.target.type !== 'checkbox') toggle(dayId); };
@@ -280,6 +283,7 @@ function render() {
       baseRow.innerHTML = '<td></td><td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b> (' + db.batches + ' зам.)' +
         (db.anomalies > 0 ? '<span class="badge">' + db.anomalies + '</span>' : '') +
         '</td><td>' + db.vol.toFixed(1) + '</td><td>' + (db.dispVol > 0 ? db.dispVol.toFixed(1) : '—') + '</td>' +
+        '<td>' + (db.shipVol > 0 ? db.shipVol.toFixed(1) : '—') + '</td>' +
         '<td class="' + (Math.abs(parseFloat(bDelta)) > 3 ? 'red' : '') + '">' + (bDelta ? bDelta + '%' : '') + '</td>' +
         '<td></td><td></td><td></td><td></td>';
       baseRow.onclick = (e) => { e.stopPropagation(); toggle(bid); };
@@ -302,6 +306,7 @@ function render() {
         }
 
         const rDispVol = rd.dispatcherVolume || 0;
+        const rShipVol = rd.shipmentVolume || 0;
         const rVolDelta = rDispVol > 0 ? ((rVol - rDispVol) / rDispVol * 100).toFixed(1) : (rVol > 0 && rDispVol === 0 ? '⚠' : '');
 
         const recRow = document.createElement('tr');
@@ -310,6 +315,7 @@ function render() {
         recRow.style.color = '#c9d1d9';
         recRow.innerHTML = '<td></td><td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + ' (' + rec.batches.length + ')' +
           '</td><td>' + rVol.toFixed(1) + '</td><td>' + (rDispVol > 0 ? rDispVol.toFixed(1) : '—') + '</td>' +
+          '<td>' + (rShipVol > 0 ? rShipVol.toFixed(1) : '—') + '</td>' +
           '<td class="' + (rVolDelta === '⚠' || Math.abs(parseFloat(rVolDelta)) > 3 ? 'red' : '') + '">' + (rVolDelta === '⚠' ? '⚠' : (rVolDelta ? rVolDelta + '%' : '')) + '</td>' +
           '<td>' + rDevCem + '</td><td>' + rDevSand + '</td><td>' + rDevGrav + '</td><td>' + rDevChem + '</td>';
         recRow.onclick = (e) => { e.stopPropagation(); toggle(rid); };
@@ -322,7 +328,7 @@ function render() {
           bRow.dataset.parent = rid;
           bRow.style.paddingLeft = '68px';
           bRow.innerHTML = '<td></td><td style="padding-left:170px">🚛 ' + bt.truck + '</td>' +
-            '<td>' + bt.volume + '</td><td></td><td></td>' +
+            '<td>' + bt.volume + '</td><td></td><td></td><td></td>' +
             '<td>' + devStr(bt.devCement) + '</td>' +
             '<td>' + devStr(bt.devSand) + '</td>' +
             '<td>' + devStr(bt.devGravel) + '</td>' +
@@ -350,6 +356,7 @@ function render() {
   document.getElementById('stats').innerHTML =
     '<div class="stat"><div class="n">' + totalVol.toFixed(0) + ' м³</div><div class="l">Объём РБУ</div></div>' +
     '<div class="stat"><div class="n">' + totalDispVol.toFixed(0) + ' м³</div><div class="l">Объём Дисп.</div></div>' +
+    (totalShipVol > 0 ? '<div class="stat"><div class="n">' + totalShipVol.toFixed(0) + ' м³</div><div class="l">1С Выпуск</div></div>' : '') +
     statStr(volDeltaTotal, 'Δ Объём') +
     '<div class="stat"><div class="n">' + totalBatches + '</div><div class="l">Замесов</div></div>' +
     '<div class="stat ' + (totalAnomalies > 0 ? 'red' : 'green') + '"><div class="n">' + totalAnomalies + '</div><div class="l">Аномалий >3%</div></div>' +
