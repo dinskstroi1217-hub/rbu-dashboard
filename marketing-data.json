@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-16T12:22:36.281Z",
+  "generatedAt": "2026-05-16T20:12:17.841Z",
   "weeks": [
     {
       "label": "Неделя 16",
@@ -15,17 +15,21 @@
       },
       "leads": {
         "total": 617,
-        "marketing": 104,
-        "sales": 513
+        "marketing": 98,
+        "sales": 349
       },
       "deals": {
         "total": 425,
         "won": 300,
         "wonSum": 24657406,
-        "wonMarketing": 0,
-        "wonSumMarketing": 0,
-        "wonSumBackoffice": 8267131,
-        "wonSumNonMarketing": 16390275
+        "wonMarketing": 7,
+        "wonSumMarketing": 232050,
+        "wonSumBackoffice": 8035081,
+        "wonSumNonMarketing": 16390275,
+        "inWorkMarketing": 2,
+        "inWorkSumMarketing": 0,
+        "dealsTrueBlind": 0,
+        "dealsBackofficeCount": 184
       },
       "cpl": 1086,
       "metrika": {
@@ -51,15 +55,75 @@
         "views": 0,
         "calls": 0
       },
-      "bySource": {},
+      "bySource": {
+        "Яндекс.Карты БСТ": 26,
+        "Сайт отдел БСТ": 40,
+        "Сайт отдел ЖБИ": 10,
+        "Электронная почта Info": 6,
+        "Авито БСТ": 6,
+        "Яндекс": 1,
+        "2ГИС БСТ": 2,
+        "2ГИС ЖБИ": 4,
+        "Яндекс.Карты ЖБИ": 3
+      },
+      "dealsBySource": {
+        "Сайт отдел БСТ": 3,
+        "Сайт Тимашевск": 3,
+        "Яндекс.Карты БСТ": 3
+      },
+      "revenueBySource": {
+        "Сайт Тимашевск": 125250,
+        "Яндекс.Карты БСТ": 97200,
+        "Сайт отдел БСТ": 9600
+      },
       "byCategory": {
         "Спецтехника (#14)": 86,
-        "Сделки (#4)": 321,
-        "Общая (legacy) (#0)": 18
+        "ЖБИ (#4)": 321,
+        "Общая (legacy) (#0)": 1
       },
-      "byManager": {},
-      "inWork": 123,
-      "inWorkSum": 0
+      "byManager": {
+        "Ирина Мухитдинова": {
+          "inWork": 1,
+          "won": 0,
+          "wonSum": 0
+        },
+        "Андрей Визильков": {
+          "inWork": 0,
+          "won": 3,
+          "wonSum": 125250
+        },
+        "Ирина Лукина": {
+          "inWork": 1,
+          "won": 0,
+          "wonSum": 0
+        },
+        "Ольга Долгопятова": {
+          "inWork": 0,
+          "won": 1,
+          "wonSum": 10500
+        },
+        "Илья Ушаков": {
+          "inWork": 0,
+          "won": 3,
+          "wonSum": 96300
+        }
+      },
+      "leadsByManager": {
+        "Илья Ушаков": 18,
+        "ID-904 (не существует)": 10,
+        "Евгений Морозов": 1,
+        "Михаил Кателевец": 13,
+        "Ирина Мухитдинова": 7,
+        "Сайт БСТ (service)": 14,
+        "Андрей Визильков": 22,
+        "Ольга Долгопятова": 6,
+        "Ирина Лукина": 6,
+        "Тимашевск Оператор (ops)": 1
+      },
+      "inWork": 2,
+      "inWorkSum": 0,
+      "dealsTrueBlind": 0,
+      "dealsBackofficeCount": 184
     },
     {
       "label": "2026-04-20..2026-04-26",
@@ -75,17 +139,21 @@
       },
       "leads": {
         "total": 577,
-        "marketing": 105,
-        "sales": 472
+        "marketing": 82,
+        "sales": 304
       },
       "deals": {
         "total": 377,
         "won": 253,
         "wonSum": 24108179,
-        "wonMarketing": 0,
-        "wonSumMarketing": 0,
-        "wonSumBackoffice": 6331763,
-        "wonSumNonMarketing": 17776416
+        "wonMarketing": 5,
+        "wonSumMarketing": 227325,
+        "wonSumBackoffice": 6104438,
+        "wonSumNonMarketing": 17776416,
+        "inWorkMarketing": 2,
+        "inWorkSumMarketing": 19600,
+        "dealsTrueBlind": 0,
+        "dealsBackofficeCount": 134
       },
       "cpl": 546,
       "metrika": {
@@ -112,24 +180,65 @@
         "calls": 0
       },
       "bySource": {
-        "Яндекс.Карты БСТ": 23,
+        "Яндекс.Карты БСТ": 18,
         "Яндекс": 1,
-        "Сайт отдел БСТ": 37,
-        "Электронная почта Info": 25,
+        "Сайт отдел БСТ": 32,
+        "Электронная почта Info": 12,
         "Сайт отдел ЖБИ": 6,
         "2ГИС БСТ": 5,
         "Яндекс.Карты ЖБИ": 2,
         "2ГИС ЖБИ": 1,
         "Авито ДКБИ-сообщения": 5
       },
-      "byCategory": {
-        "Общая (legacy) (#0)": 43,
-        "Сделки (#4)": 265,
-        "Спецтехника (#14)": 69
+      "dealsBySource": {
+        "Сайт отдел ЖБИ": 1,
+        "Сайт отдел БСТ": 3,
+        "Яндекс.Карты БСТ": 2,
+        "2ГИС БСТ": 1
       },
-      "byManager": {},
-      "inWork": 121,
-      "inWorkSum": 19600
+      "revenueBySource": {
+        "Сайт отдел БСТ": 164900,
+        "Яндекс.Карты БСТ": 38800,
+        "2ГИС БСТ": 23625
+      },
+      "byCategory": {
+        "ЖБИ (#4)": 265,
+        "Спецтехника (#14)": 69,
+        "Общая (legacy) (#0)": 33
+      },
+      "byManager": {
+        "Ирина Лукина": {
+          "inWork": 2,
+          "won": 0,
+          "wonSum": 0
+        },
+        "Ольга Долгопятова": {
+          "inWork": 0,
+          "won": 2,
+          "wonSum": 165850
+        },
+        "Илья Ушаков": {
+          "inWork": 0,
+          "won": 3,
+          "wonSum": 61475
+        }
+      },
+      "leadsByManager": {
+        "Ирина Мухитдинова": 8,
+        "ID-904 (не существует)": 8,
+        "Андрей Визильков": 16,
+        "Михаил Кателевец": 11,
+        "Ирина Лукина": 6,
+        "Сайт БСТ (service)": 5,
+        "Илья Ушаков": 17,
+        "Ольга Долгопятова": 5,
+        "Евгений Морозов": 3,
+        "Юрий Дударев (owner)": 3
+      },
+      "inWork": 2,
+      "inWorkSum": 19600,
+      "dealsTrueBlind": 0,
+      "dealsBackofficeCount": 134
     },
     {
       "label": "2026-04-27..2026-05-03",
@@ -145,17 +254,21 @@
       },
       "leads": {
         "total": 499,
-        "marketing": 102,
-        "sales": 397
+        "marketing": 78,
+        "sales": 188
       },
       "deals": {
         "total": 406,
         "won": 308,
         "wonSum": 40414611,
-        "wonMarketing": 0,
-        "wonSumMarketing": 0,
-        "wonSumBackoffice": 14504084,
-        "wonSumNonMarketing": 25910527
+        "wonMarketing": 6,
+        "wonSumMarketing": 390555,
+        "wonSumBackoffice": 14611529,
+        "wonSumNonMarketing": 25910527,
+        "inWorkMarketing": 1,
+        "inWorkSumMarketing": 10140,
+        "dealsTrueBlind": 1,
+        "dealsBackofficeCount": 153
       },
       "cpl": 332,
       "metrika": {
@@ -182,24 +295,68 @@
         "calls": 0
       },
       "bySource": {
-        "Яндекс.Карты БСТ": 17,
-        "2ГИС ЖБИ": 4,
-        "Сайт отдел БСТ": 32,
-        "Авито БСТ": 5,
-        "Сайт отдел ЖБИ": 2,
+        "Яндекс.Карты БСТ": 13,
+        "2ГИС ЖБИ": 3,
+        "Сайт отдел БСТ": 27,
+        "Сайт отдел ЖБИ": 1,
         "Авито ДКБИ-сообщения": 22,
         "Яндекс.Карты ЖБИ": 2,
-        "Электронная почта Info": 16,
-        "Яндекс": 2
+        "Электронная почта Info": 6,
+        "Авито БСТ": 4
+      },
+      "dealsBySource": {
+        "Сайт отдел ЖБИ": 1,
+        "Яндекс.Карты БСТ": 1,
+        "Сайт отдел БСТ": 4,
+        "Сайт Тимашевск": 1
+      },
+      "revenueBySource": {
+        "Яндекс.Карты БСТ": 91200,
+        "Сайт отдел БСТ": 135355,
+        "Сайт Тимашевск": 164000
       },
       "byCategory": {
         "Спецтехника (#14)": 43,
-        "Сделки (#4)": 321,
-        "Общая (legacy) (#0)": 42
+        "ЖБИ (#4)": 321,
+        "Общая (legacy) (#0)": 36
       },
-      "byManager": {},
-      "inWork": 98,
-      "inWorkSum": 10140
+      "byManager": {
+        "Евгений Морозов": {
+          "inWork": 1,
+          "won": 0,
+          "wonSum": 0
+        },
+        "Ольга Долгопятова": {
+          "inWork": 0,
+          "won": 2,
+          "wonSum": 152950
+        },
+        "Андрей Визильков": {
+          "inWork": 0,
+          "won": 2,
+          "wonSum": 191975
+        },
+        "Илья Ушаков": {
+          "inWork": 0,
+          "won": 2,
+          "wonSum": 45630
+        }
+      },
+      "leadsByManager": {
+        "Андрей Визильков": 13,
+        "Михаил Кателевец": 6,
+        "Илья Ушаков": 14,
+        "Ольга Долгопятова": 4,
+        "Ирина Мухитдинова": 3,
+        "Сайт БСТ (service)": 10,
+        "Ирина Лукина": 26,
+        "ID-904 (не существует)": 1,
+        "Евгений Морозов": 1
+      },
+      "inWork": 1,
+      "inWorkSum": 10140,
+      "dealsTrueBlind": 1,
+      "dealsBackofficeCount": 153
     },
     {
       "label": "Неделя 19",
@@ -222,10 +379,14 @@
         "total": 214,
         "won": 95,
         "wonSum": 11580625,
-        "wonMarketing": 0,
-        "wonSumMarketing": 0,
-        "wonSumBackoffice": 3785570,
-        "wonSumNonMarketing": 7795055
+        "wonMarketing": 3,
+        "wonSumMarketing": 49400,
+        "wonSumBackoffice": 4323945,
+        "wonSumNonMarketing": 7880405,
+        "inWorkMarketing": 0,
+        "inWorkSumMarketing": 0,
+        "dealsTrueBlind": 1,
+        "dealsBackofficeCount": 87
       },
       "cpl": 684,
       "metrika": {
@@ -261,14 +422,43 @@
         "Авито БСТ": 1,
         "Электронная почта Info": 5
       },
-      "byCategory": {
-        "Общая (legacy) (#0)": 140,
-        "ЖБИ (#4)": 18,
-        "Спецтехника (#14)": 56
+      "dealsBySource": {
+        "Яндекс.Карты БСТ": 1,
+        "Авито БСТ": 2
       },
-      "byManager": {},
-      "inWork": 118,
-      "inWorkSum": 0
+      "revenueBySource": {
+        "Яндекс.Карты БСТ": 12500,
+        "Авито БСТ": 36900
+      },
+      "byCategory": {
+        "ЖБИ (#4)": 18,
+        "Спецтехника (#14)": 56,
+        "Общая (legacy) (#0)": 89
+      },
+      "byManager": {
+        "Андрей Визильков": {
+          "inWork": 0,
+          "won": 3,
+          "wonSum": 49400
+        }
+      },
+      "leadsByManager": {
+        "Евгений Морозов": 4,
+        "ID-904 (не существует)": 2,
+        "Ирина Лукина": 6,
+        "Андрей Визильков": 11,
+        "Ольга Долгопятова": 8,
+        "Сайт БСТ (service)": 3,
+        "Илья Ушаков": 8,
+        "Тимашевск Оператор (ops)": 1,
+        "Михаил Кателевец": 3,
+        "Ирина Мухитдинова": 4,
+        "Татьяна Гладышева": 1
+      },
+      "inWork": 0,
+      "inWorkSum": 0,
+      "dealsTrueBlind": 1,
+      "dealsBackofficeCount": 87
     }
   ],
   "latest": {
@@ -292,10 +482,14 @@
       "total": 214,
       "won": 95,
       "wonSum": 11580625,
-      "wonMarketing": 0,
-      "wonSumMarketing": 0,
-      "wonSumBackoffice": 3785570,
-      "wonSumNonMarketing": 7795055
+      "wonMarketing": 3,
+      "wonSumMarketing": 49400,
+      "wonSumBackoffice": 4323945,
+      "wonSumNonMarketing": 7880405,
+      "inWorkMarketing": 0,
+      "inWorkSumMarketing": 0,
+      "dealsTrueBlind": 1,
+      "dealsBackofficeCount": 87
     },
     "cpl": 684,
     "metrika": {
@@ -331,14 +525,43 @@
       "Авито БСТ": 1,
       "Электронная почта Info": 5
     },
-    "byCategory": {
-      "Общая (legacy) (#0)": 140,
-      "ЖБИ (#4)": 18,
-      "Спецтехника (#14)": 56
+    "dealsBySource": {
+      "Яндекс.Карты БСТ": 1,
+      "Авито БСТ": 2
     },
-    "byManager": {},
-    "inWork": 118,
-    "inWorkSum": 0
+    "revenueBySource": {
+      "Яндекс.Карты БСТ": 12500,
+      "Авито БСТ": 36900
+    },
+    "byCategory": {
+      "ЖБИ (#4)": 18,
+      "Спецтехника (#14)": 56,
+      "Общая (legacy) (#0)": 89
+    },
+    "byManager": {
+      "Андрей Визильков": {
+        "inWork": 0,
+        "won": 3,
+        "wonSum": 49400
+      }
+    },
+    "leadsByManager": {
+      "Евгений Морозов": 4,
+      "ID-904 (не существует)": 2,
+      "Ирина Лукина": 6,
+      "Андрей Визильков": 11,
+      "Ольга Долгопятова": 8,
+      "Сайт БСТ (service)": 3,
+      "Илья Ушаков": 8,
+      "Тимашевск Оператор (ops)": 1,
+      "Михаил Кателевец": 3,
+      "Ирина Мухитдинова": 4,
+      "Татьяна Гладышева": 1
+    },
+    "inWork": 0,
+    "inWorkSum": 0,
+    "dealsTrueBlind": 1,
+    "dealsBackofficeCount": 87
   },
   "prev": {
     "label": "2026-04-27..2026-05-03",
@@ -354,17 +577,21 @@
     },
     "leads": {
       "total": 499,
-      "marketing": 102,
-      "sales": 397
+      "marketing": 78,
+      "sales": 188
     },
     "deals": {
       "total": 406,
       "won": 308,
       "wonSum": 40414611,
-      "wonMarketing": 0,
-      "wonSumMarketing": 0,
-      "wonSumBackoffice": 14504084,
-      "wonSumNonMarketing": 25910527
+      "wonMarketing": 6,
+      "wonSumMarketing": 390555,
+      "wonSumBackoffice": 14611529,
+      "wonSumNonMarketing": 25910527,
+      "inWorkMarketing": 1,
+      "inWorkSumMarketing": 10140,
+      "dealsTrueBlind": 1,
+      "dealsBackofficeCount": 153
     },
     "cpl": 332,
     "metrika": {
@@ -391,35 +618,79 @@
       "calls": 0
     },
     "bySource": {
-      "Яндекс.Карты БСТ": 17,
-      "2ГИС ЖБИ": 4,
-      "Сайт отдел БСТ": 32,
-      "Авито БСТ": 5,
-      "Сайт отдел ЖБИ": 2,
+      "Яндекс.Карты БСТ": 13,
+      "2ГИС ЖБИ": 3,
+      "Сайт отдел БСТ": 27,
+      "Сайт отдел ЖБИ": 1,
       "Авито ДКБИ-сообщения": 22,
       "Яндекс.Карты ЖБИ": 2,
-      "Электронная почта Info": 16,
-      "Яндекс": 2
+      "Электронная почта Info": 6,
+      "Авито БСТ": 4
+    },
+    "dealsBySource": {
+      "Сайт отдел ЖБИ": 1,
+      "Яндекс.Карты БСТ": 1,
+      "Сайт отдел БСТ": 4,
+      "Сайт Тимашевск": 1
+    },
+    "revenueBySource": {
+      "Яндекс.Карты БСТ": 91200,
+      "Сайт отдел БСТ": 135355,
+      "Сайт Тимашевск": 164000
     },
     "byCategory": {
       "Спецтехника (#14)": 43,
-      "Сделки (#4)": 321,
-      "Общая (legacy) (#0)": 42
+      "ЖБИ (#4)": 321,
+      "Общая (legacy) (#0)": 36
     },
-    "byManager": {},
-    "inWork": 98,
-    "inWorkSum": 10140
+    "byManager": {
+      "Евгений Морозов": {
+        "inWork": 1,
+        "won": 0,
+        "wonSum": 0
+      },
+      "Ольга Долгопятова": {
+        "inWork": 0,
+        "won": 2,
+        "wonSum": 152950
+      },
+      "Андрей Визильков": {
+        "inWork": 0,
+        "won": 2,
+        "wonSum": 191975
+      },
+      "Илья Ушаков": {
+        "inWork": 0,
+        "won": 2,
+        "wonSum": 45630
+      }
+    },
+    "leadsByManager": {
+      "Андрей Визильков": 13,
+      "Михаил Кателевец": 6,
+      "Илья Ушаков": 14,
+      "Ольга Долгопятова": 4,
+      "Ирина Мухитдинова": 3,
+      "Сайт БСТ (service)": 10,
+      "Ирина Лукина": 26,
+      "ID-904 (не существует)": 1,
+      "Евгений Морозов": 1
+    },
+    "inWork": 1,
+    "inWorkSum": 10140,
+    "dealsTrueBlind": 1,
+    "dealsBackofficeCount": 153
   },
   "allSources": {
-    "Яндекс.Карты БСТ": 52,
-    "Яндекс": 3,
-    "Сайт отдел БСТ": 87,
-    "Электронная почта Info": 46,
-    "Сайт отдел ЖБИ": 10,
-    "2ГИС БСТ": 8,
-    "Яндекс.Карты ЖБИ": 7,
-    "2ГИС ЖБИ": 5,
-    "Авито ДКБИ-сообщения": 34,
-    "Авито БСТ": 6
+    "Яндекс.Карты БСТ": 69,
+    "Сайт отдел БСТ": 117,
+    "Сайт отдел ЖБИ": 19,
+    "Электронная почта Info": 29,
+    "Авито БСТ": 11,
+    "Яндекс": 2,
+    "2ГИС БСТ": 10,
+    "2ГИС ЖБИ": 8,
+    "Яндекс.Карты ЖБИ": 10,
+    "Авито ДКБИ-сообщения": 34
   }
 }
