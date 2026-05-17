@@ -58,6 +58,15 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .chart-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
 .chart-card.wide { grid-column: 1 / -1; }
 .chart-title { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.table-note { color: var(--text3); font-size: 11px; line-height: 1.45; margin: -6px 0 10px; }
+.ai-summary { font-size: 14px; line-height: 1.55; color: var(--text); padding: 12px 14px; background: rgba(59,130,246,0.10); border: 1px solid rgba(59,130,246,0.18); border-radius: 10px; margin-bottom: 12px; }
+.ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.ai-block { background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.055); border-radius: 10px; padding: 10px 12px; min-height: 120px; }
+.ai-block h3 { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.ai-block ul { display: grid; gap: 7px; list-style: none; }
+.ai-block li { color: var(--text2); font-size: 12px; line-height: 1.4; }
+.ai-meta { color: var(--text3); font-size: 10px; margin-top: 10px; }
+@media (max-width: 1100px) { .ai-grid { grid-template-columns: 1fr; } }
 
 /* BOTTOM ROW */
 .bottom-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 12px; }
@@ -126,12 +135,24 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     </div>
     <div class="bottom-row">
       <div class="chart-card">
-        <div class="chart-title">Экономика каналов</div>
+        <div class="chart-title">Конверсия и экономика каналов</div>
+        <div class="table-note">Сделки/лид = сделки, закрытые на выбранной неделе, делённые на лиды этой недели. Это операционный срез, не когорта.</div>
         <table class="data-table" id="tbl-sources"></table>
       </div>
       <div class="chart-card">
         <div class="chart-title">Каналы расхода</div>
         <div id="chart-spend"></div>
+      </div>
+    </div>
+    <div class="bottom-row">
+      <div class="chart-card">
+        <div class="chart-title">Конверсия по менеджерам</div>
+        <div class="table-note">Won/лид считается по маркет-сделкам и маркет-лидам недели. Для управленческого контроля, не для финальной атрибуции.</div>
+        <table class="data-table" id="tbl-managers"></table>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Аналитика от ИИ</div>
+        <div id="ai-insights"></div>
       </div>
     </div>
   </div>
@@ -146,6 +167,9 @@ const sign = v => v > 0 ? '+' : '';
 const deltaClass = (v, inv = false) => v === null ? 'neu' : (inv ? (v > 0 ? 'neg' : 'pos') : (v > 0 ? 'pos' : 'neg'));
 const romi = (revenue, spend) => spend > 0 ? ((revenue - spend) / spend * 100) : null;
 const fmtPct = v => v == null ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(0)}%`;
+const esc = v => String(v ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const ratioLabel = value => value == null ? '—' : value >= 1 ? `${value.toFixed(1)}x` : `${(value * 100).toFixed(0)}%`;
+const ratioTag = value => value == null || value === 0 ? 'r' : value >= 0.15 ? 'g' : value >= 0.05 ? 'y' : 'r';
 
 let DATA = null;
 let activeWeekIdx = null;
@@ -335,12 +359,12 @@ function renderSpend(week) {
 }
 
 // --- Sources table ---
-function renderSourcesTable(week) {
+function getSourceRows(week) {
   const leads = week.bySource || {};
   const deals = week.dealsBySource || {};
   const revenue = week.revenueBySource || {};
   const names = [...new Set([...Object.keys(leads), ...Object.keys(deals), ...Object.keys(revenue)])];
-  const rows = names.map((name) => {
+  return names.map((name) => {
     const leadCount = leads[name] || 0;
     const dealCount = deals[name] || 0;
     const revenueSum = revenue[name] || 0;
@@ -352,25 +376,128 @@ function renderSourcesTable(week) {
       dealRate: leadCount > 0 ? dealCount / leadCount : null,
       revenuePerLead: leadCount > 0 ? revenueSum / leadCount : null,
     };
-  }).sort((a, b) => (b.revenue - a.revenue) || (b.deals - a.deals) || (b.leads - a.leads));
+  }).sort((a, b) => (b.deals - a.deals) || (b.revenue - a.revenue) || (b.leads - a.leads));
+}
 
+function renderSourcesTable(week) {
+  const rows = getSourceRows(week);
   const table = document.getElementById('tbl-sources');
   table.innerHTML = `
-    <thead><tr><th>Источник</th><th class="num">Лиды</th><th class="num">Сделки</th><th class="num">Выручка</th><th class="num">Сд/лид</th><th class="num">₽/лид</th></tr></thead>
+    <thead><tr><th>Источник</th><th class="num">Лиды</th><th class="num">Сделки</th><th class="num">Конв.</th><th class="num">Выручка</th><th class="num">₽/лид</th></tr></thead>
     <tbody>
       ${rows.map((row) => {
-        const rate = row.dealRate == null ? '—' : row.dealRate >= 1 ? `${row.dealRate.toFixed(1)}x` : `${(row.dealRate * 100).toFixed(0)}%`;
-        const tag = row.revenue > 0 ? 'g' : row.deals > 0 ? 'y' : 'r';
+        const rate = ratioLabel(row.dealRate);
+        const tag = ratioTag(row.dealRate);
         return `<tr>
-          <td class="source-cell">${row.name}</td>
+          <td class="source-cell">${esc(row.name)}</td>
           <td class="num">${fmt(row.leads)}</td>
           <td class="num">${fmt(row.deals)}</td>
-          <td class="num">${fmtR(row.revenue)}</td>
           <td class="num"><span class="tag ${tag}">${rate}</span></td>
+          <td class="num">${fmtR(row.revenue)}</td>
           <td class="num">${row.revenuePerLead == null ? '—' : fmtR(row.revenuePerLead)}</td>
         </tr>`;
       }).join('')}
     </tbody>
+  `;
+}
+
+// --- Managers table ---
+function getManagerRows(week) {
+  const leads = week.leadsByManager || {};
+  const deals = week.byManager || {};
+  const names = [...new Set([...Object.keys(leads), ...Object.keys(deals)])];
+  return names.map((name) => {
+    const d = deals[name] || {};
+    const leadCount = leads[name] || 0;
+    const won = d.won || 0;
+    const inWork = d.inWork || 0;
+    const wonSum = d.wonSum || 0;
+    return {
+      name,
+      leads: leadCount,
+      won,
+      inWork,
+      wonSum,
+      wonRate: leadCount > 0 ? won / leadCount : null,
+    };
+  }).sort((a, b) => (b.won - a.won) || (b.inWork - a.inWork) || (b.wonSum - a.wonSum) || (b.leads - a.leads));
+}
+
+function renderManagersTable(week) {
+  const rows = getManagerRows(week);
+  const table = document.getElementById('tbl-managers');
+  if (!rows.length) {
+    table.innerHTML = '<tbody><tr><td style="color:var(--text3)">Нет данных по менеджерам</td></tr></tbody>';
+    return;
+  }
+  table.innerHTML = `
+    <thead><tr><th>Менеджер</th><th class="num">Лиды</th><th class="num">Won</th><th class="num">В работе</th><th class="num">Won/лид</th><th class="num">Выручка</th></tr></thead>
+    <tbody>
+      ${rows.map((row) => `<tr>
+        <td class="source-cell">${esc(row.name)}</td>
+        <td class="num">${fmt(row.leads)}</td>
+        <td class="num">${fmt(row.won)}</td>
+        <td class="num">${fmt(row.inWork)}</td>
+        <td class="num"><span class="tag ${ratioTag(row.wonRate)}">${ratioLabel(row.wonRate)}</span></td>
+        <td class="num">${fmtR(row.wonSum)}</td>
+      </tr>`).join('')}
+    </tbody>
+  `;
+}
+
+// --- AI insights ---
+function buildAutoInsights(week, prev) {
+  const spend = week.spend?.total || 0;
+  const revenue = week.deals?.wonSumMarketing || 0;
+  const leads = week.leads?.marketing || 0;
+  const leadDelta = prev ? pct(leads, prev.leads?.marketing || 0) : null;
+  const cpl = week.cpl || 0;
+  const romiFact = romi(revenue, spend);
+  const sourceRows = getSourceRows(week);
+  const managerRows = getManagerRows(week);
+  const topSource = sourceRows.find(r => r.deals > 0) || sourceRows[0];
+  const topManager = managerRows.find(r => r.won > 0) || managerRows[0];
+
+  const changes = [];
+  if (leadDelta != null) changes.push(`Маркет-лиды ${leadDelta < 0 ? 'снизились' : 'выросли'} на ${Math.abs(leadDelta).toFixed(0)}% к прошлой неделе.`);
+  changes.push(`CPL сейчас ${fmt(cpl)} ₽, ${cpl > 800 ? 'красная зона' : cpl > 500 ? 'жёлтая зона' : 'норма'}.`);
+  if (topSource) changes.push(`Лучший канал по сделкам: ${topSource.name}, ${fmt(topSource.deals)} сделок на ${fmtR(topSource.revenue)}.`);
+
+  const risks = [];
+  if (leads < 60) risks.push({ text: 'Объём маркет-лидов низкий: при сохранении уровня pipeline может просесть через 3–4 недели.' });
+  if (cpl > 500) risks.push({ text: 'Стоимость лида выше целевого коридора 500 ₽, нужно смотреть источники с нулевой выручкой.' });
+  if (romiFact != null && romiFact < 0) risks.push({ text: 'Фактический ROMI отрицательный, окупаемость зависит от будущего закрытия pipeline.' });
+
+  const actions = [];
+  if (topSource) actions.push({ text: `Разобрать канал ${topSource.name}: почему он даёт сделки, и можно ли масштабировать без роста CPL.` });
+  if (topManager) actions.push({ text: `Проверить обработку у ${topManager.name}: ${fmt(topManager.leads)} лидов, ${fmt(topManager.won)} won, ${fmt(topManager.inWork)} в работе.` });
+  actions.push({ text: 'Отдельно проверить источники с лидами, но без сделок, и закрыть причину: качество трафика или обработка.' });
+
+  return {
+    summary: `Автоанализ выбранной недели: ${fmt(leads)} маркет-лидов, расход ${fmtR(spend)}, маркет-выручка ${fmtR(revenue)}, ROMI ${fmtPct(romiFact)}.`,
+    whatsChanged: changes,
+    risks,
+    actions,
+    model: null,
+  };
+}
+
+function renderAIInsights(week, prev) {
+  const ai = week.ai?.summary ? week.ai : buildAutoInsights(week, prev);
+  const changes = (ai.whatsChanged || []).slice(0, 4);
+  const risks = (ai.risks || []).slice(0, 3);
+  const actions = (ai.actions || []).slice(0, 3);
+  const list = (items) => items.length
+    ? `<ul>${items.map(item => `<li>${esc(typeof item === 'string' ? item : item.text)}</li>`).join('')}</ul>`
+    : '<div class="table-note">Нет данных</div>';
+  document.getElementById('ai-insights').innerHTML = `
+    <div class="ai-summary">${esc(ai.summary || 'Нет сохранённой AI-аналитики для этой недели.')}</div>
+    <div class="ai-grid">
+      <div class="ai-block"><h3>Что изменилось</h3>${list(changes)}</div>
+      <div class="ai-block"><h3>Риски</h3>${list(risks)}</div>
+      <div class="ai-block"><h3>Что сделать</h3>${list(actions)}</div>
+    </div>
+    <div class="ai-meta">${ai.model ? `Источник: ${esc(ai.model)} · analysis.json` : 'Источник: автоанализ по KPI дашборда'}</div>
   `;
 }
 
@@ -394,6 +521,8 @@ function selectWeek(idx) {
   renderCategories(week);
   renderSpend(week);
   renderSourcesTable(week);
+  renderManagersTable(week);
+  renderAIInsights(week, prev);
 }
 
 // --- Trend always shows all weeks ---
