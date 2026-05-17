@@ -26,20 +26,21 @@
 body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
 
 /* HEADER */
-.header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); }
 .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
 .header-left p { color: var(--text2); font-size: 13px; margin-top: 2px; }
-.period-tabs { display: flex; gap: 4px; background: var(--bg-card2); border-radius: 10px; padding: 4px; }
-.period-tab { padding: 5px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); border: none; background: none; transition: all 0.2s; }
+.period-tabs { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; background: var(--bg-card2); border-radius: 10px; padding: 4px; }
+.period-tab { flex: 0 0 auto; padding: 5px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); border: none; background: none; transition: all 0.2s; white-space: nowrap; }
 .period-tab.active { background: var(--accent); color: #fff; }
 
 /* MAIN LAYOUT */
 .main { padding: 20px 24px; display: grid; gap: 16px; }
 
 /* KPI STRIP */
-.kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
 @media (max-width: 1100px) { .kpi-row { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 700px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .kpi-row { grid-template-columns: 1fr; } }
 
 .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
 .kpi-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
@@ -66,6 +67,8 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .data-table th { text-align: left; padding: 8px 10px; color: var(--text3); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
 .data-table td { padding: 9px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.data-table th.num, .data-table td.num { text-align: right; white-space: nowrap; }
+.data-table td.source-cell { min-width: 180px; }
 .data-table tr:hover td { background: rgba(255,255,255,0.03); }
 .data-table tr:last-child td { border-bottom: none; }
 .bar-wrap { display: flex; align-items: center; gap: 8px; }
@@ -80,6 +83,12 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 #loader { display: flex; align-items: center; justify-content: center; height: 80vh; flex-direction: column; gap: 12px; color: var(--text2); font-size: 14px; }
 .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 700px) {
+  .header { align-items: flex-start; flex-direction: column; padding: 18px 16px 14px; }
+  .main { padding: 16px; gap: 14px; }
+  .chart-card { padding: 14px; overflow-x: auto; }
+  .kpi-value { font-size: 26px; }
+}
 </style>
 </head>
 <body>
@@ -117,7 +126,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     </div>
     <div class="bottom-row">
       <div class="chart-card">
-        <div class="chart-title">Источники — детализация</div>
+        <div class="chart-title">Экономика каналов</div>
         <table class="data-table" id="tbl-sources"></table>
       </div>
       <div class="chart-card">
@@ -135,6 +144,8 @@ const fmtR = n => fmtM(n) + ' ₽';
 const pct = (a, b) => b ? ((a - b) / b * 100) : null;
 const sign = v => v > 0 ? '+' : '';
 const deltaClass = (v, inv = false) => v === null ? 'neu' : (inv ? (v > 0 ? 'neg' : 'pos') : (v > 0 ? 'pos' : 'neg'));
+const romi = (revenue, spend) => spend > 0 ? ((revenue - spend) / spend * 100) : null;
+const fmtPct = v => v == null ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(0)}%`;
 
 let DATA = null;
 let activeWeekIdx = null;
@@ -155,6 +166,14 @@ function renderKPI(week, prev) {
     return `<span class="kpi-delta ${deltaClass(v, inv)}">${sign(v)}${v.toFixed(1)}% к пред.</span>`;
   };
 
+  const spend = week.spend.total || 0;
+  const prevSpend = prev?.spend?.total || 0;
+  const revenue = week.deals.wonSumMarketing || 0;
+  const prevRevenue = prev?.deals?.wonSumMarketing || 0;
+  const romiFact = romi(revenue, spend);
+  const prevRomiFact = romi(prevRevenue, prevSpend);
+  const pipeline = week.inWorkSum ?? week.deals.inWorkSumMarketing ?? 0;
+
   const cards = [
     {
       label: 'Маркет. лиды',
@@ -170,21 +189,27 @@ function renderKPI(week, prev) {
     },
     {
       label: 'Расход',
-      value: fmtR(week.spend.total || 0),
-      delta: dp(week.spend.total, prev?.spend?.total, true),
+      value: fmtR(spend),
+      delta: dp(spend, prev?.spend?.total, true),
       sub: `Директ: ${fmtR(week.spend.direct || 0)}`
     },
     {
-      label: 'Визиты',
-      value: fmt(week.metrika.visits || 0),
-      delta: dp(week.metrika.visits, prev?.metrika?.visits),
-      sub: `Отказы: ${(week.metrika.bounceRate || 0).toFixed(1)}%`
+      label: 'Маркет-выручка',
+      value: fmtR(revenue),
+      delta: dp(revenue, prev?.deals?.wonSumMarketing),
+      sub: `Won: ${fmt(week.deals.wonMarketing || 0)} · всего: ${fmtR(week.deals.wonSum || 0)}`
     },
     {
-      label: 'Выиграно ₽',
-      value: fmtR(week.deals.wonSum || 0),
-      delta: dp(week.deals.wonSum, prev?.deals?.wonSum),
-      sub: `Сделок: ${fmt(week.deals.won || 0)}`
+      label: 'ROMI факт',
+      value: fmtPct(romiFact),
+      delta: dp(romiFact, prevRomiFact),
+      sub: 'по маркет-выручке'
+    },
+    {
+      label: 'Pipeline',
+      value: fmtR(pipeline),
+      delta: dp(pipeline, prev?.inWorkSum ?? prev?.deals?.inWorkSumMarketing),
+      sub: `В работе: ${fmt(week.inWork ?? week.deals.inWorkMarketing ?? 0)}`
     },
   ];
 
@@ -311,24 +336,38 @@ function renderSpend(week) {
 
 // --- Sources table ---
 function renderSourcesTable(week) {
-  const src = week.bySource || {};
-  const total = Object.values(src).reduce((a, b) => a + b, 0);
-  const entries = Object.entries(src).sort((a, b) => b[1] - a[1]);
-  const max = entries[0]?.[1] || 1;
+  const leads = week.bySource || {};
+  const deals = week.dealsBySource || {};
+  const revenue = week.revenueBySource || {};
+  const names = [...new Set([...Object.keys(leads), ...Object.keys(deals), ...Object.keys(revenue)])];
+  const rows = names.map((name) => {
+    const leadCount = leads[name] || 0;
+    const dealCount = deals[name] || 0;
+    const revenueSum = revenue[name] || 0;
+    return {
+      name,
+      leads: leadCount,
+      deals: dealCount,
+      revenue: revenueSum,
+      dealRate: leadCount > 0 ? dealCount / leadCount : null,
+      revenuePerLead: leadCount > 0 ? revenueSum / leadCount : null,
+    };
+  }).sort((a, b) => (b.revenue - a.revenue) || (b.deals - a.deals) || (b.leads - a.leads));
 
   const table = document.getElementById('tbl-sources');
   table.innerHTML = `
-    <thead><tr><th>Источник</th><th>Лидов</th><th>Доля</th><th></th></tr></thead>
+    <thead><tr><th>Источник</th><th class="num">Лиды</th><th class="num">Сделки</th><th class="num">Выручка</th><th class="num">Сд/лид</th><th class="num">₽/лид</th></tr></thead>
     <tbody>
-      ${entries.map(([src, cnt]) => {
-        const share = total > 0 ? (cnt / total * 100) : 0;
-        const barW = (cnt / max * 100).toFixed(0);
-        const tag = share > 20 ? 'g' : share > 8 ? 'y' : 'r';
+      ${rows.map((row) => {
+        const rate = row.dealRate == null ? '—' : row.dealRate >= 1 ? `${row.dealRate.toFixed(1)}x` : `${(row.dealRate * 100).toFixed(0)}%`;
+        const tag = row.revenue > 0 ? 'g' : row.deals > 0 ? 'y' : 'r';
         return `<tr>
-          <td>${src}</td>
-          <td>${fmt(cnt)}</td>
-          <td><span class="tag ${tag}">${share.toFixed(0)}%</span></td>
-          <td style="width:100px"><div class="bar-bg"><div class="bar-fill" style="width:${barW}%"></div></div></td>
+          <td class="source-cell">${row.name}</td>
+          <td class="num">${fmt(row.leads)}</td>
+          <td class="num">${fmt(row.deals)}</td>
+          <td class="num">${fmtR(row.revenue)}</td>
+          <td class="num"><span class="tag ${tag}">${rate}</span></td>
+          <td class="num">${row.revenuePerLead == null ? '—' : fmtR(row.revenuePerLead)}</td>
         </tr>`;
       }).join('')}
     </tbody>
