@@ -29,11 +29,22 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); }
 .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
 .header-left p { color: var(--text2); font-size: 13px; margin-top: 2px; }
-.period-tabs { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; background: var(--bg-card2); border-radius: 10px; padding: 4px; }
-.period-tab { flex: 0 0 auto; padding: 5px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); border: none; background: none; transition: all 0.2s; white-space: nowrap; }
-.period-tab.active { background: var(--accent); color: #fff; }
-.tab-group-label { display: inline-flex; align-items: center; padding: 0 8px 0 6px; font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
-.tab-group-sep { display: inline-block; width: 1px; height: 18px; background: rgba(255,255,255,0.08); margin: 0 4px; align-self: center; }
+.period-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.period-kind { display: inline-flex; gap: 2px; background: var(--bg-card2); border-radius: 8px; padding: 3px; }
+.period-kind button { padding: 6px 14px; border: none; background: none; color: var(--text2); font-size: 13px; font-weight: 500; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+.period-kind button.active { background: var(--accent); color: #fff; }
+.period-kind button:hover:not(.active) { color: var(--text); }
+.period-select { background: var(--bg-card2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 7px 28px 7px 12px; font-size: 13px; font-weight: 500; min-width: 160px; cursor: pointer; outline: none; appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%2394a3b8' stroke-width='1.5'><path d='M3 4.5L6 7.5L9 4.5'/></svg>"); background-repeat: no-repeat; background-position: right 10px center; }
+.period-select:focus, .period-select:hover { border-color: var(--accent); }
+.period-select optgroup { color: var(--text3); font-style: normal; font-weight: 600; }
+.period-select option { background: var(--bg-card); color: var(--text); }
+.period-custom { display: inline-flex; align-items: center; gap: 6px; background: var(--bg-card2); border-radius: 8px; padding: 3px 6px; }
+.period-date { background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 5px 8px; font-size: 13px; font-family: inherit; color-scheme: dark; outline: none; }
+.period-date:focus, .period-date:hover { border-color: var(--accent); }
+.period-date-sep { color: var(--text3); font-size: 12px; }
+.period-apply { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+.period-apply:hover { opacity: 0.85; }
+.period-apply:active { transform: translateY(1px); }
 
 /* MAIN LAYOUT */
 .main { padding: 20px 24px; display: grid; gap: 16px; }
@@ -115,7 +126,21 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
       <h1>📊 Маркетинг ДКБИ</h1>
       <p id="hdr-period">—</p>
     </div>
-    <div class="period-tabs" id="period-tabs"></div>
+    <div class="period-controls" id="period-controls">
+      <div class="period-kind">
+        <button data-kind="week" class="active" onclick="setKind('week')">Неделя</button>
+        <button data-kind="month" onclick="setKind('month')">Месяц</button>
+        <button data-kind="custom" onclick="setKind('custom')">Период</button>
+      </div>
+      <select id="period-week-select" class="period-select" onchange="onWeekChange()"></select>
+      <select id="period-month-select" class="period-select" style="display:none" onchange="onMonthChange()"></select>
+      <div id="period-custom-box" class="period-custom" style="display:none">
+        <input type="date" id="custom-from" class="period-date">
+        <span class="period-date-sep">—</span>
+        <input type="date" id="custom-to" class="period-date">
+        <button class="period-apply" onclick="applyCustomRange()">OK</button>
+      </div>
+    </div>
   </div>
   <div class="main">
     <div class="kpi-row" id="kpi-row"></div>
@@ -503,38 +528,112 @@ function renderAIInsights(week, prev) {
   `;
 }
 
-// --- Period tabs: weeks + months + ranges ---
-// activePeriod хранит выбор: { kind: 'week'|'month'|'range', idx: number, id: string }
-let activePeriod = { kind: 'week', idx: 0, id: null };
+// --- Period controls: weeks select + months select + custom range ---
+let activePeriod = { kind: 'week', idx: 0 };
 
-function renderTabs() {
-  const el = document.getElementById('period-tabs');
-  const weeks = DATA.weeks || [];
-  const months = DATA.months || [];
-  const ranges = DATA.periodOptions?.ranges || [];
-
-  const btn = (kind, idx, label, id) => {
-    const isActive = activePeriod.kind === kind && (
-      (kind === 'range' && activePeriod.id === id) ||
-      (kind !== 'range' && activePeriod.idx === idx)
-    );
-    return `<button class="period-tab ${isActive ? 'active' : ''}" onclick="selectPeriod('${kind}', ${idx}, '${id || ''}')">${label}</button>`;
-  };
-
-  const groups = [];
-  if (months.length) {
-    groups.push('<span class="tab-group-label">мес.</span>' + months.map((m, i) => btn('month', i, m.label, m.yearMonth)).join(''));
-  }
-  groups.push('<span class="tab-group-label">нед.</span>' + weeks.map((w, i) => btn('week', i, w.label, `${w.isoYear}-W${w.isoWeek}`)).join(''));
-  if (ranges.length) {
-    groups.push('<span class="tab-group-label">диап.</span>' + ranges.map(r => btn('range', -1, r.label, r.id)).join(''));
-  }
-  el.innerHTML = groups.join('<span class="tab-group-sep"></span>');
+function fmtDate(s) {
+  if (!s) return '';
+  const [y, m, d] = s.split('-');
+  const months = ['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
+  return `${parseInt(d, 10)} ${months[parseInt(m, 10) - 1]}`;
 }
 
-// Агрегатор «последних N недель» — на стороне фронта
-function aggregateLastN(weeks, n) {
-  const subset = weeks.slice(-n);
+function populatePeriodSelects() {
+  // Недели — в обратном порядке (свежие сверху)
+  const weeksSel = document.getElementById('period-week-select');
+  const weeks = (DATA.weeks || []).slice().reverse();
+  weeksSel.innerHTML = weeks.map(w => {
+    const origIdx = DATA.weeks.indexOf(DATA.weeks.find(x => x.isoYear === w.isoYear && x.isoWeek === w.isoWeek));
+    return `<option value="${origIdx}">Неделя ${w.isoWeek} · ${fmtDate(w.from)} — ${fmtDate(w.to)}</option>`;
+  }).join('');
+
+  // Месяцы — в обратном порядке
+  const monthsSel = document.getElementById('period-month-select');
+  const months = (DATA.months || []).slice().reverse();
+  monthsSel.innerHTML = months.map(m => {
+    const origIdx = DATA.months.findIndex(x => x.yearMonth === m.yearMonth);
+    return `<option value="${origIdx}">${m.label} · ${m.weeksCount} нед</option>`;
+  }).join('');
+
+  // Custom date picker — bounds от истории
+  const allWeeks = DATA.weeks || [];
+  if (allWeeks.length) {
+    const minDate = allWeeks[0].from;
+    const maxDate = allWeeks[allWeeks.length - 1].to;
+    const customFrom = document.getElementById('custom-from');
+    const customTo = document.getElementById('custom-to');
+    customFrom.min = minDate; customFrom.max = maxDate;
+    customTo.min = minDate; customTo.max = maxDate;
+    // По умолчанию: последний месяц-ish
+    customFrom.value = allWeeks[Math.max(0, allWeeks.length - 4)].from;
+    customTo.value = maxDate;
+  }
+}
+
+function setKind(kind) {
+  activePeriod.kind = kind;
+  document.querySelectorAll('.period-kind button').forEach(b => {
+    b.classList.toggle('active', b.dataset.kind === kind);
+  });
+  document.getElementById('period-week-select').style.display  = kind === 'week'   ? '' : 'none';
+  document.getElementById('period-month-select').style.display = kind === 'month'  ? '' : 'none';
+  document.getElementById('period-custom-box').style.display   = kind === 'custom' ? '' : 'none';
+  if (kind === 'week')  onWeekChange();
+  if (kind === 'month') onMonthChange();
+  if (kind === 'custom') applyCustomRange();
+}
+
+function onWeekChange() {
+  const idx = +document.getElementById('period-week-select').value;
+  activePeriod = { kind: 'week', idx };
+  applyPeriod(DATA.weeks[idx], idx > 0 ? DATA.weeks[idx - 1] : null);
+}
+
+function onMonthChange() {
+  const idx = +document.getElementById('period-month-select').value;
+  activePeriod = { kind: 'month', idx };
+  applyPeriod(DATA.months[idx], idx > 0 ? DATA.months[idx - 1] : null);
+}
+
+function applyCustomRange() {
+  const from = document.getElementById('custom-from').value;
+  const to = document.getElementById('custom-to').value;
+  if (!from || !to || from > to) return;
+  // Берём все недели которые пересекаются с [from..to]
+  const subset = DATA.weeks.filter(w => w.from <= to && w.to >= from);
+  if (!subset.length) return;
+  const current = aggregateWeeksFront(subset, `${fmtDate(from)} — ${fmtDate(to)}`, from, to);
+  // prev — такой же по длине период до from
+  const days = (new Date(to) - new Date(from)) / 86400000 + 1;
+  const prevTo = new Date(new Date(from).getTime() - 86400000).toISOString().slice(0, 10);
+  const prevFrom = new Date(new Date(prevTo).getTime() - days * 86400000).toISOString().slice(0, 10);
+  const prevSubset = DATA.weeks.filter(w => w.from <= prevTo && w.to >= prevFrom);
+  const prev = prevSubset.length ? aggregateWeeksFront(prevSubset, '', prevFrom, prevTo) : null;
+  activePeriod = { kind: 'custom', from, to };
+  applyPeriod(current, prev);
+}
+
+function applyPeriod(current, prev) {
+  if (!current) return;
+  document.getElementById('hdr-period').textContent =
+    `${current.from} — ${current.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
+  renderKPI(current, prev);
+  renderSources(current);
+  renderCategories(current);
+  renderSpend(current);
+  renderSourcesTable(current);
+  renderManagersTable(current);
+  renderAIInsights(current, prev);
+}
+
+// Backward-compat
+function selectPeriod(kind, idx, id) {
+  if (kind === 'week') { activePeriod = { kind, idx }; onWeekChange(); }
+  else if (kind === 'month') { activePeriod = { kind, idx }; onMonthChange(); }
+}
+
+// Агрегатор произвольного набора недель на фронте — суммирует основные метрики
+function aggregateWeeksFront(subset, label, from, to) {
   if (!subset.length) return null;
   const sumNum = (fn) => subset.reduce((s, w) => s + (Number(fn(w)) || 0), 0);
   const avgNum = (fn) => {
@@ -554,8 +653,9 @@ function aggregateLastN(weeks, n) {
   };
   const last = subset[subset.length - 1];
   return {
-    label: `Последние ${n} нед.`,
-    from: subset[0].from, to: last.to,
+    label: label || `${subset.length} нед.`,
+    from: from || subset[0].from,
+    to: to || last.to,
     spend: { total: sumNum(w => w.spend?.total), direct: sumNum(w => w.spend?.direct), business: sumNum(w => w.spend?.business), twogis: sumNum(w => w.spend?.twogis) },
     leads: { total: sumNum(w => w.leads?.total), marketing: sumNum(w => w.leads?.marketing), sales: sumNum(w => w.leads?.sales) },
     deals: {
@@ -622,8 +722,13 @@ function selectWeek(idx) { selectPeriod('week', idx, null); }
 // --- Trend always shows all weeks ---
 function renderAll() {
   renderTrend(DATA.weeks);
-  // По умолчанию — последняя неделя
-  selectPeriod('week', DATA.weeks.length - 1, null);
+  populatePeriodSelects();
+  // По умолчанию — последняя неделя (свежая в начале списка)
+  const weekSel = document.getElementById('period-week-select');
+  if (weekSel.options.length) {
+    weekSel.value = weekSel.options[0].value;  // первая опция — самая свежая
+    onWeekChange();
+  }
 }
 
 // --- Init ---
