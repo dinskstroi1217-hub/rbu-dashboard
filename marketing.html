@@ -32,6 +32,8 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .period-tabs { display: flex; gap: 4px; max-width: 100%; overflow-x: auto; background: var(--bg-card2); border-radius: 10px; padding: 4px; }
 .period-tab { flex: 0 0 auto; padding: 5px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); border: none; background: none; transition: all 0.2s; white-space: nowrap; }
 .period-tab.active { background: var(--accent); color: #fff; }
+.tab-group-label { display: inline-flex; align-items: center; padding: 0 8px 0 6px; font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+.tab-group-sep { display: inline-block; width: 1px; height: 18px; background: rgba(255,255,255,0.08); margin: 0 4px; align-self: center; }
 
 /* MAIN LAYOUT */
 .main { padding: 20px 24px; display: grid; gap: 16px; }
@@ -501,41 +503,133 @@ function renderAIInsights(week, prev) {
   `;
 }
 
-// --- Period tabs ---
-function renderTabs(weeks) {
+// --- Period tabs: weeks + months + ranges ---
+// activePeriod хранит выбор: { kind: 'week'|'month'|'range', idx: number, id: string }
+let activePeriod = { kind: 'week', idx: 0, id: null };
+
+function renderTabs() {
   const el = document.getElementById('period-tabs');
-  el.innerHTML = weeks.map((w, i) =>
-    `<button class="period-tab ${i === activeWeekIdx ? 'active' : ''}" onclick="selectWeek(${i})">${w.label}</button>`
-  ).join('');
+  const weeks = DATA.weeks || [];
+  const months = DATA.months || [];
+  const ranges = DATA.periodOptions?.ranges || [];
+
+  const btn = (kind, idx, label, id) => {
+    const isActive = activePeriod.kind === kind && (
+      (kind === 'range' && activePeriod.id === id) ||
+      (kind !== 'range' && activePeriod.idx === idx)
+    );
+    return `<button class="period-tab ${isActive ? 'active' : ''}" onclick="selectPeriod('${kind}', ${idx}, '${id || ''}')">${label}</button>`;
+  };
+
+  const groups = [];
+  if (months.length) {
+    groups.push('<span class="tab-group-label">мес.</span>' + months.map((m, i) => btn('month', i, m.label, m.yearMonth)).join(''));
+  }
+  groups.push('<span class="tab-group-label">нед.</span>' + weeks.map((w, i) => btn('week', i, w.label, `${w.isoYear}-W${w.isoWeek}`)).join(''));
+  if (ranges.length) {
+    groups.push('<span class="tab-group-label">диап.</span>' + ranges.map(r => btn('range', -1, r.label, r.id)).join(''));
+  }
+  el.innerHTML = groups.join('<span class="tab-group-sep"></span>');
 }
 
-function selectWeek(idx) {
-  activeWeekIdx = idx;
-  const week = DATA.weeks[idx];
-  const prev = idx > 0 ? DATA.weeks[idx - 1] : null;
-
-  document.getElementById('hdr-period').textContent = `${week.from} — ${week.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
-  renderTabs(DATA.weeks);
-  renderKPI(week, prev);
-  renderSources(week);
-  renderCategories(week);
-  renderSpend(week);
-  renderSourcesTable(week);
-  renderManagersTable(week);
-  renderAIInsights(week, prev);
+// Агрегатор «последних N недель» — на стороне фронта
+function aggregateLastN(weeks, n) {
+  const subset = weeks.slice(-n);
+  if (!subset.length) return null;
+  const sumNum = (fn) => subset.reduce((s, w) => s + (Number(fn(w)) || 0), 0);
+  const avgNum = (fn) => {
+    const xs = subset.map(fn).filter(x => x != null && x > 0);
+    return xs.length ? Math.round(xs.reduce((s, x) => s + x, 0) / xs.length) : null;
+  };
+  const mergeMap = (fn) => {
+    const out = {};
+    for (const w of subset) for (const [k, v] of Object.entries(fn(w) || {})) {
+      if (typeof v === 'number') out[k] = (out[k] || 0) + v;
+      else if (typeof v === 'object' && v) {
+        if (!out[k]) out[k] = {};
+        for (const [k2, v2] of Object.entries(v)) out[k][k2] = (out[k][k2] || 0) + (Number(v2) || 0);
+      }
+    }
+    return out;
+  };
+  const last = subset[subset.length - 1];
+  return {
+    label: `Последние ${n} нед.`,
+    from: subset[0].from, to: last.to,
+    spend: { total: sumNum(w => w.spend?.total), direct: sumNum(w => w.spend?.direct), business: sumNum(w => w.spend?.business), twogis: sumNum(w => w.spend?.twogis) },
+    leads: { total: sumNum(w => w.leads?.total), marketing: sumNum(w => w.leads?.marketing), sales: sumNum(w => w.leads?.sales) },
+    deals: {
+      total: sumNum(w => w.deals?.total),
+      won: sumNum(w => w.deals?.won),
+      wonSum: sumNum(w => w.deals?.wonSum),
+      wonMarketing: sumNum(w => w.deals?.wonMarketing),
+      wonSumMarketing: sumNum(w => w.deals?.wonSumMarketing),
+      inWorkMarketing: sumNum(w => w.deals?.inWorkMarketing),
+      inWorkSumMarketing: sumNum(w => w.deals?.inWorkSumMarketing),
+    },
+    cpl: avgNum(w => w.cpl),
+    metrika: { visits: sumNum(w => w.metrika?.visits), users: sumNum(w => w.metrika?.users), bounceRate: avgNum(w => w.metrika?.bounceRate) },
+    direct: { clicks: sumNum(w => w.direct?.clicks), impressions: sumNum(w => w.direct?.impressions), cpc: avgNum(w => w.direct?.cpc) },
+    avito: { views: sumNum(w => w.avito?.views), contacts: sumNum(w => w.avito?.contacts), itemsCount: last?.avito?.itemsCount },
+    twogis: { impressions: sumNum(w => w.twogis?.impressions), views: sumNum(w => w.twogis?.views), calls: sumNum(w => w.twogis?.calls) },
+    bySource: mergeMap(w => w.bySource),
+    dealsBySource: mergeMap(w => w.dealsBySource),
+    revenueBySource: mergeMap(w => w.revenueBySource),
+    byCategory: mergeMap(w => w.byCategory),
+    byManager: mergeMap(w => w.byManager),
+    leadsByManager: mergeMap(w => w.leadsByManager),
+    staleDeals: last?.staleDeals, lostReasons: last?.lostReasons,
+    managersPerformance: mergeMap(w => w.managersPerformance),
+    salesVelocity: last?.salesVelocity, funnelStages: last?.funnelStages,
+    ai: last?.ai, claudeRecommendations: last?.claudeRecommendations,
+  };
 }
+
+function selectPeriod(kind, idx, id) {
+  let current, prev;
+  if (kind === 'week') {
+    current = DATA.weeks[idx];
+    prev = idx > 0 ? DATA.weeks[idx - 1] : null;
+    activePeriod = { kind, idx, id };
+  } else if (kind === 'month') {
+    current = DATA.months[idx];
+    prev = idx > 0 ? DATA.months[idx - 1] : null;
+    activePeriod = { kind, idx, id };
+  } else if (kind === 'range') {
+    const cfg = (DATA.periodOptions?.ranges || []).find(r => r.id === id);
+    if (!cfg) return;
+    current = aggregateLastN(DATA.weeks, cfg.weeks);
+    prev = aggregateLastN(DATA.weeks.slice(0, -cfg.weeks), cfg.weeks);
+    activePeriod = { kind, idx: -1, id };
+  }
+  if (!current) return;
+
+  document.getElementById('hdr-period').textContent =
+    `${current.from} — ${current.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
+  renderTabs();
+  renderKPI(current, prev);
+  renderSources(current);
+  renderCategories(current);
+  renderSpend(current);
+  renderSourcesTable(current);
+  renderManagersTable(current);
+  renderAIInsights(current, prev);
+}
+
+// Backward-compat для старых onclick="selectWeek(..)" если где-то остались
+function selectWeek(idx) { selectPeriod('week', idx, null); }
 
 // --- Trend always shows all weeks ---
 function renderAll() {
   renderTrend(DATA.weeks);
-  selectWeek(activeWeekIdx);
+  // По умолчанию — последняя неделя
+  selectPeriod('week', DATA.weeks.length - 1, null);
 }
 
 // --- Init ---
 (async () => {
   try {
     await loadData();
-    activeWeekIdx = DATA.weeks.length - 1;
     document.getElementById('loader').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     renderAll();
