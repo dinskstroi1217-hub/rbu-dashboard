@@ -547,12 +547,13 @@ function populatePeriodSelects() {
     return `<option value="${origIdx}">Неделя ${w.isoWeek} · ${fmtDate(w.from)} — ${fmtDate(w.to)}</option>`;
   }).join('');
 
-  // Месяцы — в обратном порядке
+  // Месяцы — в обратном порядке. Лейбл: "Май 2026 · 1—31 мая"
   const monthsSel = document.getElementById('period-month-select');
   const months = (DATA.months || []).slice().reverse();
   monthsSel.innerHTML = months.map(m => {
     const origIdx = DATA.months.findIndex(x => x.yearMonth === m.yearMonth);
-    return `<option value="${origIdx}">${m.label} · ${m.weeksCount} нед</option>`;
+    const dateRange = `${fmtDate(m.from)} — ${fmtDate(m.to)}`;
+    return `<option value="${origIdx}">${m.label} · ${dateRange}</option>`;
   }).join('');
 
   // Custom date picker — bounds от истории
