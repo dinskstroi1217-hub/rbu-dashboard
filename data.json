@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-26T08:30:28.391Z",
+  "updated": "2026-05-26T10:30:24.752Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -281274,11 +281274,11 @@
     "2026-05-26": {
       "НТ": {
         "totalVolume": 23.5,
-        "dispatcherVolume": 60.7,
+        "dispatcherVolume": 75.7,
         "recipes": {
           "300Б": {
             "totalVolume": 8,
-            "dispatcherVolume": 45.2,
+            "dispatcherVolume": 58.7,
             "factCement": 2.13,
             "factSand": 7.58,
             "factGravel": 8.39,
@@ -281353,6 +281353,19 @@
                 "devChem": 1.5
               }
             ]
+          },
+          "200Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 1.5,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
@@ -281458,7 +281471,7 @@
       },
       "ТИМ": {
         "totalVolume": 4.5,
-        "dispatcherVolume": 21.9,
+        "dispatcherVolume": 41.9,
         "recipes": {
           "200Б": {
             "totalVolume": 4.5,
@@ -281488,7 +281501,7 @@
           },
           "300Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 4,
+            "dispatcherVolume": 24,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -281514,9 +281527,28 @@
           }
         }
       },
+      "КР": {
+        "totalVolume": 0,
+        "dispatcherVolume": 4,
+        "recipes": {
+          "350Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 4,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          }
+        }
+      },
       "ДИН": {
         "totalVolume": 39,
-        "dispatcherVolume": 156,
+        "dispatcherVolume": 261.5,
         "recipes": {
           "250Б": {
             "totalVolume": 39,
