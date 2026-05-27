@@ -25,6 +25,12 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
 
+/* FUNNEL BAR — переключатель воронок (верхняя полоска) */
+.funnel-bar { display: flex; gap: 4px; padding: 10px 24px; background: var(--bg-card2); border-bottom: 1px solid var(--border); overflow-x: auto; }
+.funnel-tab { padding: 7px 16px; background: transparent; border: 1px solid transparent; color: var(--text2); font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.funnel-tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+.funnel-tab.active { background: var(--accent); color: #fff; }
+
 /* HEADER */
 .header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); }
 .header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
@@ -121,9 +127,13 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 </div>
 
 <div id="app" style="display:none">
+  <div class="funnel-bar">
+    <button class="funnel-tab active" data-funnel="main" onclick="switchFunnel('main')">📊 Маркетинг (Бетон+ЖБИ)</button>
+    <button class="funnel-tab" data-funnel="spec" onclick="switchFunnel('spec')">🚜 Спецтехника</button>
+  </div>
   <div class="header">
     <div class="header-left">
-      <h1>📊 Маркетинг ДКБИ</h1>
+      <h1 id="hdr-title">📊 Маркетинг ДКБИ</h1>
       <p id="hdr-period">—</p>
     </div>
     <div class="period-controls" id="period-controls">
@@ -143,6 +153,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     </div>
   </div>
   <div class="main">
+    <div id="main-blocks">
     <div class="kpi-row" id="kpi-row"></div>
     <div class="charts-row">
       <div class="chart-card wide">
@@ -182,6 +193,30 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
         <div id="ai-insights"></div>
       </div>
     </div>
+    </div><!-- /main-blocks -->
+
+    <div id="spec-blocks" style="display:none">
+      <div class="kpi-row" id="spec-kpis"></div>
+      <div class="bottom-row">
+        <div class="chart-card">
+          <div class="chart-title">🔥 KPI стадии Спецтехники</div>
+          <div class="table-note">КП / Текущая сделка — реальный pipeline. Если суммы 0 ₽ — менеджеры не заполняют OPPORTUNITY.</div>
+          <div id="spec-stages"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">❌ Причины потерь</div>
+          <div class="table-note">В воронке Спецтехники стадии = причины: Сроки / Стоимость / Срок работы / Не наш профиль.</div>
+          <div id="spec-reasons"></div>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <div class="chart-title">👤 Менеджеры спецтехники</div>
+          <div class="table-note">В Спецтехнике SOURCE_ID = имя менеджера (не канал). Маркет-атрибуции в Bitrix нет.</div>
+          <div id="spec-managers"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -198,14 +233,113 @@ const esc = v => String(v ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&l
 const ratioLabel = value => value == null ? '—' : value >= 1 ? `${value.toFixed(1)}x` : `${(value * 100).toFixed(0)}%`;
 const ratioTag = value => value == null || value === 0 ? 'r' : value >= 0.15 ? 'g' : value >= 0.05 ? 'y' : 'r';
 
-let DATA = null;
+let DATA = null;            // данные текущей воронки
+let DATA_MAIN = null;       // marketing-data.json (Бетон+ЖБИ)
+let DATA_SPEC = null;       // spec-data.json (Спецтехника)
+let activeFunnel = 'main';  // 'main' | 'spec'
 let activeWeekIdx = null;
 let charts = {};
 
-// --- Load data ---
+// --- Load data: оба JSON параллельно ---
 async function loadData() {
-  const resp = await fetch('marketing-data.json?t=' + Date.now());
-  DATA = await resp.json();
+  const [m, s] = await Promise.allSettled([
+    fetch('marketing-data.json?t=' + Date.now()).then(r => r.json()),
+    fetch('spec-data.json?t=' + Date.now()).then(r => r.json()),
+  ]);
+  DATA_MAIN = m.status === 'fulfilled' ? m.value : null;
+  DATA_SPEC = s.status === 'fulfilled' ? s.value : null;
+  DATA = DATA_MAIN;
+}
+
+function switchFunnel(funnel) {
+  activeFunnel = funnel;
+  document.querySelectorAll('.funnel-tab').forEach(t => t.classList.toggle('active', t.dataset.funnel === funnel));
+  if (funnel === 'spec') {
+    if (!DATA_SPEC) { alert('spec-data.json не загружен'); return; }
+    DATA = DATA_SPEC;
+    renderSpecMode();
+  } else {
+    DATA = DATA_MAIN;
+    renderMainMode();
+  }
+}
+
+function renderMainMode() {
+  // Показываем все стандартные блоки
+  document.getElementById('main-blocks').style.display = '';
+  document.getElementById('spec-blocks').style.display = 'none';
+  // Перерисовываем рендеры существующего marketing dashboard
+  renderAll();
+}
+
+function renderSpecMode() {
+  document.getElementById('main-blocks').style.display = 'none';
+  document.getElementById('spec-blocks').style.display = '';
+
+  const latest = DATA.latest || {};
+  const prev = DATA.prev || {};
+  const s = latest.deals || {};
+  const fmt = n => Number(n || 0).toLocaleString('ru');
+
+  document.getElementById('hdr-period').textContent =
+    `🚜 Спецтехника · ${latest.from || '?'} — ${latest.to || '?'} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
+
+  // KPI карточки
+  const kpis = document.getElementById('spec-kpis');
+  kpis.innerHTML = `
+    <div class="kpi-card"><div class="kpi-label">Сделок</div><div class="kpi-value">${fmt(s.total)}</div><div class="kpi-sub">за неделю</div></div>
+    <div class="kpi-card"><div class="kpi-label">Win-rate</div><div class="kpi-value">${s.winRate ?? '—'}%</div><div class="kpi-sub">${s.won} won / ${s.lost} lost</div></div>
+    <div class="kpi-card"><div class="kpi-label">Выручка won</div><div class="kpi-value">${fmt(s.wonSum)} ₽</div><div class="kpi-sub">${s.won} сделок</div></div>
+    <div class="kpi-card"><div class="kpi-label">Pipeline</div><div class="kpi-value">${fmt(s.inWorkSum)} ₽</div><div class="kpi-sub">${s.inWork} в работе</div></div>
+  `;
+
+  // KPI стадии
+  const kpiBlock = latest.kpiBlock || {};
+  const stagesHtml = Object.entries(kpiBlock)
+    .filter(([k]) => !k.startsWith('_'))
+    .map(([name, v]) => `<tr><td>${name}</td><td class="num">${fmt(v.count)}</td><td class="num">${fmt(v.sum)} ₽</td></tr>`)
+    .join('');
+  document.getElementById('spec-stages').innerHTML = `
+    <table class="data-table">
+      <thead><tr><th>Стадия</th><th class="num">Сделок</th><th class="num">Сумма</th></tr></thead>
+      <tbody>${stagesHtml || '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
+    </table>
+  `;
+
+  // Менеджеры
+  const mgrs = (latest.byManager || []).slice(0, 12);
+  const mgrHtml = mgrs.map(m => {
+    const wr = (m.won + m.lost) > 0 ? Math.round(m.won / (m.won + m.lost) * 100) : 0;
+    const tag = wr >= 30 ? 'g' : wr >= 10 ? 'y' : 'r';
+    return `<tr>
+      <td>${m.name}</td>
+      <td class="num">${fmt(m.total)}</td>
+      <td class="num">${fmt(m.won)}</td>
+      <td class="num">${fmt(m.inWork)}</td>
+      <td class="num">${fmt(m.lost)}</td>
+      <td class="num">${fmt(m.inWorkSum)} ₽</td>
+      <td class="num"><span class="tag ${tag}">${wr}%</span></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('spec-managers').innerHTML = `
+    <table class="data-table">
+      <thead><tr><th>Менеджер</th><th class="num">Всего</th><th class="num">✅Won</th><th class="num">⏳InWork</th><th class="num">❌Lost</th><th class="num">Pipeline</th><th class="num">WinRate</th></tr></thead>
+      <tbody>${mgrHtml || '<tr><td colspan=7 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
+    </table>
+  `;
+
+  // Причины потерь
+  const reasons = Object.entries(latest.lostReasons || {})
+    .filter(([k]) => !k.startsWith('_'))
+    .sort((a, b) => b[1].count - a[1].count);
+  document.getElementById('spec-reasons').innerHTML = `
+    <table class="data-table">
+      <thead><tr><th>Причина</th><th class="num">Сделок</th><th class="num">Потеряно ₽</th></tr></thead>
+      <tbody>${reasons.length ? reasons.map(([r, d]) =>
+        `<tr><td>${r}</td><td class="num">${fmt(d.count)}</td><td class="num">${fmt(d.sum)} ₽</td></tr>`).join('')
+        : '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
+    </table>
+  `;
 }
 
 // --- Render KPI ---
@@ -738,6 +872,11 @@ function renderAll() {
     await loadData();
     document.getElementById('loader').style.display = 'none';
     document.getElementById('app').style.display = 'block';
+    // Если spec-data.json не загрузился — скрываем вкладку Спецтехники
+    if (!DATA_SPEC) {
+      const t = document.querySelector('.funnel-tab[data-funnel="spec"]');
+      if (t) t.style.display = 'none';
+    }
     renderAll();
   } catch (e) {
     document.getElementById('loader').innerHTML = `<div style="color:var(--red)">Ошибка загрузки данных: ${e.message}</div>`;
