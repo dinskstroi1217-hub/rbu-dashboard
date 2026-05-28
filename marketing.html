@@ -197,6 +197,25 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
     <div id="spec-blocks" style="display:none">
       <div class="kpi-row" id="spec-kpis"></div>
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <div class="chart-title">📈 Тренд по неделям — визиты сайта, контакты Авито, сделки Bitrix</div>
+          <div class="table-note">Резкое падение визитов в W18-W20 коррелирует с сокращением бюджета Я.Директа.</div>
+          <div id="spec-chart-trend"></div>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">🌐 Я.Метрика spectehpark.ru</div>
+          <div class="table-note">Цели Метрики настроены, но не срабатывают — задача Родиону: внедрить ym('reachGoal').</div>
+          <div id="spec-metrika"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">🅰️ Авито Спецтехники</div>
+          <div class="table-note">11 активных объявлений, отдельный кабинет (user_id 425084280).</div>
+          <div id="spec-avito"></div>
+        </div>
+      </div>
       <div class="bottom-row">
         <div class="chart-card">
           <div class="chart-title">🔥 KPI стадии Спецтехники</div>
@@ -340,6 +359,68 @@ function renderSpecMode() {
         : '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
     </table>
   `;
+
+  // === Метрика Спецтехники (текущая неделя) ===
+  const mtr = latest.metrika;
+  document.getElementById('spec-metrika').innerHTML = mtr ? `
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px">
+      <div><div style="color:var(--text3);font-size:11px">Визиты</div><div style="font-size:22px;font-weight:700">${fmt(mtr.visits)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Посетители</div><div style="font-size:22px;font-weight:700">${fmt(mtr.users)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Отказы</div><div style="font-size:22px;font-weight:700">${mtr.bounceRate ?? '—'}%</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Глубина</div><div style="font-size:22px;font-weight:700">${mtr.depth ?? '—'}</div></div>
+    </div>
+    <table class="data-table">
+      <thead><tr><th>Источник</th><th class="num">Визитов</th></tr></thead>
+      <tbody>${Object.entries(mtr.bySource || {}).map(([s, v]) => `<tr><td>${s}</td><td class="num">${fmt(v)}</td></tr>`).join('')}</tbody>
+    </table>
+  ` : '<div style="color:var(--text3);padding:20px">нет данных Метрики за период</div>';
+
+  // === Авито Спецтехники ===
+  const av = latest.avito;
+  document.getElementById('spec-avito').innerHTML = av ? `
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px">
+      <div><div style="color:var(--text3);font-size:11px">Объявлений</div><div style="font-size:22px;font-weight:700">${fmt(av.itemsCount)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Просмотры</div><div style="font-size:22px;font-weight:700">${fmt(av.views)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Контакты</div><div style="font-size:22px;font-weight:700">${fmt(av.contacts)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Конверсия</div><div style="font-size:22px;font-weight:700">${av.conversion || '—'}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Звонки</div><div style="font-size:22px;font-weight:700">${fmt(av.calls)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Баланс</div><div style="font-size:22px;font-weight:700">${fmt(av.balance)} ₽</div></div>
+    </div>
+  ` : '<div style="color:var(--text3);padding:20px">нет данных Авито за период</div>';
+
+  // === Тренд по неделям (ApexCharts) ===
+  const weeks = DATA.weeks || [];
+  const labels = weeks.map(w => 'W' + w.isoWeek);
+  const seriesVisits = weeks.map(w => w.metrika?.visits || 0);
+  const seriesContacts = weeks.map(w => w.avito?.contacts || 0);
+  const seriesDeals = weeks.map(w => w.deals?.total || 0);
+  const seriesWon = weeks.map(w => w.deals?.won || 0);
+
+  const trendEl = document.getElementById('spec-chart-trend');
+  if (trendEl) {
+    if (charts.specTrend) charts.specTrend.destroy();
+    charts.specTrend = new ApexCharts(trendEl, {
+      chart: { type: 'line', height: 320, background: 'transparent', toolbar: { show: false } },
+      series: [
+        { name: 'Визиты сайта', type: 'column', data: seriesVisits },
+        { name: 'Сделок Bitrix', type: 'line', data: seriesDeals },
+        { name: 'Контакты Авито', type: 'line', data: seriesContacts },
+        { name: 'Выиграно', type: 'line', data: seriesWon },
+      ],
+      xaxis: { categories: labels, labels: { style: { colors: 'var(--text2)' } } },
+      yaxis: [
+        { title: { text: 'Визиты' }, labels: { style: { colors: 'var(--text2)' } } },
+        { opposite: true, title: { text: 'Сделки / контакты' }, labels: { style: { colors: 'var(--text2)' } } },
+      ],
+      stroke: { width: [0, 3, 3, 3], curve: 'smooth' },
+      colors: ['#3b82f6', '#22c55e', '#f97316', '#a78bfa'],
+      legend: { labels: { colors: 'var(--text2)' } },
+      grid: { borderColor: 'rgba(255,255,255,0.07)' },
+      theme: { mode: 'dark' },
+      tooltip: { theme: 'dark', shared: true, intersect: false },
+    });
+    charts.specTrend.render();
+  }
 }
 
 // --- Render KPI ---
