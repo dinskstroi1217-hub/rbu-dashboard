@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-31T10:30:25.389Z",
+  "updated": "2026-05-31T12:30:37.744Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -301437,11 +301437,11 @@
       },
       "КР": {
         "totalVolume": 1.5,
-        "dispatcherVolume": 2,
+        "dispatcherVolume": 8,
         "recipes": {
           "200Б": {
             "totalVolume": 1.5,
-            "dispatcherVolume": 2,
+            "dispatcherVolume": 4.5,
             "factCement": 0.32,
             "factSand": 1.48,
             "factGravel": 1.4,
@@ -301464,6 +301464,19 @@
                 "devChem": -13.33
               }
             ]
+          },
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 3.5,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
