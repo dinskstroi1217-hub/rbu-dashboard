@@ -939,11 +939,19 @@ function selectWeek(idx) { selectPeriod('week', idx, null); }
 function renderAll() {
   renderTrend(DATA.weeks);
   populatePeriodSelects();
-  // По умолчанию — последняя неделя (свежая в начале списка)
-  const weekSel = document.getElementById('period-week-select');
-  if (weekSel.options.length) {
-    weekSel.value = weekSel.options[0].value;  // первая опция — самая свежая
-    onWeekChange();
+  // По умолчанию — Май 2026 (месяц)
+  const mayIdx = (DATA.months || []).findIndex(m => m.yearMonth === '2026-05');
+  if (mayIdx >= 0) {
+    const monthSel = document.getElementById('period-month-select');
+    monthSel.value = String(mayIdx);
+    setKind('month');
+  } else {
+    // Фолбэк: последняя неделя
+    const weekSel = document.getElementById('period-week-select');
+    if (weekSel.options.length) {
+      weekSel.value = weekSel.options[0].value;
+      onWeekChange();
+    }
   }
 }
 
