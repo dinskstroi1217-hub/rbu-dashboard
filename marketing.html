@@ -193,6 +193,13 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
         <div id="ai-insights"></div>
       </div>
     </div>
+    <div class="charts-row" id="seo-row" style="display:none">
+      <div class="chart-card wide">
+        <div class="chart-title">🔍 SEO-позиции в Яндексе (Topvisor, Краснодар)</div>
+        <div class="table-note">Средняя позиция и доля топ-10 по группам ключей. «Без позиции» — кандидаты для новых SEO-статей.</div>
+        <div id="seo-topvisor"></div>
+      </div>
+    </div>
     </div><!-- /main-blocks -->
 
     <div id="spec-blocks" style="display:none">
@@ -743,6 +750,56 @@ function renderAIInsights(week, prev) {
   `;
 }
 
+// --- SEO-блок Topvisor ---
+function renderSeoBlock(week) {
+  const row = document.getElementById('seo-row');
+  const el = document.getElementById('seo-topvisor');
+  if (!row || !el) return;
+  const tv = week.topvisor;
+  if (!tv || !tv.byGroup) { row.style.display = 'none'; return; }
+  row.style.display = '';
+
+  const groups = Object.entries(tv.byGroup)
+    .filter(([g]) => g !== 'Прочее')
+    .sort((a, b) => (b[1].keywords || 0) - (a[1].keywords || 0));
+  const other = tv.byGroup['Прочее'];
+
+  const posTag = (avg) => {
+    if (avg == null) return '<span class="tag r">—</span>';
+    const cls = avg <= 10 ? 'g' : avg <= 30 ? 'y' : 'r';
+    return `<span class="tag ${cls}">${avg}</span>`;
+  };
+
+  const rows = groups.map(([g, d]) => `
+    <tr>
+      <td>${esc(g)}</td>
+      <td class="num">${d.keywords}</td>
+      <td class="num">${d.withPosition}</td>
+      <td class="num">${posTag(d.avgPosition)}</td>
+      <td class="num">${d.top10}</td>
+      <td class="num">${d.top30}</td>
+    </tr>`).join('');
+
+  el.innerHTML = `
+    <table class="data-table">
+      <thead><tr>
+        <th>Группа</th><th class="num">Ключей</th><th class="num">С позицией</th>
+        <th class="num">Ср. позиция</th><th class="num">Топ-10</th><th class="num">Топ-30</th>
+      </tr></thead>
+      <tbody>${rows}${other ? `
+        <tr style="color:var(--text3)">
+          <td>Прочее</td><td class="num">${other.keywords}</td><td class="num">${other.withPosition}</td>
+          <td class="num">${other.avgPosition ?? '—'}</td><td class="num">${other.top10}</td><td class="num">${other.top30}</td>
+        </tr>` : ''}
+      </tbody>
+    </table>
+    <div class="table-note" style="margin-top:10px">
+      Всего ключей: ${tv.totalKeywords} · с позицией: ${tv.totalWithPosition}
+      ${tv.noPositionCount ? ` · <b>без позиции: ${tv.noPositionCount}</b> — темы для автостатейщика` : ''}
+    </div>
+  `;
+}
+
 // --- Period controls: weeks select + months select + custom range ---
 let activePeriod = { kind: 'week', idx: 0 };
 
@@ -840,6 +897,7 @@ function applyPeriod(current, prev) {
   renderSourcesTable(current);
   renderManagersTable(current);
   renderAIInsights(current, prev);
+  renderSeoBlock(current);
 }
 
 // Backward-compat
@@ -898,39 +956,12 @@ function aggregateWeeksFront(subset, label, from, to) {
     managersPerformance: mergeMap(w => w.managersPerformance),
     salesVelocity: last?.salesVelocity, funnelStages: last?.funnelStages,
     ai: last?.ai, claudeRecommendations: last?.claudeRecommendations,
+    topvisor: last?.topvisor || null,
   };
 }
 
-function selectPeriod(kind, idx, id) {
-  let current, prev;
-  if (kind === 'week') {
-    current = DATA.weeks[idx];
-    prev = idx > 0 ? DATA.weeks[idx - 1] : null;
-    activePeriod = { kind, idx, id };
-  } else if (kind === 'month') {
-    current = DATA.months[idx];
-    prev = idx > 0 ? DATA.months[idx - 1] : null;
-    activePeriod = { kind, idx, id };
-  } else if (kind === 'range') {
-    const cfg = (DATA.periodOptions?.ranges || []).find(r => r.id === id);
-    if (!cfg) return;
-    current = aggregateLastN(DATA.weeks, cfg.weeks);
-    prev = aggregateLastN(DATA.weeks.slice(0, -cfg.weeks), cfg.weeks);
-    activePeriod = { kind, idx: -1, id };
-  }
-  if (!current) return;
-
-  document.getElementById('hdr-period').textContent =
-    `${current.from} — ${current.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
-  renderTabs();
-  renderKPI(current, prev);
-  renderSources(current);
-  renderCategories(current);
-  renderSpend(current);
-  renderSourcesTable(current);
-  renderManagersTable(current);
-  renderAIInsights(current, prev);
-}
+// (Вторая копия selectPeriod удалена 10.06 — звала несуществующие renderTabs/aggregateLastN
+//  и из-за hoisting перекрывала рабочую backward-compat версию выше.)
 
 // Backward-compat для старых onclick="selectWeek(..)" если где-то остались
 function selectWeek(idx) { selectPeriod('week', idx, null); }
@@ -939,19 +970,11 @@ function selectWeek(idx) { selectPeriod('week', idx, null); }
 function renderAll() {
   renderTrend(DATA.weeks);
   populatePeriodSelects();
-  // По умолчанию — Май 2026 (месяц)
-  const mayIdx = (DATA.months || []).findIndex(m => m.yearMonth === '2026-05');
-  if (mayIdx >= 0) {
-    const monthSel = document.getElementById('period-month-select');
-    monthSel.value = String(mayIdx);
-    setKind('month');
-  } else {
-    // Фолбэк: последняя неделя
-    const weekSel = document.getElementById('period-week-select');
-    if (weekSel.options.length) {
-      weekSel.value = weekSel.options[0].value;
-      onWeekChange();
-    }
+  // По умолчанию — последняя неделя (свежая в начале списка)
+  const weekSel = document.getElementById('period-week-select');
+  if (weekSel.options.length) {
+    weekSel.value = weekSel.options[0].value;  // первая опция — самая свежая
+    onWeekChange();
   }
 }
 
