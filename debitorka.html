@@ -1,404 +1,296 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Дебиторка — ДКБИ</title>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5/papaparse.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--text2:#8b949e;--text3:#484f58;
-  --blue:#58a6ff;--green:#3fb950;--red:#f85149;--yellow:#e3b341;--purple:#bc8cff;
+  --bg:#0d1117;--card:#161b22;--border:#30363d;--border2:#21262d;
+  --text:#c9d1d9;--text2:#8b949e;--text3:#484f58;
+  --blue:#58a6ff;--green:#3fb950;--red:#f85149;--yellow:#e3b341;
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-/* NAV */
-.topnav{display:flex;gap:4px;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--card);align-items:center;flex-wrap:wrap}
-.topnav a{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;color:var(--text2);text-decoration:none;border:1px solid transparent;transition:all .2s}
-.topnav a:hover{color:var(--text);background:rgba(255,255,255,.05)}
-.topnav a.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-.topnav .sep{flex:1}
+.nav{display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--card);flex-wrap:wrap;align-items:center}
+.nav a{color:var(--text2);text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid transparent;transition:all .15s}
+.nav a:hover{background:var(--border2);color:var(--text)}
+.nav a.active{background:var(--blue);color:#fff}
 
-/* UPLOAD */
-#uploadScreen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:80vh;gap:20px;padding:20px}
-.upload-box{border:2px dashed var(--border);border-radius:12px;padding:48px 60px;text-align:center;cursor:pointer;transition:all .2s;max-width:500px;width:100%}
-.upload-box:hover,.upload-box.drag{border-color:var(--blue);background:rgba(88,166,255,.05)}
-.upload-icon{font-size:48px;margin-bottom:12px}
-.upload-title{font-size:18px;font-weight:600;margin-bottom:8px}
-.upload-sub{font-size:13px;color:var(--text2)}
-#fileInput{display:none}
-.btn{padding:10px 24px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-.btn:hover{opacity:.85;transform:translateY(-1px)}
-.btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text2)}
-.btn.ghost:hover{border-color:var(--blue);color:var(--text)}
+#upload-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 46px);padding:24px}
+.drop-zone{border:2px dashed var(--border);border-radius:12px;padding:56px 72px;text-align:center;cursor:pointer;transition:all .2s;max-width:480px;width:100%}
+.drop-zone:hover,.drop-zone.over{border-color:var(--blue);background:rgba(88,166,255,.05)}
+.drop-icon{font-size:48px;margin-bottom:14px}
+.drop-title{font-size:17px;font-weight:600;margin-bottom:8px}
+.drop-sub{color:var(--text2);font-size:13px;line-height:1.5;margin-bottom:20px}
+.btn-primary{background:var(--blue);color:#fff;border:none;padding:9px 22px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.btn-primary:hover{opacity:.85}
 
-/* MAIN */
-#mainScreen{display:none;padding:16px}
-.page-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
-.page-title{font-size:20px;font-weight:700;color:var(--blue)}
-.page-date{font-size:13px;color:var(--text2)}
-.page-actions{margin-left:auto;display:flex;gap:8px}
+#main-screen{display:none;padding:16px}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.page-title{font-size:19px;font-weight:700;color:var(--blue)}
+.page-meta{font-size:12px;color:var(--text2);margin-top:2px}
+.btn-ghost{background:var(--card);border:1px solid var(--border);color:var(--text2);padding:5px 12px;border-radius:6px;font-size:13px;cursor:pointer;transition:all .15s}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
 
-/* KPI */
-.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px}
-.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
-.kpi-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.kpi-value{font-size:26px;font-weight:700}
-.kpi-sub{font-size:12px;color:var(--text2);margin-top:4px}
-.kpi.blue .kpi-value{color:var(--blue)}
-.kpi.red .kpi-value{color:var(--red)}
-.kpi.green .kpi-value{color:var(--green)}
-.kpi.yellow .kpi-value{color:var(--yellow)}
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;min-width:145px;flex:1}
+.kpi-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.kpi-val{font-size:21px;font-weight:700}
+.kpi-sub{font-size:11px;color:var(--text2);margin-top:3px}
+.kpi.red{border-color:rgba(248,81,73,.35)} .kpi.red .kpi-val{color:var(--red)}
+.kpi.blue{border-color:rgba(88,166,255,.35)} .kpi.blue .kpi-val{color:var(--blue)}
+.kpi.green{border-color:rgba(63,185,80,.35)} .kpi.green .kpi-val{color:var(--green)}
+.kpi.yellow{border-color:rgba(227,179,65,.35)} .kpi.yellow .kpi-val{color:var(--yellow)}
 
-/* DEPARTMENTS */
-.depts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:20px}
-.dept-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.dept-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.dept-title{font-size:14px;font-weight:700}
-.dept-total{font-size:13px;font-weight:600;color:var(--yellow)}
-.dept-table{width:100%;border-collapse:collapse}
-.dept-table td{padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
-.dept-table tr:last-child td{border-bottom:none}
-.dept-table .mgr-name{color:var(--text)}
-.dept-table .mgr-sum{text-align:right;font-weight:600;color:var(--red)}
-.dept-table .mgr-bar{width:120px;padding-right:8px}
-.bar-wrap{background:rgba(255,255,255,.07);border-radius:3px;height:6px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px;background:var(--red)}
-.mgr-row{cursor:pointer;transition:background .15s}
-.mgr-row:hover td{background:rgba(255,255,255,.04)}
-.mgr-row.expanded td{background:rgba(88,166,255,.06)}
+.dept-block{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:12px;overflow:hidden}
+.dept-head{padding:11px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;transition:background .15s}
+.dept-head:hover{background:var(--border2)}
+.dept-head-title{font-size:14px;font-weight:700}
+.dept-head-right{display:flex;gap:16px;align-items:center}
+.dept-head-total{font-size:14px;font-weight:700}
+.chevron{font-size:11px;color:var(--text2);transition:transform .2s}
+.dept-block.open .chevron{transform:rotate(180deg)}
 
-/* CLIENT ROWS */
-.client-rows{display:none}
-.client-row td{padding:6px 16px 6px 32px;font-size:12px;color:var(--text2);border-bottom:1px solid rgba(255,255,255,.03)}
-.client-row .client-name{color:var(--text2)}
-.client-row .client-sum{text-align:right;color:var(--red)}
+.mgr-table{width:100%;border-collapse:collapse;font-size:13px}
+.mgr-table thead th{background:var(--border2);color:var(--text2);text-align:left;padding:7px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.mgr-table thead th.r{text-align:right}
+.mgr-table td{padding:8px 14px;border-top:1px solid var(--border2)}
+.mgr-table td.r{text-align:right;font-variant-numeric:tabular-nums}
+.mgr-row{cursor:pointer;transition:background .1s}
+.mgr-row:hover td{background:rgba(255,255,255,.03)}
+.mgr-row.open-row td{background:rgba(88,166,255,.06)}
 
-/* NO DATA */
-.no-data{padding:16px;font-size:13px;color:var(--text3);text-align:center}
+.bar-wrap{display:flex;align-items:center;gap:8px;min-width:100px}
+.bar-bg{flex:1;height:4px;background:var(--border2);border-radius:2px}
+.bar-fill{height:4px;border-radius:2px}
+
+.clients-block{display:none;border-top:1px solid var(--border2);background:rgba(0,0,0,.25)}
+.clients-block.open{display:block}
+.client-table{width:100%;border-collapse:collapse;font-size:12px}
+.client-table td{padding:5px 14px 5px 30px;border-top:1px solid rgba(255,255,255,.04);color:var(--text2)}
+.client-table td.r{text-align:right;color:var(--text);font-variant-numeric:tabular-nums;padding-right:14px}
+.client-table tr:hover td{background:rgba(255,255,255,.02)}
+
+.empty-dept{text-align:center;padding:20px;color:var(--text3);font-size:13px}
 </style>
 </head>
 <body>
 
-<nav class="topnav">
+<nav class="nav">
   <a href="index.html">📊 РБУ</a>
   <a href="marketing.html">📈 Маркетинг</a>
-  <a href="debitorka.html" class="active">💸 Дебиторка</a>
-  <span class="sep"></span>
+  <a href="debitorka.html" class="active">💰 Дебиторка</a>
 </nav>
 
-<!-- UPLOAD SCREEN -->
-<div id="uploadScreen">
-  <div class="upload-box" id="dropZone" onclick="document.getElementById('fileInput').click()"
-       ondragover="onDrag(event)" ondragleave="offDrag(event)" ondrop="onDrop(event)">
-    <div class="upload-icon">📂</div>
-    <div class="upload-title">Загрузите выгрузку из 1С</div>
-    <div class="upload-sub" style="margin-bottom:16px">CSV с разделителем «;» — Ведомость расчётов с клиентами<br>Колонки: Менеджер · Клиент · Долг клиента · Наш долг · Сальдо</div>
-    <button class="btn" onclick="event.stopPropagation();document.getElementById('fileInput').click()">Выбрать файл</button>
+<div id="upload-screen">
+  <div class="drop-zone" id="dropZone"
+       onclick="document.getElementById('fileInput').click()"
+       ondragover="event.preventDefault();this.classList.add('over')"
+       ondragleave="this.classList.remove('over')"
+       ondrop="onDrop(event)">
+    <div class="drop-icon">📂</div>
+    <div class="drop-title">Загрузите ведомость из 1С</div>
+    <div class="drop-sub">CSV с разделителем «;»<br>Колонки: Менеджер · Клиент · Долг клиента · Наш долг · Сальдо</div>
+    <button class="btn-primary" onclick="event.stopPropagation();document.getElementById('fileInput').click()">Выбрать файл</button>
   </div>
-  <input type="file" id="fileInput" accept=".csv,.txt" onchange="loadFile(this.files[0])">
+  <input type="file" id="fileInput" accept=".csv,.txt" style="display:none" onchange="loadFile(this.files[0])">
 </div>
 
-<!-- MAIN SCREEN -->
-<div id="mainScreen">
+<div id="main-screen">
   <div class="page-header">
     <div>
-      <div class="page-title">💸 Дебиторская задолженность</div>
-      <div class="page-date" id="pageDate"></div>
+      <div class="page-title">💰 Дебиторская задолженность</div>
+      <div class="page-meta" id="pageMeta"></div>
     </div>
-    <div class="page-actions">
-      <button class="btn ghost" onclick="reload()">↩ Загрузить другой файл</button>
-    </div>
+    <button class="btn-ghost" onclick="goBack()">↩ Другой файл</button>
   </div>
-
   <div class="kpi-row" id="kpiRow"></div>
-  <div class="depts" id="deptsGrid"></div>
+  <div id="depts"></div>
 </div>
 
 <script>
-// ── Константы ──────────────────────────────────────────────────────────────
-const DEPT_GROUPS = [
-  {
-    label: '🏗 БСТ',
-    color: '#58a6ff',
-    managers: [
-      'Долгопятова Ольга',
-      'Ушаков Илья',
-      'Визильков Андрей',
-      'Андреева Елена',
-    ]
-  },
-  {
-    label: '🧱 ЖБИ',
-    color: '#3fb950',
-    managers: [
-      'Морозов Евгений',
-      'Лукина Ирина',
-      'Мухитдинова Ирина',
-      'Диденко Игорь',
-      'Протченко Елена',
-    ]
-  },
-  {
-    label: '🚜 Спецтехника',
-    color: '#e3b341',
-    managers: [
-      'Зименко Ангелина',
-      'Генадьева Виктория',
-    ]
-  }
+// ── Отделы и менеджеры ────────────────────────────────────────────
+const DEPTS = [
+  { id:'bst',  label:'🏗 БСТ',         color:'#58a6ff', kpiCls:'blue',
+    keys:['андреев','визильков','долгопятов','ушаков'] },
+  { id:'jbi',  label:'🧱 ЖБИ',         color:'#3fb950', kpiCls:'green',
+    keys:['морозов','лукина','мухитдинов','диденко','протченко'] },
+  { id:'spec', label:'🚜 Спецтехника', color:'#e3b341', kpiCls:'yellow',
+    keys:['зименко','генадьев'] },
 ];
 
-// Полное имя → короткое
-function shortName(full) {
-  const parts = full.trim().split(/\s+/);
-  if (parts.length >= 2) return `${parts[0]} ${parts[1][0]}.`;
-  return full;
+function detectDept(name) {
+  const l = name.toLowerCase();
+  return DEPTS.find(d => d.keys.some(k => l.includes(k))) || null;
 }
 
-// Найти отдел по имени менеджера (частичное совпадение по Имя Фамилия)
-function findDept(mgrFull) {
-  const low = mgrFull.toLowerCase();
-  for (const dept of DEPT_GROUPS) {
-    for (const m of dept.managers) {
-      const parts = m.toLowerCase().split(/\s+/);
-      if (parts.every(p => low.includes(p))) return dept.label;
+// ── Форматирование ───────────────────────────────────────────────
+const nf = new Intl.NumberFormat('ru-RU');
+const fmt = n => nf.format(Math.round(n)) + ' ₽';
+const fmtM = n => {
+  if (n >= 1e6) return (n/1e6).toFixed(1).replace('.',',') + ' млн ₽';
+  if (n >= 1e3) return Math.round(n/1e3) + ' тыс ₽';
+  return fmt(n);
+};
+
+// ── Парсинг CSV ──────────────────────────────────────────────────
+function parseCSV(raw) {
+  const text = raw.replace(/^\uFEFF/,'');
+  const lines = text.split('\n');
+  const result = [];
+  for (let i = 1; i < lines.length; i++) {
+    const l = lines[i].trim();
+    if (!l) continue;
+    const c = l.split(';').map(s => s.trim().replace(/^"|"$/g,''));
+    if (c.length < 4) continue;
+    const n = s => parseFloat(s.replace(/\s/g,'').replace(',','.')) || 0;
+    result.push({ mgr: c[0], client: c[1], dolgClient: n(c[2]), nashDolg: n(c[3]), saldo: c[4] ? n(c[4]) : n(c[2]) - n(c[3]) });
+  }
+  return result;
+}
+
+// ── Агрегация ────────────────────────────────────────────────────
+function aggregate(rows) {
+  const byMgr = {};
+  for (const r of rows) {
+    if (!r.mgr || r.mgr.toLowerCase().includes('без менеджера')) continue;
+    if (r.client.startsWith('УУ')) continue;
+    // Дебиторка = клиент должен нам = dolgClient > nashDolg
+    const debt = r.dolgClient - r.nashDolg;
+    if (debt <= 0) continue;
+    if (!byMgr[r.mgr]) byMgr[r.mgr] = { total: 0, clients: [] };
+    byMgr[r.mgr].total += debt;
+    byMgr[r.mgr].clients.push({ name: r.client, amount: debt });
+  }
+  for (const m of Object.values(byMgr)) {
+    m.clients.sort((a,b) => b.amount - a.amount);
+  }
+  return byMgr;
+}
+
+// ── Рендер ───────────────────────────────────────────────────────
+function render(byMgr) {
+  // По отделам
+  const deptMap = {};
+  for (const d of DEPTS) deptMap[d.id] = { ...d, managers: [], total: 0 };
+
+  for (const [name, data] of Object.entries(byMgr)) {
+    const dept = detectDept(name);
+    if (dept) {
+      deptMap[dept.id].managers.push([name, data]);
+      deptMap[dept.id].total += data.total;
     }
   }
-  return null;
+  for (const d of Object.values(deptMap)) {
+    d.managers.sort((a,b) => b[1].total - a[1].total);
+  }
+
+  const grandTotal = Object.values(deptMap).reduce((s,d) => s+d.total, 0);
+  const maxMgr = Math.max(...Object.values(byMgr).map(d=>d.total), 1);
+
+  // KPI
+  document.getElementById('kpiRow').innerHTML = `
+    <div class="kpi red">
+      <div class="kpi-label">Всего дебиторка</div>
+      <div class="kpi-val">${fmtM(grandTotal)}</div>
+      <div class="kpi-sub">${Object.keys(byMgr).length} менеджеров</div>
+    </div>
+    ${DEPTS.map(d => `
+    <div class="kpi ${deptMap[d.id].kpiCls}">
+      <div class="kpi-label">${d.label}</div>
+      <div class="kpi-val">${fmtM(deptMap[d.id].total)}</div>
+      <div class="kpi-sub">${deptMap[d.id].managers.length} чел · ${grandTotal ? Math.round(deptMap[d.id].total/grandTotal*100) : 0}%</div>
+    </div>`).join('')}
+  `;
+
+  // Блоки отделов
+  const container = document.getElementById('depts');
+  container.innerHTML = '';
+
+  for (const dept of Object.values(deptMap)) {
+    const block = document.createElement('div');
+    block.className = 'dept-block open';
+    block.dataset.id = dept.id;
+
+    const mgrRows = dept.managers.length ? dept.managers.map(([name, data], idx) => {
+      const short = name.split(/\s+/).slice(0,2).join(' ');
+      const cid = `cl-${dept.id}-${idx}`;
+      const barPct = Math.round(data.total / maxMgr * 100);
+      return `
+        <tr class="mgr-row" onclick="toggleClients('${cid}',this)">
+          <td>${short}</td>
+          <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:${barPct}%;background:${dept.color}"></div></div></div></td>
+          <td class="r">${fmt(data.total)}</td>
+          <td class="r" style="color:var(--text2)">${data.clients.length}</td>
+        </tr>
+        <tr><td colspan="4" style="padding:0">
+          <div class="clients-block" id="${cid}">
+            <table class="client-table">
+              ${data.clients.map(c=>`
+              <tr><td>${c.name}</td><td class="r">${fmt(c.amount)}</td></tr>`).join('')}
+            </table>
+          </div>
+        </td></tr>`;
+    }).join('') : `<tr><td colspan="4" class="empty-dept">Нет данных</td></tr>`;
+
+    block.innerHTML = `
+      <div class="dept-head" onclick="toggleDept(this)">
+        <div class="dept-head-title" style="color:${dept.color}">${dept.label}</div>
+        <div class="dept-head-right">
+          <span class="dept-head-total" style="color:${dept.color}">${fmt(dept.total)}</span>
+          <span class="chevron">▲</span>
+        </div>
+      </div>
+      <table class="mgr-table">
+        <thead><tr>
+          <th>Менеджер</th><th></th>
+          <th class="r">Дебиторка</th>
+          <th class="r">Клиентов</th>
+        </tr></thead>
+        <tbody>${mgrRows}</tbody>
+      </table>`;
+    container.appendChild(block);
+  }
 }
 
-function fmt(n) {
-  return new Intl.NumberFormat('ru-RU').format(Math.round(Math.abs(n))) + ' ₽';
+function toggleDept(head) {
+  head.closest('.dept-block').classList.toggle('open');
 }
 
-// ── Drag & Drop ────────────────────────────────────────────────────────────
-function onDrag(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('drag'); }
-function offDrag(e) { document.getElementById('dropZone').classList.remove('drag'); }
-function onDrop(e) {
-  e.preventDefault();
-  offDrag(e);
-  const f = e.dataTransfer.files[0];
-  if (f) loadFile(f);
+function toggleClients(id, row) {
+  const el = document.getElementById(id);
+  const open = el.classList.toggle('open');
+  row.classList.toggle('open-row', open);
 }
 
-function reload() {
-  document.getElementById('mainScreen').style.display = 'none';
-  document.getElementById('uploadScreen').style.display = 'flex';
-  document.getElementById('fileInput').value = '';
-}
-
-// ── Загрузка файла ─────────────────────────────────────────────────────────
+// ── Загрузка ─────────────────────────────────────────────────────
 function loadFile(file) {
   if (!file) return;
   const reader = new FileReader();
-  reader.onload = e => parseCSV(e.target.result, file.name);
+  reader.onload = e => {
+    const rows = parseCSV(e.target.result);
+    if (!rows.length) { alert('Файл пустой или неверный формат'); return; }
+    const byMgr = aggregate(rows);
+    document.getElementById('pageMeta').textContent = file.name + ' · ' + new Date().toLocaleDateString('ru-RU');
+    document.getElementById('upload-screen').style.display = 'none';
+    document.getElementById('main-screen').style.display = 'block';
+    render(byMgr);
+  };
   reader.readAsText(file, 'utf-8');
 }
 
-function parseCSV(text, filename) {
-  // Убираем BOM
-  text = text.replace(/^\uFEFF/, '');
-
-  const result = Papa.parse(text, {
-    delimiter: ';',
-    header: true,
-    skipEmptyLines: true,
-    transformHeader: h => h.trim(),
-  });
-
-  const rows = result.data;
-  if (!rows.length) { alert('Файл пустой или неверный формат'); return; }
-
-  // Определяем колонки (гибко)
-  const keys = Object.keys(rows[0]);
-  const colMgr    = keys.find(k => /менеджер/i.test(k)) || keys[0];
-  const colClient = keys.find(k => /клиент/i.test(k)) || keys[1];
-  const colDolg   = keys.find(k => /долг клиента/i.test(k)) || keys[2];
-  const colNash   = keys.find(k => /наш долг/i.test(k)) || keys[3];
-  const colSaldo  = keys.find(k => /сальдо/i.test(k)) || keys[4];
-
-  function num(v) { return parseFloat(String(v || '0').replace(/\s/g,'').replace(',','.')) || 0; }
-
-  const clients = rows
-    .filter(r => r[colMgr] && !String(r[colMgr]).toLowerCase().includes('без менеджера'))
-    .filter(r => !String(r[colClient] || '').trim().startsWith('УУ'))
-    .map(r => ({
-      mgr: String(r[colMgr]).trim(),
-      client: String(r[colClient] || '').trim(),
-      dolg: num(r[colDolg]),
-      nash: num(r[colNash]),
-      saldo: num(r[colSaldo]),
-    }))
-    .filter(r => r.saldo < -1); // только долг клиента перед нами (отрицательное сальдо)
-
-  renderDashboard(clients, filename);
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('over');
+  loadFile(e.dataTransfer.files[0]);
 }
 
-// ── Рендер ─────────────────────────────────────────────────────────────────
-function renderDashboard(clients, filename) {
-  // Группируем по менеджеру
-  const byMgr = {};
-  for (const r of clients) {
-    if (!byMgr[r.mgr]) byMgr[r.mgr] = { total: 0, clients: [] };
-    byMgr[r.mgr].total += Math.abs(r.saldo);
-    byMgr[r.mgr].clients.push(r);
-  }
-
-  // Сортируем клиентов по убыванию
-  for (const m of Object.keys(byMgr)) {
-    byMgr[m].clients.sort((a, b) => a.saldo - b.saldo);
-  }
-
-  // Итоги по отделам
-  const deptTotals = {};
-  let grandTotal = 0;
-  for (const dept of DEPT_GROUPS) {
-    let t = 0;
-    for (const [mgrFull, data] of Object.entries(byMgr)) {
-      if (findDept(mgrFull) === dept.label) t += data.total;
-    }
-    deptTotals[dept.label] = t;
-    grandTotal += t;
-  }
-
-  // Незнакомые менеджеры
-  const unknown = Object.entries(byMgr).filter(([m]) => !findDept(m));
-  const unknownTotal = unknown.reduce((s, [, d]) => s + d.total, 0);
-
-  // Дата из имени файла или сегодня
-  const today = new Date().toLocaleDateString('ru-RU');
-  document.getElementById('pageDate').textContent = `на ${today} · ${filename}`;
-
-  // KPI
-  const kpiRow = document.getElementById('kpiRow');
-  kpiRow.innerHTML = `
-    <div class="kpi red">
-      <div class="kpi-label">Общая дебиторка</div>
-      <div class="kpi-value">${fmtM(grandTotal + unknownTotal)}</div>
-      <div class="kpi-sub">клиенты должны нам</div>
-    </div>
-    ${DEPT_GROUPS.map(d => `
-    <div class="kpi" style="border-color:${d.color}40">
-      <div class="kpi-label">${d.label}</div>
-      <div class="kpi-value" style="color:${d.color}">${fmtM(deptTotals[d.label] || 0)}</div>
-      <div class="kpi-sub">${pct(deptTotals[d.label] || 0, grandTotal + unknownTotal)} от общей</div>
-    </div>`).join('')}
-    ${unknownTotal > 0 ? `
-    <div class="kpi">
-      <div class="kpi-label">Прочие</div>
-      <div class="kpi-value" style="color:var(--text2)">${fmtM(unknownTotal)}</div>
-      <div class="kpi-sub">${unknown.length} менеджер(а)</div>
-    </div>` : ''}
-  `;
-
-  // Грид отделов
-  const grid = document.getElementById('deptsGrid');
-  grid.innerHTML = '';
-
-  for (const dept of DEPT_GROUPS) {
-    const mgrList = Object.entries(byMgr)
-      .filter(([m]) => findDept(m) === dept.label)
-      .sort((a, b) => b[1].total - a[1].total);
-
-    const maxSum = mgrList[0]?.[1]?.total || 1;
-
-    const card = document.createElement('div');
-    card.className = 'dept-card';
-    card.style.borderTopColor = dept.color;
-    card.style.borderTopWidth = '2px';
-
-    let rows = '';
-    if (!mgrList.length) {
-      rows = '<tr><td colspan="3" class="no-data">Нет данных</td></tr>';
-    } else {
-      for (const [mgrFull, data] of mgrList) {
-        const mid = 'mgr_' + mgrFull.replace(/\s+/g, '_');
-        const barW = Math.round(data.total / maxSum * 100);
-        rows += `
-          <tr class="mgr-row" onclick="toggleClients('${mid}')">
-            <td class="mgr-name">${shortName(mgrFull)}</td>
-            <td class="mgr-bar">
-              <div class="bar-wrap"><div class="bar-fill" style="width:${barW}%;background:${dept.color}"></div></div>
-            </td>
-            <td class="mgr-sum">${fmt(data.total)}</td>
-          </tr>
-          <tr class="client-rows" id="${mid}">
-            <td colspan="3" style="padding:0">
-              <table style="width:100%">
-                ${data.clients.map(c => `
-                  <tr class="client-row">
-                    <td class="client-name">${c.client}</td>
-                    <td></td>
-                    <td class="client-sum">${fmt(c.saldo)}</td>
-                  </tr>`).join('')}
-              </table>
-            </td>
-          </tr>`;
-      }
-    }
-
-    card.innerHTML = `
-      <div class="dept-header">
-        <div class="dept-title" style="color:${dept.color}">${dept.label}</div>
-        <div class="dept-total">${fmt(deptTotals[dept.label] || 0)}</div>
-      </div>
-      <table class="dept-table"><tbody>${rows}</tbody></table>`;
-    grid.appendChild(card);
-  }
-
-  // Прочие менеджеры
-  if (unknown.length) {
-    const card = document.createElement('div');
-    card.className = 'dept-card';
-    let rows = unknown.sort((a,b) => b[1].total - a[1].total).map(([mgrFull, data]) => {
-      const mid = 'mgr_' + mgrFull.replace(/\s+/g, '_');
-      return `
-        <tr class="mgr-row" onclick="toggleClients('${mid}')">
-          <td class="mgr-name">${shortName(mgrFull)}</td>
-          <td></td>
-          <td class="mgr-sum">${fmt(data.total)}</td>
-        </tr>
-        <tr class="client-rows" id="${mid}">
-          <td colspan="3" style="padding:0">
-            <table style="width:100%">
-              ${data.clients.map(c => `<tr class="client-row"><td class="client-name">${c.client}</td><td></td><td class="client-sum">${fmt(c.saldo)}</td></tr>`).join('')}
-            </table>
-          </td>
-        </tr>`;
-    }).join('');
-    card.innerHTML = `
-      <div class="dept-header">
-        <div class="dept-title" style="color:var(--text2)">❓ Не определены</div>
-        <div class="dept-total">${fmt(unknownTotal)}</div>
-      </div>
-      <table class="dept-table"><tbody>${rows}</tbody></table>`;
-    grid.appendChild(card);
-  }
-
-  document.getElementById('uploadScreen').style.display = 'none';
-  document.getElementById('mainScreen').style.display = 'block';
-}
-
-function toggleClients(id) {
-  const el = document.getElementById(id);
-  const row = el.previousElementSibling;
-  const open = el.style.display === 'table-row';
-  el.style.display = open ? 'none' : 'table-row';
-  row.classList.toggle('expanded', !open);
-}
-
-function fmtM(n) {
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace('.',',') + ' млн ₽';
-  if (n >= 1_000) return (n / 1_000).toFixed(0) + ' тыс ₽';
-  return fmt(n);
-}
-
-function pct(a, b) {
-  if (!b) return '0%';
-  return Math.round(a / b * 100) + '%';
+function goBack() {
+  document.getElementById('main-screen').style.display = 'none';
+  document.getElementById('upload-screen').style.display = 'flex';
+  document.getElementById('fileInput').value = '';
 }
 </script>
 </body>
