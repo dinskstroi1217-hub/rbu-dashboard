@@ -136,6 +136,7 @@ const fmtM = n => {
 };
 
 // ── Парсинг CSV ──────────────────────────────────────────────────
+// Парсер CSV (Менеджер;Клиент;Долг клиента;Наш долг;Сальдо)
 function parseCSV(raw) {
   const text = raw.replace(/^\uFEFF/,'');
   const lines = text.split('\n');
@@ -149,6 +150,44 @@ function parseCSV(raw) {
     result.push({ mgr: c[0], client: c[1], dolgClient: n(c[2]), nashDolg: n(c[3]), saldo: c[4] ? n(c[4]) : n(c[2]) - n(c[3]) });
   }
   return result;
+}
+
+// Парсер текстового формата (из MAX-сообщений или TXT из 1С)
+// Формат: "Фамилия Имя Отчество\nДебиторка: X\nКлиент: X"
+function parseTXT(raw) {
+  const text = raw.replace(/^\uFEFF/,'');
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  const result = [];
+  let curMgr = null;
+
+  const isMgrLine = l => /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/.test(l);
+  const parseAmt = s => {
+    const m = s.match(/[\d\s]+/);
+    return m ? parseInt(m[0].replace(/\s/g,''), 10) : 0;
+  };
+
+  for (const line of lines) {
+    if (isMgrLine(line)) { curMgr = line; continue; }
+    if (!curMgr) continue;
+    if (/^Дебиторка:/.test(line)) continue; // итог менеджера — пропускаем
+    // Строка клиента: "Название: СУММА"
+    const m = line.match(/^(.+?):\s*([\d\s]+)\s*[₽?]?\s*$/);
+    if (m) {
+      const client = m[1].trim();
+      const amt = parseAmt(m[2]);
+      if (amt > 0 && !client.startsWith('УУ') && !['Предоплата','Долг','Сальдо'].includes(client)) {
+        result.push({ mgr: curMgr, client, dolgClient: amt, nashDolg: 0, saldo: -amt });
+      }
+    }
+  }
+  return result;
+}
+
+function detectFormat(text) {
+  const clean = text.replace(/^\uFEFF/,'').slice(0,500);
+  if (/Дебиторская задолженность/i.test(clean)) return 'txt';
+  if (clean.includes(';')) return 'csv';
+  return 'txt';
 }
 
 // ── Агрегация ────────────────────────────────────────────────────
@@ -268,17 +307,38 @@ function toggleClients(id, row) {
 // ── Загрузка ─────────────────────────────────────────────────────
 function loadFile(file) {
   if (!file) return;
+  // Пробуем utf-8, если кракозябры — перечитываем cp1251
+  const tryParse = (text, encoding) => {
+    const fmt = detectFormat(text);
+    const rows = fmt === 'txt' ? parseTXT(text) : parseCSV(text);
+    return rows;
+  };
+
   const reader = new FileReader();
   reader.onload = e => {
-    const rows = parseCSV(e.target.result);
-    if (!rows.length) { alert('Файл пустой или неверный формат'); return; }
-    const byMgr = aggregate(rows);
-    document.getElementById('pageMeta').textContent = file.name + ' · ' + new Date().toLocaleDateString('ru-RU');
-    document.getElementById('upload-screen').style.display = 'none';
-    document.getElementById('main-screen').style.display = 'block';
-    render(byMgr);
+    let rows = tryParse(e.target.result, 'utf-8');
+    if (!rows.length) {
+      // Перечитываем как cp1251
+      const r2 = new FileReader();
+      r2.onload = e2 => {
+        rows = tryParse(e2.target.result, 'cp1251');
+        if (!rows.length) { alert('Файл не распознан. Проверьте формат.'); return; }
+        showDashboard(rows, file.name);
+      };
+      r2.readAsText(file, 'windows-1251');
+      return;
+    }
+    showDashboard(rows, file.name);
   };
   reader.readAsText(file, 'utf-8');
+}
+
+function showDashboard(rows, filename) {
+  const byMgr = aggregate(rows);
+  document.getElementById('pageMeta').textContent = filename + ' · ' + new Date().toLocaleDateString('ru-RU');
+  document.getElementById('upload-screen').style.display = 'none';
+  document.getElementById('main-screen').style.display = 'block';
+  render(byMgr);
 }
 
 function onDrop(e) {
