@@ -307,30 +307,28 @@ function toggleClients(id, row) {
 // ── Загрузка ─────────────────────────────────────────────────────
 function loadFile(file) {
   if (!file) return;
-  // Пробуем utf-8, если кракозябры — перечитываем cp1251
-  const tryParse = (text, encoding) => {
+
+  const doParse = text => {
     const fmt = detectFormat(text);
-    const rows = fmt === 'txt' ? parseTXT(text) : parseCSV(text);
-    return rows;
+    return fmt === 'txt' ? parseTXT(text) : parseCSV(text);
   };
 
-  const reader = new FileReader();
-  reader.onload = e => {
-    let rows = tryParse(e.target.result, 'utf-8');
-    if (!rows.length) {
-      // Перечитываем как cp1251
-      const r2 = new FileReader();
-      r2.onload = e2 => {
-        rows = tryParse(e2.target.result, 'cp1251');
-        if (!rows.length) { alert('Файл не распознан. Проверьте формат.'); return; }
-        showDashboard(rows, file.name);
-      };
-      r2.readAsText(file, 'windows-1251');
-      return;
-    }
-    showDashboard(rows, file.name);
+  // 1С всегда cp1251 — читаем сначала так, для UTF-8 файлов cp1251 тоже прочитает нормально ASCII-часть
+  // Для надёжности пробуем cp1251 → utf-8
+  const r1 = new FileReader();
+  r1.onload = e => {
+    const rows = doParse(e.target.result);
+    if (rows.length) { showDashboard(rows, file.name); return; }
+    // Fallback: utf-8
+    const r2 = new FileReader();
+    r2.onload = e2 => {
+      const rows2 = doParse(e2.target.result);
+      if (!rows2.length) { alert('Файл не распознан. Проверьте формат.'); return; }
+      showDashboard(rows2, file.name);
+    };
+    r2.readAsText(file, 'utf-8');
   };
-  reader.readAsText(file, 'utf-8');
+  r1.readAsText(file, 'windows-1251');
 }
 
 function showDashboard(rows, filename) {
