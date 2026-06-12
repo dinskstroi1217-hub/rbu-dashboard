@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-12T06:30:22.558Z",
+  "updated": "2026-06-12T08:30:24.993Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -323593,11 +323593,11 @@
     "2026-06-12": {
       "НТ": {
         "totalVolume": 16.08,
-        "dispatcherVolume": 63,
+        "dispatcherVolume": 120.5,
         "recipes": {
           "300Б": {
             "totalVolume": 10,
-            "dispatcherVolume": 50,
+            "dispatcherVolume": 80,
             "factCement": 2.61,
             "factSand": 10.34,
             "factGravel": 9.35,
@@ -323623,7 +323623,7 @@
           },
           "250Б": {
             "totalVolume": 3.08,
-            "dispatcherVolume": 10,
+            "dispatcherVolume": 37.5,
             "factCement": 0.88,
             "factSand": 4.07,
             "factGravel": 3.51,
@@ -323785,11 +323785,11 @@
       },
       "ТИМ": {
         "totalVolume": 11.5,
-        "dispatcherVolume": 9,
+        "dispatcherVolume": 110,
         "recipes": {
           "300Б": {
             "totalVolume": 10,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 7,
             "factCement": 3.25,
             "factSand": 9.68,
             "factGravel": 9.14,
@@ -323838,12 +323838,25 @@
                 "devChem": 35.71
               }
             ]
+          },
+          "М300Б\\Х": {
+            "totalVolume": 0,
+            "dispatcherVolume": 94,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
       "ДИН": {
         "totalVolume": 13.9,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 89,
         "recipes": {
           "250Б": {
             "totalVolume": 3.7,
