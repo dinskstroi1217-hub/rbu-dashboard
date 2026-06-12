@@ -104,6 +104,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="page-title">💰 Дебиторская задолженность</div>
       <div class="page-meta" id="pageMeta"></div>
     </div>
+    <button class="btn-ghost" onclick="copyToMax()" id="btnCopy">📋 Скопировать в MAX</button>
     <button class="btn-ghost" onclick="goBack()">↩ Другой файл</button>
   </div>
   <div class="kpi-row" id="kpiRow"></div>
@@ -332,8 +333,42 @@ function loadFile(file) {
   r1.readAsText(file, 'utf-8');
 }
 
+let _lastByMgr = null;
+
+function copyToMax() {
+  if (!_lastByMgr) return;
+  const deptMap = {};
+  for (const d of DEPTS) deptMap[d.id] = { ...d, managers: [], total: 0 };
+  for (const [name, data] of Object.entries(_lastByMgr)) {
+    const dept = detectDept(name);
+    if (dept) { deptMap[dept.id].managers.push([name, data]); deptMap[dept.id].total += data.total; }
+  }
+  for (const d of Object.values(deptMap)) d.managers.sort((a,b) => b[1].total - a[1].total);
+
+  const grand = Object.values(deptMap).reduce((s,d) => s+d.total, 0);
+  const today = new Date().toLocaleDateString('ru-RU');
+  const lines = [`Дебиторка на ${today}`, `Итого: ${fmtM(grand)}`, ''];
+
+  for (const dept of Object.values(deptMap)) {
+    if (!dept.managers.length) continue;
+    lines.push(`${dept.label} — ${fmtM(dept.total)}`);
+    for (const [name, data] of dept.managers) {
+      const short = name.split(' ').slice(0,2).join(' ');
+      lines.push(`  ${short}: ${fmt(data.total)}`);
+    }
+    lines.push('');
+  }
+
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    const btn = document.getElementById('btnCopy');
+    btn.textContent = '✅ Скопировано!';
+    setTimeout(() => { btn.textContent = '📋 Скопировать в MAX'; }, 2000);
+  });
+}
+
 function showDashboard(rows, filename) {
   const byMgr = aggregate(rows);
+  _lastByMgr = byMgr;
   document.getElementById('pageMeta').textContent = filename + ' · ' + new Date().toLocaleDateString('ru-RU');
   document.getElementById('upload-screen').style.display = 'none';
   document.getElementById('main-screen').style.display = 'block';
