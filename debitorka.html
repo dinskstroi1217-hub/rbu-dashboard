@@ -354,7 +354,10 @@ function copyToMax() {
     lines.push(`${dept.label} — ${fmtM(dept.total)}`);
     for (const [name, data] of dept.managers) {
       const short = name.split(' ').slice(0,2).join(' ');
-      lines.push(`  ${short}: ${fmt(data.total)}`);
+      lines.push(`\n${short}\nДебиторка: ${fmt(data.total)}`);
+      for (const c of data.clients) {
+        lines.push(`${c.name}: ${fmt(c.amount)}`);
+      }
     }
     lines.push('');
   }
