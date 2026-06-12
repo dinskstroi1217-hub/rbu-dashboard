@@ -74,6 +74,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .client-table tr:hover td{background:rgba(255,255,255,.02)}
 
 .empty-dept{text-align:center;padding:20px;color:var(--text3);font-size:13px}
+.btn-copy-dept{background:transparent;border:1px solid var(--border);color:var(--text2);padding:3px 10px;border-radius:5px;font-size:12px;cursor:pointer;transition:all .15s}
+.btn-copy-dept:hover{border-color:var(--blue);color:var(--blue)}
 </style>
 </head>
 <body>
@@ -279,6 +281,7 @@ function render(byMgr) {
       <div class="dept-head" onclick="toggleDept(this)">
         <div class="dept-head-title" style="color:${dept.color}">${dept.label}</div>
         <div class="dept-head-right">
+          <button class="btn-copy-dept" onclick="event.stopPropagation();copyDept('${dept.id}')" id="copy-${dept.id}">📋 в MAX</button>
           <span class="dept-head-total" style="color:${dept.color}">${fmt(dept.total)}</span>
           <span class="chevron">▲</span>
         </div>
@@ -334,6 +337,26 @@ function loadFile(file) {
 }
 
 let _lastByMgr = null;
+let _lastDeptMap = null;
+
+function copyDept(deptId) {
+  if (!_lastDeptMap) return;
+  const dept = _lastDeptMap[deptId];
+  if (!dept || !dept.managers.length) return;
+  const today = new Date().toLocaleDateString('ru-RU');
+  const lines = [`Дебиторка на ${today}`, `${dept.label} — ${fmtM(dept.total)}`, ''];
+  for (const [name, data] of dept.managers) {
+    const short = name.split(' ').slice(0,2).join(' ');
+    lines.push(`${short}\nДебиторка: ${fmt(data.total)}`);
+    for (const c of data.clients) lines.push(`${c.name}: ${fmt(c.amount)}`);
+    lines.push('');
+  }
+  const btn = document.getElementById('copy-' + deptId);
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    btn.textContent = '✅ Скопировано!';
+    setTimeout(() => { btn.textContent = '📋 в MAX'; }, 2000);
+  });
+}
 
 function copyToMax() {
   if (!_lastByMgr) return;
@@ -344,6 +367,7 @@ function copyToMax() {
     if (dept) { deptMap[dept.id].managers.push([name, data]); deptMap[dept.id].total += data.total; }
   }
   for (const d of Object.values(deptMap)) d.managers.sort((a,b) => b[1].total - a[1].total);
+  _lastDeptMap = deptMap;
 
   const grand = Object.values(deptMap).reduce((s,d) => s+d.total, 0);
   const today = new Date().toLocaleDateString('ru-RU');
