@@ -315,20 +315,21 @@ function loadFile(file) {
 
   // 1С всегда cp1251 — читаем сначала так, для UTF-8 файлов cp1251 тоже прочитает нормально ASCII-часть
   // Для надёжности пробуем cp1251 → utf-8
+  // Пробуем UTF-8 → cp1251
   const r1 = new FileReader();
   r1.onload = e => {
     const rows = doParse(e.target.result);
     if (rows.length) { showDashboard(rows, file.name); return; }
-    // Fallback: utf-8
+    // Fallback: windows-1251
     const r2 = new FileReader();
     r2.onload = e2 => {
       const rows2 = doParse(e2.target.result);
       if (!rows2.length) { alert('Файл не распознан. Проверьте формат.'); return; }
       showDashboard(rows2, file.name);
     };
-    r2.readAsText(file, 'utf-8');
+    r2.readAsText(file, 'windows-1251');
   };
-  r1.readAsText(file, 'windows-1251');
+  r1.readAsText(file, 'utf-8');
 }
 
 function showDashboard(rows, filename) {
