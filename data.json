@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-14T06:30:24.474Z",
+  "updated": "2026-06-14T08:30:24.573Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -326394,7 +326394,7 @@
     "2026-06-14": {
       "НТ": {
         "totalVolume": 5,
-        "dispatcherVolume": 29,
+        "dispatcherVolume": 35,
         "recipes": {
           "250Б": {
             "totalVolume": 5,
@@ -326437,7 +326437,20 @@
           },
           "300Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 18,
+            "dispatcherVolume": 23,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "200Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 1,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -326482,9 +326495,41 @@
           }
         }
       },
+      "КР": {
+        "totalVolume": 0,
+        "dispatcherVolume": 7.5,
+        "recipes": {
+          "200Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 6,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 1.5,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          }
+        }
+      },
       "ДИН": {
         "totalVolume": 6,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 10.8,
         "recipes": {
           "200Б": {
             "totalVolume": 6,
