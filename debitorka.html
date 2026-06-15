@@ -309,41 +309,72 @@ function toggleClients(id, row) {
   row.classList.toggle('open-row', open);
 }
 
-// ── Парсинг XLSX ─────────────────────────────────────────────────
+// ── Парсинг XLSX (иерархия 1С: менеджер → клиенты под ним) ──────
 function parseXLSXData(data) {
   if (!data || data.length < 2) return [];
-  // Найти строку заголовков (ищем по ключевым словам)
-  let headerIdx = 0;
-  const colMap = {};
-  for (let i = 0; i < Math.min(5, data.length); i++) {
+
+  const toNum = v => parseFloat(String(v||'').replace(/\s/g,'').replace(',','.')) || 0;
+
+  // Найти колонки "Долг клиента" и "Наш долг" по заголовкам
+  let colDolg = 2, colNash = 3; // дефолт по позиции
+  for (let i = 0; i < Math.min(10, data.length); i++) {
     const row = data[i].map(c => String(c||'').toLowerCase());
-    if (row.some(c => c.includes('менеджер') || c.includes('клиент'))) {
-      headerIdx = i;
+    if (row.some(c => c.includes('долг клиент') || c.includes('наш долг'))) {
       row.forEach((c, j) => {
-        if (c.includes('менеджер')) colMap.mgr = j;
-        else if (c.includes('клиент')) colMap.client = j;
-        else if (c.includes('долг клиента') || c.includes('дебитор')) colMap.dolgClient = j;
-        else if (c.includes('наш долг') || c.includes('кредитор')) colMap.nashDolg = j;
-        else if (c.includes('сальдо')) colMap.saldo = j;
+        if (c.includes('долг клиент') || c.includes('дебитор')) colDolg = j;
+        else if (c.includes('наш долг') || c.includes('кредитор')) colNash = j;
       });
       break;
     }
   }
-  // Если колонки не нашли по названию — пробуем по позиции (0,1,2,3,4)
-  if (colMap.mgr === undefined) { colMap.mgr=0; colMap.client=1; colMap.dolgClient=2; colMap.nashDolg=3; colMap.saldo=4; }
+
+  // Определить является ли строка менеджером:
+  // — есть значение в колонке А (col 0)
+  // — И (есть сумма в colDolg ИЛИ нет ничего в colDolg)
+  // — строка клиента: col 0 пустая, col 1 (или смещение) заполнена
+  // В 1С-отчёте: менеджер в col A + суммы, клиенты тоже в col A но смещены (или col B)
+
+  // Стратегия: проходим все строки, отслеживаем текущего менеджера
+  // Менеджер = строка где col A непустая И (col B пустая ИЛИ это ФИО-паттерн)
+  // Клиент = строка где col A непустая И col A не похожа на ФИО менеджера (нет сумм на уровне менеджера)
+
+  const isMgrName = val => {
+    const s = String(val||'').trim();
+    if (!s) return false;
+    // ФИО: "Фамилия Имя Отчество" — три слова с заглавной или "Фамилия И.О."
+    if (/^[А-ЯЁA-Z][а-яёa-z]+\s+[А-ЯЁA-Z]/.test(s)) return true;
+    // Или просто слово "Бухгалтер удаленно" и т.п. — проверяем нет ли ООО/ИП
+    if (/ООО|ИП |АО |ПАО |ЗАО |МУП |СНТ |ТСЖ |ПСК|ОАО/.test(s)) return false;
+    return false;
+  };
+
   const result = [];
-  const toNum = v => parseFloat(String(v||'').replace(/\s/g,'').replace(',','.')) || 0;
-  for (let i = headerIdx + 1; i < data.length; i++) {
+  let curMgr = null;
+
+  for (let i = 0; i < data.length; i++) {
     const r = data[i];
-    if (!r || !r[colMap.mgr]) continue;
-    result.push({
-      mgr: String(r[colMap.mgr]||'').trim(),
-      client: String(r[colMap.client]||'').trim(),
-      dolgClient: toNum(r[colMap.dolgClient]),
-      nashDolg: toNum(r[colMap.nashDolg]),
-      saldo: colMap.saldo !== undefined ? toNum(r[colMap.saldo]) : toNum(r[colMap.dolgClient]) - toNum(r[colMap.nashDolg])
-    });
+    if (!r) continue;
+    const col0 = String(r[0]||'').trim();
+    if (!col0) continue;
+
+    const dolg = toNum(r[colDolg]);
+    const nash = toNum(r[colNash]);
+
+    if (isMgrName(col0)) {
+      // Строка менеджера
+      curMgr = col0;
+    } else if (curMgr) {
+      // Строка клиента под текущим менеджером
+      result.push({
+        mgr: curMgr,
+        client: col0,
+        dolgClient: dolg,
+        nashDolg: nash,
+        saldo: dolg - nash
+      });
+    }
   }
+
   return result;
 }
 
