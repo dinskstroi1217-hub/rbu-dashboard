@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Дебиторка — ДКБИ</title>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -94,10 +95,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
        ondrop="onDrop(event)">
     <div class="drop-icon">📂</div>
     <div class="drop-title">Загрузите ведомость из 1С</div>
-    <div class="drop-sub">CSV с разделителем «;»<br>Колонки: Менеджер · Клиент · Долг клиента · Наш долг · Сальдо</div>
+    <div class="drop-sub">CSV или Excel (XLS/XLSX)<br>Колонки: Менеджер · Клиент · Долг клиента · Наш долг · Сальдо</div>
     <button class="btn-primary" onclick="event.stopPropagation();document.getElementById('fileInput').click()">Выбрать файл</button>
   </div>
-  <input type="file" id="fileInput" accept=".csv,.txt" style="display:none" onchange="loadFile(this.files[0])">
+  <input type="file" id="fileInput" accept=".csv,.txt,.xls,.xlsx" style="display:none" onchange="loadFile(this.files[0])">
 </div>
 
 <div id="main-screen">
@@ -308,9 +309,62 @@ function toggleClients(id, row) {
   row.classList.toggle('open-row', open);
 }
 
+// ── Парсинг XLSX ─────────────────────────────────────────────────
+function parseXLSXData(data) {
+  if (!data || data.length < 2) return [];
+  // Найти строку заголовков (ищем по ключевым словам)
+  let headerIdx = 0;
+  const colMap = {};
+  for (let i = 0; i < Math.min(5, data.length); i++) {
+    const row = data[i].map(c => String(c||'').toLowerCase());
+    if (row.some(c => c.includes('менеджер') || c.includes('клиент'))) {
+      headerIdx = i;
+      row.forEach((c, j) => {
+        if (c.includes('менеджер')) colMap.mgr = j;
+        else if (c.includes('клиент')) colMap.client = j;
+        else if (c.includes('долг клиента') || c.includes('дебитор')) colMap.dolgClient = j;
+        else if (c.includes('наш долг') || c.includes('кредитор')) colMap.nashDolg = j;
+        else if (c.includes('сальдо')) colMap.saldo = j;
+      });
+      break;
+    }
+  }
+  // Если колонки не нашли по названию — пробуем по позиции (0,1,2,3,4)
+  if (colMap.mgr === undefined) { colMap.mgr=0; colMap.client=1; colMap.dolgClient=2; colMap.nashDolg=3; colMap.saldo=4; }
+  const result = [];
+  const toNum = v => parseFloat(String(v||'').replace(/\s/g,'').replace(',','.')) || 0;
+  for (let i = headerIdx + 1; i < data.length; i++) {
+    const r = data[i];
+    if (!r || !r[colMap.mgr]) continue;
+    result.push({
+      mgr: String(r[colMap.mgr]||'').trim(),
+      client: String(r[colMap.client]||'').trim(),
+      dolgClient: toNum(r[colMap.dolgClient]),
+      nashDolg: toNum(r[colMap.nashDolg]),
+      saldo: colMap.saldo !== undefined ? toNum(r[colMap.saldo]) : toNum(r[colMap.dolgClient]) - toNum(r[colMap.nashDolg])
+    });
+  }
+  return result;
+}
+
 // ── Загрузка ─────────────────────────────────────────────────────
 function loadFile(file) {
   if (!file) return;
+
+  // XLS/XLSX через SheetJS
+  if (file.name.match(/\.xlsx?$/i)) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const wb = XLSX.read(e.target.result, {type:'array'});
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const data = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
+      const rows = parseXLSXData(data);
+      if (!rows.length) { alert('Файл не распознан. Проверьте колонки: Менеджер, Клиент, Долг клиента, Наш долг, Сальдо'); return; }
+      showDashboard(rows, file.name);
+    };
+    reader.readAsArrayBuffer(file);
+    return;
+  }
 
   const doParse = text => {
     const fmt = detectFormat(text);
