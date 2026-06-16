@@ -3,69 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="build" content="20260424-v3">
 <title>Дашборд РБУ — ДКБИ</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;padding:16px}
-h1{color:#58a6ff;font-size:22px;margin-bottom:4px}
-.sub{color:#484f58;font-size:12px;margin-bottom:12px}
-.filters{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap;align-items:center}
-select{background:#161b22;border:1px solid #30363d;color:#c9d1d9;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer}
-select:focus{border-color:#58a6ff;outline:none}
-.stats{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
-.stat{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;min-width:130px}
-.stat .n{font-size:24px;font-weight:bold;color:#58a6ff}
-.stat .l{color:#8b949e;font-size:12px}
-.stat.red .n{color:#f85149}
-.stat.red{border-color:#f8514940}
-.stat.green .n{color:#3fb950}
-.stat.green{border-color:#3fb95040}
-.stat.blue .n{color:#58a6ff}
-.stat.blue{border-color:#58a6ff40}
-.stat-sep{width:1px;background:#30363d;align-self:stretch;margin:0 4px}
-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}
-th{background:#21262d;color:#8b949e;text-align:left;padding:8px 10px;position:sticky;top:0;z-index:1}
-td{padding:6px 10px;border-top:1px solid #21262d}
-.day-row{background:#161b22;cursor:pointer;font-weight:bold}
-.day-row:hover{background:#1c2128}
-.recipe-row{background:#0d1117;cursor:pointer;padding-left:20px}
-.recipe-row:hover{background:#161b22}
-.batch-row{background:#0d1117;color:#8b949e}
-.batch-row:hover{background:#161b22}
-.toggle{display:inline-block;width:16px;color:#484f58;font-size:12px;text-align:center;margin-right:4px}
-.red{color:#f85149;font-weight:bold}
-.blue{color:#58a6ff}
-.green{color:#3fb950}
-.hidden{display:none}
-.delta-pos{color:#f85149}
-.delta-neg{color:#58a6ff}
-.badge{display:inline-block;background:#f8514920;color:#f85149;border-radius:4px;padding:1px 6px;font-size:11px;margin-left:6px}
-.badge.ok{background:#3fb95020;color:#3fb950}
-.indent1{padding-left:20px !important}
-.indent2{padding-left:90px !important}
-.compare{display:flex;gap:4px;align-items:center}
-.compare .v{font-weight:bold}
-.compare .d{font-size:11px}
-.month-picker{position:relative;display:inline-block}
-.month-btn{background:#161b22;border:1px solid #30363d;color:#c9d1d9;padding:8px 12px;border-radius:6px;font-size:14px;cursor:pointer;min-width:160px;text-align:left}
-.month-btn:hover{border-color:#58a6ff}
-.month-dropdown{display:none;position:absolute;top:100%;left:0;background:#161b22;border:1px solid #30363d;border-radius:6px;padding:6px 0;z-index:10;min-width:200px;max-height:300px;overflow-y:auto;margin-top:4px}
-.month-dropdown.open{display:block}
-.month-item{display:flex;align-items:center;padding:6px 12px;cursor:pointer;gap:8px;font-size:14px}
-.month-item:hover{background:#21262d}
-.month-item input{accent-color:#58a6ff;cursor:pointer}
-.month-item.all{border-bottom:1px solid #30363d;font-weight:bold}
+:root {
+  --bg: #0a0e14;
+  --surface: #11161e;
+  --surface-2: #161c26;
+  --surface-3: #1c2330;
+  --border: #1f2733;
+  --border-strong: #2a3441;
+  --text: #d4d8de;
+  --text-dim: #7d8590;
+  --text-faint: #545d68;
+  --accent: #7aa2f7;
+  --accent-soft: #7aa2f720;
+  --green: #4ade80;
+  --green-soft: #4ade8018;
+  --green-line: #4ade8033;
+  --pink: #f87171;
+  --pink-soft: #f8717118;
+  --pink-line: #f8717133;
+  --amber: #fbbf24;
+  --amber-soft: #fbbf2418;
+  --amber-line: #fbbf2433;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: radial-gradient(ellipse at top, #131a26 0%, var(--bg) 60%);
+  color: var(--text);
+  padding: 24px 32px 80px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+@media (max-width: 720px) { body { padding: 16px; } }
+
+/* Header */
+.header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.02em;
+     background: linear-gradient(135deg, #7aa2f7 0%, #bb9af7 100%);
+     -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { color: var(--text-faint); font-size: 12px; margin-top: 2px; }
+
+/* Filter bar */
+.filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 16px;
+           padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+select, .month-btn {
+  background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text);
+  padding: 8px 14px; border-radius: 8px; font-size: 13.5px; cursor: pointer; transition: all 0.15s;
+  font-family: inherit;
+}
+select:hover, .month-btn:hover { border-color: var(--accent); background: var(--surface-3); }
+select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+.month-picker { position: relative; }
+.month-btn { min-width: 180px; text-align: left; }
+.month-dropdown {
+  display: none; position: absolute; top: calc(100% + 6px); left: 0; z-index: 10;
+  background: var(--surface-2); border: 1px solid var(--border-strong); border-radius: 10px;
+  padding: 6px 0; min-width: 220px; max-height: 320px; overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.month-dropdown.open { display: block; }
+.month-item { display: flex; align-items: center; padding: 8px 14px; cursor: pointer; gap: 10px; font-size: 13.5px; }
+.month-item:hover { background: var(--surface-3); }
+.month-item input { accent-color: var(--accent); cursor: pointer; }
+.month-item.all { border-bottom: 1px solid var(--border); font-weight: 600; margin-bottom: 4px; }
+
+/* Legend */
+.legend { display: flex; gap: 16px; align-items: center; margin-left: auto; font-size: 12px; color: var(--text-dim); }
+.legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+
+/* Stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.stat {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
+  transition: all 0.15s;
+}
+.stat:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+.stat .n { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+.stat .l { color: var(--text-dim); font-size: 11.5px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+.stat.green { border-color: var(--green-line); background: linear-gradient(180deg, var(--green-soft) 0%, var(--surface) 100%); }
+.stat.green .n { color: var(--green); }
+.stat.red { border-color: var(--pink-line); background: linear-gradient(180deg, var(--pink-soft) 0%, var(--surface) 100%); }
+.stat.red .n { color: var(--pink); }
+.stat.blue .n { color: var(--accent); }
+.stat-sep { display: none; }
+
+/* Table */
+.table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: var(--surface-2); color: var(--text-dim); text-align: left; padding: 12px 14px;
+  position: sticky; top: 0; z-index: 2; font-weight: 600; font-size: 11.5px;
+  text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid var(--border-strong);
+}
+thead th.num { text-align: right; }
+td { padding: 9px 14px; border-top: 1px solid var(--border); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Hierarchy rows */
+.day-row { cursor: pointer; font-weight: 600; transition: background 0.1s; }
+.day-row td { background: var(--surface-2); }
+.day-row:hover td { background: var(--surface-3); }
+
+/* Convergence coloring at day level */
+.day-row.conv-ok td { background: linear-gradient(90deg, var(--green-soft) 0%, var(--surface-2) 70%); border-left: 3px solid var(--green); }
+.day-row.conv-ok:hover td { background: linear-gradient(90deg, var(--green-soft) 0%, var(--surface-3) 70%); }
+.day-row.conv-partial td { background: linear-gradient(90deg, var(--amber-soft) 0%, var(--surface-2) 70%); border-left: 3px solid var(--amber); }
+.day-row.conv-partial:hover td { background: linear-gradient(90deg, var(--amber-soft) 0%, var(--surface-3) 70%); }
+.day-row.conv-bad td { background: linear-gradient(90deg, var(--pink-soft) 0%, var(--surface-2) 70%); border-left: 3px solid var(--pink); }
+.day-row.conv-bad:hover td { background: linear-gradient(90deg, var(--pink-soft) 0%, var(--surface-3) 70%); }
+.day-row.conv-empty td { opacity: 0.45; }
+
+.base-row { cursor: pointer; transition: background 0.1s; }
+.base-row td { background: var(--surface); font-weight: 500; }
+.base-row:hover td { background: var(--surface-2); }
+.base-row.conv-ok td { box-shadow: inset 3px 0 0 var(--green-line); }
+.base-row.conv-partial td { box-shadow: inset 3px 0 0 var(--amber-line); }
+.base-row.conv-bad td { box-shadow: inset 3px 0 0 var(--pink-line); }
+
+.recipe-row { cursor: pointer; color: var(--text-dim); }
+.recipe-row td { background: var(--bg); }
+.recipe-row:hover td { background: var(--surface); }
+
+.batch-row td { background: var(--bg); color: var(--text-faint); font-size: 12.5px; }
+
+/* Toggle/badges */
+.toggle { display: inline-block; width: 14px; color: var(--text-faint); font-size: 10px;
+          text-align: center; margin-right: 8px; transition: transform 0.15s; }
+.badge { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px;
+         margin-left: 8px; font-weight: 500; }
+.badge.warn { background: var(--pink-soft); color: var(--pink); }
+.badge.ok { background: var(--green-soft); color: var(--green); }
+.badge.info { background: var(--accent-soft); color: var(--accent); }
+
+/* Color helpers */
+.red { color: var(--pink); font-weight: 600; }
+.blue { color: var(--accent); }
+.green { color: var(--green); font-weight: 500; }
+.dim { color: var(--text-faint); }
+.delta-pos { color: var(--pink); }
+.delta-neg { color: var(--accent); }
+.hidden { display: none; }
+.indent1 { padding-left: 30px !important; }
+.indent2 { padding-left: 52px !important; }
+.indent3 { padding-left: 74px !important; }
 </style>
 </head>
 <body>
-<nav style="display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid #30363d;background:#161b22;flex-wrap:wrap;align-items:center;margin:-16px -16px 16px -16px">
-  <a href="index.html" style="color:#fff;text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;background:#58a6ff">📊 РБУ</a>
-  <a href="marketing.html" style="color:#8b949e;text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid transparent">📈 Маркетинг</a>
-  <a href="debitorka.html" style="color:#8b949e;text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid transparent">💰 Дебиторка</a>
-</nav>
-<h1>📊 Дашборд РБУ — ДКБИ</h1>
-<div class="sub" id="updated"></div>
+
+<div class="header">
+  <div>
+    <h1>Дашборд РБУ — ДКБИ</h1>
+    <div class="sub" id="updated"></div>
+  </div>
+</div>
 
 <div class="filters">
   <select id="baseFilter"><option value="all">Все базы</option></select>
@@ -73,52 +169,56 @@ td{padding:6px 10px;border-top:1px solid #21262d}
     <button class="month-btn" id="monthBtn" onclick="toggleMonthDropdown()">Выберите месяц ▾</button>
     <div class="month-dropdown" id="monthDropdown"></div>
   </div>
+  <div class="legend">
+    <span><span class="legend-dot" style="background:var(--green)"></span>3 источника сошлись</span>
+    <span><span class="legend-dot" style="background:var(--amber)"></span>2 совпали</span>
+    <span><span class="legend-dot" style="background:var(--pink)"></span>расхождение</span>
+  </div>
 </div>
 
 <div class="stats" id="stats"></div>
 
+<div class="table-wrap">
 <table>
   <thead>
     <tr>
-      <th style="width:1%"><input type="checkbox" id="checkAllDays" title="Показать все дни" onchange="toggleAllDays(this.checked)"></th>
-      <th style="width:45%;min-width:250px;padding:8px 0 8px 10px"><span style="display:inline-block;width:90px">Дата</span><span style="display:inline-block;width:90px">Рецепт</span><span>Машина</span></th>
-      <th>1С Выпуск</th>
-      <th>Объём РБУ</th>
-      <th>Объём Дисп.</th>
-      <th>Δ Объём</th>
-      <th>Цемент</th>
-      <th>Песок</th>
-      <th>Щебень</th>
-      <th>Химия</th>
+      <th style="width:28%">Дата / База / Рецепт / Машина</th>
+      <th class="num">Объём РБУ</th>
+      <th class="num">Дисп.</th>
+      <th class="num">1С Выпуск</th>
+      <th class="num">Δ макс</th>
+      <th class="num">Цемент</th>
+      <th class="num">Песок</th>
+      <th class="num">Щебень</th>
+      <th class="num">Химия</th>
     </tr>
   </thead>
   <tbody id="tbody"></tbody>
 </table>
+</div>
 
 <script>
 let DATA = null;
-let excludedDays = new Set();
+
+// Tolerance for convergence: numbers agree if max-min ≤ max(5%, 3 m3)
+const CONV_PCT = 5;
+const CONV_ABS = 3;
 
 async function init() {
   const res = await fetch('data.json?v=' + Date.now());
   DATA = await res.json();
   document.getElementById('updated').textContent = 'Обновлено: ' + new Date(DATA.updated).toLocaleString('ru-RU');
 
-  // Populate base filter
   const bf = document.getElementById('baseFilter');
   DATA.bases.forEach(b => { const o = document.createElement('option'); o.value = b; o.textContent = b; bf.appendChild(o); });
   bf.addEventListener('change', render);
 
-  // Populate month checkboxes
   const md = document.getElementById('monthDropdown');
   const names = ['','Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
-
-  // "Все" checkbox
   const allItem = document.createElement('label');
   allItem.className = 'month-item all';
   allItem.innerHTML = '<input type="checkbox" id="monthAll" onchange="toggleAllMonths(this)"> Все месяцы';
   md.appendChild(allItem);
-
   DATA.months.slice().reverse().forEach(m => {
     const [y, mo] = m.split('-');
     const item = document.createElement('label');
@@ -126,31 +226,41 @@ async function init() {
     item.innerHTML = '<input type="checkbox" class="monthCb" value="' + m + '" onchange="onMonthChange()"> ' + names[parseInt(mo)] + ' ' + y;
     md.appendChild(item);
   });
-
-  // Default: select latest month
   const cbs = document.querySelectorAll('.monthCb');
-  if (cbs.length > 0) { cbs[0].checked = true; }
+  if (cbs.length > 0) cbs[0].checked = true;
   updateMonthBtnText();
-
-  // Close dropdown on outside click
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.month-picker')) {
-      document.getElementById('monthDropdown').classList.remove('open');
-    }
+    if (!e.target.closest('.month-picker')) document.getElementById('monthDropdown').classList.remove('open');
   });
-
   render();
+}
+
+// Compute convergence status from 3 source numbers
+function convergence(rbu, disp, onec) {
+  const present = [rbu, disp, onec].filter(v => v != null && v > 0);
+  if (present.length === 0) return 'empty';
+  if (present.length === 1) return 'bad';   // only 1 source has data — расхождение
+  const mn = Math.min(...present), mx = Math.max(...present);
+  const spread = mx - mn;
+  const tol = Math.max(CONV_ABS, mn * CONV_PCT / 100);
+  if (spread <= tol) return present.length === 3 ? 'ok' : 'partial';
+  return 'bad';
 }
 
 function devClass(pct) {
   if (Math.abs(pct) > 3) return pct > 0 ? 'red' : 'blue';
   return 'green';
 }
-
 function devStr(pct) {
   if (pct === null || pct === undefined || isNaN(pct)) return '';
   const s = pct > 0 ? '+' + pct.toFixed(1) + '%' : pct.toFixed(1) + '%';
   return '<span class="' + devClass(pct) + '">' + s + '</span>';
+}
+function maxSpreadPct(rbu, disp, onec) {
+  const v = [rbu, disp, onec].filter(x => x != null && x > 0);
+  if (v.length < 2) return null;
+  const mn = Math.min(...v), mx = Math.max(...v);
+  return ((mx - mn) / mn * 100);
 }
 
 function getSelectedMonths() {
@@ -159,57 +269,24 @@ function getSelectedMonths() {
   const checked = [...document.querySelectorAll('.monthCb:checked')].map(c => c.value);
   return checked.length > 0 ? checked : DATA.months;
 }
-
-function toggleMonthDropdown() {
-  document.getElementById('monthDropdown').classList.toggle('open');
-}
-
-function toggleAllMonths(cb) {
-  document.querySelectorAll('.monthCb').forEach(c => c.checked = cb.checked);
-  updateMonthBtnText();
-  render();
-}
-
+function toggleMonthDropdown() { document.getElementById('monthDropdown').classList.toggle('open'); }
+function toggleAllMonths(cb) { document.querySelectorAll('.monthCb').forEach(c => c.checked = cb.checked); updateMonthBtnText(); render(); }
 function onMonthChange() {
   const allCb = document.getElementById('monthAll');
   const cbs = document.querySelectorAll('.monthCb');
-  const allChecked = [...cbs].every(c => c.checked);
-  allCb.checked = allChecked;
-  updateMonthBtnText();
-  render();
+  allCb.checked = [...cbs].every(c => c.checked);
+  updateMonthBtnText(); render();
 }
-
 function updateMonthBtnText() {
   const names = ['','Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
   const selected = getSelectedMonths();
   const btn = document.getElementById('monthBtn');
-  if (selected.length === DATA.months.length) {
-    btn.textContent = 'Все месяцы ▾';
-  } else if (selected.length <= 2) {
-    btn.textContent = selected.map(m => { const [y,mo] = m.split('-'); return names[parseInt(mo)] + ' ' + y; }).join(', ') + ' ▾';
-  } else {
-    btn.textContent = selected.length + ' мес. ▾';
-  }
+  if (selected.length === DATA.months.length) btn.textContent = 'Все месяцы ▾';
+  else if (selected.length <= 2) btn.textContent = selected.map(m => { const [y,mo] = m.split('-'); return names[parseInt(mo)] + ' ' + y; }).join(', ') + ' ▾';
+  else btn.textContent = selected.length + ' мес. ▾';
 }
 
-function updateExcludedDays() {
-  excludedDays.clear();
-  document.querySelectorAll('.day-checkbox:not(:checked)').forEach(cb => {
-    const dayId = cb.getAttribute('data-day-id');
-    if (dayId) excludedDays.add(dayId);
-  });
-}
-
-function toggleAllDays(checked) {
-  document.querySelectorAll('.day-checkbox').forEach(cb => cb.checked = checked);
-  updateExcludedDays();
-  render();
-}
-
-function onDayCheckChange(checkbox) {
-  updateExcludedDays();
-  render();
-}
+function fmt(v) { return v > 0 ? v.toFixed(1) : '—'; }
 
 function render() {
   const base = document.getElementById('baseFilter').value;
@@ -217,128 +294,150 @@ function render() {
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
 
-  let totalVol = 0, totalDispVol = 0, totalShipVol = 0, totalBatches = 0, totalAnomalies = 0;
+  let totalVol = 0, totalDispVol = 0, totalOnecVol = 0, totalBatches = 0, totalAnomalies = 0;
   let totalFactCem = 0, totalNormCem = 0;
   let totalFactSand = 0, totalNormSand = 0;
   let totalFactGrav = 0, totalNormGrav = 0;
   let totalFactChem = 0, totalNormChem = 0;
+  let daysOk = 0, daysPartial = 0, daysBad = 0;
 
-  // Filter days by selected months
   const days = Object.entries(DATA.days)
     .filter(([d]) => selectedMonths.some(m => d.startsWith(m)))
     .sort((a, b) => a[0].localeCompare(b[0]));
 
   days.forEach(([date, bases]) => {
-    // When 'all': exclude ДИН 1 and ДИН 2 — they are already included in ДИН aggregate
-    const basesToShow = base === 'all' ? DATA.bases.filter(b => b !== 'ДИН 1' && b !== 'ДИН 2') : [base];
-    let dayVol = 0, dayDispVol = 0, dayShipVol = 0, dayBatches = 0, dayAnomalies = 0;
+    const basesToShow = base === 'all' ? DATA.bases : [base];
+    let dayVol = 0, dayDispVol = 0, dayOnecVol = 0, dayBatches = 0, dayAnomalies = 0;
     const dayId = 'day-' + date;
-    const isExcluded = excludedDays.has(dayId);
-
-    // Collect per-base data
     const dayBases = [];
+
     basesToShow.forEach(b => {
       const bd = bases[b];
       if (!bd) return;
       const bVol = bd.totalVolume || 0;
       const bDispVol = bd.dispatcherVolume || 0;
-      const bShipVol = bd.shipmentVolume || 0;
+      const bOnecVol = bd.shipmentVolume || 0;
       let bBatches = 0, bAnomalies = 0;
       const recs = [];
       Object.entries(bd.recipes || {}).forEach(([rName, rd]) => {
         const batches = rd.batches || [];
         bBatches += batches.length;
         batches.forEach(bt => {
-          if (Math.abs(bt.devCement||0) > 3 || Math.abs(bt.devSand||0) > 3 || Math.abs(bt.devGravel||0) > 3 || Math.abs(bt.devChem||0) > 3) bAnomalies++;
+          if (Math.abs(bt.devCement||0) > 3 || Math.abs(bt.devSand||0) > 3 ||
+              Math.abs(bt.devGravel||0) > 3 || Math.abs(bt.devChem||0) > 3) bAnomalies++;
         });
         recs.push({ name: rName, data: rd, batches });
       });
-      dayVol += bVol; dayDispVol += bDispVol; dayShipVol += bShipVol; dayBatches += bBatches; dayAnomalies += bAnomalies;
-      if (recs.length > 0) dayBases.push({ base: b, vol: bVol, dispVol: bDispVol, shipVol: bShipVol, batches: bBatches, anomalies: bAnomalies, recipes: recs });
+      dayVol += bVol; dayDispVol += bDispVol; dayOnecVol += bOnecVol;
+      dayBatches += bBatches; dayAnomalies += bAnomalies;
+      if (recs.length > 0 || bVol > 0 || bDispVol > 0 || bOnecVol > 0) {
+        dayBases.push({ base: b, vol: bVol, dispVol: bDispVol, onecVol: bOnecVol,
+                        batches: bBatches, anomalies: bAnomalies, recipes: recs });
+      }
     });
 
-    if (!isExcluded) {
-      totalVol += dayVol; totalDispVol += dayDispVol; totalShipVol += dayShipVol; totalBatches += dayBatches; totalAnomalies += dayAnomalies;
-    }
-    if (dayBases.length === 0) return;
+    totalVol += dayVol; totalDispVol += dayDispVol; totalOnecVol += dayOnecVol;
+    totalBatches += dayBatches; totalAnomalies += dayAnomalies;
 
-    const volDelta = dayDispVol > 0 ? ((dayVol - dayDispVol) / dayDispVol * 100).toFixed(1) : '';
+    const conv = convergence(dayVol, dayDispVol, dayOnecVol);
+    if (conv === 'ok') daysOk++;
+    else if (conv === 'partial') daysPartial++;
+    else if (conv === 'bad') daysBad++;
 
-    // Level 1: Day row
+    if (dayBases.length === 0 && conv === 'empty') return;
+
+    const spread = maxSpreadPct(dayVol, dayDispVol, dayOnecVol);
+
     const dayRow = document.createElement('tr');
-    dayRow.className = 'day-row';
-    dayRow.id = dayId;
-    dayRow.innerHTML = '<td><input type="checkbox" class="day-checkbox" data-day-id="'+dayId+'" ' + (excludedDays.has(dayId) ? '' : 'checked') + ' onchange="onDayCheckChange(this)"></td>' +
-      '<td style="white-space:nowrap;word-break:keep-all;min-width:200px"><span class="toggle" id="t-'+dayId+'">▶</span>' + date +
-      (dayAnomalies > 0 ? '<span class="badge">' + dayAnomalies + ' аном.</span>' : '<span class="badge ok">✓</span>') +
-      '</td><td>' + (dayShipVol > 0 ? dayShipVol.toFixed(1) : '—') + '</td>' +
-      '<td>' + dayVol.toFixed(1) + '</td><td>' + (dayDispVol > 0 ? dayDispVol.toFixed(1) : '—') + '</td>' +
-      '<td class="' + (Math.abs(parseFloat(volDelta)) > 3 ? 'red' : '') + '">' + (volDelta ? volDelta + '%' : '') + '</td>' +
+    dayRow.className = 'day-row conv-' + conv;
+    const badge = conv === 'ok' ? '<span class="badge ok">✓ сошлось</span>' :
+                  conv === 'partial' ? '<span class="badge info">~ 2 источ.</span>' :
+                  conv === 'bad' ? '<span class="badge warn">расх.</span>' : '';
+    dayRow.innerHTML =
+      '<td><span class="toggle" id="t-'+dayId+'">▶</span>' + date + badge +
+      (dayAnomalies > 0 ? '<span class="badge warn">' + dayAnomalies + ' аном.</span>' : '') +
+      '</td>' +
+      '<td class="num">' + fmt(dayVol) + '</td>' +
+      '<td class="num">' + fmt(dayDispVol) + '</td>' +
+      '<td class="num">' + fmt(dayOnecVol) + '</td>' +
+      '<td class="num ' + (spread != null && spread > CONV_PCT ? 'red' : 'green') + '">' +
+        (spread != null ? spread.toFixed(1) + '%' : '—') + '</td>' +
       '<td></td><td></td><td></td><td></td>';
-    dayRow.onclick = (e) => { if (e.target.type !== 'checkbox') toggle(dayId); };
+    dayRow.onclick = () => toggle(dayId);
     tbody.appendChild(dayRow);
 
-    // Level 2: Base rows
     dayBases.forEach((db, bi) => {
       const bid = dayId + '-b' + bi;
-      const bDelta = db.dispVol > 0 ? ((db.vol - db.dispVol) / db.dispVol * 100).toFixed(1) : '';
+      const bConv = convergence(db.vol, db.dispVol, db.onecVol);
+      const bSpread = maxSpreadPct(db.vol, db.dispVol, db.onecVol);
 
       const baseRow = document.createElement('tr');
-      baseRow.className = 'recipe-row hidden';
+      baseRow.className = 'base-row conv-' + bConv + ' hidden';
       baseRow.dataset.parent = dayId;
-      baseRow.innerHTML = '<td></td><td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b> (' + db.batches + ' зам.)' +
-        (db.anomalies > 0 ? '<span class="badge">' + db.anomalies + '</span>' : '') +
-        '</td><td>' + (db.shipVol > 0 ? db.shipVol.toFixed(1) : '—') + '</td>' +
-        '<td>' + db.vol.toFixed(1) + '</td><td>' + (db.dispVol > 0 ? db.dispVol.toFixed(1) : '—') + '</td>' +
-        '<td class="' + (Math.abs(parseFloat(bDelta)) > 3 ? 'red' : '') + '">' + (bDelta ? bDelta + '%' : '') + '</td>' +
+      baseRow.innerHTML =
+        '<td class="indent1"><span class="toggle" id="t-'+bid+'">▶</span><b>' + db.base + '</b>' +
+        ' <span class="dim">(' + db.batches + ' зам.)</span>' +
+        (db.anomalies > 0 ? '<span class="badge warn">' + db.anomalies + '</span>' : '') +
+        '</td>' +
+        '<td class="num">' + fmt(db.vol) + '</td>' +
+        '<td class="num">' + fmt(db.dispVol) + '</td>' +
+        '<td class="num">' + fmt(db.onecVol) + '</td>' +
+        '<td class="num ' + (bSpread != null && bSpread > CONV_PCT ? 'red' : 'green') + '">' +
+          (bSpread != null ? bSpread.toFixed(1) + '%' : '—') + '</td>' +
         '<td></td><td></td><td></td><td></td>';
       baseRow.onclick = (e) => { e.stopPropagation(); toggle(bid); };
       tbody.appendChild(baseRow);
 
-      // Level 3: Recipe rows
       db.recipes.forEach((rec, ri) => {
         const rid = bid + '-r' + ri;
         const rd = rec.data;
         const rVol = rd.totalVolume || 0;
+        const rDispVol = rd.dispatcherVolume || 0;
+        const rOnecVol = rd.shipmentVolume || 0;
         const norm = DATA.recipes[rec.name];
 
         let rDevCem = '', rDevSand = '', rDevGrav = '', rDevChem = '';
         if (norm && rVol > 0) {
           const nc = norm.cement * rVol, ns = norm.sand * rVol, ng = norm.gravel * rVol, nch = norm.chem * rVol;
-          if (nc > 0) { rDevCem = devStr((rd.factCement - nc) / nc * 100); if (!isExcluded) { totalFactCem += rd.factCement; totalNormCem += nc; } }
-          if (ns > 0) { rDevSand = devStr((rd.factSand - ns) / ns * 100); if (!isExcluded) { totalFactSand += rd.factSand; totalNormSand += ns; } }
-          if (ng > 0) { rDevGrav = devStr((rd.factGravel - ng) / ng * 100); if (!isExcluded) { totalFactGrav += rd.factGravel; totalNormGrav += ng; } }
-          if (nch > 0) { rDevChem = devStr((rd.factChem - nch) / nch * 100); if (!isExcluded) { totalFactChem += rd.factChem; totalNormChem += nch; } }
+          if (nc > 0) { rDevCem = devStr((rd.factCement - nc) / nc * 100); totalFactCem += rd.factCement; totalNormCem += nc; }
+          if (ns > 0) { rDevSand = devStr((rd.factSand - ns) / ns * 100); totalFactSand += rd.factSand; totalNormSand += ns; }
+          if (ng > 0) { rDevGrav = devStr((rd.factGravel - ng) / ng * 100); totalFactGrav += rd.factGravel; totalNormGrav += ng; }
+          if (nch > 0) { rDevChem = devStr((rd.factChem - nch) / nch * 100); totalFactChem += rd.factChem; totalNormChem += nch; }
         }
-
-        const rDispVol = rd.dispatcherVolume || 0;
-        const rShipVol = rd.shipmentVolume || 0;
-        const rVolDelta = rDispVol > 0 ? ((rVol - rDispVol) / rDispVol * 100).toFixed(1) : (rVol > 0 && rDispVol === 0 ? '⚠' : '');
+        const rSpread = maxSpreadPct(rVol, rDispVol, rOnecVol);
 
         const recRow = document.createElement('tr');
-        recRow.className = 'batch-row hidden';
+        recRow.className = 'recipe-row hidden';
         recRow.dataset.parent = bid;
-        recRow.style.color = '#c9d1d9';
-        recRow.innerHTML = '<td></td><td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + ' (' + rec.batches.length + ')' +
-          '</td><td>' + (rShipVol > 0 ? rShipVol.toFixed(1) : '—') + '</td>' +
-          '<td>' + rVol.toFixed(1) + '</td><td>' + (rDispVol > 0 ? rDispVol.toFixed(1) : '—') + '</td>' +
-          '<td class="' + (rVolDelta === '⚠' || Math.abs(parseFloat(rVolDelta)) > 3 ? 'red' : '') + '">' + (rVolDelta === '⚠' ? '⚠' : (rVolDelta ? rVolDelta + '%' : '')) + '</td>' +
-          '<td>' + rDevCem + '</td><td>' + rDevSand + '</td><td>' + rDevGrav + '</td><td>' + rDevChem + '</td>';
+        recRow.innerHTML =
+          '<td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name +
+          ' <span class="dim">(' + rec.batches.length + ')</span></td>' +
+          '<td class="num">' + fmt(rVol) + '</td>' +
+          '<td class="num">' + fmt(rDispVol) + '</td>' +
+          '<td class="num">' + fmt(rOnecVol) + '</td>' +
+          '<td class="num ' + (rSpread != null && rSpread > CONV_PCT ? 'red' : '') + '">' +
+            (rSpread != null ? rSpread.toFixed(1) + '%' : '') + '</td>' +
+          '<td class="num">' + rDevCem + '</td>' +
+          '<td class="num">' + rDevSand + '</td>' +
+          '<td class="num">' + rDevGrav + '</td>' +
+          '<td class="num">' + rDevChem + '</td>';
         recRow.onclick = (e) => { e.stopPropagation(); toggle(rid); };
         tbody.appendChild(recRow);
 
-        // Level 4: Batch rows
         rec.batches.forEach(bt => {
           const bRow = document.createElement('tr');
           bRow.className = 'batch-row hidden';
           bRow.dataset.parent = rid;
-          bRow.style.paddingLeft = '68px';
-          bRow.innerHTML = '<td></td><td style="padding-left:170px">🚛 ' + bt.truck + '</td>' +
-            '<td></td><td>' + bt.volume + '</td><td></td><td></td>' +
-            '<td>' + devStr(bt.devCement) + '</td>' +
-            '<td>' + devStr(bt.devSand) + '</td>' +
-            '<td>' + devStr(bt.devGravel) + '</td>' +
-            '<td>' + devStr(bt.devChem) + '</td>';
+          bRow.innerHTML =
+            '<td class="indent3">🚛 ' + bt.truck + '</td>' +
+            '<td class="num">' + bt.volume + '</td>' +
+            '<td class="num">—</td>' +
+            '<td class="num">—</td>' +
+            '<td></td>' +
+            '<td class="num">' + devStr(bt.devCement) + '</td>' +
+            '<td class="num">' + devStr(bt.devSand) + '</td>' +
+            '<td class="num">' + devStr(bt.devGravel) + '</td>' +
+            '<td class="num">' + devStr(bt.devChem) + '</td>';
           tbody.appendChild(bRow);
         });
       });
@@ -346,7 +445,6 @@ function render() {
   });
 
   // Stats
-  const volDeltaTotal = totalDispVol > 0 ? ((totalVol - totalDispVol) / totalDispVol * 100) : null;
   const devCemTotal  = totalNormCem  > 0 ? ((totalFactCem  - totalNormCem)  / totalNormCem  * 100) : null;
   const devSandTotal = totalNormSand > 0 ? ((totalFactSand - totalNormSand) / totalNormSand * 100) : null;
   const devGravTotal = totalNormGrav > 0 ? ((totalFactGrav - totalNormGrav) / totalNormGrav * 100) : null;
@@ -359,14 +457,18 @@ function render() {
     return '<div class="stat ' + statClass(val) + '"><div class="n">' + sign + val.toFixed(1) + '%</div><div class="l">' + label + '</div></div>';
   }
 
+  const totalDays = daysOk + daysPartial + daysBad;
+  const convPct = totalDays > 0 ? (daysOk / totalDays * 100).toFixed(0) : 0;
+
   document.getElementById('stats').innerHTML =
-    '<div class="stat"><div class="n">' + totalVol.toFixed(0) + ' м³</div><div class="l">Объём РБУ</div></div>' +
-    '<div class="stat"><div class="n">' + totalDispVol.toFixed(0) + ' м³</div><div class="l">Объём Дисп.</div></div>' +
-    (totalShipVol > 0 ? '<div class="stat"><div class="n">' + totalShipVol.toFixed(0) + ' м³</div><div class="l">1С Выпуск</div></div>' : '') +
-    statStr(volDeltaTotal, 'Δ Объём') +
+    '<div class="stat"><div class="n">' + totalVol.toFixed(0) + '</div><div class="l">Объём РБУ, м³</div></div>' +
+    '<div class="stat"><div class="n">' + totalDispVol.toFixed(0) + '</div><div class="l">Дисп., м³</div></div>' +
+    '<div class="stat"><div class="n">' + totalOnecVol.toFixed(0) + '</div><div class="l">1С Выпуск, м³</div></div>' +
+    '<div class="stat ' + (daysOk === totalDays ? 'green' : daysBad > daysOk ? 'red' : '') + '">' +
+      '<div class="n">' + daysOk + '/' + totalDays + '</div><div class="l">Дней сошлись (' + convPct + '%)</div></div>' +
     '<div class="stat"><div class="n">' + totalBatches + '</div><div class="l">Замесов</div></div>' +
-    '<div class="stat ' + (totalAnomalies > 0 ? 'red' : 'green') + '"><div class="n">' + totalAnomalies + '</div><div class="l">Аномалий >3%</div></div>' +
-    '<div class="stat-sep"></div>' +
+    '<div class="stat ' + (totalAnomalies > 0 ? 'red' : 'green') + '">' +
+      '<div class="n">' + totalAnomalies + '</div><div class="l">Аномалий >3%</div></div>' +
     statStr(devCemTotal,  'Δ Цемент') +
     statStr(devSandTotal, 'Δ Песок') +
     statStr(devGravTotal, 'Δ Щебень') +
@@ -384,7 +486,6 @@ function toggle(id) {
     if (!show) collapseChildren(r);
   });
 }
-
 function collapseChildren(row) {
   const childToggle = row.querySelector('.toggle');
   if (!childToggle) return;
