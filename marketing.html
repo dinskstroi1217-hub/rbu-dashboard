@@ -187,7 +187,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="bottom-row">
       <div class="chart-card">
         <div class="chart-title">Конверсия по менеджерам</div>
-        <div class="table-note">Won/лид считается по маркет-сделкам и маркет-лидам недели. Для управленческого контроля, не для финальной атрибуции.</div>
+        <div class="table-note">Выигр./лид считается по маркет-сделкам и маркет-лидам недели. Для управленческого контроля, не для финальной атрибуции.</div>
         <table class="data-table" id="tbl-managers"></table>
       </div>
       <div class="chart-card">
@@ -206,11 +206,14 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
     <div id="spec-blocks" style="display:none">
       <div class="kpi-row" id="spec-kpis"></div>
+      <div id="spec-dq-note" style="color:var(--yellow);font-size:12px;margin:4px 2px 0"></div>
       <div class="charts-row">
         <div class="chart-card wide">
           <div class="chart-title">📈 Тренд по неделям — визиты сайта, контакты Авито, сделки Bitrix</div>
           <div class="table-note">Резкое падение визитов в W18-W20 коррелирует с сокращением бюджета Я.Директа.</div>
           <div id="spec-chart-trend"></div>
+          <div class="table-note" style="margin-top:14px">Накопительная выручка (выиграно нарастающим итогом) — сглаживает скачки от заноса сделок задним числом:</div>
+          <div id="spec-cumulative"></div>
         </div>
       </div>
       <div class="charts-row">
@@ -316,55 +319,81 @@ function renderSpecMode() {
   const kpis = document.getElementById('spec-kpis');
   kpis.innerHTML = `
     <div class="kpi-card"><div class="kpi-label">Сделок</div><div class="kpi-value">${fmt(s.total)}</div><div class="kpi-sub">за неделю</div></div>
-    <div class="kpi-card"><div class="kpi-label">Win-rate</div><div class="kpi-value">${s.winRate ?? '—'}%</div><div class="kpi-sub">${s.won} won / ${s.lost} lost</div></div>
-    <div class="kpi-card"><div class="kpi-label">Выручка won</div><div class="kpi-value">${fmt(s.wonSum)} ₽</div><div class="kpi-sub">${s.won} сделок</div></div>
-    <div class="kpi-card"><div class="kpi-label">Pipeline</div><div class="kpi-value">${fmt(s.inWorkSum)} ₽</div><div class="kpi-sub">${s.inWork} в работе</div></div>
+    <div class="kpi-card"><div class="kpi-label">% побед</div><div class="kpi-value">${s.winRate ?? '—'}%</div><div class="kpi-sub">${s.won} выигр. / ${s.lost} проигр.</div></div>
+    <div class="kpi-card"><div class="kpi-label">Выручка (выиграно)</div><div class="kpi-value">${fmt(s.wonSum)} ₽</div><div class="kpi-sub">${s.won} сделок</div></div>
+    <div class="kpi-card"><div class="kpi-label">В работе</div><div class="kpi-value">${fmt(s.inWorkSum)} ₽</div><div class="kpi-sub">${s.inWork} сделок</div></div>
+    <div class="kpi-card"><div class="kpi-label">Без суммы</div><div class="kpi-value" style="${(s.noOppPct != null && s.noOppPct >= 50) ? 'color:var(--yellow)' : ''}">${s.noOppPct != null ? s.noOppPct + '%' : '—'}</div><div class="kpi-sub">${s.noOppCount != null ? s.noOppCount + ' из ' + s.inWork + ' в работе' : 'нет данных'}</div></div>
   `;
+  const dq = document.getElementById('spec-dq-note');
+  if (dq) dq.innerHTML = (s.noOppPct != null && s.noOppPct >= 50)
+    ? `⚠️ ${s.noOppPct}% сделок в работе — без суммы. Прогноз pipeline неточен; недельная выручка может прыгать из-за заноса сделок задним числом.`
+    : '';
 
-  // KPI стадии
-  const kpiBlock = latest.kpiBlock || {};
-  const stagesHtml = Object.entries(kpiBlock)
-    .filter(([k]) => !k.startsWith('_'))
-    .map(([name, v]) => `<tr><td>${name}</td><td class="num">${fmt(v.count)}</td><td class="num">${fmt(v.sum)} ₽</td></tr>`)
-    .join('');
-  document.getElementById('spec-stages').innerHTML = `
-    <table class="data-table">
-      <thead><tr><th>Стадия</th><th class="num">Сделок</th><th class="num">Сумма</th></tr></thead>
-      <tbody>${stagesHtml || '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
-    </table>
-  `;
+  // #1 Воронка по стадиям в порядке пайплайна (Новый ЛИД → КП → … → Выигран).
+  // Это распределение текущих сделок по стадиям, не cohort-flow — поэтому без
+  // «конверсии между стадиями» (её честно посчитать нельзя без истории стадий).
+  const stageOrder = latest.stageOrder || [];
+  const stageMap = {};
+  for (const st of (latest.byStage || [])) stageMap[st.stageId] = st;
+  if (stageOrder.length) {
+    const maxC = Math.max(1, ...stageOrder.map(o => stageMap[o.stageId]?.count || 0));
+    const rows = stageOrder.map(o => {
+      const st = stageMap[o.stageId] || { count: 0, sum: 0 };
+      const w = Math.round((st.count / maxC) * 100);
+      const col = o.semantics === 'S' ? 'var(--green)' : o.semantics === 'F' ? 'var(--red)' : 'var(--accent)';
+      return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:9px">
+        <div style="flex:0 0 160px;font-size:13px;color:var(--text2)">${o.name}</div>
+        <div style="flex:1;height:22px;background:rgba(255,255,255,0.04);border-radius:6px;overflow:hidden"><div style="width:${w}%;height:100%;background:${col};opacity:0.5"></div></div>
+        <div style="flex:0 0 130px;text-align:right;font-size:12px"><b style="font-weight:500">${fmt(st.count)}</b> <span style="color:var(--text3)">· ${fmt(st.sum)} ₽</span></div>
+      </div>`;
+    }).join('');
+    document.getElementById('spec-stages').innerHTML = rows +
+      `<div class="table-note" style="margin-top:10px">Ширина = число сделок на стадии. Спецтех — длинный пайплайн; «узкое горло» = где копятся сделки.</div>`;
+  } else {
+    const kpiBlock = latest.kpiBlock || {};
+    const stagesHtml = Object.entries(kpiBlock).filter(([k]) => !k.startsWith('_'))
+      .map(([name, v]) => `<tr><td>${name}</td><td class="num">${fmt(v.count)}</td><td class="num">${fmt(v.sum)} ₽</td></tr>`).join('');
+    document.getElementById('spec-stages').innerHTML = `
+      <table class="data-table"><thead><tr><th>Стадия</th><th class="num">Сделок</th><th class="num">Сумма</th></tr></thead>
+        <tbody>${stagesHtml || '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody></table>`;
+  }
 
-  // Менеджеры
+  // #3 Менеджеры: + средний чек, цикл сделки, конверсия (поля считаются в spec-funnel-report;
+  // если их ещё нет в данных — выводим производные/прочерк, не падаем).
   const mgrs = (latest.byManager || []).slice(0, 12);
   const mgrHtml = mgrs.map(m => {
-    const wr = (m.won + m.lost) > 0 ? Math.round(m.won / (m.won + m.lost) * 100) : 0;
+    const wr = m.conversionRate != null ? m.conversionRate : ((m.won + m.lost) > 0 ? Math.round(m.won / (m.won + m.lost) * 100) : 0);
     const tag = wr >= 30 ? 'g' : wr >= 10 ? 'y' : 'r';
+    const avgDeal = m.avgDeal != null ? m.avgDeal : (m.won > 0 ? Math.round(m.wonSum / m.won) : null);
+    const cycle = m.avgCycleDays != null ? m.avgCycleDays + ' дн' : '—';
     return `<tr>
       <td>${m.name}</td>
       <td class="num">${fmt(m.total)}</td>
       <td class="num">${fmt(m.won)}</td>
       <td class="num">${fmt(m.inWork)}</td>
-      <td class="num">${fmt(m.lost)}</td>
+      <td class="num">${avgDeal != null ? fmt(avgDeal) + ' ₽' : '—'}</td>
+      <td class="num">${cycle}</td>
       <td class="num">${fmt(m.inWorkSum)} ₽</td>
       <td class="num"><span class="tag ${tag}">${wr}%</span></td>
     </tr>`;
   }).join('');
   document.getElementById('spec-managers').innerHTML = `
     <table class="data-table">
-      <thead><tr><th>Менеджер</th><th class="num">Всего</th><th class="num">✅Won</th><th class="num">⏳InWork</th><th class="num">❌Lost</th><th class="num">Pipeline</th><th class="num">WinRate</th></tr></thead>
-      <tbody>${mgrHtml || '<tr><td colspan=7 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
+      <thead><tr><th>Менеджер</th><th class="num">Всего</th><th class="num">✅ Выигр.</th><th class="num">⏳ В раб.</th><th class="num">Ср. чек</th><th class="num">Цикл</th><th class="num">Pipeline ₽</th><th class="num">% побед</th></tr></thead>
+      <tbody>${mgrHtml || '<tr><td colspan=8 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
     </table>
   `;
 
-  // Причины потерь
+  // #5 Причины потерь — сортируем по сумме ₽ (где теряем больше денег) + визуальный бар
   const reasons = Object.entries(latest.lostReasons || {})
     .filter(([k]) => !k.startsWith('_'))
-    .sort((a, b) => b[1].count - a[1].count);
+    .sort((a, b) => (b[1].sum - a[1].sum) || (b[1].count - a[1].count));
+  const maxLoss = Math.max(1, ...reasons.map(([, d]) => d.sum || 0));
   document.getElementById('spec-reasons').innerHTML = `
     <table class="data-table">
       <thead><tr><th>Причина</th><th class="num">Сделок</th><th class="num">Потеряно ₽</th></tr></thead>
       <tbody>${reasons.length ? reasons.map(([r, d]) =>
-        `<tr><td>${r}</td><td class="num">${fmt(d.count)}</td><td class="num">${fmt(d.sum)} ₽</td></tr>`).join('')
+        `<tr><td>${r}<div class="bar-bg" style="margin-top:5px"><div class="bar-fill" style="width:${Math.round((d.sum || 0) / maxLoss * 100)}%;background:var(--red)"></div></div></td><td class="num">${fmt(d.count)}</td><td class="num">${fmt(d.sum)} ₽</td></tr>`).join('')
         : '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
     </table>
   `;
@@ -386,16 +415,42 @@ function renderSpecMode() {
 
   // === Авито Спецтехники ===
   const av = latest.avito;
+  const balLow = av && typeof av.balance === 'number' && av.balance < 5000;
+  const balStr = av && av.balance != null ? fmt(av.balance) + ' ₽' : '—';
   document.getElementById('spec-avito').innerHTML = av ? `
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px">
-      <div><div style="color:var(--text3);font-size:11px">Объявлений</div><div style="font-size:22px;font-weight:700">${fmt(av.itemsCount)}</div></div>
-      <div><div style="color:var(--text3);font-size:11px">Просмотры</div><div style="font-size:22px;font-weight:700">${fmt(av.views)}</div></div>
-      <div><div style="color:var(--text3);font-size:11px">Контакты</div><div style="font-size:22px;font-weight:700">${fmt(av.contacts)}</div></div>
-      <div><div style="color:var(--text3);font-size:11px">Конверсия</div><div style="font-size:22px;font-weight:700">${av.conversion || '—'}</div></div>
-      <div><div style="color:var(--text3);font-size:11px">Звонки</div><div style="font-size:22px;font-weight:700">${fmt(av.calls)}</div></div>
-      <div><div style="color:var(--text3);font-size:11px">Баланс</div><div style="font-size:22px;font-weight:700">${fmt(av.balance)} ₽</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Объявлений</div><div style="font-size:22px;font-weight:600">${fmt(av.itemsCount)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Просмотры</div><div style="font-size:22px;font-weight:600">${fmt(av.views)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Контакты</div><div style="font-size:22px;font-weight:600">${fmt(av.contacts)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Конверсия</div><div style="font-size:22px;font-weight:600">${av.conversion || '—'}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Звонки</div><div style="font-size:22px;font-weight:600">${fmt(av.calls)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Баланс</div><div style="font-size:22px;font-weight:600;${balLow ? 'color:var(--red)' : ''}">${balStr}</div></div>
     </div>
+    ${balLow ? `<div style="color:var(--red);font-size:12px">⚠️ Баланс ниже 5000 ₽ — продвижение объявлений может встать. Пополнить.</div>` : ''}
   ` : '<div style="color:var(--text3);padding:20px">нет данных Авито за период</div>';
+
+  // #2 Накопительная выручка — сглаживает скачки от заноса задним числом (инлайн SVG)
+  (function () {
+    const el = document.getElementById('spec-cumulative');
+    if (!el) return;
+    const ws = DATA.weeks || [];
+    if (ws.length < 2) { el.innerHTML = '<span style="color:var(--text3);font-size:12px">мало данных для тренда</span>'; return; }
+    let acc = 0;
+    const pts = ws.map(w => { acc += (w.deals?.wonSum || 0); return { wk: 'W' + w.isoWeek, val: acc }; });
+    const max = Math.max(1, ...pts.map(p => p.val));
+    const W = 600, H = 64, n = pts.length;
+    const coords = pts.map((p, i) => ({ x: n > 1 ? i / (n - 1) * W : 0, y: H - 6 - (p.val / max) * (H - 14) }));
+    const poly = coords.map(c => c.x.toFixed(0) + ',' + c.y.toFixed(1)).join(' ');
+    const lastC = coords[coords.length - 1], last = pts[pts.length - 1];
+    el.innerHTML = `
+      <svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none">
+        <polyline points="${poly}" fill="none" stroke="var(--green)" stroke-width="2"/>
+        <circle cx="${lastC.x.toFixed(0)}" cy="${lastC.y.toFixed(1)}" r="3.5" fill="var(--green)"/>
+      </svg>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-top:2px">
+        <span>${pts[0].wk}</span><span>итого выиграно: <b style="color:var(--text);font-weight:500">${fmt(last.val)} ₽</b></span><span>${last.wk}</span>
+      </div>`;
+  })();
 
   // === Тренд по неделям (ApexCharts) ===
   const weeks = DATA.weeks || [];
@@ -682,7 +737,7 @@ function renderManagersTable(week) {
     return;
   }
   table.innerHTML = `
-    <thead><tr><th>Менеджер</th><th class="num">Лиды</th><th class="num">Won</th><th class="num">В работе</th><th class="num">Won/лид</th><th class="num">Выручка</th></tr></thead>
+    <thead><tr><th>Менеджер</th><th class="num">Лиды</th><th class="num">Выиграно</th><th class="num">В работе</th><th class="num">Выигр./лид</th><th class="num">Выручка</th></tr></thead>
     <tbody>
       ${rows.map((row) => `<tr>
         <td class="source-cell">${esc(row.name)}</td>
