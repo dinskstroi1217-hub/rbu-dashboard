@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
+/* DARK (default) */
+:root, [data-theme="dark"] {
   --bg-0: #07090d;
   --bg-1: #0e1218;
   --bg-2: #141923;
@@ -31,22 +32,46 @@
   --amber: #f59e0b;
   --amber-glow: rgba(245, 158, 11, 0.10);
   --amber-edge: rgba(245, 158, 11, 0.30);
-  --r-sm: 6px;
-  --r-md: 10px;
-  --r-lg: 14px;
-  --r-xl: 20px;
+  --hero-bg: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(139, 92, 246, 0.12) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%), var(--bg-0);
   --shadow-1: 0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 24px -8px rgba(0,0,0,0.5);
   --shadow-2: 0 2px 0 rgba(255,255,255,0.05) inset, 0 24px 48px -16px rgba(0,0,0,0.6);
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
+}
+
+/* LIGHT */
+[data-theme="light"] {
+  --bg-0: #f5f7fa;
+  --bg-1: #ffffff;
+  --bg-2: #fafbfd;
+  --bg-3: #f0f2f6;
+  --bg-4: #e4e7ee;
+  --line: #e6e8ed;
+  --line-strong: #d3d8e1;
+  --txt: #15192a;
+  --txt-2: #4a5168;
+  --txt-3: #7d8597;
+  --txt-4: #b5bbc7;
+  --accent: #7c3aed;
+  --accent-2: #2563eb;
+  --green: #16a34a;
+  --green-glow: rgba(22, 163, 74, 0.10);
+  --green-edge: rgba(22, 163, 74, 0.35);
+  --pink: #dc2626;
+  --pink-glow: rgba(220, 38, 38, 0.08);
+  --pink-edge: rgba(220, 38, 38, 0.30);
+  --amber: #d97706;
+  --amber-glow: rgba(217, 119, 6, 0.10);
+  --amber-edge: rgba(217, 119, 6, 0.30);
+  --hero-bg: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124, 58, 237, 0.06) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 60%), var(--bg-0);
+  --shadow-1: 0 1px 0 rgba(0,0,0,0.02) inset, 0 4px 16px -8px rgba(20,25,40,0.10);
+  --shadow-2: 0 2px 0 rgba(0,0,0,0.02) inset, 0 16px 40px -16px rgba(20,25,40,0.15);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%),
-    var(--bg-0);
+  background: var(--hero-bg);
   background-attachment: fixed;
   color: var(--txt);
   font-size: 13.5px;
@@ -54,7 +79,19 @@ body {
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.005em;
   padding: 28px 36px 80px;
+  transition: background-color 0.3s, color 0.3s;
 }
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg-1); color: var(--txt);
+  cursor: pointer; font-size: 13px; font-family: inherit;
+  transition: all 0.15s;
+}
+.theme-toggle:hover { background: var(--bg-2); border-color: var(--line-strong); }
+.theme-toggle svg { width: 14px; height: 14px; }
 @media (max-width: 900px) { body { padding: 16px 14px 60px; } }
 
 .num, .mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
@@ -297,6 +334,9 @@ tbody tr { animation: fadeIn 0.2s ease-out backwards; }
     <span class="legend-item"><span class="legend-dot" style="background:var(--amber)"></span>2 источ.</span>
     <span class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span>расхождение</span>
   </div>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Переключить тему">
+    <span id="themeIcon">🌙</span><span id="themeLabel">Тёмная</span>
+  </button>
 </div>
 
 <div class="stats" id="stats"></div>
@@ -321,11 +361,30 @@ tbody tr { animation: fadeIn 0.2s ease-out backwards; }
 </div>
 
 <script>
+// Theme: load from localStorage before anything renders
+(function initTheme() {
+  const saved = localStorage.getItem('rbu-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('rbu-theme', next);
+  updateThemeUI();
+}
+function updateThemeUI() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  document.getElementById('themeIcon').textContent  = cur === 'dark' ? '🌙' : '☀️';
+  document.getElementById('themeLabel').textContent = cur === 'dark' ? 'Тёмная' : 'Светлая';
+}
+
 let DATA = null;
 let SELECTED_BASE = 'all';
 const CONV_PCT = 5, CONV_ABS = 3;
 
 async function init() {
+  updateThemeUI();
   const res = await fetch('data.json?v=' + Date.now());
   DATA = await res.json();
   document.getElementById('updated').textContent = new Date(DATA.updated).toLocaleString('ru-RU');
