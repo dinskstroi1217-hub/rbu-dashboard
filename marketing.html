@@ -7,33 +7,35 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <style>
 :root {
-  --bg: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card2: #162032;
-  --border: rgba(255,255,255,0.07);
-  --text: #f1f5f9;
-  --text2: #94a3b8;
-  --text3: #64748b;
-  --accent: #3b82f6;
-  --green: #22c55e;
-  --red: #ef4444;
-  --yellow: #eab308;
-  --purple: #a78bfa;
-  --orange: #f97316;
-  --radius: 14px;
+  /* Дизайн-направление B «Карточное» (16.06.2026): мягкая тёмная палитра,
+     панели на глубоком фоне, приглушённые семантические тона. */
+  --bg: #0F1116;
+  --bg-card: #181B22;
+  --bg-card2: #14161B;
+  --border: #262A33;
+  --text: #EAECF1;
+  --text2: #9AA0AC;
+  --text3: #6B7280;
+  --accent: #5B8DEF;
+  --green: #5BE0A8;
+  --red: #E8836A;
+  --yellow: #E8C36A;
+  --purple: #C9A6F0;
+  --orange: #E8A86A;
+  --radius: 12px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
 
 /* FUNNEL BAR — переключатель воронок (верхняя полоска) */
 .funnel-bar { display: flex; gap: 4px; padding: 10px 24px; background: var(--bg-card2); border-bottom: 1px solid var(--border); overflow-x: auto; }
-.funnel-tab { padding: 7px 16px; background: transparent; border: 1px solid transparent; color: var(--text2); font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.funnel-tab { padding: 7px 16px; background: transparent; border: 1px solid transparent; color: var(--text2); font-size: 13px; font-weight: 500; border-radius: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
 .funnel-tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
 .funnel-tab.active { background: var(--accent); color: #fff; }
 
 /* HEADER */
 .header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); }
-.header-left h1 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+.header-left h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.2px; }
 .header-left p { color: var(--text2); font-size: 13px; margin-top: 2px; }
 .period-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .period-kind { display: inline-flex; gap: 2px; background: var(--bg-card2); border-radius: 8px; padding: 3px; }
@@ -61,15 +63,15 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 @media (max-width: 700px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .kpi-row { grid-template-columns: 1fr; } }
 
-.kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-.kpi-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-.kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-bottom: 8px; }
-.kpi-value { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
-.kpi-delta { font-size: 12px; font-weight: 600; }
-.kpi-delta.pos { color: var(--green); }
-.kpi-delta.neg { color: var(--red); }
-.kpi-delta.neu { color: var(--text3); }
-.kpi-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+.kpi-card:hover { border-color: #353A45; }
+.kpi-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); margin-bottom: 8px; }
+.kpi-value { font-size: 26px; font-weight: 600; line-height: 1; margin-bottom: 8px; }
+.kpi-delta { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 6px; }
+.kpi-delta.pos { background: rgba(91,224,168,0.12); color: var(--green); }
+.kpi-delta.neg { background: rgba(232,131,106,0.14); color: var(--red); }
+.kpi-delta.neu { background: rgba(255,255,255,0.05); color: var(--text2); }
+.kpi-sub { font-size: 11px; color: var(--text3); margin-top: 6px; }
 
 /* CHARTS ROW */
 .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -78,7 +80,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .chart-card.wide { grid-column: 1 / -1; }
 .chart-title { font-size: 13px; font-weight: 600; color: var(--text2); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
 .table-note { color: var(--text3); font-size: 11px; line-height: 1.45; margin: -6px 0 10px; }
-.ai-summary { font-size: 14px; line-height: 1.55; color: var(--text); padding: 12px 14px; background: rgba(59,130,246,0.10); border: 1px solid rgba(59,130,246,0.18); border-radius: 10px; margin-bottom: 12px; }
+.ai-summary { font-size: 14px; line-height: 1.55; color: var(--text); padding: 12px 14px; background: rgba(91,141,239,0.10); border: 1px solid rgba(91,141,239,0.20); border-radius: 10px; margin-bottom: 12px; }
 .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .ai-block { background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.055); border-radius: 10px; padding: 10px 12px; min-height: 120px; }
 .ai-block h3 { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
@@ -103,9 +105,9 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .bar-bg { flex: 1; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; }
 .bar-fill { height: 4px; background: var(--accent); border-radius: 2px; }
 .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
-.tag.g { background: rgba(34,197,94,0.15); color: var(--green); }
-.tag.y { background: rgba(234,179,8,0.15); color: var(--yellow); }
-.tag.r { background: rgba(239,68,68,0.15); color: var(--red); }
+.tag.g { background: rgba(91,224,168,0.14); color: var(--green); }
+.tag.y { background: rgba(232,195,106,0.14); color: var(--yellow); }
+.tag.r { background: rgba(232,131,106,0.14); color: var(--red); }
 
 /* LOADER */
 #loader { display: flex; align-items: center; justify-content: center; height: 80vh; flex-direction: column; gap: 12px; color: var(--text2); font-size: 14px; }
@@ -120,11 +122,6 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 </style>
 </head>
 <body>
-<nav style="display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid #1e293b;background:#0f172a;flex-wrap:wrap;align-items:center">
-  <a href="index.html" style="color:#94a3b8;text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid transparent">📊 РБУ</a>
-  <a href="marketing.html" style="color:#fff;text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;background:#3b82f6">📈 Маркетинг</a>
-  <a href="debitorka.html" style="color:#94a3b8;text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid transparent">💰 Дебиторка</a>
-</nav>
 
 <div id="loader">
   <div class="spinner"></div>
@@ -419,14 +416,14 @@ function renderSpecMode() {
         { name: 'Контакты Авито', type: 'line', data: seriesContacts },
         { name: 'Выиграно', type: 'line', data: seriesWon },
       ],
-      xaxis: { categories: labels, labels: { style: { colors: 'var(--text2)' } } },
+      xaxis: { categories: labels, labels: { style: { colors: '#9AA0AC' } } },
       yaxis: [
-        { title: { text: 'Визиты' }, labels: { style: { colors: 'var(--text2)' } } },
-        { opposite: true, title: { text: 'Сделки / контакты' }, labels: { style: { colors: 'var(--text2)' } } },
+        { title: { text: 'Визиты' }, labels: { style: { colors: '#9AA0AC' } } },
+        { opposite: true, title: { text: 'Сделки / контакты' }, labels: { style: { colors: '#9AA0AC' } } },
       ],
       stroke: { width: [0, 3, 3, 3], curve: 'smooth' },
-      colors: ['#3b82f6', '#22c55e', '#f97316', '#a78bfa'],
-      legend: { labels: { colors: 'var(--text2)' } },
+      colors: ['#5B8DEF', '#5BE0A8', '#E8A86A', '#C9A6F0'],
+      legend: { labels: { colors: '#9AA0AC' } },
       grid: { borderColor: 'rgba(255,255,255,0.07)' },
       theme: { mode: 'dark' },
       tooltip: { theme: 'dark', shared: true, intersect: false },
@@ -516,15 +513,15 @@ function renderTrend(weeks) {
       { name: 'Расход, тыс ₽', type: 'line', data: spend },
       { name: 'CPL', type: 'line', data: cpl },
     ],
-    xaxis: { categories: labels, labels: { style: { colors: '#64748b', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    xaxis: { categories: labels, labels: { style: { colors: '#6B7280', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
     yaxis: [
-      { title: { text: '' }, labels: { style: { colors: '#64748b' }, formatter: v => fmt(v) }, min: 0 },
-      { opposite: true, title: { text: '' }, labels: { style: { colors: '#64748b' }, formatter: v => v + 'k₽' }, min: 0 },
+      { title: { text: '' }, labels: { style: { colors: '#6B7280' }, formatter: v => fmt(v) }, min: 0 },
+      { opposite: true, title: { text: '' }, labels: { style: { colors: '#6B7280' }, formatter: v => v + 'k₽' }, min: 0 },
       { show: false, min: 0 },
     ],
     stroke: { curve: 'smooth', width: [0, 2, 2] },
     fill: { type: ['solid', 'solid', 'solid'], opacity: [0.8, 1, 1] },
-    colors: ['#3b82f6', '#f97316', '#a78bfa'],
+    colors: ['#5B8DEF', '#E8A86A', '#C9A6F0'],
     plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
     grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
     tooltip: {
@@ -535,7 +532,7 @@ function renderTrend(weeks) {
         { formatter: v => fmt(v) + ' ₽/лид' },
       ]
     },
-    legend: { labels: { colors: '#94a3b8' }, position: 'top', horizontalAlign: 'right' },
+    legend: { labels: { colors: '#9AA0AC' }, position: 'top', horizontalAlign: 'right' },
     theme: { mode: 'dark' },
   });
   charts.trend.render();
@@ -552,10 +549,10 @@ function renderSources(week) {
     chart: { type: 'donut', height: 260, background: 'transparent' },
     series: entries.map(e => e[1]),
     labels: entries.map(e => e[0]),
-    colors: ['#3b82f6','#22c55e','#f97316','#a78bfa','#eab308','#ef4444','#06b6d4','#ec4899'],
-    legend: { position: 'bottom', labels: { colors: '#94a3b8' }, fontSize: '11px', itemMargin: { horizontal: 6 } },
+    colors: ['#5B8DEF','#5BE0A8','#E8A86A','#C9A6F0','#E8C36A','#E8836A','#6AD0E8','#E89AC0'],
+    legend: { position: 'bottom', labels: { colors: '#9AA0AC' }, fontSize: '11px', itemMargin: { horizontal: 6 } },
     dataLabels: { enabled: true, style: { fontSize: '11px' }, dropShadow: { enabled: false } },
-    plotOptions: { pie: { donut: { size: '60%', labels: { show: true, total: { show: true, label: 'Всего', color: '#94a3b8', formatter: w => fmt(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
+    plotOptions: { pie: { donut: { size: '60%', labels: { show: true, total: { show: true, label: 'Всего', color: '#9AA0AC', formatter: w => fmt(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
     stroke: { width: 0 },
     theme: { mode: 'dark' },
     tooltip: { theme: 'dark' },
@@ -573,9 +570,9 @@ function renderCategories(week) {
   charts.cats = new ApexCharts(document.getElementById('chart-categories'), {
     chart: { type: 'bar', height: 260, background: 'transparent', toolbar: { show: false } },
     series: [{ name: 'Сделки', data: entries.map(e => e[1]) }],
-    xaxis: { categories: entries.map(e => e[0].replace(/ \(#\d+\)/, '')), labels: { style: { colors: '#64748b', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
-    yaxis: { labels: { style: { colors: '#64748b' } } },
-    colors: ['#22c55e'],
+    xaxis: { categories: entries.map(e => e[0].replace(/ \(#\d+\)/, '')), labels: { style: { colors: '#6B7280', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis: { labels: { style: { colors: '#6B7280' } } },
+    colors: ['#5BE0A8'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '55%' } },
     dataLabels: { enabled: true, style: { fontSize: '11px' } },
     grid: { borderColor: 'rgba(255,255,255,0.05)', xaxis: { lines: { show: true } }, yaxis: { lines: { show: false } } },
@@ -601,10 +598,10 @@ function renderSpend(week) {
     chart: { type: 'donut', height: 260, background: 'transparent' },
     series: items.map(i => Math.round(i.val)),
     labels: items.map(i => i.label),
-    colors: ['#3b82f6', '#eab308', '#22c55e'],
-    legend: { position: 'bottom', labels: { colors: '#94a3b8' }, fontSize: '12px' },
+    colors: ['#5B8DEF', '#E8C36A', '#5BE0A8'],
+    legend: { position: 'bottom', labels: { colors: '#9AA0AC' }, fontSize: '12px' },
     dataLabels: { enabled: true, formatter: (val, opts) => opts.w.globals.series[opts.seriesIndex] >= 1000 ? fmtR(opts.w.globals.series[opts.seriesIndex]) : val.toFixed(0) + '%', style: { fontSize: '11px' }, dropShadow: { enabled: false } },
-    plotOptions: { pie: { donut: { size: '55%', labels: { show: true, total: { show: true, label: 'Расход', color: '#94a3b8', formatter: w => fmtR(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
+    plotOptions: { pie: { donut: { size: '55%', labels: { show: true, total: { show: true, label: 'Расход', color: '#9AA0AC', formatter: w => fmtR(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
     stroke: { width: 0 },
     theme: { mode: 'dark' },
     tooltip: { theme: 'dark', y: { formatter: v => fmtR(v) } },
@@ -744,6 +741,19 @@ function renderAIInsights(week, prev) {
   const list = (items) => items.length
     ? `<ul>${items.map(item => `<li>${esc(typeof item === 'string' ? item : item.text)}</li>`).join('')}</ul>`
     : '<div class="table-note">Нет данных</div>';
+  // v2: судьба прошлых рекомендаций (память консультанта).
+  // Читаем из week.ai НАПРЯМУЮ, а не из ai: при ai.summary==null рендер уходит
+  // в buildAutoInsights (без followUp) — и follow-up терялся бы молча.
+  const fuIcons = { done: '✅', partial: '🟡', ignored: '🔴', unclear: '⚪' };
+  const followUp = (week.ai?.followUp || week.claudeRecommendations?.followUp || ai.followUp || []).slice(0, 6);
+  const followUpHtml = followUp.length ? `
+    <div class="ai-block" style="margin-top:10px">
+      <h3>Судьба прошлых рекомендаций</h3>
+      <ul>${followUp.map(f =>
+        `<li>${fuIcons[f.status] || '⚪'} ${esc(f.title)}${f.evidence ? ` <span style="color:var(--text3)">— ${esc(f.evidence)}</span>` : ''}</li>`
+      ).join('')}</ul>
+    </div>` : '';
+
   document.getElementById('ai-insights').innerHTML = `
     <div class="ai-summary">${esc(ai.summary || 'Нет сохранённой AI-аналитики для этой недели.')}</div>
     <div class="ai-grid">
@@ -751,6 +761,7 @@ function renderAIInsights(week, prev) {
       <div class="ai-block"><h3>Риски</h3>${list(risks)}</div>
       <div class="ai-block"><h3>Что сделать</h3>${list(actions)}</div>
     </div>
+    ${followUpHtml}
     <div class="ai-meta">${ai.model ? `Источник: ${esc(ai.model)} · analysis.json` : 'Источник: автоанализ по KPI дашборда'}</div>
   `;
 }
