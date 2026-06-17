@@ -130,8 +130,10 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
 <div id="app" style="display:none">
   <div class="funnel-bar">
-    <button class="funnel-tab active" data-funnel="main" onclick="switchFunnel('main')">📊 Маркетинг (Бетон+ЖБИ)</button>
+    <button class="funnel-tab" data-funnel="beton" onclick="switchFunnel('beton')">🧱 Бетон</button>
+    <button class="funnel-tab" data-funnel="zhbi" onclick="switchFunnel('zhbi')">🏗️ ЖБИ</button>
     <button class="funnel-tab" data-funnel="spec" onclick="switchFunnel('spec')">🚜 Спецтехника</button>
+    <button class="funnel-tab active" data-funnel="overview" onclick="switchFunnel('overview')">📊 Обзор</button>
   </div>
   <div class="header">
     <div class="header-left">
@@ -203,6 +205,21 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
       </div>
     </div>
     </div><!-- /main-blocks -->
+
+    <div id="product-blocks" style="display:none">
+      <div id="product-disclaimer" style="font-size:13px;line-height:1.5;color:var(--yellow);background:rgba(232,195,106,0.10);border:1px solid rgba(232,195,106,0.22);border-radius:10px;padding:12px 14px;margin-bottom:16px"></div>
+      <div class="kpi-row" id="product-kpis"></div>
+      <div class="charts-row" style="margin-top:16px">
+        <div class="chart-card">
+          <div class="chart-title">🔍 SEO-позиции по продукту (Topvisor)</div>
+          <div id="product-seo"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">📊 Воронка продукта</div>
+          <div id="product-funnel"></div>
+        </div>
+      </div>
+    </div><!-- /product-blocks -->
 
     <div id="spec-blocks" style="display:none">
       <div class="kpi-row" id="spec-kpis"></div>
@@ -282,6 +299,13 @@ async function loadData() {
   DATA = DATA_MAIN;
 }
 
+function showOnlyBlocks(id) {
+  for (const b of ['main-blocks', 'spec-blocks', 'product-blocks']) {
+    const el = document.getElementById(b);
+    if (el) el.style.display = (b === id) ? '' : 'none';
+  }
+}
+
 function switchFunnel(funnel) {
   activeFunnel = funnel;
   document.querySelectorAll('.funnel-tab').forEach(t => t.classList.toggle('active', t.dataset.funnel === funnel));
@@ -289,23 +313,79 @@ function switchFunnel(funnel) {
     if (!DATA_SPEC) { alert('spec-data.json не загружен'); return; }
     DATA = DATA_SPEC;
     renderSpecMode();
-  } else {
+  } else if (funnel === 'beton' || funnel === 'zhbi') {
+    DATA = DATA_MAIN;
+    renderProductMode(funnel);
+  } else {                 // overview (бывший main — Бетон+ЖБИ блендед)
     DATA = DATA_MAIN;
     renderMainMode();
   }
 }
 
 function renderMainMode() {
-  // Показываем все стандартные блоки
-  document.getElementById('main-blocks').style.display = '';
-  document.getElementById('spec-blocks').style.display = 'none';
-  // Перерисовываем рендеры существующего marketing dashboard
+  showOnlyBlocks('main-blocks');
   renderAll();
 }
 
+// Продуктовая вкладка (Бетон / ЖБИ) — честный разрез: сделки/выручка где есть,
+// лиды-оценка по тексту, SEO по группам Topvisor, + дисклеймер о неполноте.
+function renderProductMode(p) {
+  showOnlyBlocks('product-blocks');
+  const D = DATA_MAIN || {};
+  const latest = D.latest || {};
+  const bp = (latest.byProduct && latest.byProduct[p]) || { mkt: {}, all: {} };
+  const mkt = bp.mkt || {}, all = bp.all || {};
+  const ps = latest.productSplit || {};
+  const fmt = n => Number(n || 0).toLocaleString('ru');
+  const name = p === 'beton' ? 'Бетон' : 'ЖБИ';
+  const icon = p === 'beton' ? '🧱' : '🏗️';
+
+  const hdr = document.getElementById('hdr-period');
+  if (hdr) hdr.textContent = `${icon} ${name} · ${latest.from || '?'} — ${latest.to || '?'} · обновлено ${D.generatedAt ? new Date(D.generatedAt).toLocaleDateString('ru-RU') : '?'}`;
+
+  document.getElementById('product-disclaimer').innerHTML = p === 'beton'
+    ? '⚠️ Это воронка «Общая»: Бетон + неразмеченные сделки (91% без продуктовой метки в CRM). Чистый разрез Бетон/ЖБИ по сделкам появится, когда менеджеры начнут заводить сделки в продуктовые воронки. Лиды и SEO ниже — уже по продукту.'
+    : '⚠️ Только сделки, заведённые в воронку ЖБИ. Бóльшая часть ЖБИ-сделок сидит в «Общей» и сюда не попадает — это <b>недосчёт</b>, маркет-атрибуции в воронке ЖБИ почти нет. Опирайся на лиды (оценка) и SEO — они по продукту честные.';
+
+  const leadsProd = p === 'beton' ? ps.beton : ps.zhbi;
+  document.getElementById('product-kpis').innerHTML = `
+    <div class="kpi-card"><div class="kpi-label">Маркет-сделок</div><div class="kpi-value">${fmt(mkt.deals)}</div><div class="kpi-sub">won ${fmt(mkt.won)} · в работе ${fmt(mkt.inWork)}</div></div>
+    <div class="kpi-card"><div class="kpi-label">Выручка (won)</div><div class="kpi-value">${fmt(mkt.wonSum)} ₽</div><div class="kpi-sub">${fmt(mkt.won)} сделок</div></div>
+    <div class="kpi-card"><div class="kpi-label">Pipeline</div><div class="kpi-value">${fmt(mkt.inWorkSum)} ₽</div><div class="kpi-sub">${fmt(mkt.inWork)} в работе</div></div>
+    <div class="kpi-card"><div class="kpi-label">Лиды по продукту</div><div class="kpi-value">${leadsProd != null ? fmt(leadsProd) : '—'}</div><div class="kpi-sub">оценка по тексту запроса</div></div>
+    <div class="kpi-card"><div class="kpi-label">Всего в воронке</div><div class="kpi-value">${fmt(all.deals)}</div><div class="kpi-sub">вкл. немаркетинговые</div></div>
+  `;
+
+  // Воронка продукта (won/в работе/проиграно по всей воронке категории)
+  const total = (all.won || 0) + (all.inWork || 0) + (all.lost || 0) || 1;
+  const row = (label, val, color) => `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><div style="flex:0 0 90px;font-size:13px;color:var(--text2)">${label}</div><div style="flex:1;height:18px;background:rgba(255,255,255,0.04);border-radius:6px;overflow:hidden"><div style="width:${Math.round((val/total)*100)}%;height:100%;background:${color};opacity:0.55"></div></div><div style="flex:0 0 40px;text-align:right;font-size:13px;font-weight:500">${fmt(val)}</div></div>`;
+  document.getElementById('product-funnel').innerHTML =
+    row('Выиграно', all.won || 0, 'var(--green)') +
+    row('В работе', all.inWork || 0, 'var(--accent)') +
+    row('Проиграно', all.lost || 0, 'var(--red)') +
+    `<div class="table-note" style="margin-top:8px">Вся воронка категории (вкл. 1С/обзвон). Без суммы: ${fmt(all.noOpp)} сделок.</div>`;
+
+  // SEO по продукту — фильтр групп Topvisor
+  const tv = latest.topvisor?.byGroup || {};
+  const zhbiKw = ['фбс', 'кольц', 'опор', 'плит', 'свая', 'стойк', 'перемыч', 'лоток', 'бордюр', 'колодц'];
+  const groups = Object.entries(tv).filter(([g]) => {
+    const lc = g.toLowerCase();
+    return p === 'zhbi' ? zhbiKw.some(k => lc.includes(k)) : lc.includes('бетон');
+  });
+  const seoEl = document.getElementById('product-seo');
+  if (groups.length) {
+    seoEl.innerHTML = groups.map(([g, d]) => {
+      const pos = d.avgPosition;
+      const tag = pos == null ? '' : pos <= 10 ? 'g' : pos <= 30 ? 'y' : 'r';
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px"><span>${g} <span style="color:var(--text3)">· ${d.keywords} кл.</span></span><span class="tag ${tag}">${pos != null ? pos.toFixed(1) : '—'}</span></div>`;
+    }).join('') + `<div class="table-note" style="margin-top:8px">Группы Topvisor по продукту. «Прочее» (смешанное) — не показываем.</div>`;
+  } else {
+    seoEl.innerHTML = '<div style="color:var(--text3);padding:16px">нет SEO-групп по этому продукту в данных</div>';
+  }
+}
+
 function renderSpecMode() {
-  document.getElementById('main-blocks').style.display = 'none';
-  document.getElementById('spec-blocks').style.display = '';
+  showOnlyBlocks('spec-blocks');
 
   const latest = DATA.latest || {};
   const prev = DATA.prev || {};
