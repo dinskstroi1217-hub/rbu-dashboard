@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T18:45:08.851Z",
+  "generatedAt": "2026-06-18T19:09:08.820Z",
   "schemaVersion": 3,
   "weeks": [
     {
@@ -5740,8 +5740,66 @@
       "claudeRecommendations": null,
       "gsc": null,
       "topvisor": null,
-      "byProduct": null,
-      "productSplit": null,
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 25,
+            "won": 12,
+            "wonSum": 442550,
+            "inWork": 11,
+            "inWorkSum": 0,
+            "lost": 2,
+            "lostSum": 0,
+            "noOpp": 11
+          },
+          "all": {
+            "deals": 386,
+            "won": 244,
+            "wonSum": 18930885,
+            "inWork": 100,
+            "inWorkSum": 0,
+            "lost": 42,
+            "lostSum": 0,
+            "noOpp": 100
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 177,
+            "won": 117,
+            "wonSum": 9876150,
+            "inWork": 49,
+            "inWorkSum": 986588300,
+            "lost": 11,
+            "lostSum": 0,
+            "noOpp": 46
+          }
+        }
+      },
+      "productSplit": {
+        "zhbi": 10,
+        "beton": 12,
+        "unknown": 69,
+        "zhbiSharePct": 45,
+        "zhbiBySource": {
+          "Яндекс": 1,
+          "Сайт отдел БСТ": 5,
+          "2ГИС ЖБИ": 1,
+          "Сайт отдел ЖБИ": 1,
+          "Яндекс.Карты БСТ": 1,
+          "Электронная почта Info": 1
+        }
+      },
       "ai": {
         "summary": "Маркет-лиды стабильны (91, как и неделю назад). Расход в норме ~46,5к. Маркет-выручка факт 402к — рост вдвое к прошлой неделе, но сосредоточена в одном канале (Я.Карты БСТ). Главный риск: доля ЖБИ-лидов 10% — ниже минимума 15%, каналы ЖБИ не тянут. CRM-дисциплина: 100% сделок в работе без суммы — pipeline непрозрачен.",
         "whatsChanged": [
@@ -6646,8 +6704,62 @@
       "claudeRecommendations": null,
       "gsc": null,
       "topvisor": null,
-      "byProduct": null,
-      "productSplit": null,
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 34,
+            "won": 11,
+            "wonSum": 542825,
+            "inWork": 20,
+            "inWorkSum": 0,
+            "lost": 3,
+            "lostSum": 0,
+            "noOpp": 20
+          },
+          "all": {
+            "deals": 312,
+            "won": 203,
+            "wonSum": 15468027,
+            "inWork": 68,
+            "inWorkSum": 144400,
+            "lost": 41,
+            "lostSum": 0,
+            "noOpp": 67
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 98,
+            "won": 55,
+            "wonSum": 5044545,
+            "inWork": 31,
+            "inWorkSum": 75040,
+            "lost": 12,
+            "lostSum": 0,
+            "noOpp": 29
+          }
+        }
+      },
+      "productSplit": {
+        "zhbi": 6,
+        "beton": 0,
+        "unknown": 89,
+        "zhbiSharePct": 100,
+        "zhbiBySource": {
+          "Электронная почта Info": 5,
+          "Авито ДКБИ-сообщения": 1
+        }
+      },
       "ai": {
         "summary": "Маркет-лиды стабильны (95 vs 91 н/н), расход на рекламу снизился до 28.5к (Директ сократился на 65%). Стоимость лида 300 ₽ — зелёная зона. Выручка факт 139к ₽ (8 сделок, мелкий бетон). Главный риск: ЖБИ-каналы генерируют только 8% лидов при норме 25–35% — бизнес-юнит ЖБИ держится на операционке. Действие: разобрать с РОПом 23 сделки без суммы и усилить ЖБИ-каналы.",
         "whatsChanged": [
@@ -7617,8 +7729,61 @@
         },
         "noPositionCount": 50
       },
-      "byProduct": null,
-      "productSplit": null,
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 21,
+            "won": 7,
+            "wonSum": 881650,
+            "inWork": 12,
+            "inWorkSum": 0,
+            "lost": 2,
+            "lostSum": 0,
+            "noOpp": 12
+          },
+          "all": {
+            "deals": 362,
+            "won": 187,
+            "wonSum": 15109290,
+            "inWork": 120,
+            "inWorkSum": 91540,
+            "lost": 55,
+            "lostSum": 0,
+            "noOpp": 114
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 42,
+            "won": 13,
+            "wonSum": 80000,
+            "inWork": 18,
+            "inWorkSum": 0,
+            "lost": 11,
+            "lostSum": 0,
+            "noOpp": 18
+          }
+        }
+      },
+      "productSplit": {
+        "zhbi": 1,
+        "beton": 2,
+        "unknown": 97,
+        "zhbiSharePct": 33,
+        "zhbiBySource": {
+          "Сайт отдел БСТ": 1
+        }
+      },
       "ai": {
         "summary": "Маркет-лиды стабильны (100), стоимость лида 476 ₽ — в зелёной зоне. Расход Директа вернулся к штатному уровню после аномально низкой прошлой недели. Маркет-выручка (факт) 267 400 ₽, окупаемость рекламы 462% — высокая. CRM-дисциплина: все 14 маркет-сделок в работе без суммы — прогноз pipeline невозможен.",
         "whatsChanged": [
@@ -8474,27 +8639,63 @@
         },
         "noPositionCount": 50
       },
-      "byProduct": null,
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 23,
+            "won": 9,
+            "wonSum": 743950,
+            "inWork": 13,
+            "inWorkSum": 0,
+            "lost": 1,
+            "lostSum": 0,
+            "noOpp": 13
+          },
+          "all": {
+            "deals": 396,
+            "won": 245,
+            "wonSum": 15901445,
+            "inWork": 115,
+            "inWorkSum": 42300,
+            "lost": 36,
+            "lostSum": 0,
+            "noOpp": 114
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 46,
+            "won": 10,
+            "wonSum": 6090,
+            "inWork": 23,
+            "inWorkSum": 0,
+            "lost": 13,
+            "lostSum": 0,
+            "noOpp": 23
+          }
+        }
+      },
       "productSplit": {
         "zhbi": 6,
         "beton": 15,
         "unknown": 39,
+        "zhbiSharePct": 29,
         "zhbiBySource": {
           "Сайт отдел БСТ": 3,
           "Яндекс": 1,
           "Яндекс.Карты ЖБИ": 1,
           "Яндекс.Карты БСТ": 1
-        },
-        "zhbiExamples": [
-          "#188666 +7 918 380-73-48 - Входящий звонок",
-          "#188876 Заполнение CRM-формы \"Форма контактных данных для открытых л",
-          "#189038 +7 928 429-00-00 - Входящий звонок",
-          "#189174 +7 918 070-22-63 - Входящий звонок",
-          "#189220 +7 962 388-03-30 - Входящий звонок",
-          "#189486 +7 918 072-95-69 - Входящий звонок"
-        ],
-        "zhbiOpsMail": 3,
-        "zhbiSharePct": 29
+        }
       },
       "ai": {
         "summary": "Маркетинговые лиды просели на треть при стабильном бюджете — стоимость привлечения вышла в красную зону. Бетон держится на Сайте и Я.Картах, ЖБИ-каналы почти пустые (5% маркет-лидов при норме 25–35%). Факт-выручка маркетинга минимальна, а реальный pipeline скрыт: все 17 сделок в работе записаны с нулевой суммой — менеджеры не заполняют карточки. Если падение лидов — тренд, а не разовый провал, нужна срочная диагностика каналов.",
@@ -12909,8 +13110,62 @@
         ],
         "parsed": true
       },
-      "byProduct": null,
-      "productSplit": null
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 34,
+            "won": 11,
+            "wonSum": 542825,
+            "inWork": 20,
+            "inWorkSum": 0,
+            "lost": 3,
+            "lostSum": 0,
+            "noOpp": 20
+          },
+          "all": {
+            "deals": 312,
+            "won": 203,
+            "wonSum": 15468027,
+            "inWork": 68,
+            "inWorkSum": 144400,
+            "lost": 41,
+            "lostSum": 0,
+            "noOpp": 67
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 98,
+            "won": 55,
+            "wonSum": 5044545,
+            "inWork": 31,
+            "inWorkSum": 75040,
+            "lost": 12,
+            "lostSum": 0,
+            "noOpp": 29
+          }
+        }
+      },
+      "productSplit": {
+        "zhbi": 6,
+        "beton": 0,
+        "unknown": 89,
+        "zhbiSharePct": 100,
+        "zhbiBySource": {
+          "Электронная почта Info": 5,
+          "Авито ДКБИ-сообщения": 1
+        }
+      }
     },
     {
       "year": 2026,
@@ -13829,27 +14084,63 @@
       },
       "gsc": null,
       "claudeRecommendations": null,
-      "byProduct": null,
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 23,
+            "won": 9,
+            "wonSum": 743950,
+            "inWork": 13,
+            "inWorkSum": 0,
+            "lost": 1,
+            "lostSum": 0,
+            "noOpp": 13
+          },
+          "all": {
+            "deals": 396,
+            "won": 245,
+            "wonSum": 15901445,
+            "inWork": 115,
+            "inWorkSum": 42300,
+            "lost": 36,
+            "lostSum": 0,
+            "noOpp": 114
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 46,
+            "won": 10,
+            "wonSum": 6090,
+            "inWork": 23,
+            "inWorkSum": 0,
+            "lost": 13,
+            "lostSum": 0,
+            "noOpp": 23
+          }
+        }
+      },
       "productSplit": {
         "zhbi": 6,
         "beton": 15,
         "unknown": 39,
+        "zhbiSharePct": 29,
         "zhbiBySource": {
           "Сайт отдел БСТ": 3,
           "Яндекс": 1,
           "Яндекс.Карты ЖБИ": 1,
           "Яндекс.Карты БСТ": 1
-        },
-        "zhbiExamples": [
-          "#188666 +7 918 380-73-48 - Входящий звонок",
-          "#188876 Заполнение CRM-формы \"Форма контактных данных для открытых л",
-          "#189038 +7 928 429-00-00 - Входящий звонок",
-          "#189174 +7 918 070-22-63 - Входящий звонок",
-          "#189220 +7 962 388-03-30 - Входящий звонок",
-          "#189486 +7 918 072-95-69 - Входящий звонок"
-        ],
-        "zhbiOpsMail": 3,
-        "zhbiSharePct": 29
+        }
       }
     }
   ],
@@ -14657,27 +14948,63 @@
       },
       "noPositionCount": 50
     },
-    "byProduct": null,
+    "byProduct": {
+      "beton": {
+        "mkt": {
+          "deals": 23,
+          "won": 9,
+          "wonSum": 743950,
+          "inWork": 13,
+          "inWorkSum": 0,
+          "lost": 1,
+          "lostSum": 0,
+          "noOpp": 13
+        },
+        "all": {
+          "deals": 396,
+          "won": 245,
+          "wonSum": 15901445,
+          "inWork": 115,
+          "inWorkSum": 42300,
+          "lost": 36,
+          "lostSum": 0,
+          "noOpp": 114
+        }
+      },
+      "zhbi": {
+        "mkt": {
+          "deals": 0,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 0,
+          "inWorkSum": 0,
+          "lost": 0,
+          "lostSum": 0,
+          "noOpp": 0
+        },
+        "all": {
+          "deals": 46,
+          "won": 10,
+          "wonSum": 6090,
+          "inWork": 23,
+          "inWorkSum": 0,
+          "lost": 13,
+          "lostSum": 0,
+          "noOpp": 23
+        }
+      }
+    },
     "productSplit": {
       "zhbi": 6,
       "beton": 15,
       "unknown": 39,
+      "zhbiSharePct": 29,
       "zhbiBySource": {
         "Сайт отдел БСТ": 3,
         "Яндекс": 1,
         "Яндекс.Карты ЖБИ": 1,
         "Яндекс.Карты БСТ": 1
-      },
-      "zhbiExamples": [
-        "#188666 +7 918 380-73-48 - Входящий звонок",
-        "#188876 Заполнение CRM-формы \"Форма контактных данных для открытых л",
-        "#189038 +7 928 429-00-00 - Входящий звонок",
-        "#189174 +7 918 070-22-63 - Входящий звонок",
-        "#189220 +7 962 388-03-30 - Входящий звонок",
-        "#189486 +7 918 072-95-69 - Входящий звонок"
-      ],
-      "zhbiOpsMail": 3,
-      "zhbiSharePct": 29
+      }
     },
     "ai": {
       "summary": "Маркетинговые лиды просели на треть при стабильном бюджете — стоимость привлечения вышла в красную зону. Бетон держится на Сайте и Я.Картах, ЖБИ-каналы почти пустые (5% маркет-лидов при норме 25–35%). Факт-выручка маркетинга минимальна, а реальный pipeline скрыт: все 17 сделок в работе записаны с нулевой суммой — менеджеры не заполняют карточки. Если падение лидов — тренд, а не разовый провал, нужна срочная диагностика каналов.",
@@ -15647,8 +15974,61 @@
       },
       "noPositionCount": 50
     },
-    "byProduct": null,
-    "productSplit": null,
+    "byProduct": {
+      "beton": {
+        "mkt": {
+          "deals": 21,
+          "won": 7,
+          "wonSum": 881650,
+          "inWork": 12,
+          "inWorkSum": 0,
+          "lost": 2,
+          "lostSum": 0,
+          "noOpp": 12
+        },
+        "all": {
+          "deals": 362,
+          "won": 187,
+          "wonSum": 15109290,
+          "inWork": 120,
+          "inWorkSum": 91540,
+          "lost": 55,
+          "lostSum": 0,
+          "noOpp": 114
+        }
+      },
+      "zhbi": {
+        "mkt": {
+          "deals": 0,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 0,
+          "inWorkSum": 0,
+          "lost": 0,
+          "lostSum": 0,
+          "noOpp": 0
+        },
+        "all": {
+          "deals": 42,
+          "won": 13,
+          "wonSum": 80000,
+          "inWork": 18,
+          "inWorkSum": 0,
+          "lost": 11,
+          "lostSum": 0,
+          "noOpp": 18
+        }
+      }
+    },
+    "productSplit": {
+      "zhbi": 1,
+      "beton": 2,
+      "unknown": 97,
+      "zhbiSharePct": 33,
+      "zhbiBySource": {
+        "Сайт отдел БСТ": 1
+      }
+    },
     "ai": {
       "summary": "Маркет-лиды стабильны (100), стоимость лида 476 ₽ — в зелёной зоне. Расход Директа вернулся к штатному уровню после аномально низкой прошлой недели. Маркет-выручка (факт) 267 400 ₽, окупаемость рекламы 462% — высокая. CRM-дисциплина: все 14 маркет-сделок в работе без суммы — прогноз pipeline невозможен.",
       "whatsChanged": [
@@ -16617,27 +16997,63 @@
     },
     "gsc": null,
     "claudeRecommendations": null,
-    "byProduct": null,
+    "byProduct": {
+      "beton": {
+        "mkt": {
+          "deals": 23,
+          "won": 9,
+          "wonSum": 743950,
+          "inWork": 13,
+          "inWorkSum": 0,
+          "lost": 1,
+          "lostSum": 0,
+          "noOpp": 13
+        },
+        "all": {
+          "deals": 396,
+          "won": 245,
+          "wonSum": 15901445,
+          "inWork": 115,
+          "inWorkSum": 42300,
+          "lost": 36,
+          "lostSum": 0,
+          "noOpp": 114
+        }
+      },
+      "zhbi": {
+        "mkt": {
+          "deals": 0,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 0,
+          "inWorkSum": 0,
+          "lost": 0,
+          "lostSum": 0,
+          "noOpp": 0
+        },
+        "all": {
+          "deals": 46,
+          "won": 10,
+          "wonSum": 6090,
+          "inWork": 23,
+          "inWorkSum": 0,
+          "lost": 13,
+          "lostSum": 0,
+          "noOpp": 23
+        }
+      }
+    },
     "productSplit": {
       "zhbi": 6,
       "beton": 15,
       "unknown": 39,
+      "zhbiSharePct": 29,
       "zhbiBySource": {
         "Сайт отдел БСТ": 3,
         "Яндекс": 1,
         "Яндекс.Карты ЖБИ": 1,
         "Яндекс.Карты БСТ": 1
-      },
-      "zhbiExamples": [
-        "#188666 +7 918 380-73-48 - Входящий звонок",
-        "#188876 Заполнение CRM-формы \"Форма контактных данных для открытых л",
-        "#189038 +7 928 429-00-00 - Входящий звонок",
-        "#189174 +7 918 070-22-63 - Входящий звонок",
-        "#189220 +7 962 388-03-30 - Входящий звонок",
-        "#189486 +7 918 072-95-69 - Входящий звонок"
-      ],
-      "zhbiOpsMail": 3,
-      "zhbiSharePct": 29
+      }
     }
   },
   "prevMonth": {
@@ -17968,8 +18384,62 @@
       ],
       "parsed": true
     },
-    "byProduct": null,
-    "productSplit": null
+    "byProduct": {
+      "beton": {
+        "mkt": {
+          "deals": 34,
+          "won": 11,
+          "wonSum": 542825,
+          "inWork": 20,
+          "inWorkSum": 0,
+          "lost": 3,
+          "lostSum": 0,
+          "noOpp": 20
+        },
+        "all": {
+          "deals": 312,
+          "won": 203,
+          "wonSum": 15468027,
+          "inWork": 68,
+          "inWorkSum": 144400,
+          "lost": 41,
+          "lostSum": 0,
+          "noOpp": 67
+        }
+      },
+      "zhbi": {
+        "mkt": {
+          "deals": 0,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 0,
+          "inWorkSum": 0,
+          "lost": 0,
+          "lostSum": 0,
+          "noOpp": 0
+        },
+        "all": {
+          "deals": 98,
+          "won": 55,
+          "wonSum": 5044545,
+          "inWork": 31,
+          "inWorkSum": 75040,
+          "lost": 12,
+          "lostSum": 0,
+          "noOpp": 29
+        }
+      }
+    },
+    "productSplit": {
+      "zhbi": 6,
+      "beton": 0,
+      "unknown": 89,
+      "zhbiSharePct": 100,
+      "zhbiBySource": {
+        "Электронная почта Info": 5,
+        "Авито ДКБИ-сообщения": 1
+      }
+    }
   },
   "allSources": {
     "Яндекс.Карты БСТ": 157,
