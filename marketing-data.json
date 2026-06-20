@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T19:09:08.820Z",
+  "generatedAt": "2026-06-20T08:51:49.449Z",
   "schemaVersion": 3,
   "weeks": [
     {
@@ -963,6 +963,7 @@
       "topvisor": null,
       "byProduct": null,
       "productSplit": null,
+      "dataQuality": null,
       "ai": {
         "summary": "",
         "whatsChanged": [],
@@ -1883,6 +1884,7 @@
       "topvisor": null,
       "byProduct": null,
       "productSplit": null,
+      "dataQuality": null,
       "ai": {
         "summary": "Маркет-лиды стабильны (105 vs 104 н/н), но трафик из Директа просел на 27% при росте CPC на 62% — платим больше за меньший объём. Суммарный недельный расход ~57к ₽ в норме. Маркет-выручка факт 0 ₽ (баг SOURCE_ID), pipeline 19,6к ₽ в работе. Когортная конверсия 8w = 6,7% — ниже базовых 8–16%, но метрика ненадёжна из-за атрибуции. Главный риск: Директ дорожает без видимого роста отдачи. Приоритет — разобраться с аукционом и ставками до потери объёма.",
         "whatsChanged": [
@@ -2843,6 +2845,7 @@
       "topvisor": null,
       "byProduct": null,
       "productSplit": null,
+      "dataQuality": null,
       "ai": {
         "summary": "",
         "whatsChanged": [],
@@ -3660,6 +3663,7 @@
       "topvisor": null,
       "byProduct": null,
       "productSplit": null,
+      "dataQuality": null,
       "ai": {
         "summary": "Маркет-лиды просели на треть (51 vs 78), при этом стоимость лида выросла в жёлтую зону (684 ₽). Трафик на сайт тоже упал на 25%. Расход маркетинга стабильный (~35к/нед). Когорта 8 недель показывает 9.7% конверсии — ниже целевых 25%, но в пределах базовой нормы ДКБИ (8–16%). Доля ЖБИ-каналов критически низкая (10%) — нужно усиление. Главный риск: если тренд падения лидов сохранится ещё неделю, pipeline бетона через 4 недели будет дефицитным.",
         "whatsChanged": [
@@ -4819,6 +4823,7 @@
       "topvisor": null,
       "byProduct": null,
       "productSplit": null,
+      "dataQuality": null,
       "ai": {
         "summary": "Маркет-лиды удвоились (91 vs 51 н/н), стоимость лида 462 ₽ — в зелёной зоне. Маркет-выручка (факт) 148к ₽, окупаемость рекламы +252%. Бетон тянет весь результат — 55 из 91 маркет-лидов. ЖБИ-каналы критически слабые: всего 6 лидов (6.6% при норме 15%+). Главный управленческий риск: 19 маркет-сделок в работе с нулевой суммой — менеджеры не заполняют OPPORTUNITY, прогноз pipeline невозможен.",
         "whatsChanged": [
@@ -5756,11 +5761,11 @@
             "deals": 386,
             "won": 244,
             "wonSum": 18930885,
-            "inWork": 100,
+            "inWork": 99,
             "inWorkSum": 0,
-            "lost": 42,
+            "lost": 43,
             "lostSum": 0,
-            "noOpp": 100
+            "noOpp": 99
           }
         },
         "zhbi": {
@@ -5799,6 +5804,22 @@
           "Яндекс.Карты БСТ": 1,
           "Электронная почта Info": 1
         }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 11,
+        "inWorkNoOpportunity": 11,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 12,
+        "zeroRevenueDeals": 6,
+        "zeroRevenuePct": 50,
+        "unknownManagerDeals": 30,
+        "unknownManagers": [
+          "ID-1672",
+          "ID-296"
+        ],
+        "sourceMissingCount": 7,
+        "status": "red"
       },
       "ai": {
         "summary": "Маркет-лиды стабильны (91, как и неделю назад). Расход в норме ~46,5к. Маркет-выручка факт 402к — рост вдвое к прошлой неделе, но сосредоточена в одном канале (Я.Карты БСТ). Главный риск: доля ЖБИ-лидов 10% — ниже минимума 15%, каналы ЖБИ не тянут. CRM-дисциплина: 100% сделок в работе без суммы — pipeline непрозрачен.",
@@ -6718,13 +6739,13 @@
           },
           "all": {
             "deals": 312,
-            "won": 203,
-            "wonSum": 15468027,
-            "inWork": 68,
+            "won": 204,
+            "wonSum": 15663027,
+            "inWork": 67,
             "inWorkSum": 144400,
             "lost": 41,
             "lostSum": 0,
-            "noOpp": 67
+            "noOpp": 66
           }
         },
         "zhbi": {
@@ -6759,6 +6780,23 @@
           "Электронная почта Info": 5,
           "Авито ДКБИ-сообщения": 1
         }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 20,
+        "inWorkNoOpportunity": 20,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 11,
+        "zeroRevenueDeals": 5,
+        "zeroRevenuePct": 45,
+        "unknownManagerDeals": 20,
+        "unknownManagers": [
+          "ID-1358",
+          "ID-1672",
+          "ID-296"
+        ],
+        "sourceMissingCount": 5,
+        "status": "red"
       },
       "ai": {
         "summary": "Маркет-лиды стабильны (95 vs 91 н/н), расход на рекламу снизился до 28.5к (Директ сократился на 65%). Стоимость лида 300 ₽ — зелёная зона. Выручка факт 139к ₽ (8 сделок, мелкий бетон). Главный риск: ЖБИ-каналы генерируют только 8% лидов при норме 25–35% — бизнес-юнит ЖБИ держится на операционке. Действие: разобрать с РОПом 23 сделки без суммы и усилить ЖБИ-каналы.",
@@ -7743,13 +7781,13 @@
           },
           "all": {
             "deals": 362,
-            "won": 187,
-            "wonSum": 15109290,
-            "inWork": 120,
+            "won": 188,
+            "wonSum": 15316410,
+            "inWork": 119,
             "inWorkSum": 91540,
             "lost": 55,
             "lostSum": 0,
-            "noOpp": 114
+            "noOpp": 113
           }
         },
         "zhbi": {
@@ -7783,6 +7821,22 @@
         "zhbiBySource": {
           "Сайт отдел БСТ": 1
         }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 12,
+        "inWorkNoOpportunity": 12,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 7,
+        "zeroRevenueDeals": 3,
+        "zeroRevenuePct": 43,
+        "unknownManagerDeals": 15,
+        "unknownManagers": [
+          "ID-1672",
+          "ID-296"
+        ],
+        "sourceMissingCount": 0,
+        "status": "red"
       },
       "ai": {
         "summary": "Маркет-лиды стабильны (100), стоимость лида 476 ₽ — в зелёной зоне. Расход Директа вернулся к штатному уровню после аномально низкой прошлой недели. Маркет-выручка (факт) 267 400 ₽, окупаемость рекламы 462% — высокая. CRM-дисциплина: все 14 маркет-сделок в работе без суммы — прогноз pipeline невозможен.",
@@ -8643,23 +8697,23 @@
         "beton": {
           "mkt": {
             "deals": 23,
-            "won": 9,
-            "wonSum": 743950,
-            "inWork": 13,
+            "won": 10,
+            "wonSum": 783350,
+            "inWork": 12,
             "inWorkSum": 0,
             "lost": 1,
             "lostSum": 0,
-            "noOpp": 13
+            "noOpp": 12
           },
           "all": {
             "deals": 396,
-            "won": 245,
-            "wonSum": 15901445,
-            "inWork": 115,
+            "won": 248,
+            "wonSum": 16038695,
+            "inWork": 111,
             "inWorkSum": 42300,
-            "lost": 36,
+            "lost": 37,
             "lostSum": 0,
-            "noOpp": 114
+            "noOpp": 110
           }
         },
         "zhbi": {
@@ -8696,6 +8750,22 @@
           "Яндекс.Карты ЖБИ": 1,
           "Яндекс.Карты БСТ": 1
         }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 12,
+        "inWorkNoOpportunity": 12,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 10,
+        "zeroRevenueDeals": 4,
+        "zeroRevenuePct": 40,
+        "unknownManagerDeals": 12,
+        "unknownManagers": [
+          "ID-1672",
+          "ID-296"
+        ],
+        "sourceMissingCount": 1,
+        "status": "red"
       },
       "ai": {
         "summary": "Маркетинговые лиды просели на треть при стабильном бюджете — стоимость привлечения вышла в красную зону. Бетон держится на Сайте и Я.Картах, ЖБИ-каналы почти пустые (5% маркет-лидов при норме 25–35%). Факт-выручка маркетинга минимальна, а реальный pipeline скрыт: все 17 сделок в работе записаны с нулевой суммой — менеджеры не заполняют карточки. Если падение лидов — тренд, а не разовый провал, нужна срочная диагностика каналов.",
@@ -9358,7 +9428,8 @@
       "gsc": null,
       "claudeRecommendations": null,
       "byProduct": null,
-      "productSplit": null
+      "productSplit": null,
+      "dataQuality": null
     },
     {
       "year": 2026,
@@ -9971,7 +10042,8 @@
       "gsc": null,
       "claudeRecommendations": null,
       "byProduct": null,
-      "productSplit": null
+      "productSplit": null,
+      "dataQuality": null
     },
     {
       "year": 2026,
@@ -10688,7 +10760,8 @@
       "gsc": null,
       "claudeRecommendations": null,
       "byProduct": null,
-      "productSplit": null
+      "productSplit": null,
+      "dataQuality": null
     },
     {
       "year": 2026,
@@ -11780,7 +11853,8 @@
       "gsc": null,
       "claudeRecommendations": null,
       "byProduct": null,
-      "productSplit": null
+      "productSplit": null,
+      "dataQuality": null
     },
     {
       "year": 2026,
@@ -13124,13 +13198,13 @@
           },
           "all": {
             "deals": 312,
-            "won": 203,
-            "wonSum": 15468027,
-            "inWork": 68,
+            "won": 204,
+            "wonSum": 15663027,
+            "inWork": 67,
             "inWorkSum": 144400,
             "lost": 41,
             "lostSum": 0,
-            "noOpp": 67
+            "noOpp": 66
           }
         },
         "zhbi": {
@@ -13165,6 +13239,23 @@
           "Электронная почта Info": 5,
           "Авито ДКБИ-сообщения": 1
         }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 20,
+        "inWorkNoOpportunity": 20,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 11,
+        "zeroRevenueDeals": 5,
+        "zeroRevenuePct": 45,
+        "unknownManagerDeals": 20,
+        "unknownManagers": [
+          "ID-1358",
+          "ID-1672",
+          "ID-296"
+        ],
+        "sourceMissingCount": 5,
+        "status": "red"
       }
     },
     {
@@ -14088,23 +14179,23 @@
         "beton": {
           "mkt": {
             "deals": 23,
-            "won": 9,
-            "wonSum": 743950,
-            "inWork": 13,
+            "won": 10,
+            "wonSum": 783350,
+            "inWork": 12,
             "inWorkSum": 0,
             "lost": 1,
             "lostSum": 0,
-            "noOpp": 13
+            "noOpp": 12
           },
           "all": {
             "deals": 396,
-            "won": 245,
-            "wonSum": 15901445,
-            "inWork": 115,
+            "won": 248,
+            "wonSum": 16038695,
+            "inWork": 111,
             "inWorkSum": 42300,
-            "lost": 36,
+            "lost": 37,
             "lostSum": 0,
-            "noOpp": 114
+            "noOpp": 110
           }
         },
         "zhbi": {
@@ -14141,6 +14232,22 @@
           "Яндекс.Карты ЖБИ": 1,
           "Яндекс.Карты БСТ": 1
         }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 12,
+        "inWorkNoOpportunity": 12,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 10,
+        "zeroRevenueDeals": 4,
+        "zeroRevenuePct": 40,
+        "unknownManagerDeals": 12,
+        "unknownManagers": [
+          "ID-1672",
+          "ID-296"
+        ],
+        "sourceMissingCount": 1,
+        "status": "red"
       }
     }
   ],
@@ -14952,23 +15059,23 @@
       "beton": {
         "mkt": {
           "deals": 23,
-          "won": 9,
-          "wonSum": 743950,
-          "inWork": 13,
+          "won": 10,
+          "wonSum": 783350,
+          "inWork": 12,
           "inWorkSum": 0,
           "lost": 1,
           "lostSum": 0,
-          "noOpp": 13
+          "noOpp": 12
         },
         "all": {
           "deals": 396,
-          "won": 245,
-          "wonSum": 15901445,
-          "inWork": 115,
+          "won": 248,
+          "wonSum": 16038695,
+          "inWork": 111,
           "inWorkSum": 42300,
-          "lost": 36,
+          "lost": 37,
           "lostSum": 0,
-          "noOpp": 114
+          "noOpp": 110
         }
       },
       "zhbi": {
@@ -15005,6 +15112,22 @@
         "Яндекс.Карты ЖБИ": 1,
         "Яндекс.Карты БСТ": 1
       }
+    },
+    "dataQuality": {
+      "inWorkMarketing": 12,
+      "inWorkNoOpportunity": 12,
+      "noOppPct": 100,
+      "pipelineSum": 0,
+      "wonMarketing": 10,
+      "zeroRevenueDeals": 4,
+      "zeroRevenuePct": 40,
+      "unknownManagerDeals": 12,
+      "unknownManagers": [
+        "ID-1672",
+        "ID-296"
+      ],
+      "sourceMissingCount": 1,
+      "status": "red"
     },
     "ai": {
       "summary": "Маркетинговые лиды просели на треть при стабильном бюджете — стоимость привлечения вышла в красную зону. Бетон держится на Сайте и Я.Картах, ЖБИ-каналы почти пустые (5% маркет-лидов при норме 25–35%). Факт-выручка маркетинга минимальна, а реальный pipeline скрыт: все 17 сделок в работе записаны с нулевой суммой — менеджеры не заполняют карточки. Если падение лидов — тренд, а не разовый провал, нужна срочная диагностика каналов.",
@@ -15988,13 +16111,13 @@
         },
         "all": {
           "deals": 362,
-          "won": 187,
-          "wonSum": 15109290,
-          "inWork": 120,
+          "won": 188,
+          "wonSum": 15316410,
+          "inWork": 119,
           "inWorkSum": 91540,
           "lost": 55,
           "lostSum": 0,
-          "noOpp": 114
+          "noOpp": 113
         }
       },
       "zhbi": {
@@ -16028,6 +16151,22 @@
       "zhbiBySource": {
         "Сайт отдел БСТ": 1
       }
+    },
+    "dataQuality": {
+      "inWorkMarketing": 12,
+      "inWorkNoOpportunity": 12,
+      "noOppPct": 100,
+      "pipelineSum": 0,
+      "wonMarketing": 7,
+      "zeroRevenueDeals": 3,
+      "zeroRevenuePct": 43,
+      "unknownManagerDeals": 15,
+      "unknownManagers": [
+        "ID-1672",
+        "ID-296"
+      ],
+      "sourceMissingCount": 0,
+      "status": "red"
     },
     "ai": {
       "summary": "Маркет-лиды стабильны (100), стоимость лида 476 ₽ — в зелёной зоне. Расход Директа вернулся к штатному уровню после аномально низкой прошлой недели. Маркет-выручка (факт) 267 400 ₽, окупаемость рекламы 462% — высокая. CRM-дисциплина: все 14 маркет-сделок в работе без суммы — прогноз pipeline невозможен.",
@@ -17001,23 +17140,23 @@
       "beton": {
         "mkt": {
           "deals": 23,
-          "won": 9,
-          "wonSum": 743950,
-          "inWork": 13,
+          "won": 10,
+          "wonSum": 783350,
+          "inWork": 12,
           "inWorkSum": 0,
           "lost": 1,
           "lostSum": 0,
-          "noOpp": 13
+          "noOpp": 12
         },
         "all": {
           "deals": 396,
-          "won": 245,
-          "wonSum": 15901445,
-          "inWork": 115,
+          "won": 248,
+          "wonSum": 16038695,
+          "inWork": 111,
           "inWorkSum": 42300,
-          "lost": 36,
+          "lost": 37,
           "lostSum": 0,
-          "noOpp": 114
+          "noOpp": 110
         }
       },
       "zhbi": {
@@ -17054,6 +17193,22 @@
         "Яндекс.Карты ЖБИ": 1,
         "Яндекс.Карты БСТ": 1
       }
+    },
+    "dataQuality": {
+      "inWorkMarketing": 12,
+      "inWorkNoOpportunity": 12,
+      "noOppPct": 100,
+      "pipelineSum": 0,
+      "wonMarketing": 10,
+      "zeroRevenueDeals": 4,
+      "zeroRevenuePct": 40,
+      "unknownManagerDeals": 12,
+      "unknownManagers": [
+        "ID-1672",
+        "ID-296"
+      ],
+      "sourceMissingCount": 1,
+      "status": "red"
     }
   },
   "prevMonth": {
@@ -18398,13 +18553,13 @@
         },
         "all": {
           "deals": 312,
-          "won": 203,
-          "wonSum": 15468027,
-          "inWork": 68,
+          "won": 204,
+          "wonSum": 15663027,
+          "inWork": 67,
           "inWorkSum": 144400,
           "lost": 41,
           "lostSum": 0,
-          "noOpp": 67
+          "noOpp": 66
         }
       },
       "zhbi": {
@@ -18439,6 +18594,23 @@
         "Электронная почта Info": 5,
         "Авито ДКБИ-сообщения": 1
       }
+    },
+    "dataQuality": {
+      "inWorkMarketing": 20,
+      "inWorkNoOpportunity": 20,
+      "noOppPct": 100,
+      "pipelineSum": 0,
+      "wonMarketing": 11,
+      "zeroRevenueDeals": 5,
+      "zeroRevenuePct": 45,
+      "unknownManagerDeals": 20,
+      "unknownManagers": [
+        "ID-1358",
+        "ID-1672",
+        "ID-296"
+      ],
+      "sourceMissingCount": 5,
+      "status": "red"
     }
   },
   "allSources": {

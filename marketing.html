@@ -159,6 +159,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
   <div class="main">
     <div id="main-blocks">
     <div class="kpi-row" id="kpi-row"></div>
+    <div id="crm-quality"></div>
     <div class="charts-row">
       <div class="chart-card wide">
         <div class="chart-title">Лиды и расход по неделям</div>
@@ -178,7 +179,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
     <div class="bottom-row">
       <div class="chart-card">
         <div class="chart-title">Конверсия и экономика каналов</div>
-        <div class="table-note">Сделки/лид = сделки, закрытые на выбранной неделе, делённые на лиды этой недели. Это операционный срез, не когорта.</div>
+        <div class="table-note">Сделки/лид = сделки, <b>созданные</b> на выбранной неделе, делённые на лиды этой недели. Это операционный срез, не когорта: в B2B-цикле (4–12 нед) сделка часто относится к лиду прошлых недель — не читать как «настоящую конверсию канала».</div>
         <table class="data-table" id="tbl-sources"></table>
       </div>
       <div class="chart-card">
@@ -901,6 +902,51 @@ function renderAIInsights(week, prev) {
   `;
 }
 
+// --- Качество CRM-данных (18.06.2026) ---
+// Предпосчёт приходит с бэка в week.dataQuality (history.js). Фронт только рисует.
+// Красный — на СОЧЕТАНИИ «сделки в работе есть, а pipeline≈0» (менеджеры не заполняют
+// OPPORTUNITY) либо сломанная маршрутизация (сделки на фантомных ID).
+function renderCrmQuality(week) {
+  const el = document.getElementById('crm-quality');
+  if (!el) return;
+  const dq = week.dataQuality;
+  if (!dq) { el.innerHTML = ''; return; }
+  const stMap = {
+    green:  { cls: 'g', label: 'данные чистые',     color: 'var(--green)' },
+    yellow: { cls: 'y', label: 'частичные пропуски', color: 'var(--yellow)' },
+    red:    { cls: 'r', label: 'данные искажены',    color: 'var(--red)' },
+  };
+  const st = stMap[dq.status] || stMap.yellow;
+  const fmtN = (n) => Number(n || 0).toLocaleString('ru-RU');
+  const pipelineBlind = (dq.pipelineSum || 0) < 100 && (dq.inWorkMarketing || 0) >= 5;
+
+  const parts = [];
+  if (dq.inWorkMarketing > 0) parts.push(`${fmtN(dq.inWorkMarketing)} сделок в работе, ${fmtN(dq.inWorkNoOpportunity)} без суммы (${dq.noOppPct}%)`);
+  if (pipelineBlind) parts.push('прогноз ROMI невозможен — pipeline не заполнен');
+  if (dq.unknownManagerDeals > 0) parts.push(`${fmtN(dq.unknownManagerDeals)} сделок на менеджерах вне справочника`);
+  if (dq.zeroRevenuePct >= 20) parts.push(`${dq.zeroRevenuePct}% выигранных маркет-сделок без выручки`);
+  const summary = parts.length ? parts.join('. ') + '.' : 'Существенных пропусков нет.';
+
+  const metric = (label, value, bad) =>
+    `<div style="flex:1;min-width:128px">`
+    + `<div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.04em">${label}</div>`
+    + `<div style="font-size:20px;font-weight:600;color:${bad ? st.color : 'var(--text)'}">${value}</div></div>`;
+
+  el.innerHTML = `
+    <div class="charts-row"><div class="chart-card wide" style="border-left:3px solid ${st.color}">
+      <div class="chart-title">🩺 Качество CRM-данных <span class="tag ${st.cls}">${st.label}</span></div>
+      <div class="table-note">${esc(summary)}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:10px">
+        ${metric('В работе без суммы', `${fmtN(dq.inWorkNoOpportunity)} / ${fmtN(dq.inWorkMarketing)}`, dq.noOppPct >= 30)}
+        ${metric('Pipeline маркет', pipelineBlind ? '0 ₽ ⚠' : fmtN(dq.pipelineSum) + ' ₽', pipelineBlind)}
+        ${metric('Неизв. менеджеры', dq.unknownManagerDeals ? `${fmtN(dq.unknownManagerDeals)} сд.` : '—', dq.unknownManagerDeals > 0)}
+        ${metric('Сделки без источника', fmtN(dq.sourceMissingCount), dq.sourceMissingCount >= 5)}
+        ${metric('Won без выручки', dq.wonMarketing ? `${fmtN(dq.zeroRevenueDeals)} (${dq.zeroRevenuePct}%)` : '—', dq.zeroRevenuePct >= 20)}
+      </div>
+      ${dq.unknownManagers && dq.unknownManagers.length ? `<div class="table-note" style="margin-top:8px">ID вне справочника: ${dq.unknownManagers.map(esc).join(', ')}</div>` : ''}
+    </div></div>`;
+}
+
 // --- SEO-блок Topvisor ---
 function renderSeoBlock(week) {
   const row = document.getElementById('seo-row');
@@ -1042,6 +1088,7 @@ function applyPeriod(current, prev) {
   document.getElementById('hdr-period').textContent =
     `${current.from} — ${current.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
   renderKPI(current, prev);
+  renderCrmQuality(current);
   renderSources(current);
   renderCategories(current);
   renderSpend(current);
