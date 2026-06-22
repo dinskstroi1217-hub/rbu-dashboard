@@ -382,6 +382,8 @@ function updateThemeUI() {
 let DATA = null;
 let SELECTED_BASE = 'all';
 const CONV_PCT = 5, CONV_ABS = 3;
+// ДИН — агрегат (ДИН 1 + ДИН 2). В режиме "Все" суммируем только агрегаты, не дублируя отдельные ДИН 1 / ДИН 2.
+const AGGREGATE_ONLY = new Set(['НТ', 'КР', 'ДИН', 'ТИМ']);
 
 async function init() {
   updateThemeUI();
@@ -509,7 +511,10 @@ function render() {
     .sort((a, b) => a[0].localeCompare(b[0]));
 
   days.forEach(([date, bases]) => {
-    const basesToShow = SELECTED_BASE === 'all' ? DATA.bases : [SELECTED_BASE];
+    // В "Все" — берём только агрегаты (ДИН вместо ДИН 1/ДИН 2). При явном выборе показываем ровно эту базу.
+    const basesToShow = SELECTED_BASE === 'all'
+      ? DATA.bases.filter(b => AGGREGATE_ONLY.has(b))
+      : [SELECTED_BASE];
     let dayVol = 0, dayDispVol = 0, dayOnecVol = 0, dayBatches = 0, dayAnomalies = 0;
     const dayId = 'day-' + date;
     const dayBases = [];
