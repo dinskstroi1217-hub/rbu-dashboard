@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-27T18:30:40.433Z",
+  "updated": "2026-06-28T06:30:35.731Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -130154,18 +130154,6 @@
                 "devChem": -5.71
               },
               {
-                "truck": "653",
-                "volume": 3.5,
-                "cement": 0.83,
-                "sand": 3.41,
-                "gravel": 3.71,
-                "chem": 0.01,
-                "devCement": -6.95,
-                "devSand": 6.02,
-                "devGravel": 2.8,
-                "devChem": -5.61
-              },
-              {
                 "truck": "440",
                 "volume": 9,
                 "cement": 2.11,
@@ -130176,6 +130164,18 @@
                 "devSand": 5.29,
                 "devGravel": -0.88,
                 "devChem": -5.75
+              },
+              {
+                "truck": "653",
+                "volume": 3.5,
+                "cement": 0.83,
+                "sand": 3.41,
+                "gravel": 3.71,
+                "chem": 0.01,
+                "devCement": -6.95,
+                "devSand": 6.02,
+                "devGravel": 2.8,
+                "devChem": -5.61
               },
               {
                 "truck": "653",
@@ -161707,18 +161707,6 @@
               },
               {
                 "truck": "653",
-                "volume": 8.5,
-                "cement": 2.14,
-                "sand": 7.79,
-                "gravel": 8.72,
-                "chem": 0.02,
-                "devCement": -1.45,
-                "devSand": -0.43,
-                "devGravel": -0.45,
-                "devChem": -3.99
-              },
-              {
-                "truck": "653",
                 "volume": 2,
                 "cement": 0.48,
                 "sand": 1.83,
@@ -161728,6 +161716,18 @@
                 "devSand": -0.43,
                 "devGravel": -0.39,
                 "devChem": -1.79
+              },
+              {
+                "truck": "653",
+                "volume": 8.5,
+                "cement": 2.14,
+                "sand": 7.79,
+                "gravel": 8.72,
+                "chem": 0.02,
+                "devCement": -1.45,
+                "devSand": -0.43,
+                "devGravel": -0.45,
+                "devChem": -3.99
               }
             ],
             "shipmentVolume": 23
@@ -200556,18 +200556,6 @@
                 "devChem": -2.31
               },
               {
-                "truck": "471",
-                "volume": 7,
-                "cement": 1.78,
-                "sand": 6.84,
-                "gravel": 6.72,
-                "chem": 0.02,
-                "devCement": -0.14,
-                "devSand": 6.21,
-                "devGravel": -6.77,
-                "devChem": -2.55
-              },
-              {
                 "truck": "792",
                 "volume": 4.5,
                 "cement": 1.05,
@@ -200578,6 +200566,18 @@
                 "devSand": 13.53,
                 "devGravel": -7.44,
                 "devChem": -8.33
+              },
+              {
+                "truck": "471",
+                "volume": 7,
+                "cement": 1.78,
+                "sand": 6.84,
+                "gravel": 6.72,
+                "chem": 0.02,
+                "devCement": -0.14,
+                "devSand": 6.21,
+                "devGravel": -6.77,
+                "devChem": -2.55
               }
             ],
             "shipmentVolume": 22.2
@@ -212497,6 +212497,30 @@
                 "devChem": -5.95
               },
               {
+                "truck": "479",
+                "volume": 1.5,
+                "cement": 0.35,
+                "sand": 1.41,
+                "gravel": 1.53,
+                "chem": 0,
+                "devCement": -7.71,
+                "devSand": 2.46,
+                "devGravel": -1.1,
+                "devChem": -8.33
+              },
+              {
+                "truck": "556",
+                "volume": 10,
+                "cement": 2.36,
+                "sand": 9.95,
+                "gravel": 9.87,
+                "chem": 0.03,
+                "devCement": -7.65,
+                "devSand": 8.17,
+                "devGravel": -4.21,
+                "devChem": -7.5
+              },
+              {
                 "truck": "440",
                 "volume": 4,
                 "cement": 0.94,
@@ -212555,72 +212579,9 @@
                 "devSand": 7.34,
                 "devGravel": -5,
                 "devChem": -6.25
-              },
-              {
-                "truck": "479",
-                "volume": 1.5,
-                "cement": 0.35,
-                "sand": 1.41,
-                "gravel": 1.53,
-                "chem": 0,
-                "devCement": -7.71,
-                "devSand": 2.46,
-                "devGravel": -1.1,
-                "devChem": -8.33
-              },
-              {
-                "truck": "556",
-                "volume": 10,
-                "cement": 2.36,
-                "sand": 9.95,
-                "gravel": 9.87,
-                "chem": 0.03,
-                "devCement": -7.65,
-                "devSand": 8.17,
-                "devGravel": -4.21,
-                "devChem": -7.5
               }
             ],
             "shipmentVolume": 42.5
-          },
-          "200Б": {
-            "totalVolume": 12.5,
-            "dispatcherVolume": 12.5,
-            "factCement": 2.44,
-            "factSand": 12.58,
-            "factGravel": 12.7,
-            "factChem": 0.03,
-            "normCement": 2.69,
-            "normSand": 12.25,
-            "normGravel": 12.5,
-            "normChem": 0.03,
-            "batches": [
-              {
-                "truck": "479",
-                "volume": 8,
-                "cement": 1.56,
-                "sand": 7.97,
-                "gravel": 8.01,
-                "chem": 0.02,
-                "devCement": -9.24,
-                "devSand": 1.63,
-                "devGravel": 0.15,
-                "devChem": -15
-              },
-              {
-                "truck": "440",
-                "volume": 4.5,
-                "cement": 0.88,
-                "sand": 4.61,
-                "gravel": 4.68,
-                "chem": 0.01,
-                "devCement": -9.1,
-                "devSand": 4.54,
-                "devGravel": 4.09,
-                "devChem": -12.44
-              }
-            ],
-            "shipmentVolume": 12.5
           },
           "300Б": {
             "totalVolume": 54,
@@ -212634,66 +212595,6 @@
             "normGravel": 0,
             "normChem": 0,
             "batches": [
-              {
-                "truck": "653",
-                "volume": 4,
-                "cement": 1.06,
-                "sand": 3.85,
-                "gravel": 4.02,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "440",
-                "volume": 2.6,
-                "cement": 0.68,
-                "sand": 2.35,
-                "gravel": 2.72,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "653",
-                "volume": 0,
-                "cement": 0,
-                "sand": 0,
-                "gravel": 0,
-                "chem": 0,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "653",
-                "volume": 10,
-                "cement": 2.66,
-                "sand": 9.53,
-                "gravel": 10,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "556",
-                "volume": 10,
-                "cement": 2.65,
-                "sand": 9.6,
-                "gravel": 10.02,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
               {
                 "truck": "440",
                 "volume": 6,
@@ -212753,9 +212654,108 @@
                 "devSand": 0,
                 "devGravel": 0,
                 "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 4,
+                "cement": 1.06,
+                "sand": 3.85,
+                "gravel": 4.02,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "440",
+                "volume": 2.6,
+                "cement": 0.68,
+                "sand": 2.35,
+                "gravel": 2.72,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 10,
+                "cement": 2.66,
+                "sand": 9.53,
+                "gravel": 10,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "556",
+                "volume": 10,
+                "cement": 2.65,
+                "sand": 9.6,
+                "gravel": 10.02,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
               }
             ],
             "shipmentVolume": 54
+          },
+          "200Б": {
+            "totalVolume": 12.5,
+            "dispatcherVolume": 12.5,
+            "factCement": 2.44,
+            "factSand": 12.58,
+            "factGravel": 12.7,
+            "factChem": 0.03,
+            "normCement": 2.69,
+            "normSand": 12.25,
+            "normGravel": 12.5,
+            "normChem": 0.03,
+            "batches": [
+              {
+                "truck": "479",
+                "volume": 8,
+                "cement": 1.56,
+                "sand": 7.97,
+                "gravel": 8.01,
+                "chem": 0.02,
+                "devCement": -9.24,
+                "devSand": 1.63,
+                "devGravel": 0.15,
+                "devChem": -15
+              },
+              {
+                "truck": "440",
+                "volume": 4.5,
+                "cement": 0.88,
+                "sand": 4.61,
+                "gravel": 4.68,
+                "chem": 0.01,
+                "devCement": -9.1,
+                "devSand": 4.54,
+                "devGravel": 4.09,
+                "devChem": -12.44
+              }
+            ],
+            "shipmentVolume": 12.5
           }
         },
         "shipmentVolume": 109
@@ -214489,7 +214489,7 @@
             "factGravel": 79.01,
             "factChem": 0.27,
             "normCement": 20.55,
-            "normSand": 60.96,
+            "normSand": 60.97,
             "normGravel": 73.98,
             "normChem": 0.21,
             "batches": [
@@ -214516,18 +214516,6 @@
                 "devSand": 6.07,
                 "devGravel": -7.37,
                 "devChem": 14.44
-              },
-              {
-                "truck": "556",
-                "volume": 3.5,
-                "cement": 1.15,
-                "sand": 3.02,
-                "gravel": 3.74,
-                "chem": 0.01,
-                "devCement": 9.95,
-                "devSand": -3.05,
-                "devGravel": -1.01,
-                "devChem": 20
               },
               {
                 "truck": "792",
@@ -214600,123 +214588,21 @@
                 "devSand": 5.87,
                 "devGravel": -7.1,
                 "devChem": 13.15
+              },
+              {
+                "truck": "556",
+                "volume": 3.5,
+                "cement": 1.15,
+                "sand": 3.02,
+                "gravel": 3.74,
+                "chem": 0.01,
+                "devCement": 9.95,
+                "devSand": -3.05,
+                "devGravel": -1.01,
+                "devChem": 20
               }
             ],
             "shipmentVolume": 78.5
-          },
-          "350Б": {
-            "totalVolume": 3.7,
-            "dispatcherVolume": 3.7,
-            "factCement": 1.15,
-            "factSand": 3.61,
-            "factGravel": 4.39,
-            "factChem": 0.01,
-            "normCement": 1.15,
-            "normSand": 3.18,
-            "normGravel": 3.98,
-            "normChem": 0.01,
-            "batches": [
-              {
-                "truck": "479",
-                "volume": 0,
-                "cement": 0,
-                "sand": 0,
-                "gravel": 0,
-                "chem": 0,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "653",
-                "volume": 3.7,
-                "cement": 1.15,
-                "sand": 3.61,
-                "gravel": 4.39,
-                "chem": 0.01,
-                "devCement": 0.09,
-                "devSand": 13.39,
-                "devGravel": 10.32,
-                "devChem": -16.22
-              }
-            ],
-            "shipmentVolume": 3.7
-          },
-          "250Б": {
-            "totalVolume": 18.4,
-            "dispatcherVolume": 18.4,
-            "factCement": 4.48,
-            "factSand": 17.22,
-            "factGravel": 18.75,
-            "factChem": 0.05,
-            "normCement": 4.69,
-            "normSand": 16.93,
-            "normGravel": 18.95,
-            "normChem": 0.05,
-            "batches": [
-              {
-                "truck": "479",
-                "volume": 3.5,
-                "cement": 0.82,
-                "sand": 3.27,
-                "gravel": 3.61,
-                "chem": 0.01,
-                "devCement": -7.73,
-                "devSand": 1.43,
-                "devGravel": 0.25,
-                "devChem": -7.14
-              },
-              {
-                "truck": "Наемный",
-                "volume": 2.9,
-                "cement": 0.67,
-                "sand": 2.64,
-                "gravel": 2.98,
-                "chem": 0.01,
-                "devCement": -8.86,
-                "devSand": -1.05,
-                "devGravel": -0.17,
-                "devChem": -11.33
-              },
-              {
-                "truck": "792",
-                "volume": 9,
-                "cement": 2.28,
-                "sand": 8.36,
-                "gravel": 9.27,
-                "chem": 0.03,
-                "devCement": -0.83,
-                "devSand": 0.99,
-                "devGravel": 0.04,
-                "devChem": 3.17
-              },
-              {
-                "truck": "440",
-                "volume": 1,
-                "cement": 0.24,
-                "sand": 1.01,
-                "gravel": 0.95,
-                "chem": 0,
-                "devCement": -7.25,
-                "devSand": 9.35,
-                "devGravel": -7.77,
-                "devChem": -14.29
-              },
-              {
-                "truck": "653",
-                "volume": 2,
-                "cement": 0.47,
-                "sand": 1.95,
-                "gravel": 1.93,
-                "chem": 0.01,
-                "devCement": -7.35,
-                "devSand": 5.76,
-                "devGravel": -6.41,
-                "devChem": -10.71
-              }
-            ],
-            "shipmentVolume": 18.4
           },
           "300Б": {
             "totalVolume": 82.9,
@@ -214730,66 +214616,6 @@
             "normGravel": 0,
             "normChem": 0,
             "batches": [
-              {
-                "truck": "653",
-                "volume": 0,
-                "cement": 0.79,
-                "sand": 3.98,
-                "gravel": 3.12,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "Наемный",
-                "volume": 9.8,
-                "cement": 2.61,
-                "sand": 9.03,
-                "gravel": 10.35,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "653",
-                "volume": 10,
-                "cement": 2.66,
-                "sand": 9.14,
-                "gravel": 10.49,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "556",
-                "volume": 9,
-                "cement": 2.41,
-                "sand": 8.3,
-                "gravel": 9.45,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "440",
-                "volume": 9,
-                "cement": 2.39,
-                "sand": 8.26,
-                "gravel": 9.45,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
               {
                 "truck": "Наемный",
                 "volume": 10.7,
@@ -214849,9 +214675,144 @@
                 "devSand": 0,
                 "devGravel": 0,
                 "devChem": 0
+              },
+              {
+                "truck": "Наемный",
+                "volume": 9.8,
+                "cement": 2.61,
+                "sand": 9.03,
+                "gravel": 10.35,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 10,
+                "cement": 2.66,
+                "sand": 9.14,
+                "gravel": 10.49,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "556",
+                "volume": 9,
+                "cement": 2.41,
+                "sand": 8.3,
+                "gravel": 9.45,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "440",
+                "volume": 9,
+                "cement": 2.39,
+                "sand": 8.26,
+                "gravel": 9.45,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 0,
+                "cement": 0.79,
+                "sand": 3.98,
+                "gravel": 3.12,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
               }
             ],
             "shipmentVolume": 86.3
+          },
+          "250Б": {
+            "totalVolume": 18.4,
+            "dispatcherVolume": 18.4,
+            "factCement": 4.48,
+            "factSand": 17.22,
+            "factGravel": 18.75,
+            "factChem": 0.05,
+            "normCement": 4.69,
+            "normSand": 16.93,
+            "normGravel": 18.95,
+            "normChem": 0.05,
+            "batches": [
+              {
+                "truck": "440",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1.01,
+                "gravel": 0.95,
+                "chem": 0,
+                "devCement": -7.25,
+                "devSand": 9.35,
+                "devGravel": -7.77,
+                "devChem": -14.29
+              },
+              {
+                "truck": "653",
+                "volume": 2,
+                "cement": 0.47,
+                "sand": 1.95,
+                "gravel": 1.93,
+                "chem": 0.01,
+                "devCement": -7.35,
+                "devSand": 5.76,
+                "devGravel": -6.41,
+                "devChem": -10.71
+              },
+              {
+                "truck": "Наемный",
+                "volume": 2.9,
+                "cement": 0.67,
+                "sand": 2.64,
+                "gravel": 2.98,
+                "chem": 0.01,
+                "devCement": -8.86,
+                "devSand": -1.05,
+                "devGravel": -0.17,
+                "devChem": -11.33
+              },
+              {
+                "truck": "792",
+                "volume": 9,
+                "cement": 2.28,
+                "sand": 8.36,
+                "gravel": 9.27,
+                "chem": 0.03,
+                "devCement": -0.83,
+                "devSand": 0.99,
+                "devGravel": 0.04,
+                "devChem": 3.17
+              },
+              {
+                "truck": "479",
+                "volume": 3.5,
+                "cement": 0.82,
+                "sand": 3.27,
+                "gravel": 3.61,
+                "chem": 0.01,
+                "devCement": -7.73,
+                "devSand": 1.43,
+                "devGravel": 0.25,
+                "devChem": -7.14
+              }
+            ],
+            "shipmentVolume": 18.4
           },
           "200Б": {
             "totalVolume": 5,
@@ -214879,6 +214840,45 @@
               }
             ],
             "shipmentVolume": 5
+          },
+          "350Б": {
+            "totalVolume": 3.7,
+            "dispatcherVolume": 3.7,
+            "factCement": 1.15,
+            "factSand": 3.61,
+            "factGravel": 4.39,
+            "factChem": 0.01,
+            "normCement": 1.15,
+            "normSand": 3.18,
+            "normGravel": 3.98,
+            "normChem": 0.01,
+            "batches": [
+              {
+                "truck": "479",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 3.7,
+                "cement": 1.15,
+                "sand": 3.61,
+                "gravel": 4.39,
+                "chem": 0.01,
+                "devCement": 0.09,
+                "devSand": 13.39,
+                "devGravel": 10.32,
+                "devChem": -16.22
+              }
+            ],
+            "shipmentVolume": 3.7
           }
         },
         "shipmentVolume": 191.89999999999998
@@ -245071,18 +245071,6 @@
               },
               {
                 "truck": "556",
-                "volume": 3.2,
-                "cement": 0.68,
-                "sand": 3.41,
-                "gravel": 2.99,
-                "chem": 0.01,
-                "devCement": -0.65,
-                "devSand": 8.67,
-                "devGravel": -6.69,
-                "devChem": -6.88
-              },
-              {
-                "truck": "556",
                 "volume": 0,
                 "cement": 0,
                 "sand": 0,
@@ -245118,6 +245106,18 @@
                 "devChem": -14
               },
               {
+                "truck": "556",
+                "volume": 3.2,
+                "cement": 0.68,
+                "sand": 3.41,
+                "gravel": 2.99,
+                "chem": 0.01,
+                "devCement": -0.65,
+                "devSand": 8.67,
+                "devGravel": -6.69,
+                "devChem": -6.88
+              },
+              {
                 "truck": "653",
                 "volume": 0,
                 "cement": 0,
@@ -245151,7 +245151,7 @@
             "factSand": 44.83,
             "factGravel": 43.56,
             "factChem": 0.12,
-            "normCement": 11.47,
+            "normCement": 11.48,
             "normSand": 41.4,
             "normGravel": 46.35,
             "normChem": 0.13,
@@ -245181,18 +245181,6 @@
                 "devChem": -3.35
               },
               {
-                "truck": "самовывоз",
-                "volume": 0.3,
-                "cement": 0.07,
-                "sand": 0.34,
-                "gravel": 0.25,
-                "chem": 0,
-                "devCement": -8.5,
-                "devSand": 23.91,
-                "devGravel": -19.74,
-                "devChem": -76.19
-              },
-              {
                 "truck": "556",
                 "volume": 10,
                 "cement": 2.33,
@@ -245203,6 +245191,18 @@
                 "devSand": 9.63,
                 "devGravel": -5.83,
                 "devChem": -6.25
+              },
+              {
+                "truck": "556",
+                "volume": 8,
+                "cement": 1.89,
+                "sand": 8,
+                "gravel": 7.74,
+                "chem": 0.02,
+                "devCement": -7.38,
+                "devSand": 8.75,
+                "devGravel": -6.09,
+                "devChem": -7.59
               },
               {
                 "truck": "440",
@@ -245229,16 +245229,16 @@
                 "devChem": -5.16
               },
               {
-                "truck": "556",
-                "volume": 8,
-                "cement": 1.89,
-                "sand": 8,
-                "gravel": 7.74,
-                "chem": 0.02,
-                "devCement": -7.38,
-                "devSand": 8.75,
-                "devGravel": -6.09,
-                "devChem": -7.59
+                "truck": "самовывоз",
+                "volume": 0.3,
+                "cement": 0.07,
+                "sand": 0.34,
+                "gravel": 0.25,
+                "chem": 0,
+                "devCement": -8.5,
+                "devSand": 23.91,
+                "devGravel": -19.74,
+                "devChem": -76.19
               }
             ],
             "shipmentVolume": 46
@@ -245266,102 +245266,6 @@
                 "devSand": 14.14,
                 "devGravel": -10.75,
                 "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -2.86,
-                "devSand": 13.33,
-                "devGravel": -12.08,
-                "devChem": 66.67
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.11,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -5.43,
-                "devSand": 11.92,
-                "devGravel": -12.26,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.92,
-                "chem": 0,
-                "devCement": -4.86,
-                "devSand": 12.93,
-                "devGravel": -13.02,
-                "devChem": 50
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.15,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -2.57,
-                "devSand": 16.36,
-                "devGravel": -12.64,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.13,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -2,
-                "devSand": 13.94,
-                "devGravel": -11.89,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.11,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -3.43,
-                "devSand": 12.53,
-                "devGravel": -12.45,
-                "devChem": 50
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.18,
-                "sand": 1.11,
-                "gravel": 0.91,
-                "chem": 0,
-                "devCement": 0.29,
-                "devSand": 11.72,
-                "devGravel": -13.77,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.95,
-                "chem": 0,
-                "devCement": -4,
-                "devSand": 13.13,
-                "devGravel": -10.38,
-                "devChem": 72.22
               },
               {
                 "truck": "ФБС",
@@ -245570,6 +245474,18 @@
               {
                 "truck": "ФБС",
                 "volume": 1,
+                "cement": 0.18,
+                "sand": 1.11,
+                "gravel": 0.95,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 11.92,
+                "devGravel": -10.38,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
                 "cement": 0.17,
                 "sand": 1.11,
                 "gravel": 0.92,
@@ -245630,14 +245546,98 @@
               {
                 "truck": "ФБС",
                 "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -2.86,
+                "devSand": 13.33,
+                "devGravel": -12.08,
+                "devChem": 66.67
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.11,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -5.43,
+                "devSand": 11.92,
+                "devGravel": -12.26,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.92,
+                "chem": 0,
+                "devCement": -4.86,
+                "devSand": 12.93,
+                "devGravel": -13.02,
+                "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.15,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -2.57,
+                "devSand": 16.36,
+                "devGravel": -12.64,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.13,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -2,
+                "devSand": 13.94,
+                "devGravel": -11.89,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.11,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -3.43,
+                "devSand": 12.53,
+                "devGravel": -12.45,
+                "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
                 "cement": 0.18,
                 "sand": 1.11,
+                "gravel": 0.91,
+                "chem": 0,
+                "devCement": 0.29,
+                "devSand": 11.72,
+                "devGravel": -13.77,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
                 "gravel": 0.95,
                 "chem": 0,
-                "devCement": 0,
-                "devSand": 11.92,
+                "devCement": -4,
+                "devSand": 13.13,
                 "devGravel": -10.38,
-                "devChem": 55.56
+                "devChem": 72.22
               },
               {
                 "truck": "ФБС",
@@ -245673,6 +245673,30 @@
                 "sand": 4.59,
                 "gravel": 4.51,
                 "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "792",
+                "volume": 6,
+                "cement": 1.57,
+                "sand": 5.84,
+                "gravel": 5.93,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "653",
+                "volume": 10,
+                "cement": 2.83,
+                "sand": 9.65,
+                "gravel": 9.91,
+                "chem": 0.03,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -245719,30 +245743,6 @@
                 "volume": 10,
                 "cement": 2.65,
                 "sand": 9.6,
-                "gravel": 9.91,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "792",
-                "volume": 6,
-                "cement": 1.57,
-                "sand": 5.84,
-                "gravel": 5.93,
-                "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "653",
-                "volume": 10,
-                "cement": 2.83,
-                "sand": 9.65,
                 "gravel": 9.91,
                 "chem": 0.03,
                 "devCement": 0,
@@ -258342,69 +258342,6 @@
         "totalVolume": 60,
         "dispatcherVolume": 60,
         "recipes": {
-          "200Б": {
-            "totalVolume": 31,
-            "dispatcherVolume": 31,
-            "factCement": 6.05,
-            "factSand": 32.49,
-            "factGravel": 29.49,
-            "factChem": 0.07,
-            "normCement": 6.67,
-            "normSand": 30.38,
-            "normGravel": 31,
-            "normChem": 0.08,
-            "batches": [
-              {
-                "truck": "792",
-                "volume": 2,
-                "cement": 0.39,
-                "sand": 2.1,
-                "gravel": 1.89,
-                "chem": 0,
-                "devCement": -9.42,
-                "devSand": 7.14,
-                "devGravel": -5.7,
-                "devChem": -11
-              },
-              {
-                "truck": "556",
-                "volume": 10,
-                "cement": 1.95,
-                "sand": 10.4,
-                "gravel": 9.58,
-                "chem": 0.02,
-                "devCement": -9.23,
-                "devSand": 6.14,
-                "devGravel": -4.24,
-                "devChem": -11
-              },
-              {
-                "truck": "792",
-                "volume": 9,
-                "cement": 1.75,
-                "sand": 9.49,
-                "gravel": 8.52,
-                "chem": 0.02,
-                "devCement": -9.38,
-                "devSand": 7.64,
-                "devGravel": -5.31,
-                "devChem": -9.56
-              },
-              {
-                "truck": "556",
-                "volume": 10,
-                "cement": 1.95,
-                "sand": 10.49,
-                "gravel": 9.51,
-                "chem": 0.02,
-                "devCement": -9.14,
-                "devSand": 7.08,
-                "devGravel": -4.94,
-                "devChem": -8.2
-              }
-            ],
-            "shipmentVolume": 31
-          },
           "М100БФБС": {
             "totalVolume": 20,
             "dispatcherVolume": 20,
@@ -258417,6 +258354,90 @@
             "normGravel": 21.2,
             "normChem": 0.02,
             "batches": [
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.08,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -1.43,
+                "devSand": 9.29,
+                "devGravel": -11.89,
+                "devChem": 66.67
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.11,
+                "gravel": 0.95,
+                "chem": 0,
+                "devCement": -3.14,
+                "devSand": 12.32,
+                "devGravel": -10.38,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.11,
+                "gravel": 0.91,
+                "chem": 0,
+                "devCement": -1.14,
+                "devSand": 12.32,
+                "devGravel": -13.77,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.94,
+                "chem": 0,
+                "devCement": -2.86,
+                "devSand": 12.93,
+                "devGravel": -11.51,
+                "devChem": 55.56
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.11,
+                "gravel": 0.94,
+                "chem": 0,
+                "devCement": -2.29,
+                "devSand": 12.32,
+                "devGravel": -11.51,
+                "devChem": 66.67
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -2.86,
+                "devSand": 12.73,
+                "devGravel": -12.45,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -1.71,
+                "devSand": 13.33,
+                "devGravel": -12.45,
+                "devChem": 61.11
+              },
               {
                 "truck": "ФБС",
                 "volume": 1,
@@ -258517,90 +258538,6 @@
                 "truck": "ФБС",
                 "volume": 1,
                 "cement": 0.17,
-                "sand": 1.08,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -1.43,
-                "devSand": 9.29,
-                "devGravel": -11.89,
-                "devChem": 66.67
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.11,
-                "gravel": 0.95,
-                "chem": 0,
-                "devCement": -3.14,
-                "devSand": 12.32,
-                "devGravel": -10.38,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.11,
-                "gravel": 0.91,
-                "chem": 0,
-                "devCement": -1.14,
-                "devSand": 12.32,
-                "devGravel": -13.77,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.94,
-                "chem": 0,
-                "devCement": -2.86,
-                "devSand": 12.93,
-                "devGravel": -11.51,
-                "devChem": 55.56
-              },
-              {
-                "truck": "",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.11,
-                "gravel": 0.94,
-                "chem": 0,
-                "devCement": -2.29,
-                "devSand": 12.32,
-                "devGravel": -11.51,
-                "devChem": 66.67
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -2.86,
-                "devSand": 12.73,
-                "devGravel": -12.45,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -1.71,
-                "devSand": 13.33,
-                "devGravel": -12.45,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
                 "sand": 1.14,
                 "gravel": 0.93,
                 "chem": 0,
@@ -258671,6 +258608,69 @@
               }
             ],
             "shipmentVolume": 20
+          },
+          "200Б": {
+            "totalVolume": 31,
+            "dispatcherVolume": 31,
+            "factCement": 6.05,
+            "factSand": 32.49,
+            "factGravel": 29.49,
+            "factChem": 0.07,
+            "normCement": 6.67,
+            "normSand": 30.38,
+            "normGravel": 31,
+            "normChem": 0.08,
+            "batches": [
+              {
+                "truck": "792",
+                "volume": 2,
+                "cement": 0.39,
+                "sand": 2.1,
+                "gravel": 1.89,
+                "chem": 0,
+                "devCement": -9.42,
+                "devSand": 7.14,
+                "devGravel": -5.7,
+                "devChem": -11
+              },
+              {
+                "truck": "556",
+                "volume": 10,
+                "cement": 1.95,
+                "sand": 10.4,
+                "gravel": 9.58,
+                "chem": 0.02,
+                "devCement": -9.23,
+                "devSand": 6.14,
+                "devGravel": -4.24,
+                "devChem": -11
+              },
+              {
+                "truck": "792",
+                "volume": 9,
+                "cement": 1.75,
+                "sand": 9.49,
+                "gravel": 8.52,
+                "chem": 0.02,
+                "devCement": -9.38,
+                "devSand": 7.64,
+                "devGravel": -5.31,
+                "devChem": -9.56
+              },
+              {
+                "truck": "556",
+                "volume": 10,
+                "cement": 1.95,
+                "sand": 10.49,
+                "gravel": 9.51,
+                "chem": 0.02,
+                "devCement": -9.14,
+                "devSand": 7.08,
+                "devGravel": -4.94,
+                "devChem": -8.2
+              }
+            ],
+            "shipmentVolume": 31
           },
           "250Б": {
             "totalVolume": 9,
@@ -263952,66 +263952,6 @@
                 "truck": "ФБС",
                 "volume": 1,
                 "cement": 0.17,
-                "sand": 1.06,
-                "gravel": 1,
-                "chem": 0,
-                "devCement": -2.57,
-                "devSand": 7.07,
-                "devGravel": -6.04,
-                "devChem": 50
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.05,
-                "gravel": 0.99,
-                "chem": 0,
-                "devCement": -2,
-                "devSand": 5.86,
-                "devGravel": -6.79,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.06,
-                "gravel": 1,
-                "chem": 0,
-                "devCement": -1.43,
-                "devSand": 7.27,
-                "devGravel": -5.47,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.07,
-                "gravel": 0.99,
-                "chem": 0,
-                "devCement": -2.57,
-                "devSand": 7.68,
-                "devGravel": -6.23,
-                "devChem": 50
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.06,
-                "gravel": 0.99,
-                "chem": 0,
-                "devCement": -2.57,
-                "devSand": 7.07,
-                "devGravel": -6.23,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
                 "sand": 1.1,
                 "gravel": 0.96,
                 "chem": 0,
@@ -264067,6 +264007,66 @@
                 "devSand": 11.11,
                 "devGravel": -10.75,
                 "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.06,
+                "gravel": 1,
+                "chem": 0,
+                "devCement": -2.57,
+                "devSand": 7.07,
+                "devGravel": -6.04,
+                "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.05,
+                "gravel": 0.99,
+                "chem": 0,
+                "devCement": -2,
+                "devSand": 5.86,
+                "devGravel": -6.79,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.06,
+                "gravel": 1,
+                "chem": 0,
+                "devCement": -1.43,
+                "devSand": 7.27,
+                "devGravel": -5.47,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.07,
+                "gravel": 0.99,
+                "chem": 0,
+                "devCement": -2.57,
+                "devSand": 7.68,
+                "devGravel": -6.23,
+                "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.06,
+                "gravel": 0.99,
+                "chem": 0,
+                "devCement": -2.57,
+                "devSand": 7.07,
+                "devGravel": -6.23,
+                "devChem": 55.56
               },
               {
                 "truck": "ФБС",
@@ -264252,6 +264252,30 @@
             "normChem": 0,
             "batches": [
               {
+                "truck": "556",
+                "volume": 10,
+                "cement": 2.65,
+                "sand": 9.65,
+                "gravel": 10,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "792",
+                "volume": 9,
+                "cement": 2.39,
+                "sand": 8.67,
+                "gravel": 8.98,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
                 "truck": "479",
                 "volume": 3.5,
                 "cement": 0.99,
@@ -264281,30 +264305,6 @@
                 "cement": 2.39,
                 "sand": 8.6,
                 "gravel": 8.97,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "556",
-                "volume": 10,
-                "cement": 2.65,
-                "sand": 9.65,
-                "gravel": 10,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "792",
-                "volume": 9,
-                "cement": 2.39,
-                "sand": 8.67,
-                "gravel": 8.98,
                 "chem": 0.03,
                 "devCement": 0,
                 "devSand": 0,
@@ -267249,18 +267249,6 @@
                 "devChem": 0
               },
               {
-                "truck": "792",
-                "volume": 5.5,
-                "cement": 1.57,
-                "sand": 5.07,
-                "gravel": 5.44,
-                "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
                 "truck": "479",
                 "volume": 9,
                 "cement": 2.59,
@@ -267279,6 +267267,18 @@
                 "sand": 9.44,
                 "gravel": 10.02,
                 "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "792",
+                "volume": 5.5,
+                "cement": 1.57,
+                "sand": 5.07,
+                "gravel": 5.44,
+                "chem": 0.02,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -267580,66 +267580,6 @@
                 "volume": 1,
                 "cement": 0.18,
                 "sand": 1.12,
-                "gravel": 0.92,
-                "chem": 0,
-                "devCement": 3.71,
-                "devSand": 13.54,
-                "devGravel": -12.83,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": -3.43,
-                "devSand": 13.54,
-                "devGravel": -11.89,
-                "devChem": 55.56
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.14,
-                "gravel": 0.92,
-                "chem": 0,
-                "devCement": -3.14,
-                "devSand": 14.95,
-                "devGravel": -13.21,
-                "devChem": 50
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.19,
-                "sand": 1.11,
-                "gravel": 0.93,
-                "chem": 0,
-                "devCement": 6,
-                "devSand": 11.72,
-                "devGravel": -11.89,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.18,
-                "sand": 1.13,
-                "gravel": 0.95,
-                "chem": 0,
-                "devCement": 3.14,
-                "devSand": 13.74,
-                "devGravel": -10,
-                "devChem": 50
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.18,
-                "sand": 1.12,
                 "gravel": 0.93,
                 "chem": 0,
                 "devCement": 1.71,
@@ -267694,6 +267634,66 @@
                 "devSand": 13.33,
                 "devGravel": -12.45,
                 "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.18,
+                "sand": 1.12,
+                "gravel": 0.92,
+                "chem": 0,
+                "devCement": 3.71,
+                "devSand": 13.54,
+                "devGravel": -12.83,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": -3.43,
+                "devSand": 13.54,
+                "devGravel": -11.89,
+                "devChem": 55.56
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.14,
+                "gravel": 0.92,
+                "chem": 0,
+                "devCement": -3.14,
+                "devSand": 14.95,
+                "devGravel": -13.21,
+                "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.19,
+                "sand": 1.11,
+                "gravel": 0.93,
+                "chem": 0,
+                "devCement": 6,
+                "devSand": 11.72,
+                "devGravel": -11.89,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.18,
+                "sand": 1.13,
+                "gravel": 0.95,
+                "chem": 0,
+                "devCement": 3.14,
+                "devSand": 13.74,
+                "devGravel": -10,
+                "devChem": 50
               }
             ],
             "shipmentVolume": 32
@@ -274062,90 +274062,6 @@
               },
               {
                 "truck": "440",
-                "volume": 8,
-                "cement": 2.28,
-                "sand": 7.52,
-                "gravel": 8.04,
-                "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "792",
-                "volume": 9,
-                "cement": 2.57,
-                "sand": 8.51,
-                "gravel": 9.03,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "Наемный",
-                "volume": 10,
-                "cement": 2.85,
-                "sand": 9.46,
-                "gravel": 10,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "479",
-                "volume": 3,
-                "cement": 0.8,
-                "sand": 2.88,
-                "gravel": 2.98,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "Наемный",
-                "volume": 1.8,
-                "cement": 0.48,
-                "sand": 1.75,
-                "gravel": 1.79,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "440",
-                "volume": 3,
-                "cement": 0.79,
-                "sand": 2.89,
-                "gravel": 3.02,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "440",
-                "volume": 0.5,
-                "cement": 0.13,
-                "sand": 0.51,
-                "gravel": 0.48,
-                "chem": 0,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "440",
                 "volume": 9,
                 "cement": 2.58,
                 "sand": 8.48,
@@ -274247,6 +274163,90 @@
                 "sand": 8.52,
                 "gravel": 8.99,
                 "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "440",
+                "volume": 8,
+                "cement": 2.28,
+                "sand": 7.52,
+                "gravel": 8.04,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "792",
+                "volume": 9,
+                "cement": 2.57,
+                "sand": 8.51,
+                "gravel": 9.03,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "Наемный",
+                "volume": 10,
+                "cement": 2.85,
+                "sand": 9.46,
+                "gravel": 10,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "479",
+                "volume": 3,
+                "cement": 0.8,
+                "sand": 2.88,
+                "gravel": 2.98,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "Наемный",
+                "volume": 1.8,
+                "cement": 0.48,
+                "sand": 1.75,
+                "gravel": 1.79,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "440",
+                "volume": 3,
+                "cement": 0.79,
+                "sand": 2.89,
+                "gravel": 3.02,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "440",
+                "volume": 0.5,
+                "cement": 0.13,
+                "sand": 0.51,
+                "gravel": 0.48,
+                "chem": 0,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -292108,78 +292108,6 @@
               {
                 "truck": "ФБС",
                 "volume": 1,
-                "cement": 0.16,
-                "sand": 1.16,
-                "gravel": 0.88,
-                "chem": 0,
-                "devCement": -6.57,
-                "devSand": 17.58,
-                "devGravel": -16.79,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.11,
-                "gravel": 0.9,
-                "chem": 0,
-                "devCement": -3.43,
-                "devSand": 11.72,
-                "devGravel": -15.09,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.12,
-                "gravel": 0.89,
-                "chem": 0,
-                "devCement": -0.57,
-                "devSand": 12.93,
-                "devGravel": -15.85,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.21,
-                "gravel": 0.88,
-                "chem": 0,
-                "devCement": -1.14,
-                "devSand": 22.63,
-                "devGravel": -16.98,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.17,
-                "sand": 1.2,
-                "gravel": 0.88,
-                "chem": 0,
-                "devCement": -0.86,
-                "devSand": 21.62,
-                "devGravel": -17.17,
-                "devChem": 66.67
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.18,
-                "sand": 1.18,
-                "gravel": 0.86,
-                "chem": 0,
-                "devCement": 0,
-                "devSand": 18.99,
-                "devGravel": -18.49,
-                "devChem": 72.22
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
                 "cement": 0.18,
                 "sand": 1.16,
                 "gravel": 0.89,
@@ -292332,6 +292260,78 @@
                 "devSand": 16.57,
                 "devGravel": -16.04,
                 "devChem": 38.89
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.16,
+                "sand": 1.16,
+                "gravel": 0.88,
+                "chem": 0,
+                "devCement": -6.57,
+                "devSand": 17.58,
+                "devGravel": -16.79,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.11,
+                "gravel": 0.9,
+                "chem": 0,
+                "devCement": -3.43,
+                "devSand": 11.72,
+                "devGravel": -15.09,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.12,
+                "gravel": 0.89,
+                "chem": 0,
+                "devCement": -0.57,
+                "devSand": 12.93,
+                "devGravel": -15.85,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.21,
+                "gravel": 0.88,
+                "chem": 0,
+                "devCement": -1.14,
+                "devSand": 22.63,
+                "devGravel": -16.98,
+                "devChem": 61.11
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.17,
+                "sand": 1.2,
+                "gravel": 0.88,
+                "chem": 0,
+                "devCement": -0.86,
+                "devSand": 21.62,
+                "devGravel": -17.17,
+                "devChem": 66.67
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.18,
+                "sand": 1.18,
+                "gravel": 0.86,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 18.99,
+                "devGravel": -18.49,
+                "devChem": 72.22
               },
               {
                 "truck": "ФБС",
@@ -299810,11 +299810,11 @@
               },
               {
                 "truck": "653",
-                "volume": 8,
-                "cement": 2.11,
-                "sand": 7.63,
-                "gravel": 8.06,
-                "chem": 0.02,
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -299822,11 +299822,11 @@
               },
               {
                 "truck": "653",
-                "volume": 0,
-                "cement": 0,
-                "sand": 0,
-                "gravel": 0,
-                "chem": 0,
+                "volume": 8,
+                "cement": 2.11,
+                "sand": 7.63,
+                "gravel": 8.06,
+                "chem": 0.02,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -300154,18 +300154,6 @@
                 "truck": "ФБС",
                 "volume": 1,
                 "cement": 0.16,
-                "sand": 1.14,
-                "gravel": 0.91,
-                "chem": 0,
-                "devCement": -10.57,
-                "devSand": 15.15,
-                "devGravel": -14.15,
-                "devChem": 61.11
-              },
-              {
-                "truck": "ФБС",
-                "volume": 1,
-                "cement": 0.16,
                 "sand": 1.15,
                 "gravel": 0.9,
                 "chem": 0,
@@ -300173,6 +300161,18 @@
                 "devSand": 16.16,
                 "devGravel": -15.47,
                 "devChem": 50
+              },
+              {
+                "truck": "ФБС",
+                "volume": 1,
+                "cement": 0.16,
+                "sand": 1.14,
+                "gravel": 0.91,
+                "chem": 0,
+                "devCement": -10.57,
+                "devSand": 15.15,
+                "devGravel": -14.15,
+                "devChem": 61.11
               },
               {
                 "truck": "ФБС",
@@ -326993,18 +326993,6 @@
                 "devChem": -12.82
               },
               {
-                "truck": "827",
-                "volume": 10,
-                "cement": 2.95,
-                "sand": 10.12,
-                "gravel": 9.79,
-                "chem": 0.03,
-                "devCement": -1.77,
-                "devSand": 13.73,
-                "devGravel": -9.33,
-                "devChem": -14.33
-              },
-              {
                 "truck": "867",
                 "volume": 10,
                 "cement": 2.95,
@@ -327015,6 +327003,18 @@
                 "devSand": 16.36,
                 "devGravel": -9.63,
                 "devChem": -13.67
+              },
+              {
+                "truck": "827",
+                "volume": 10,
+                "cement": 2.95,
+                "sand": 10.12,
+                "gravel": 9.79,
+                "chem": 0.03,
+                "devCement": -1.77,
+                "devSand": 13.73,
+                "devGravel": -9.33,
+                "devChem": -14.33
               }
             ],
             "shipmentVolume": 86.5
@@ -344181,30 +344181,6 @@
                 "devChem": -3.57
               },
               {
-                "truck": "845",
-                "volume": 4,
-                "cement": 0.94,
-                "sand": 3.96,
-                "gravel": 4.05,
-                "chem": 0.01,
-                "devCement": -7.65,
-                "devSand": 7.55,
-                "devGravel": -1.6,
-                "devChem": -1.79
-              },
-              {
-                "truck": "867",
-                "volume": 2.25,
-                "cement": 0.56,
-                "sand": 2.17,
-                "gravel": 2.22,
-                "chem": 0.01,
-                "devCement": -1.87,
-                "devSand": 4.73,
-                "devGravel": -4.38,
-                "devChem": -3.17
-              },
-              {
                 "truck": "827",
                 "volume": 9,
                 "cement": 2.27,
@@ -344227,6 +344203,30 @@
                 "devSand": 7.72,
                 "devGravel": -3.17,
                 "devChem": -4.76
+              },
+              {
+                "truck": "845",
+                "volume": 4,
+                "cement": 0.94,
+                "sand": 3.96,
+                "gravel": 4.05,
+                "chem": 0.01,
+                "devCement": -7.65,
+                "devSand": 7.55,
+                "devGravel": -1.6,
+                "devChem": -1.79
+              },
+              {
+                "truck": "867",
+                "volume": 2.25,
+                "cement": 0.56,
+                "sand": 2.17,
+                "gravel": 2.22,
+                "chem": 0.01,
+                "devCement": -1.87,
+                "devSand": 4.73,
+                "devGravel": -4.38,
+                "devChem": -3.17
               }
             ],
             "shipmentVolume": 73.7
@@ -344343,6 +344343,30 @@
                 "devChem": 0
               },
               {
+                "truck": "715",
+                "volume": 3,
+                "cement": 0.79,
+                "sand": 2.78,
+                "gravel": 3.08,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "867",
+                "volume": 10,
+                "cement": 2.66,
+                "sand": 10,
+                "gravel": 9.64,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
                 "truck": "827",
                 "volume": 10,
                 "cement": 2.65,
@@ -344385,30 +344409,6 @@
                 "sand": 1,
                 "gravel": 1.1,
                 "chem": 0,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "715",
-                "volume": 3,
-                "cement": 0.79,
-                "sand": 2.78,
-                "gravel": 3.08,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "867",
-                "volume": 10,
-                "cement": 2.66,
-                "sand": 10,
-                "gravel": 9.64,
-                "chem": 0.03,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -354400,166 +354400,6 @@
         "totalVolume": 185.2,
         "dispatcherVolume": 185.7,
         "recipes": {
-          "250Б": {
-            "totalVolume": 47,
-            "dispatcherVolume": 47,
-            "factCement": 11.03,
-            "factSand": 50.15,
-            "factGravel": 42.5,
-            "factChem": 0.13,
-            "normCement": 11.99,
-            "normSand": 43.24,
-            "normGravel": 48.41,
-            "normChem": 0.13,
-            "batches": [
-              {
-                "truck": "",
-                "volume": 0,
-                "cement": 0,
-                "sand": 0,
-                "gravel": 0,
-                "chem": 0,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "",
-                "volume": 10,
-                "cement": 2.35,
-                "sand": 10.77,
-                "gravel": 8.98,
-                "chem": 0.03,
-                "devCement": -7.9,
-                "devSand": 17.11,
-                "devGravel": -12.85,
-                "devChem": -6.43
-              },
-              {
-                "truck": "",
-                "volume": 9,
-                "cement": 2.11,
-                "sand": 9.43,
-                "gravel": 8.13,
-                "chem": 0.02,
-                "devCement": -8.19,
-                "devSand": 13.91,
-                "devGravel": -12.34,
-                "devChem": -5.16
-              },
-              {
-                "truck": "",
-                "volume": 9,
-                "cement": 2.11,
-                "sand": 9.66,
-                "gravel": 8.11,
-                "chem": 0.02,
-                "devCement": -7.97,
-                "devSand": 16.67,
-                "devGravel": -12.47,
-                "devChem": -4.37
-              },
-              {
-                "truck": "",
-                "volume": 10,
-                "cement": 2.35,
-                "sand": 10.66,
-                "gravel": 9.1,
-                "chem": 0.03,
-                "devCement": -7.94,
-                "devSand": 15.87,
-                "devGravel": -11.67,
-                "devChem": -2.86
-              },
-              {
-                "truck": "",
-                "volume": 9,
-                "cement": 2.12,
-                "sand": 9.62,
-                "gravel": 8.19,
-                "chem": 0.02,
-                "devCement": -7.82,
-                "devSand": 16.21,
-                "devGravel": -11.65,
-                "devChem": -3.97
-              }
-            ]
-          },
-          "300Б": {
-            "totalVolume": 31.5,
-            "dispatcherVolume": 32,
-            "factCement": 8.65,
-            "factSand": 30.41,
-            "factGravel": 31.79,
-            "factChem": 0.1,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": [
-              {
-                "truck": "",
-                "volume": 6,
-                "cement": 1.67,
-                "sand": 5.5,
-                "gravel": 6.45,
-                "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "",
-                "volume": 9,
-                "cement": 2.52,
-                "sand": 8.34,
-                "gravel": 9.45,
-                "chem": 0.03,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "",
-                "volume": 5.5,
-                "cement": 1.54,
-                "sand": 5.15,
-                "gravel": 5.61,
-                "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "",
-                "volume": 4,
-                "cement": 1.06,
-                "sand": 4.1,
-                "gravel": 3.98,
-                "chem": 0.01,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              },
-              {
-                "truck": "",
-                "volume": 7,
-                "cement": 1.86,
-                "sand": 7.32,
-                "gravel": 6.3,
-                "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
-              }
-            ]
-          },
           "200Б": {
             "totalVolume": 34.5,
             "dispatcherVolume": 31.5,
@@ -354572,6 +354412,18 @@
             "normGravel": 34.5,
             "normChem": 0.09,
             "batches": [
+              {
+                "truck": "",
+                "volume": 1.5,
+                "cement": 0.32,
+                "sand": 1.45,
+                "gravel": 1.49,
+                "chem": 0,
+                "devCement": -1.71,
+                "devSand": -1.36,
+                "devGravel": -0.8,
+                "devChem": -9.33
+              },
               {
                 "truck": "",
                 "volume": 2,
@@ -354631,18 +354483,6 @@
                 "devSand": 10.9,
                 "devGravel": -5.34,
                 "devChem": -7.2
-              },
-              {
-                "truck": "",
-                "volume": 1.5,
-                "cement": 0.32,
-                "sand": 1.45,
-                "gravel": 1.49,
-                "chem": 0,
-                "devCement": -1.71,
-                "devSand": -1.36,
-                "devGravel": -0.8,
-                "devChem": -9.33
               }
             ]
           },
@@ -354767,6 +354607,166 @@
                 "devSand": 15.18,
                 "devGravel": -8.84,
                 "devChem": -13.21
+              }
+            ]
+          },
+          "250Б": {
+            "totalVolume": 47,
+            "dispatcherVolume": 47,
+            "factCement": 11.03,
+            "factSand": 50.15,
+            "factGravel": 42.5,
+            "factChem": 0.13,
+            "normCement": 11.99,
+            "normSand": 43.24,
+            "normGravel": 48.41,
+            "normChem": 0.13,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.11,
+                "sand": 9.66,
+                "gravel": 8.11,
+                "chem": 0.02,
+                "devCement": -7.97,
+                "devSand": 16.67,
+                "devGravel": -12.47,
+                "devChem": -4.37
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.35,
+                "sand": 10.66,
+                "gravel": 9.1,
+                "chem": 0.03,
+                "devCement": -7.94,
+                "devSand": 15.87,
+                "devGravel": -11.67,
+                "devChem": -2.86
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.12,
+                "sand": 9.62,
+                "gravel": 8.19,
+                "chem": 0.02,
+                "devCement": -7.82,
+                "devSand": 16.21,
+                "devGravel": -11.65,
+                "devChem": -3.97
+              },
+              {
+                "truck": "",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.35,
+                "sand": 10.77,
+                "gravel": 8.98,
+                "chem": 0.03,
+                "devCement": -7.9,
+                "devSand": 17.11,
+                "devGravel": -12.85,
+                "devChem": -6.43
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.11,
+                "sand": 9.43,
+                "gravel": 8.13,
+                "chem": 0.02,
+                "devCement": -8.19,
+                "devSand": 13.91,
+                "devGravel": -12.34,
+                "devChem": -5.16
+              }
+            ]
+          },
+          "300Б": {
+            "totalVolume": 31.5,
+            "dispatcherVolume": 32,
+            "factCement": 8.65,
+            "factSand": 30.41,
+            "factGravel": 31.79,
+            "factChem": 0.1,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 7,
+                "cement": 1.86,
+                "sand": 7.32,
+                "gravel": 6.3,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 6,
+                "cement": 1.67,
+                "sand": 5.5,
+                "gravel": 6.45,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.52,
+                "sand": 8.34,
+                "gravel": 9.45,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 5.5,
+                "cement": 1.54,
+                "sand": 5.15,
+                "gravel": 5.61,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 4,
+                "cement": 1.06,
+                "sand": 4.1,
+                "gravel": 3.98,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
               }
             ]
           },
@@ -359904,20 +359904,20 @@
     },
     "2026-06-27": {
       "НТ": {
-        "totalVolume": 12.24,
-        "dispatcherVolume": 164.2,
+        "totalVolume": 190.1,
+        "dispatcherVolume": 193.2,
         "recipes": {
           "200Б": {
-            "totalVolume": 3,
+            "totalVolume": 23.7,
             "dispatcherVolume": 23.7,
-            "factCement": 0.64,
-            "factSand": 3.23,
-            "factGravel": 2.81,
-            "factChem": 0.01,
-            "normCement": 0.65,
-            "normSand": 2.94,
-            "normGravel": 3,
-            "normChem": 0.01,
+            "factCement": 4.97,
+            "factSand": 25.87,
+            "factGravel": 21.9,
+            "factChem": 0.05,
+            "normCement": 5.1,
+            "normSand": 23.23,
+            "normGravel": 23.7,
+            "normChem": 0.06,
             "batches": [
               {
                 "truck": "",
@@ -359930,91 +359930,562 @@
                 "devSand": 10,
                 "devGravel": -6.4,
                 "devChem": -13.33
+              },
+              {
+                "truck": "",
+                "volume": 6,
+                "cement": 1.26,
+                "sand": 6.49,
+                "gravel": 5.55,
+                "chem": 0.01,
+                "devCement": -2.13,
+                "devSand": 10.44,
+                "devGravel": -7.57,
+                "devChem": -8.67
+              },
+              {
+                "truck": "",
+                "volume": 1.5,
+                "cement": 0.32,
+                "sand": 1.46,
+                "gravel": 1.45,
+                "chem": 0,
+                "devCement": -1.55,
+                "devSand": -0.54,
+                "devGravel": -3.33,
+                "devChem": -9.33
+              },
+              {
+                "truck": "",
+                "volume": 7,
+                "cement": 1.47,
+                "sand": 7.52,
+                "gravel": 6.56,
+                "chem": 0.02,
+                "devCement": -2.49,
+                "devSand": 9.65,
+                "devGravel": -6.29,
+                "devChem": -7.43
+              },
+              {
+                "truck": "",
+                "volume": 0.7,
+                "cement": 0.15,
+                "sand": 0.88,
+                "gravel": 0.64,
+                "chem": 0,
+                "devCement": -3.32,
+                "devSand": 28.86,
+                "devGravel": -8.57,
+                "devChem": -31.43
+              },
+              {
+                "truck": "",
+                "volume": 0.5,
+                "cement": 0.1,
+                "sand": 0.66,
+                "gravel": 0.51,
+                "chem": 0,
+                "devCement": -6.98,
+                "devSand": 34.29,
+                "devGravel": 1.6,
+                "devChem": -4
+              },
+              {
+                "truck": "",
+                "volume": 5,
+                "cement": 1.03,
+                "sand": 5.61,
+                "gravel": 4.39,
+                "chem": 0.01,
+                "devCement": -3.77,
+                "devSand": 14.57,
+                "devGravel": -12.2,
+                "devChem": -10.4
               }
             ]
           },
           "250Б": {
-            "totalVolume": 9.24,
-            "dispatcherVolume": 79,
-            "factCement": 2.35,
-            "factSand": 10.72,
-            "factGravel": 9.03,
-            "factChem": 0.03,
-            "normCement": 2.36,
-            "normSand": 8.5,
-            "normGravel": 9.52,
-            "normChem": 0.03,
+            "totalVolume": 104,
+            "dispatcherVolume": 104,
+            "factCement": 24.43,
+            "factSand": 111.77,
+            "factGravel": 93.71,
+            "factChem": 0.28,
+            "normCement": 26.52,
+            "normSand": 95.68,
+            "normGravel": 107.12,
+            "normChem": 0.29,
             "batches": [
               {
                 "truck": "",
-                "volume": 9.24,
+                "volume": 10,
                 "cement": 2.35,
                 "sand": 10.72,
                 "gravel": 9.03,
                 "chem": 0.03,
-                "devCement": -0.2,
-                "devSand": 26.11,
-                "devGravel": -5.08,
-                "devChem": 6.68
+                "devCement": -7.78,
+                "devSand": 16.52,
+                "devGravel": -12.29,
+                "devChem": -1.43
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.35,
+                "sand": 10.92,
+                "gravel": 9.01,
+                "chem": 0.03,
+                "devCement": -7.73,
+                "devSand": 18.65,
+                "devGravel": -12.5,
+                "devChem": -2.86
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.11,
+                "sand": 9.85,
+                "gravel": 8.06,
+                "chem": 0.02,
+                "devCement": -7.95,
+                "devSand": 18.99,
+                "devGravel": -13.05,
+                "devChem": -4.76
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.35,
+                "sand": 10.73,
+                "gravel": 9.05,
+                "chem": 0.03,
+                "devCement": -7.92,
+                "devSand": 16.63,
+                "devGravel": -12.17,
+                "devChem": -1.79
+              },
+              {
+                "truck": "",
+                "volume": 6.5,
+                "cement": 1.53,
+                "sand": 6.96,
+                "gravel": 5.9,
+                "chem": 0.02,
+                "devCement": -7.99,
+                "devSand": 16.32,
+                "devGravel": -11.93,
+                "devChem": -5.49
+              },
+              {
+                "truck": "",
+                "volume": 6.5,
+                "cement": 1.53,
+                "sand": 7.02,
+                "gravel": 5.84,
+                "chem": 0.02,
+                "devCement": -7.93,
+                "devSand": 17.39,
+                "devGravel": -12.74,
+                "devChem": -7.14
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.35,
+                "sand": 10.58,
+                "gravel": 8.98,
+                "chem": 0.03,
+                "devCement": -7.75,
+                "devSand": 14.98,
+                "devGravel": -12.8,
+                "devChem": -2.5
+              },
+              {
+                "truck": "",
+                "volume": 6,
+                "cement": 1.41,
+                "sand": 6.59,
+                "gravel": 5.37,
+                "chem": 0.02,
+                "devCement": -8.01,
+                "devSand": 19.38,
+                "devGravel": -13.14,
+                "devChem": -2.98
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.35,
+                "sand": 10.58,
+                "gravel": 9.01,
+                "chem": 0.03,
+                "devCement": -7.86,
+                "devSand": 14.98,
+                "devGravel": -12.52,
+                "devChem": -2.86
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.23,
+                "sand": 1.13,
+                "gravel": 0.87,
+                "chem": 0,
+                "devCement": -9.41,
+                "devSand": 22.83,
+                "devGravel": -15.92,
+                "devChem": 3.57
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.36,
+                "sand": 10.65,
+                "gravel": 9.13,
+                "chem": 0.03,
+                "devCement": -7.65,
+                "devSand": 15.78,
+                "devGravel": -11.36,
+                "devChem": -0.71
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.12,
+                "sand": 9.64,
+                "gravel": 8.08,
+                "chem": 0.02,
+                "devCement": -7.78,
+                "devSand": 16.45,
+                "devGravel": -12.82,
+                "devChem": -3.97
+              },
+              {
+                "truck": "",
+                "volume": 6,
+                "cement": 1.4,
+                "sand": 6.41,
+                "gravel": 5.38,
+                "chem": 0.02,
+                "devCement": -8.27,
+                "devSand": 16.05,
+                "devGravel": -12.91,
+                "devChem": -4.76
               }
             ]
           },
           "300Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 50,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
+            "totalVolume": 51.9,
+            "dispatcherVolume": 54,
+            "factCement": 14.95,
+            "factSand": 55.96,
+            "factGravel": 50.84,
+            "factChem": 0.17,
             "normCement": 0,
             "normSand": 0,
             "normGravel": 0,
             "normChem": 0,
-            "batches": []
+            "batches": [
+              {
+                "truck": "",
+                "volume": 6,
+                "cement": 1.59,
+                "sand": 6.07,
+                "gravel": 5.94,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 10.26,
+                "gravel": 9.88,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 10.49,
+                "gravel": 9.21,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.5,
+                "sand": 9.35,
+                "gravel": 8.24,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.81,
+                "sand": 10.35,
+                "gravel": 9.27,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 4,
+                "cement": 1.11,
+                "sand": 4.18,
+                "gravel": 3.7,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 0,
+                "cement": 0.57,
+                "sand": 2.21,
+                "gravel": 1.93,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "867",
+                "volume": 2.9,
+                "cement": 0.77,
+                "sand": 3.05,
+                "gravel": 2.67,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
           },
           "350Б": {
-            "totalVolume": 0,
+            "totalVolume": 8.5,
             "dispatcherVolume": 8.5,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
+            "factCement": 2.38,
+            "factSand": 8.72,
+            "factGravel": 8.01,
+            "factChem": 0.03,
+            "normCement": 2.64,
+            "normSand": 7.31,
+            "normGravel": 9.14,
+            "normChem": 0.03,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 8.5,
+                "cement": 2.38,
+                "sand": 8.72,
+                "gravel": 8.01,
+                "chem": 0.03,
+                "devCement": -9.53,
+                "devSand": 19.26,
+                "devGravel": -12.32,
+                "devChem": -18.82
+              }
+            ]
           },
           "М300ПК": {
-            "totalVolume": 0,
+            "totalVolume": 2,
             "dispatcherVolume": 3,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
+            "factCement": 0.53,
+            "factSand": 2.11,
+            "factGravel": 1.84,
+            "factChem": 0.01,
+            "normCement": 0.55,
+            "normSand": 1.84,
+            "normGravel": 2.12,
+            "normChem": 0.01,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 2,
+                "cement": 0.53,
+                "sand": 2.11,
+                "gravel": 1.84,
+                "chem": 0.01,
+                "devCement": -4.36,
+                "devSand": 14.78,
+                "devGravel": -13.21,
+                "devChem": 50
+              }
+            ]
+          }
+        }
+      },
+      "ДИН 1": {
+        "totalVolume": 17.5,
+        "dispatcherVolume": 0,
+        "recipes": {
+          "350Б": {
+            "totalVolume": 15,
+            "dispatcherVolume": 0,
+            "factCement": 5.47,
+            "factSand": 17.29,
+            "factGravel": 17.57,
+            "factChem": 0.06,
+            "normCement": 4.65,
+            "normSand": 12.9,
+            "normGravel": 16.13,
+            "normChem": 0.06,
+            "batches": [
+              {
+                "truck": "642            ",
+                "volume": 5,
+                "cement": 1.5,
+                "sand": 4.81,
+                "gravel": 4.84,
+                "chem": 0.02,
+                "devCement": -3.1,
+                "devSand": 11.95,
+                "devGravel": -9.88,
+                "devChem": -16.5
+              },
+              {
+                "truck": "642            ",
+                "volume": 10,
+                "cement": 3.06,
+                "sand": 9.61,
+                "gravel": 9.77,
+                "chem": 0.03,
+                "devCement": -1.37,
+                "devSand": 11.77,
+                "devGravel": -9.12,
+                "devChem": -14.75
+              },
+              {
+                "truck": "642            ",
+                "volume": 0,
+                "cement": 0.91,
+                "sand": 2.87,
+                "gravel": 2.95,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          },
+          "300Б": {
+            "totalVolume": 2.5,
+            "dispatcherVolume": 0,
+            "factCement": 2.08,
+            "factSand": 7.49,
+            "factGravel": 7.07,
+            "factChem": 0.02,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "642            ",
+                "volume": 1,
+                "cement": 0.26,
+                "sand": 1.01,
+                "gravel": 0.96,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "642            ",
+                "volume": 1.5,
+                "cement": 0.42,
+                "sand": 1.54,
+                "gravel": 1.38,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "642            ",
+                "volume": 0,
+                "cement": 1.4,
+                "sand": 4.95,
+                "gravel": 4.73,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          },
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 0,
+            "factCement": 0.3,
+            "factSand": 1.3,
+            "factGravel": 1,
             "factChem": 0,
             "normCement": 0,
             "normSand": 0,
             "normGravel": 0,
             "normChem": 0,
-            "batches": []
+            "batches": [
+              {
+                "truck": "642            ",
+                "volume": 0,
+                "cement": 0.3,
+                "sand": 1.3,
+                "gravel": 1,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
           }
         }
       },
       "ДИН 2": {
-        "totalVolume": 13.5,
+        "totalVolume": 156.6,
         "dispatcherVolume": 0,
         "recipes": {
           "200Б": {
-            "totalVolume": 8,
+            "totalVolume": 24.5,
             "dispatcherVolume": 0,
-            "factCement": 1.68,
-            "factSand": 7.97,
-            "factGravel": 7.8,
-            "factChem": 0.02,
-            "normCement": 1.72,
-            "normSand": 7.84,
-            "normGravel": 8,
-            "normChem": 0.02,
+            "factCement": 5.07,
+            "factSand": 24.38,
+            "factGravel": 23.98,
+            "factChem": 0.06,
+            "normCement": 5.27,
+            "normSand": 24.01,
+            "normGravel": 24.5,
+            "normChem": 0.06,
             "batches": [
               {
                 "truck": "",
@@ -360027,20 +360498,68 @@
                 "devSand": 1.68,
                 "devGravel": -2.5,
                 "devChem": -8.25
+              },
+              {
+                "truck": "",
+                "volume": 8,
+                "cement": 1.68,
+                "sand": 7.96,
+                "gravel": 7.83,
+                "chem": 0.02,
+                "devCement": -2.21,
+                "devSand": 1.53,
+                "devGravel": -2.08,
+                "devChem": -7.5
+              },
+              {
+                "truck": "",
+                "volume": 4.5,
+                "cement": 0.88,
+                "sand": 4.46,
+                "gravel": 4.46,
+                "chem": 0.01,
+                "devCement": -9.25,
+                "devSand": 1.09,
+                "devGravel": -0.87,
+                "devChem": -12.89
+              },
+              {
+                "truck": "",
+                "volume": 3.5,
+                "cement": 0.73,
+                "sand": 3.49,
+                "gravel": 3.39,
+                "chem": 0.01,
+                "devCement": -2.59,
+                "devSand": 1.72,
+                "devGravel": -3.29,
+                "devChem": -4.57
+              },
+              {
+                "truck": "",
+                "volume": 0.5,
+                "cement": 0.1,
+                "sand": 0.5,
+                "gravel": 0.5,
+                "chem": 0,
+                "devCement": -9.77,
+                "devSand": 1.63,
+                "devGravel": -0.2,
+                "devChem": -4
               }
             ]
           },
           "М250КОЛЬЦА": {
-            "totalVolume": 1,
+            "totalVolume": 15.3,
             "dispatcherVolume": 0,
-            "factCement": 0.24,
-            "factSand": 1,
-            "factGravel": 1.05,
-            "factChem": 0,
-            "normCement": 0.26,
-            "normSand": 1.15,
-            "normGravel": 0.85,
-            "normChem": 0,
+            "factCement": 3.69,
+            "factSand": 15.28,
+            "factGravel": 16.13,
+            "factChem": 0.02,
+            "normCement": 3.9,
+            "normSand": 17.6,
+            "normGravel": 13,
+            "normChem": 0.03,
             "batches": [
               {
                 "truck": "",
@@ -360053,6 +360572,186 @@
                 "devSand": -13.3,
                 "devGravel": 23.41,
                 "devChem": -27.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1.01,
+                "gravel": 1.07,
+                "chem": 0,
+                "devCement": -4.71,
+                "devSand": -12.17,
+                "devGravel": 25.53,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.03,
+                "chem": 0,
+                "devCement": -5.69,
+                "devSand": -12.96,
+                "devGravel": 21.41,
+                "devChem": -27.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.07,
+                "chem": 0,
+                "devCement": -5.49,
+                "devSand": -13.04,
+                "devGravel": 25.65,
+                "devChem": -30
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.08,
+                "chem": 0,
+                "devCement": -6.86,
+                "devSand": -13.22,
+                "devGravel": 26.71,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.04,
+                "chem": 0,
+                "devCement": -4.71,
+                "devSand": -13.39,
+                "devGravel": 22.59,
+                "devChem": -35
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1,
+                "chem": 0,
+                "devCement": -7.06,
+                "devSand": -12.61,
+                "devGravel": 18.12,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 0.99,
+                "gravel": 1.03,
+                "chem": 0,
+                "devCement": -5.49,
+                "devSand": -14.09,
+                "devGravel": 20.71,
+                "devChem": -30
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.09,
+                "chem": 0,
+                "devCement": -6.27,
+                "devSand": -12.7,
+                "devGravel": 27.65,
+                "devChem": -25
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1.01,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -5.69,
+                "devSand": -12.35,
+                "devGravel": 23.65,
+                "devChem": -35
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -6.47,
+                "devSand": -12.87,
+                "devGravel": 23.41,
+                "devChem": -35
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 0.99,
+                "gravel": 1.07,
+                "chem": 0,
+                "devCement": -5.1,
+                "devSand": -13.74,
+                "devGravel": 25.53,
+                "devChem": -25
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -6.47,
+                "devSand": -13.13,
+                "devGravel": 23.76,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -5.88,
+                "devSand": -12.87,
+                "devGravel": 23.53,
+                "devChem": -30
+              },
+              {
+                "truck": "",
+                "volume": 0.8,
+                "cement": 0.21,
+                "sand": 0.78,
+                "gravel": 0.85,
+                "chem": 0,
+                "devCement": 0.74,
+                "devSand": -14.89,
+                "devGravel": 25.59,
+                "devChem": -28.13
+              },
+              {
+                "truck": "",
+                "volume": 0.5,
+                "cement": 0.12,
+                "sand": 0.49,
+                "gravel": 0.56,
+                "chem": 0,
+                "devCement": -3.14,
+                "devSand": -14.61,
+                "devGravel": 30.59,
+                "devChem": -55
               }
             ]
           },
@@ -360083,12 +360782,12 @@
             ]
           },
           "300Б": {
-            "totalVolume": 4,
+            "totalVolume": 33,
             "dispatcherVolume": 0,
-            "factCement": 1.39,
-            "factSand": 5.7,
-            "factGravel": 5.98,
-            "factChem": 0.02,
+            "factCement": 9.11,
+            "factSand": 31.56,
+            "factGravel": 32.8,
+            "factChem": 0.1,
             "normCement": 0,
             "normSand": 0,
             "normGravel": 0,
@@ -360096,10 +360795,58 @@
             "batches": [
               {
                 "truck": "",
-                "volume": 4,
-                "cement": 1.39,
-                "sand": 5.7,
-                "gravel": 5.98,
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 9.53,
+                "gravel": 9.92,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 9.55,
+                "gravel": 9.96,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 1.8,
+                "cement": 0.48,
+                "sand": 1.92,
+                "gravel": 1.6,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 5.9,
+                "cement": 1.64,
+                "sand": 5.6,
+                "gravel": 5.92,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 5.3,
+                "cement": 1.4,
+                "sand": 4.95,
+                "gravel": 5.4,
                 "chem": 0.02,
                 "devCement": 0,
                 "devSand": 0,
@@ -360107,20 +360854,452 @@
                 "devChem": 0
               }
             ]
+          },
+          "250Б": {
+            "totalVolume": 8,
+            "dispatcherVolume": 0,
+            "factCement": 1.95,
+            "factSand": 7.72,
+            "factGravel": 7.93,
+            "factChem": 0.02,
+            "normCement": 2.04,
+            "normSand": 7.36,
+            "normGravel": 8.24,
+            "normChem": 0.02,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 3,
+                "cement": 0.7,
+                "sand": 3.08,
+                "gravel": 2.82,
+                "chem": 0.01,
+                "devCement": -8.24,
+                "devSand": 11.41,
+                "devGravel": -8.8,
+                "devChem": -2.98
+              },
+              {
+                "truck": "",
+                "volume": 5,
+                "cement": 1.25,
+                "sand": 4.64,
+                "gravel": 5.12,
+                "chem": 0.01,
+                "devCement": -2.08,
+                "devSand": 0.98,
+                "devGravel": -0.66,
+                "devChem": 0.71
+              }
+            ]
+          },
+          "М250КРЫШКИ": {
+            "totalVolume": 10,
+            "dispatcherVolume": 0,
+            "factCement": 2.55,
+            "factSand": 8.96,
+            "factGravel": 10.1,
+            "factChem": 0.01,
+            "normCement": 2.4,
+            "normSand": 10.9,
+            "normGravel": 9.35,
+            "normChem": 0.02,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.55,
+                "sand": 8.96,
+                "gravel": 10.1,
+                "chem": 0.01,
+                "devCement": 6.42,
+                "devSand": -17.76,
+                "devGravel": 8.03,
+                "devChem": -29.5
+              }
+            ]
+          },
+          "400Б": {
+            "totalVolume": 3.5,
+            "dispatcherVolume": 0,
+            "factCement": 1.2,
+            "factSand": 3.47,
+            "factGravel": 3.19,
+            "factChem": 0.01,
+            "normCement": 1.22,
+            "normSand": 2.8,
+            "normGravel": 3.89,
+            "normChem": 0.01,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 3.5,
+                "cement": 1.2,
+                "sand": 3.47,
+                "gravel": 3.19,
+                "chem": 0.01,
+                "devCement": -2.24,
+                "devSand": 23.82,
+                "devGravel": -17.86,
+                "devChem": -1.5
+              }
+            ]
+          },
+          "350Б": {
+            "totalVolume": 53.2,
+            "dispatcherVolume": 0,
+            "factCement": 16.38,
+            "factSand": 52.79,
+            "factGravel": 52.04,
+            "factChem": 0.18,
+            "normCement": 16.49,
+            "normSand": 45.75,
+            "normGravel": 57.19,
+            "normChem": 0.21,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.75,
+                "sand": 8.82,
+                "gravel": 8.66,
+                "chem": 0.03,
+                "devCement": -1.31,
+                "devSand": 13.89,
+                "devGravel": -10.47,
+                "devChem": -14.72
+              },
+              {
+                "truck": "",
+                "volume": 8,
+                "cement": 2.61,
+                "sand": 7.82,
+                "gravel": 7.65,
+                "chem": 0.03,
+                "devCement": 5.4,
+                "devSand": 13.71,
+                "devGravel": -11.05,
+                "devChem": -15
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 3.07,
+                "sand": 9.74,
+                "gravel": 9.53,
+                "chem": 0.03,
+                "devCement": -0.95,
+                "devSand": 13.23,
+                "devGravel": -11.33,
+                "devChem": -15.62
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 3.05,
+                "sand": 9.73,
+                "gravel": 9.66,
+                "chem": 0.03,
+                "devCement": -1.71,
+                "devSand": 13.08,
+                "devGravel": -10.1,
+                "devChem": -15.25
+              },
+              {
+                "truck": "",
+                "volume": 1.2,
+                "cement": 0.33,
+                "sand": 1.06,
+                "gravel": 1.22,
+                "chem": 0,
+                "devCement": -10.48,
+                "devSand": 2.81,
+                "devGravel": -5.43,
+                "devChem": -18.75
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 3.04,
+                "sand": 9.73,
+                "gravel": 9.56,
+                "chem": 0.03,
+                "devCement": -1.94,
+                "devSand": 13.09,
+                "devGravel": -11.06,
+                "devChem": -16.25
+              },
+              {
+                "truck": "",
+                "volume": 5,
+                "cement": 1.53,
+                "sand": 5.9,
+                "gravel": 5.75,
+                "chem": 0.02,
+                "devCement": -1.52,
+                "devSand": 37.26,
+                "devGravel": 6.94,
+                "devChem": -5.25
+              }
+            ]
+          },
+          "М400СТОЛБЫ": {
+            "totalVolume": 8.6,
+            "dispatcherVolume": 0,
+            "factCement": 3.51,
+            "factSand": 7.82,
+            "factGravel": 8.27,
+            "factChem": 0.02,
+            "normCement": 3.27,
+            "normSand": 7.05,
+            "normGravel": 9.29,
+            "normChem": 0.03,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 8.6,
+                "cement": 3.51,
+                "sand": 7.82,
+                "gravel": 8.27,
+                "chem": 0.02,
+                "devCement": 7.48,
+                "devSand": 10.95,
+                "devGravel": -10.97,
+                "devChem": -42.52
+              }
+            ]
+          }
+        }
+      },
+      "КР": {
+        "totalVolume": 81.8,
+        "dispatcherVolume": 81.8,
+        "recipes": {
+          "250Б": {
+            "totalVolume": 6.2,
+            "dispatcherVolume": 6.2,
+            "factCement": 1.45,
+            "factSand": 6.29,
+            "factGravel": 5.83,
+            "factChem": 0.02,
+            "normCement": 1.58,
+            "normSand": 5.7,
+            "normGravel": 6.39,
+            "normChem": 0.02,
+            "batches": [
+              {
+                "truck": "653",
+                "volume": 6.2,
+                "cement": 1.45,
+                "sand": 6.29,
+                "gravel": 5.83,
+                "chem": 0.02,
+                "devCement": -8.44,
+                "devSand": 10.24,
+                "devGravel": -8.71,
+                "devChem": -7.55
+              }
+            ]
+          },
+          "300Б": {
+            "totalVolume": 23.5,
+            "dispatcherVolume": 23.5,
+            "factCement": 6.41,
+            "factSand": 23.09,
+            "factGravel": 22.62,
+            "factChem": 0.07,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "440",
+                "volume": 9,
+                "cement": 2.53,
+                "sand": 8.83,
+                "gravel": 8.51,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "556",
+                "volume": 2,
+                "cement": 0.56,
+                "sand": 2.05,
+                "gravel": 1.92,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "Наемный",
+                "volume": 2.5,
+                "cement": 0.7,
+                "sand": 2.56,
+                "gravel": 2.37,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "Наемный",
+                "volume": 3.5,
+                "cement": 0.92,
+                "sand": 3.62,
+                "gravel": 3.18,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "Наемный",
+                "volume": 6.5,
+                "cement": 1.7,
+                "sand": 6.03,
+                "gravel": 6.64,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          },
+          "350Б": {
+            "totalVolume": 36,
+            "dispatcherVolume": 36,
+            "factCement": 10.08,
+            "factSand": 34.34,
+            "factGravel": 36.11,
+            "factChem": 0.11,
+            "normCement": 11.16,
+            "normSand": 30.96,
+            "normGravel": 38.7,
+            "normChem": 0.14,
+            "batches": [
+              {
+                "truck": "653",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 8.84,
+                "gravel": 10.76,
+                "chem": 0.03,
+                "devCement": -9.55,
+                "devSand": 2.84,
+                "devGravel": 0.06,
+                "devChem": -23.5
+              },
+              {
+                "truck": "440",
+                "volume": 9,
+                "cement": 2.52,
+                "sand": 8.82,
+                "gravel": 8.78,
+                "chem": 0.03,
+                "devCement": -9.71,
+                "devSand": 13.95,
+                "devGravel": -9.23,
+                "devChem": -23.75
+              },
+              {
+                "truck": "556",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 9.79,
+                "gravel": 9.73,
+                "chem": 0.03,
+                "devCement": -9.71,
+                "devSand": 13.88,
+                "devGravel": -9.45,
+                "devChem": -23.87
+              },
+              {
+                "truck": "653",
+                "volume": 7,
+                "cement": 1.96,
+                "sand": 6.88,
+                "gravel": 6.84,
+                "chem": 0.02,
+                "devCement": -9.79,
+                "devSand": 14.35,
+                "devGravel": -9.08,
+                "devChem": -23.93
+              }
+            ]
+          },
+          "200Б": {
+            "totalVolume": 16.1,
+            "dispatcherVolume": 16.1,
+            "factCement": 3.15,
+            "factSand": 16.28,
+            "factGravel": 15.81,
+            "factChem": 0.03,
+            "normCement": 3.46,
+            "normSand": 15.78,
+            "normGravel": 16.1,
+            "normChem": 0.04,
+            "batches": [
+              {
+                "truck": "440",
+                "volume": 2.9,
+                "cement": 0.57,
+                "sand": 3.14,
+                "gravel": 2.57,
+                "chem": 0.01,
+                "devCement": -9.06,
+                "devSand": 10.34,
+                "devGravel": -11.24,
+                "devChem": -17.24
+              },
+              {
+                "truck": "556",
+                "volume": 10,
+                "cement": 1.95,
+                "sand": 9.91,
+                "gravel": 10.03,
+                "chem": 0.02,
+                "devCement": -9.14,
+                "devSand": 1.16,
+                "devGravel": 0.32,
+                "devChem": -17.4
+              },
+              {
+                "truck": "653",
+                "volume": 3.2,
+                "cement": 0.63,
+                "sand": 3.23,
+                "gravel": 3.21,
+                "chem": 0.01,
+                "devCement": -8.72,
+                "devSand": 3.06,
+                "devGravel": 0.19,
+                "devChem": -18.12
+              }
+            ]
           }
         }
       },
       "ТИМ": {
-        "totalVolume": 22.5,
+        "totalVolume": 87.8,
         "dispatcherVolume": 88.8,
         "recipes": {
           "300Б": {
-            "totalVolume": 5,
+            "totalVolume": 33.3,
             "dispatcherVolume": 34.3,
-            "factCement": 1.33,
-            "factSand": 4.63,
-            "factGravel": 5.25,
-            "factChem": 0.01,
+            "factCement": 8.96,
+            "factSand": 31.59,
+            "factGravel": 33.71,
+            "factChem": 0.1,
             "normCement": 0,
             "normSand": 0,
             "normGravel": 0,
@@ -360133,6 +361312,90 @@
                 "sand": 4.63,
                 "gravel": 5.25,
                 "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "578",
+                "volume": 8.5,
+                "cement": 2.24,
+                "sand": 8.27,
+                "gravel": 8.35,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "603",
+                "volume": 1.8,
+                "cement": 0.48,
+                "sand": 1.68,
+                "gravel": 1.92,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "455",
+                "volume": 6,
+                "cement": 1.71,
+                "sand": 5.94,
+                "gravel": 5.6,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "149",
+                "volume": 8,
+                "cement": 2.13,
+                "sand": 7.42,
+                "gravel": 8.22,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "455",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "455",
+                "volume": 4,
+                "cement": 1.06,
+                "sand": 3.65,
+                "gravel": 4.37,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -360167,16 +361430,16 @@
             ]
           },
           "250Б": {
-            "totalVolume": 7.5,
+            "totalVolume": 25.5,
             "dispatcherVolume": 25.5,
-            "factCement": 1.75,
-            "factSand": 7.1,
-            "factGravel": 7.74,
-            "factChem": 0.02,
-            "normCement": 1.91,
-            "normSand": 6.9,
-            "normGravel": 7.73,
-            "normChem": 0.02,
+            "factCement": 5.97,
+            "factSand": 24.73,
+            "factGravel": 25.47,
+            "factChem": 0.07,
+            "normCement": 6.5,
+            "normSand": 23.46,
+            "normGravel": 26.27,
+            "normChem": 0.07,
             "batches": [
               {
                 "truck": "149",
@@ -360191,12 +361454,336 @@
                 "devChem": -3.57
               },
               {
-                "truck": "0",
+                "truck": "149",
+                "volume": 7,
+                "cement": 1.66,
+                "sand": 6.57,
+                "gravel": 7.21,
+                "chem": 0.02,
+                "devCement": -6.92,
+                "devSand": 1.99,
+                "devGravel": 0.03,
+                "devChem": -3.06
+              },
+              {
+                "truck": "149",
+                "volume": 3.5,
+                "cement": 0.81,
+                "sand": 3.29,
+                "gravel": 3.59,
+                "chem": 0.01,
+                "devCement": -8.85,
+                "devSand": 2.3,
+                "devGravel": -0.31,
+                "devChem": -0.51
+              },
+              {
+                "truck": "603",
+                "volume": 7.5,
+                "cement": 1.75,
+                "sand": 7.77,
+                "gravel": 6.93,
+                "chem": 0.02,
+                "devCement": -8.52,
+                "devSand": 12.58,
+                "devGravel": -10.27,
+                "devChem": -4.29
+              }
+            ]
+          },
+          "350Б": {
+            "totalVolume": 19,
+            "dispatcherVolume": 19,
+            "factCement": 5.89,
+            "factSand": 17.22,
+            "factGravel": 19.59,
+            "factChem": 0.06,
+            "normCement": 5.89,
+            "normSand": 16.34,
+            "normGravel": 20.42,
+            "normChem": 0.08,
+            "batches": [
+              {
+                "truck": "578",
+                "volume": 7,
+                "cement": 2.17,
+                "sand": 6.1,
+                "gravel": 7.52,
+                "chem": 0.02,
+                "devCement": 0.05,
+                "devSand": 1.3,
+                "devGravel": -0.01,
+                "devChem": -15
+              },
+              {
+                "truck": "603",
+                "volume": 5,
+                "cement": 1.55,
+                "sand": 4.35,
+                "gravel": 5.38,
+                "chem": 0.02,
+                "devCement": 0.1,
+                "devSand": 1.26,
+                "devGravel": 0.02,
+                "devChem": -15
+              },
+              {
+                "truck": "578",
+                "volume": 7,
+                "cement": 2.17,
+                "sand": 6.76,
+                "gravel": 6.69,
+                "chem": 0.02,
+                "devCement": -0.05,
+                "devSand": 12.36,
+                "devGravel": -11.12,
+                "devChem": -15
+              }
+            ]
+          }
+        }
+      },
+      "ДИН": {
+        "totalVolume": 174.1,
+        "dispatcherVolume": 183.3,
+        "recipes": {
+          "350Б": {
+            "totalVolume": 68.2,
+            "dispatcherVolume": 0,
+            "factCement": 21.849999999999998,
+            "factSand": 70.08,
+            "factGravel": 69.61,
+            "factChem": 0.24,
+            "normCement": 21.14,
+            "normSand": 58.65,
+            "normGravel": 73.32,
+            "normChem": 0.27,
+            "batches": [
+              {
+                "truck": "642            ",
+                "volume": 5,
+                "cement": 1.5,
+                "sand": 4.81,
+                "gravel": 4.84,
+                "chem": 0.02,
+                "devCement": -3.1,
+                "devSand": 11.95,
+                "devGravel": -9.88,
+                "devChem": -16.5
+              },
+              {
+                "truck": "642            ",
+                "volume": 10,
+                "cement": 3.06,
+                "sand": 9.61,
+                "gravel": 9.77,
+                "chem": 0.03,
+                "devCement": -1.37,
+                "devSand": 11.77,
+                "devGravel": -9.12,
+                "devChem": -14.75
+              },
+              {
+                "truck": "642            ",
                 "volume": 0,
-                "cement": 0,
-                "sand": 0,
-                "gravel": 0,
+                "cement": 0.91,
+                "sand": 2.87,
+                "gravel": 2.95,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 9,
+                "cement": 2.75,
+                "sand": 8.82,
+                "gravel": 8.66,
+                "chem": 0.03,
+                "devCement": -1.31,
+                "devSand": 13.89,
+                "devGravel": -10.47,
+                "devChem": -14.72
+              },
+              {
+                "truck": "",
+                "volume": 8,
+                "cement": 2.61,
+                "sand": 7.82,
+                "gravel": 7.65,
+                "chem": 0.03,
+                "devCement": 5.4,
+                "devSand": 13.71,
+                "devGravel": -11.05,
+                "devChem": -15
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 3.07,
+                "sand": 9.74,
+                "gravel": 9.53,
+                "chem": 0.03,
+                "devCement": -0.95,
+                "devSand": 13.23,
+                "devGravel": -11.33,
+                "devChem": -15.62
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 3.05,
+                "sand": 9.73,
+                "gravel": 9.66,
+                "chem": 0.03,
+                "devCement": -1.71,
+                "devSand": 13.08,
+                "devGravel": -10.1,
+                "devChem": -15.25
+              },
+              {
+                "truck": "",
+                "volume": 1.2,
+                "cement": 0.33,
+                "sand": 1.06,
+                "gravel": 1.22,
                 "chem": 0,
+                "devCement": -10.48,
+                "devSand": 2.81,
+                "devGravel": -5.43,
+                "devChem": -18.75
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 3.04,
+                "sand": 9.73,
+                "gravel": 9.56,
+                "chem": 0.03,
+                "devCement": -1.94,
+                "devSand": 13.09,
+                "devGravel": -11.06,
+                "devChem": -16.25
+              },
+              {
+                "truck": "",
+                "volume": 5,
+                "cement": 1.53,
+                "sand": 5.9,
+                "gravel": 5.75,
+                "chem": 0.02,
+                "devCement": -1.52,
+                "devSand": 37.26,
+                "devGravel": 6.94,
+                "devChem": -5.25
+              }
+            ]
+          },
+          "300Б": {
+            "totalVolume": 35.5,
+            "dispatcherVolume": 0,
+            "factCement": 11.19,
+            "factSand": 39.05,
+            "factGravel": 39.87,
+            "factChem": 0.12000000000000001,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "642            ",
+                "volume": 1,
+                "cement": 0.26,
+                "sand": 1.01,
+                "gravel": 0.96,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "642            ",
+                "volume": 1.5,
+                "cement": 0.42,
+                "sand": 1.54,
+                "gravel": 1.38,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "642            ",
+                "volume": 0,
+                "cement": 1.4,
+                "sand": 4.95,
+                "gravel": 4.73,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 9.53,
+                "gravel": 9.92,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 10,
+                "cement": 2.8,
+                "sand": 9.55,
+                "gravel": 9.96,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 1.8,
+                "cement": 0.48,
+                "sand": 1.92,
+                "gravel": 1.6,
+                "chem": 0.01,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 5.9,
+                "cement": 1.64,
+                "sand": 5.6,
+                "gravel": 5.92,
+                "chem": 0.02,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 5.3,
+                "cement": 1.4,
+                "sand": 4.95,
+                "gravel": 5.4,
+                "chem": 0.02,
                 "devCement": 0,
                 "devSand": 0,
                 "devGravel": 0,
@@ -360204,94 +361791,67 @@
               }
             ]
           },
-          "350Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 19,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
-          }
-        }
-      },
-      "КР": {
-        "totalVolume": 0,
-        "dispatcherVolume": 81.8,
-        "recipes": {
           "250Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 6.2,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
-          },
-          "300Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 23.5,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
-          },
-          "350Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 36,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
-          },
-          "200Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 16.1,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
-          }
-        }
-      },
-      "ДИН": {
-        "totalVolume": 13.5,
-        "dispatcherVolume": 183.3,
-        "recipes": {
-          "200Б": {
             "totalVolume": 8,
             "dispatcherVolume": 0,
-            "factCement": 1.68,
-            "factSand": 7.97,
-            "factGravel": 7.8,
+            "factCement": 2.25,
+            "factSand": 9.02,
+            "factGravel": 8.93,
             "factChem": 0.02,
-            "normCement": 1.72,
-            "normSand": 7.84,
-            "normGravel": 8,
+            "normCement": 2.04,
+            "normSand": 7.36,
+            "normGravel": 8.24,
             "normChem": 0.02,
+            "batches": [
+              {
+                "truck": "642            ",
+                "volume": 0,
+                "cement": 0.3,
+                "sand": 1.3,
+                "gravel": 1,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              },
+              {
+                "truck": "",
+                "volume": 3,
+                "cement": 0.7,
+                "sand": 3.08,
+                "gravel": 2.82,
+                "chem": 0.01,
+                "devCement": -8.24,
+                "devSand": 11.41,
+                "devGravel": -8.8,
+                "devChem": -2.98
+              },
+              {
+                "truck": "",
+                "volume": 5,
+                "cement": 1.25,
+                "sand": 4.64,
+                "gravel": 5.12,
+                "chem": 0.01,
+                "devCement": -2.08,
+                "devSand": 0.98,
+                "devGravel": -0.66,
+                "devChem": 0.71
+              }
+            ]
+          },
+          "200Б": {
+            "totalVolume": 24.5,
+            "dispatcherVolume": 0,
+            "factCement": 5.07,
+            "factSand": 24.38,
+            "factGravel": 23.98,
+            "factChem": 0.06,
+            "normCement": 5.27,
+            "normSand": 24.01,
+            "normGravel": 24.5,
+            "normChem": 0.06,
             "batches": [
               {
                 "truck": "",
@@ -360304,20 +361864,68 @@
                 "devSand": 1.68,
                 "devGravel": -2.5,
                 "devChem": -8.25
+              },
+              {
+                "truck": "",
+                "volume": 8,
+                "cement": 1.68,
+                "sand": 7.96,
+                "gravel": 7.83,
+                "chem": 0.02,
+                "devCement": -2.21,
+                "devSand": 1.53,
+                "devGravel": -2.08,
+                "devChem": -7.5
+              },
+              {
+                "truck": "",
+                "volume": 4.5,
+                "cement": 0.88,
+                "sand": 4.46,
+                "gravel": 4.46,
+                "chem": 0.01,
+                "devCement": -9.25,
+                "devSand": 1.09,
+                "devGravel": -0.87,
+                "devChem": -12.89
+              },
+              {
+                "truck": "",
+                "volume": 3.5,
+                "cement": 0.73,
+                "sand": 3.49,
+                "gravel": 3.39,
+                "chem": 0.01,
+                "devCement": -2.59,
+                "devSand": 1.72,
+                "devGravel": -3.29,
+                "devChem": -4.57
+              },
+              {
+                "truck": "",
+                "volume": 0.5,
+                "cement": 0.1,
+                "sand": 0.5,
+                "gravel": 0.5,
+                "chem": 0,
+                "devCement": -9.77,
+                "devSand": 1.63,
+                "devGravel": -0.2,
+                "devChem": -4
               }
             ]
           },
           "М250КОЛЬЦА": {
-            "totalVolume": 1,
+            "totalVolume": 15.3,
             "dispatcherVolume": 0,
-            "factCement": 0.24,
-            "factSand": 1,
-            "factGravel": 1.05,
-            "factChem": 0,
-            "normCement": 0.26,
-            "normSand": 1.15,
-            "normGravel": 0.85,
-            "normChem": 0,
+            "factCement": 3.69,
+            "factSand": 15.28,
+            "factGravel": 16.13,
+            "factChem": 0.02,
+            "normCement": 3.9,
+            "normSand": 17.6,
+            "normGravel": 13,
+            "normChem": 0.03,
             "batches": [
               {
                 "truck": "",
@@ -360330,6 +361938,186 @@
                 "devSand": -13.3,
                 "devGravel": 23.41,
                 "devChem": -27.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1.01,
+                "gravel": 1.07,
+                "chem": 0,
+                "devCement": -4.71,
+                "devSand": -12.17,
+                "devGravel": 25.53,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.03,
+                "chem": 0,
+                "devCement": -5.69,
+                "devSand": -12.96,
+                "devGravel": 21.41,
+                "devChem": -27.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.07,
+                "chem": 0,
+                "devCement": -5.49,
+                "devSand": -13.04,
+                "devGravel": 25.65,
+                "devChem": -30
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.08,
+                "chem": 0,
+                "devCement": -6.86,
+                "devSand": -13.22,
+                "devGravel": 26.71,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.04,
+                "chem": 0,
+                "devCement": -4.71,
+                "devSand": -13.39,
+                "devGravel": 22.59,
+                "devChem": -35
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1,
+                "chem": 0,
+                "devCement": -7.06,
+                "devSand": -12.61,
+                "devGravel": 18.12,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 0.99,
+                "gravel": 1.03,
+                "chem": 0,
+                "devCement": -5.49,
+                "devSand": -14.09,
+                "devGravel": 20.71,
+                "devChem": -30
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.09,
+                "chem": 0,
+                "devCement": -6.27,
+                "devSand": -12.7,
+                "devGravel": 27.65,
+                "devChem": -25
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1.01,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -5.69,
+                "devSand": -12.35,
+                "devGravel": 23.65,
+                "devChem": -35
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -6.47,
+                "devSand": -12.87,
+                "devGravel": 23.41,
+                "devChem": -35
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 0.99,
+                "gravel": 1.07,
+                "chem": 0,
+                "devCement": -5.1,
+                "devSand": -13.74,
+                "devGravel": 25.53,
+                "devChem": -25
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -6.47,
+                "devSand": -13.13,
+                "devGravel": 23.76,
+                "devChem": -32.5
+              },
+              {
+                "truck": "",
+                "volume": 1,
+                "cement": 0.24,
+                "sand": 1,
+                "gravel": 1.05,
+                "chem": 0,
+                "devCement": -5.88,
+                "devSand": -12.87,
+                "devGravel": 23.53,
+                "devChem": -30
+              },
+              {
+                "truck": "",
+                "volume": 0.8,
+                "cement": 0.21,
+                "sand": 0.78,
+                "gravel": 0.85,
+                "chem": 0,
+                "devCement": 0.74,
+                "devSand": -14.89,
+                "devGravel": 25.59,
+                "devChem": -28.13
+              },
+              {
+                "truck": "",
+                "volume": 0.5,
+                "cement": 0.12,
+                "sand": 0.49,
+                "gravel": 0.56,
+                "chem": 0,
+                "devCement": -3.14,
+                "devSand": -14.61,
+                "devGravel": 30.59,
+                "devChem": -55
               }
             ]
           },
@@ -360359,29 +362147,81 @@
               }
             ]
           },
-          "300Б": {
-            "totalVolume": 4,
+          "М250КРЫШКИ": {
+            "totalVolume": 10,
             "dispatcherVolume": 0,
-            "factCement": 1.39,
-            "factSand": 5.7,
-            "factGravel": 5.98,
-            "factChem": 0.02,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
+            "factCement": 2.55,
+            "factSand": 8.96,
+            "factGravel": 10.1,
+            "factChem": 0.01,
+            "normCement": 2.4,
+            "normSand": 10.9,
+            "normGravel": 9.35,
+            "normChem": 0.02,
             "batches": [
               {
                 "truck": "",
-                "volume": 4,
-                "cement": 1.39,
-                "sand": 5.7,
-                "gravel": 5.98,
+                "volume": 10,
+                "cement": 2.55,
+                "sand": 8.96,
+                "gravel": 10.1,
+                "chem": 0.01,
+                "devCement": 6.42,
+                "devSand": -17.76,
+                "devGravel": 8.03,
+                "devChem": -29.5
+              }
+            ]
+          },
+          "400Б": {
+            "totalVolume": 3.5,
+            "dispatcherVolume": 0,
+            "factCement": 1.2,
+            "factSand": 3.47,
+            "factGravel": 3.19,
+            "factChem": 0.01,
+            "normCement": 1.22,
+            "normSand": 2.8,
+            "normGravel": 3.89,
+            "normChem": 0.01,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 3.5,
+                "cement": 1.2,
+                "sand": 3.47,
+                "gravel": 3.19,
+                "chem": 0.01,
+                "devCement": -2.24,
+                "devSand": 23.82,
+                "devGravel": -17.86,
+                "devChem": -1.5
+              }
+            ]
+          },
+          "М400СТОЛБЫ": {
+            "totalVolume": 8.6,
+            "dispatcherVolume": 0,
+            "factCement": 3.51,
+            "factSand": 7.82,
+            "factGravel": 8.27,
+            "factChem": 0.02,
+            "normCement": 3.27,
+            "normSand": 7.05,
+            "normGravel": 9.29,
+            "normChem": 0.03,
+            "batches": [
+              {
+                "truck": "",
+                "volume": 8.6,
+                "cement": 3.51,
+                "sand": 7.82,
+                "gravel": 8.27,
                 "chem": 0.02,
-                "devCement": 0,
-                "devSand": 0,
-                "devGravel": 0,
-                "devChem": 0
+                "devCement": 7.48,
+                "devSand": 10.95,
+                "devGravel": -10.97,
+                "devChem": -42.52
               }
             ]
           }
@@ -370494,6 +372334,233 @@
         "shipmentVolume": 5.7
       }
     },
+    "2026-06-28": {
+      "ДИН 1": {
+        "totalVolume": 9,
+        "dispatcherVolume": 0,
+        "recipes": {
+          "200Б": {
+            "totalVolume": 9,
+            "dispatcherVolume": 0,
+            "factCement": 1.72,
+            "factSand": 9.55,
+            "factGravel": 8.53,
+            "factChem": 0.02,
+            "normCement": 1.94,
+            "normSand": 8.82,
+            "normGravel": 9,
+            "normChem": 0.02,
+            "batches": [
+              {
+                "truck": "706            ",
+                "volume": 9,
+                "cement": 1.72,
+                "sand": 9.55,
+                "gravel": 8.53,
+                "chem": 0.02,
+                "devCement": -11.16,
+                "devSand": 8.23,
+                "devGravel": -5.18,
+                "devChem": -12.89
+              }
+            ]
+          },
+          "300Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 0,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "705            ",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          }
+        }
+      },
+      "КР": {
+        "totalVolume": 9,
+        "dispatcherVolume": 0,
+        "recipes": {
+          "300Б": {
+            "totalVolume": 9,
+            "dispatcherVolume": 0,
+            "factCement": 2.53,
+            "factSand": 8.07,
+            "factGravel": 9.38,
+            "factChem": 0.03,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "440",
+                "volume": 9,
+                "cement": 2.53,
+                "sand": 8.07,
+                "gravel": 9.38,
+                "chem": 0.03,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          }
+        }
+      },
+      "ТИМ": {
+        "totalVolume": 0,
+        "dispatcherVolume": 13,
+        "recipes": {
+          "350Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 13,
+            "factCement": 0.28,
+            "factSand": 0.96,
+            "factGravel": 0.99,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "455",
+                "volume": 0,
+                "cement": 0.28,
+                "sand": 0.96,
+                "gravel": 0.99,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          }
+        }
+      },
+      "НТ": {
+        "totalVolume": 0,
+        "dispatcherVolume": 21,
+        "recipes": {
+          "200Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 4,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "400Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 6,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 11,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          }
+        }
+      },
+      "ДИН": {
+        "totalVolume": 9,
+        "dispatcherVolume": 10,
+        "recipes": {
+          "200Б": {
+            "totalVolume": 9,
+            "dispatcherVolume": 0,
+            "factCement": 1.72,
+            "factSand": 9.55,
+            "factGravel": 8.53,
+            "factChem": 0.02,
+            "normCement": 1.94,
+            "normSand": 8.82,
+            "normGravel": 9,
+            "normChem": 0.02,
+            "batches": [
+              {
+                "truck": "706            ",
+                "volume": 9,
+                "cement": 1.72,
+                "sand": 9.55,
+                "gravel": 8.53,
+                "chem": 0.02,
+                "devCement": -11.16,
+                "devSand": 8.23,
+                "devGravel": -5.18,
+                "devChem": -12.89
+              }
+            ]
+          },
+          "300Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 10,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": [
+              {
+                "truck": "705            ",
+                "volume": 0,
+                "cement": 0,
+                "sand": 0,
+                "gravel": 0,
+                "chem": 0,
+                "devCement": 0,
+                "devSand": 0,
+                "devGravel": 0,
+                "devChem": 0
+              }
+            ]
+          }
+        }
+      }
+    },
     "2026-01-12": {
       "ДИН 2": {
         "totalVolume": 14.2,
@@ -370953,27 +373020,6 @@
     "2026-02-10": {},
     "2026-02-11": {},
     "2026-04-12": {},
-    "2026-04-21": {},
-    "2026-06-28": {
-      "ДИН": {
-        "totalVolume": 0,
-        "dispatcherVolume": 10,
-        "recipes": {
-          "300Б": {
-            "totalVolume": 0,
-            "dispatcherVolume": 10,
-            "factCement": 0,
-            "factSand": 0,
-            "factGravel": 0,
-            "factChem": 0,
-            "normCement": 0,
-            "normSand": 0,
-            "normGravel": 0,
-            "normChem": 0,
-            "batches": []
-          }
-        }
-      }
-    }
+    "2026-04-21": {}
   }
 }
