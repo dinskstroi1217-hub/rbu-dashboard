@@ -270,6 +270,38 @@ td.num { text-align: right; font-family: 'JetBrains Mono', monospace; font-varia
 .indent2 { padding-left: 62px !important; }
 .indent3 { padding-left: 90px !important; }
 
+/* View tabs */
+.view-tabs { display: flex; gap: 6px; margin-bottom: 12px; align-items: center; }
+.view-tab {
+  padding: 8px 16px; border-radius: 10px 10px 0 0;
+  border: 1px solid var(--line); border-bottom: none;
+  background: var(--bg-1); color: var(--txt-2);
+  cursor: pointer; font-size: 13px; font-family: inherit;
+  transition: all 0.15s;
+}
+.view-tab:hover { background: var(--bg-2); color: var(--txt); }
+.view-tab.active {
+  background: var(--bg-1); color: var(--txt); font-weight: 600;
+  border-color: var(--line-strong);
+  box-shadow: 0 -2px 0 0 var(--accent) inset;
+}
+.view-tab-export {
+  margin-left: auto; padding: 8px 14px; border-radius: 8px;
+  border: 1px solid var(--line-strong); background: var(--bg-2); color: var(--txt);
+  cursor: pointer; font-size: 12px; font-family: inherit;
+}
+.view-tab-export:hover { background: var(--bg-3); border-color: var(--accent); }
+
+.spec-subhead th { font-size: 10.5px; font-weight: 500; padding: 6px 14px; opacity: 0.7; text-transform: none; letter-spacing: 0; }
+tr.spec-row td { background: var(--bg-1); }
+tr.spec-row:hover td { background: var(--bg-2); }
+tr.spec-row td.grade { font-weight: 600; color: var(--txt); }
+td.norm { color: var(--txt-3); }
+td.fact { color: var(--txt); font-weight: 500; }
+td.delta-good { color: var(--green); }
+td.delta-bad { color: var(--pink); font-weight: 600; }
+td.delta-warn { color: var(--amber); }
+
 /* Convergence mini-bar */
 .conv-bar {
   display: inline-block; width: 36px; height: 16px; vertical-align: middle;
@@ -341,7 +373,14 @@ tbody tr { animation: fadeIn 0.2s ease-out backwards; }
 
 <div class="stats" id="stats"></div>
 
-<div class="table-wrap">
+<!-- View switcher -->
+<div class="view-tabs">
+  <button class="view-tab active" data-view="daily" onclick="switchView('daily')">📊 По дням</button>
+  <button class="view-tab" data-view="specs" onclick="switchView('specs')">🧪 Спецификации (факт vs норма)</button>
+  <button class="view-tab-export" id="exportCsv" onclick="exportSpecsCsv()" style="display:none">⬇ CSV</button>
+</div>
+
+<div class="table-wrap" id="view-daily">
 <table>
   <thead>
     <tr>
@@ -357,6 +396,30 @@ tbody tr { animation: fadeIn 0.2s ease-out backwards; }
     </tr>
   </thead>
   <tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="table-wrap hidden" id="view-specs">
+<table>
+  <thead>
+    <tr>
+      <th style="width:14%">Марка</th>
+      <th class="num">Замесов</th>
+      <th class="num">Объём, м³</th>
+      <th class="num" colspan="3">Цемент (кг/м³)</th>
+      <th class="num" colspan="3">Песок (кг/м³)</th>
+      <th class="num" colspan="3">Щебень (кг/м³)</th>
+      <th class="num" colspan="3">Химия (кг/м³)</th>
+    </tr>
+    <tr class="spec-subhead">
+      <th></th><th></th><th></th>
+      <th class="num">норма</th><th class="num">факт</th><th class="num">Δ</th>
+      <th class="num">норма</th><th class="num">факт</th><th class="num">Δ</th>
+      <th class="num">норма</th><th class="num">факт</th><th class="num">Δ</th>
+      <th class="num">норма</th><th class="num">факт</th><th class="num">Δ</th>
+    </tr>
+  </thead>
+  <tbody id="tbody-specs"></tbody>
 </table>
 </div>
 
@@ -732,6 +795,169 @@ function collapseChildren(row) {
     collapseChildren(cr);
   });
 }
+
+// ─────── СПЕЦИФИКАЦИИ ───────
+// Считает среднее фактическое потребление материалов на м³ по всем замесам
+// в выбранном периоде (месяцы фильтра). Сравнивает с нормой из справочника.
+
+let CURRENT_VIEW = 'daily';
+let LAST_SPEC_ROWS = [];   // для CSV-экспорта
+
+function switchView(v) {
+  CURRENT_VIEW = v;
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
+  document.getElementById('view-daily').classList.toggle('hidden', v !== 'daily');
+  document.getElementById('view-specs').classList.toggle('hidden', v !== 'specs');
+  document.getElementById('exportCsv').style.display = v === 'specs' ? 'inline-flex' : 'none';
+  if (v === 'specs') renderSpecs();
+}
+
+function computeSpecs(selectedMonths, selectedBase) {
+  // Обходим все batches в выбранный период. За каждую марку:
+  //   sumVol = Σ batch.volume    (м³)
+  //   sumCem = Σ batch.cement    (кг всего)
+  //   → факт кг/м³ = sumCem / sumVol
+  const agg = {};   // marka → { batches, vol, cem, sand, grav, chem }
+  const bases = selectedBase === 'all'
+    ? DATA.bases.filter(b => AGGREGATE_ONLY.has(b))
+    : [selectedBase];
+
+  for (const [date, dayBases] of Object.entries(DATA.days)) {
+    if (!selectedMonths.some(m => date.startsWith(m))) continue;
+    for (const bn of bases) {
+      const bd = dayBases[bn];
+      if (!bd || !bd.recipes) continue;
+      for (const [marka, rd] of Object.entries(bd.recipes)) {
+        for (const bt of (rd.batches || [])) {
+          if (!(bt.volume > 0)) continue;
+          const a = agg[marka] = agg[marka] || { batches: 0, vol: 0, cem: 0, sand: 0, grav: 0, chem: 0 };
+          a.batches++;
+          a.vol  += bt.volume;
+          a.cem  += (bt.cement || 0);
+          a.sand += (bt.sand   || 0);
+          a.grav += (bt.gravel || 0);
+          a.chem += (bt.chem   || 0);
+        }
+      }
+    }
+  }
+
+  const rows = [];
+  for (const [marka, a] of Object.entries(agg)) {
+    if (a.vol <= 0) continue;
+    const norm = DATA.recipes[marka] || {};
+    const fact = {
+      cem:  a.cem  / a.vol,
+      sand: a.sand / a.vol,
+      grav: a.grav / a.vol,
+      chem: a.chem / a.vol,
+    };
+    rows.push({
+      marka,
+      batches: a.batches,
+      vol: a.vol,
+      norm: { cem: norm.cement || 0, sand: norm.sand || 0, grav: norm.gravel || 0, chem: norm.chem || 0 },
+      fact,
+      updated: norm.updated || null,
+    });
+  }
+  // Сортируем по убыванию объёма
+  rows.sort((a, b) => b.vol - a.vol);
+  return rows;
+}
+
+function deltaCls(fact, norm) {
+  if (!(norm > 0)) return '';
+  const pct = (fact - norm) / norm * 100;
+  const abs = Math.abs(pct);
+  if (abs <= 3) return 'delta-good';
+  if (abs <= 7) return 'delta-warn';
+  return 'delta-bad';
+}
+function deltaTxt(fact, norm) {
+  if (!(norm > 0)) return '<span class="dim">—</span>';
+  const pct = (fact - norm) / norm * 100;
+  const sign = pct > 0 ? '+' : '';
+  return sign + pct.toFixed(1) + '%';
+}
+function n3(v) { return v > 0 ? v.toFixed(3) : '<span class="dim">—</span>'; }
+
+function renderSpecs() {
+  const selectedMonths = getSelectedMonths();
+  const rows = computeSpecs(selectedMonths, SELECTED_BASE);
+  LAST_SPEC_ROWS = rows;
+  const tb = document.getElementById('tbody-specs');
+  tb.innerHTML = '';
+
+  if (rows.length === 0) {
+    tb.innerHTML = '<tr><td colspan="15" style="text-align:center;padding:24px;color:var(--txt-3)">Нет данных за выбранный период</td></tr>';
+    return;
+  }
+
+  for (const r of rows) {
+    const dateStr = r.updated ? r.updated.slice(8,10)+'.'+r.updated.slice(5,7)+'.'+r.updated.slice(0,4) : '—';
+    const tr = document.createElement('tr');
+    tr.className = 'spec-row';
+    tr.innerHTML =
+      '<td class="grade">' + r.marka + '<div class="dim" style="font-size:11px">рецепт: ' + dateStr + '</div></td>' +
+      '<td class="num">' + r.batches + '</td>' +
+      '<td class="num">' + r.vol.toFixed(1) + '</td>' +
+      // Cement
+      '<td class="num norm">' + n3(r.norm.cem) + '</td>' +
+      '<td class="num fact">' + n3(r.fact.cem) + '</td>' +
+      '<td class="num ' + deltaCls(r.fact.cem, r.norm.cem) + '">' + deltaTxt(r.fact.cem, r.norm.cem) + '</td>' +
+      // Sand
+      '<td class="num norm">' + n3(r.norm.sand) + '</td>' +
+      '<td class="num fact">' + n3(r.fact.sand) + '</td>' +
+      '<td class="num ' + deltaCls(r.fact.sand, r.norm.sand) + '">' + deltaTxt(r.fact.sand, r.norm.sand) + '</td>' +
+      // Gravel
+      '<td class="num norm">' + n3(r.norm.grav) + '</td>' +
+      '<td class="num fact">' + n3(r.fact.grav) + '</td>' +
+      '<td class="num ' + deltaCls(r.fact.grav, r.norm.grav) + '">' + deltaTxt(r.fact.grav, r.norm.grav) + '</td>' +
+      // Chem
+      '<td class="num norm">' + n3(r.norm.chem) + '</td>' +
+      '<td class="num fact">' + n3(r.fact.chem) + '</td>' +
+      '<td class="num ' + deltaCls(r.fact.chem, r.norm.chem) + '">' + deltaTxt(r.fact.chem, r.norm.chem) + '</td>';
+    tb.appendChild(tr);
+  }
+}
+
+function exportSpecsCsv() {
+  if (!LAST_SPEC_ROWS.length) { alert('Сначала переключись на вкладку Спецификации'); return; }
+  const header = [
+    'Марка','Замесов','Объём м³','Дата рецепта',
+    'Норма Цемент','Факт Цемент','Δ Цемент %',
+    'Норма Песок','Факт Песок','Δ Песок %',
+    'Норма Щебень','Факт Щебень','Δ Щебень %',
+    'Норма Химия','Факт Химия','Δ Химия %'
+  ];
+  const pct = (f,n) => n > 0 ? ((f-n)/n*100).toFixed(1) : '';
+  const lines = [header.join(';')];
+  for (const r of LAST_SPEC_ROWS) {
+    lines.push([
+      r.marka, r.batches, r.vol.toFixed(1), r.updated || '',
+      r.norm.cem.toFixed(3),  r.fact.cem.toFixed(3),  pct(r.fact.cem, r.norm.cem),
+      r.norm.sand.toFixed(3), r.fact.sand.toFixed(3), pct(r.fact.sand, r.norm.sand),
+      r.norm.grav.toFixed(3), r.fact.grav.toFixed(3), pct(r.fact.grav, r.norm.grav),
+      r.norm.chem.toFixed(4), r.fact.chem.toFixed(4), pct(r.fact.chem, r.norm.chem),
+    ].map(v => String(v).replace(/;/g, ',')).join(';'));
+  }
+  const bom = '﻿';   // чтобы Excel понял UTF-8
+  const csv = bom + lines.join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'rbu-specs-' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// При смене фильтров — перерисовать активную вкладку
+const _origRender = render;
+render = function() {
+  _origRender();
+  if (CURRENT_VIEW === 'specs') renderSpecs();
+};
 
 init();
 </script>
