@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Дебиторка — ДКБИ</title>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="dkbi-design.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d1117;--card:#161b22;--border:#30363d;--border2:#21262d;
-  --text:#c9d1d9;--text2:#8b949e;--text3:#484f58;
-  --blue:#58a6ff;--green:#3fb950;--red:#f85149;--yellow:#e3b341;
+  /* Репойнт на dk-токены (dkbi-design.css «Engineered» v2.0) */
+  --bg:var(--dk-page);--card:var(--dk-surface);--border:var(--dk-line-2);--border2:var(--dk-line);
+  --text:var(--dk-ink);--text2:var(--dk-ink-2);--text3:var(--dk-ink-3);
+  --blue:var(--dk-primary);--green:var(--dk-success);--red:var(--dk-danger);--yellow:var(--dk-warning);
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:var(--dk-font);background:var(--bg);color:var(--text);min-height:100vh}
+button,input,select,textarea{font-family:inherit}
 
 .nav{display:flex;gap:6px;padding:10px 16px;border-bottom:1px solid var(--border);background:var(--card);flex-wrap:wrap;align-items:center}
 .nav a{color:var(--text2);text-decoration:none;font-size:13px;padding:5px 12px;border-radius:6px;border:1px solid transparent;transition:all .15s}
@@ -117,11 +120,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <script>
 // ── Отделы и менеджеры ────────────────────────────────────────────
 const DEPTS = [
-  { id:'bst',  label:'🏗 БСТ',         color:'#58a6ff', kpiCls:'blue',
+  { id:'bst',  label:'🏗 БСТ',         color:'#5B7CFF', kpiCls:'blue',
     keys:['андреев','визильков','долгопятов','ушаков'] },
-  { id:'jbi',  label:'🧱 ЖБИ',         color:'#3fb950', kpiCls:'green',
+  { id:'jbi',  label:'🧱 ЖБИ',         color:'#35C57C', kpiCls:'green',
     keys:['морозов','лукина','мухитдинов','диденко','протченко'] },
-  { id:'spec', label:'🚜 Спецтехника', color:'#e3b341', kpiCls:'yellow',
+  { id:'spec', label:'🚜 Спецтехника', color:'#E8B24A', kpiCls:'yellow',
     keys:['зименко','генадьев'] },
 ];
 

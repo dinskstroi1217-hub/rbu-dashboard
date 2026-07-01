@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Маркетинг ДКБИ</title>
-<link rel="stylesheet" href="dkbi-design.css">
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" href="dkbi-design.css">
 <style>
 :root {
-  /* Пересадка на корп-дизайн-систему dkbi-design.css (v2.0 «Engineered», data-theme="dark").
-     Локальные имена сохранены — вся вёрстка ниже работает через них, но значения теперь
-     тянутся из dk-токенов (единый источник истины). Маппинг по ТЗ дизайн-системы. */
+  /* Корп-дизайн-система ДКБИ «Engineered» v2.0 (01.07.2026): локальные
+     переменные переопределены на dk-токены. Палитра — dkbi-design.css. */
   --bg: var(--dk-page);
   --bg-card: var(--dk-surface);
   --bg-card2: var(--dk-surface-2);
@@ -28,6 +27,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: var(--bg); color: var(--text); font-family: var(--dk-font); min-height: 100vh; }
+button, input, select, textarea { font-family: inherit; }
 
 /* FUNNEL BAR — переключатель воронок (верхняя полоска) */
 .funnel-bar { display: flex; gap: 4px; padding: 10px 24px; background: var(--bg-card2); border-bottom: 1px solid var(--border); overflow-x: auto; }
@@ -66,10 +66,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--dk-font); m
 @media (max-width: 520px) { .kpi-row { grid-template-columns: 1fr; } }
 
 .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; position: relative; overflow: hidden; transition: border-color 0.2s; }
-.kpi-card:hover { border-color: #353A45; }
+.kpi-card:hover { border-color: var(--dk-line-2); }
 .kpi-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); margin-bottom: 8px; }
-.kpi-value { font-size: 26px; font-weight: 600; line-height: 1; margin-bottom: 8px; font-family: var(--dk-font-num); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
-.data-table td.num, .data-table th.num { font-family: var(--dk-font-num); font-variant-numeric: tabular-nums; }
+.kpi-value { font-family: var(--dk-font-num); font-variant-numeric: tabular-nums; font-size: 26px; font-weight: 600; line-height: 1; margin-bottom: 8px; }
 .kpi-delta { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 6px; }
 .kpi-delta.pos { background: rgba(91,224,168,0.12); color: var(--green); }
 .kpi-delta.neg { background: rgba(232,131,106,0.14); color: var(--red); }
@@ -607,14 +606,14 @@ function renderSpecMode() {
         { name: 'Контакты Авито', type: 'line', data: seriesContacts },
         { name: 'Выиграно', type: 'line', data: seriesWon },
       ],
-      xaxis: { categories: labels, labels: { style: { colors: '#9AA3B2' } } },
+      xaxis: { categories: labels, labels: { style: { colors: '#9AA0AC' } } },
       yaxis: [
-        { title: { text: 'Визиты' }, labels: { style: { colors: '#9AA3B2' } } },
-        { opposite: true, title: { text: 'Сделки / контакты' }, labels: { style: { colors: '#9AA3B2' } } },
+        { title: { text: 'Визиты' }, labels: { style: { colors: '#9AA0AC' } } },
+        { opposite: true, title: { text: 'Сделки / контакты' }, labels: { style: { colors: '#9AA0AC' } } },
       ],
       stroke: { width: [0, 3, 3, 3], curve: 'smooth' },
-      colors: ['#5B7CFF', '#35C57C', '#E8B24A', '#C6F24E'],
-      legend: { labels: { colors: '#9AA3B2' } },
+      colors: ['#5B8DEF', '#5BE0A8', '#E8A86A', '#C9A6F0'],
+      legend: { labels: { colors: '#9AA0AC' } },
       grid: { borderColor: 'rgba(255,255,255,0.07)' },
       theme: { mode: 'dark' },
       tooltip: { theme: 'dark', shared: true, intersect: false },
@@ -704,15 +703,15 @@ function renderTrend(weeks) {
       { name: 'Расход, тыс ₽', type: 'line', data: spend },
       { name: 'CPL', type: 'line', data: cpl },
     ],
-    xaxis: { categories: labels, labels: { style: { colors: '#626B7A', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    xaxis: { categories: labels, labels: { style: { colors: '#6B7280', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
     yaxis: [
-      { title: { text: '' }, labels: { style: { colors: '#626B7A' }, formatter: v => fmt(v) }, min: 0 },
-      { opposite: true, title: { text: '' }, labels: { style: { colors: '#626B7A' }, formatter: v => v + 'k₽' }, min: 0 },
+      { title: { text: '' }, labels: { style: { colors: '#6B7280' }, formatter: v => fmt(v) }, min: 0 },
+      { opposite: true, title: { text: '' }, labels: { style: { colors: '#6B7280' }, formatter: v => v + 'k₽' }, min: 0 },
       { show: false, min: 0 },
     ],
     stroke: { curve: 'smooth', width: [0, 2, 2] },
     fill: { type: ['solid', 'solid', 'solid'], opacity: [0.8, 1, 1] },
-    colors: ['#5B7CFF', '#E8B24A', '#C6F24E'],
+    colors: ['#5B8DEF', '#E8A86A', '#C9A6F0'],
     plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
     grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
     tooltip: {
@@ -723,7 +722,7 @@ function renderTrend(weeks) {
         { formatter: v => fmt(v) + ' ₽/лид' },
       ]
     },
-    legend: { labels: { colors: '#9AA3B2' }, position: 'top', horizontalAlign: 'right' },
+    legend: { labels: { colors: '#9AA0AC' }, position: 'top', horizontalAlign: 'right' },
     theme: { mode: 'dark' },
   });
   charts.trend.render();
@@ -740,10 +739,10 @@ function renderSources(week) {
     chart: { type: 'donut', height: 260, background: 'transparent' },
     series: entries.map(e => e[1]),
     labels: entries.map(e => e[0]),
-    colors: ['#5B7CFF','#35C57C','#E8B24A','#C6F24E','#E8B24A','#F0696E','#6AD0E8','#E89AC0'],
-    legend: { position: 'bottom', labels: { colors: '#9AA3B2' }, fontSize: '11px', itemMargin: { horizontal: 6 } },
+    colors: ['#5B8DEF','#5BE0A8','#E8A86A','#C9A6F0','#E8C36A','#E8836A','#6AD0E8','#E89AC0'],
+    legend: { position: 'bottom', labels: { colors: '#9AA0AC' }, fontSize: '11px', itemMargin: { horizontal: 6 } },
     dataLabels: { enabled: true, style: { fontSize: '11px' }, dropShadow: { enabled: false } },
-    plotOptions: { pie: { donut: { size: '60%', labels: { show: true, total: { show: true, label: 'Всего', color: '#9AA3B2', formatter: w => fmt(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
+    plotOptions: { pie: { donut: { size: '60%', labels: { show: true, total: { show: true, label: 'Всего', color: '#9AA0AC', formatter: w => fmt(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
     stroke: { width: 0 },
     theme: { mode: 'dark' },
     tooltip: { theme: 'dark' },
@@ -761,9 +760,9 @@ function renderCategories(week) {
   charts.cats = new ApexCharts(document.getElementById('chart-categories'), {
     chart: { type: 'bar', height: 260, background: 'transparent', toolbar: { show: false } },
     series: [{ name: 'Сделки', data: entries.map(e => e[1]) }],
-    xaxis: { categories: entries.map(e => e[0].replace(/ \(#\d+\)/, '')), labels: { style: { colors: '#626B7A', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
-    yaxis: { labels: { style: { colors: '#626B7A' } } },
-    colors: ['#35C57C'],
+    xaxis: { categories: entries.map(e => e[0].replace(/ \(#\d+\)/, '')), labels: { style: { colors: '#6B7280', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis: { labels: { style: { colors: '#6B7280' } } },
+    colors: ['#5BE0A8'],
     plotOptions: { bar: { horizontal: true, borderRadius: 4, barHeight: '55%' } },
     dataLabels: { enabled: true, style: { fontSize: '11px' } },
     grid: { borderColor: 'rgba(255,255,255,0.05)', xaxis: { lines: { show: true } }, yaxis: { lines: { show: false } } },
@@ -789,10 +788,10 @@ function renderSpend(week) {
     chart: { type: 'donut', height: 260, background: 'transparent' },
     series: items.map(i => Math.round(i.val)),
     labels: items.map(i => i.label),
-    colors: ['#5B7CFF', '#E8B24A', '#35C57C'],
-    legend: { position: 'bottom', labels: { colors: '#9AA3B2' }, fontSize: '12px' },
+    colors: ['#5B8DEF', '#E8C36A', '#5BE0A8'],
+    legend: { position: 'bottom', labels: { colors: '#9AA0AC' }, fontSize: '12px' },
     dataLabels: { enabled: true, formatter: (val, opts) => opts.w.globals.series[opts.seriesIndex] >= 1000 ? fmtR(opts.w.globals.series[opts.seriesIndex]) : val.toFixed(0) + '%', style: { fontSize: '11px' }, dropShadow: { enabled: false } },
-    plotOptions: { pie: { donut: { size: '55%', labels: { show: true, total: { show: true, label: 'Расход', color: '#9AA3B2', formatter: w => fmtR(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
+    plotOptions: { pie: { donut: { size: '55%', labels: { show: true, total: { show: true, label: 'Расход', color: '#9AA0AC', formatter: w => fmtR(w.globals.seriesTotals.reduce((a,b)=>a+b,0)) } } } } },
     stroke: { width: 0 },
     theme: { mode: 'dark' },
     tooltip: { theme: 'dark', y: { formatter: v => fmtR(v) } },

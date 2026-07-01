@@ -4,15 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Дашборд РБУ — ДКБИ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="dkbi-design.css">
 <style>
-/* Локальные переменные → корп-токены dkbi-design.css.
-   Темы (dark/light) переключаются самой дизайн-системой через data-theme. */
-:root {
+/* DARK (default) — репойнт на dk-токены (dkbi-design.css) */
+:root, [data-theme="dark"] {
   --bg-0: var(--dk-page);
   --bg-1: var(--dk-surface);
   --bg-2: var(--dk-surface-2);
-  --bg-3: var(--dk-surface-2);
+  --bg-3: var(--dk-line);
   --bg-4: var(--dk-line-2);
   --line: var(--dk-line);
   --line-strong: var(--dk-line-2);
@@ -21,29 +23,55 @@
   --txt-3: var(--dk-ink-3);
   --txt-4: var(--dk-ink-3);
   --accent: var(--dk-primary);
-  --accent-2: var(--dk-primary);
+  --accent-2: var(--dk-primary-h);
   --green: var(--dk-success);
-  --green-glow: var(--dk-success-tint);
-  --green-edge: color-mix(in srgb, var(--dk-success) 45%, transparent);
+  --green-glow: rgba(53, 197, 124, 0.12);
+  --green-edge: rgba(53, 197, 124, 0.35);
   --pink: var(--dk-danger);
-  --pink-glow: var(--dk-danger-tint);
-  --pink-edge: color-mix(in srgb, var(--dk-danger) 40%, transparent);
+  --pink-glow: rgba(240, 105, 110, 0.10);
+  --pink-edge: rgba(240, 105, 110, 0.30);
   --amber: var(--dk-warning);
-  --amber-glow: var(--dk-warning-tint);
-  --amber-edge: color-mix(in srgb, var(--dk-warning) 40%, transparent);
-  --hero-bg:
-    radial-gradient(ellipse 80% 60% at 50% -10%, color-mix(in srgb, var(--dk-primary) 12%, transparent) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, color-mix(in srgb, var(--dk-accent) 7%, transparent) 0%, transparent 60%),
-    var(--dk-page);
-  --shadow-1: var(--dk-shadow);
-  --shadow-2: var(--dk-shadow);
-  --r-sm: 6px; --r-md: var(--dk-r); --r-lg: 14px; --r-xl: var(--dk-r-lg);
+  --amber-glow: rgba(232, 178, 74, 0.10);
+  --amber-edge: rgba(232, 178, 74, 0.30);
+  --hero-bg: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(91, 124, 255, 0.12) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(91, 124, 255, 0.07) 0%, transparent 60%), var(--bg-0);
+  --shadow-1: 0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 24px -8px rgba(0,0,0,0.5);
+  --shadow-2: 0 2px 0 rgba(255,255,255,0.05) inset, 0 24px 48px -16px rgba(0,0,0,0.6);
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
+}
+
+/* LIGHT — репойнт на dk-токены (dkbi-design.css) */
+[data-theme="light"] {
+  --bg-0: var(--dk-page);
+  --bg-1: var(--dk-surface);
+  --bg-2: var(--dk-surface-2);
+  --bg-3: var(--dk-surface-2);
+  --bg-4: var(--dk-line);
+  --line: var(--dk-line);
+  --line-strong: var(--dk-line-2);
+  --txt: var(--dk-ink);
+  --txt-2: var(--dk-ink-2);
+  --txt-3: var(--dk-ink-3);
+  --txt-4: var(--dk-ink-3);
+  --accent: var(--dk-primary);
+  --accent-2: var(--dk-primary-h);
+  --green: var(--dk-success);
+  --green-glow: rgba(18, 161, 80, 0.10);
+  --green-edge: rgba(18, 161, 80, 0.35);
+  --pink: var(--dk-danger);
+  --pink-glow: rgba(229, 72, 77, 0.08);
+  --pink-edge: rgba(229, 72, 77, 0.30);
+  --amber: var(--dk-warning);
+  --amber-glow: rgba(217, 138, 0, 0.10);
+  --amber-edge: rgba(217, 138, 0, 0.30);
+  --hero-bg: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(43, 80, 230, 0.06) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 100% 0%, rgba(43, 80, 230, 0.05) 0%, transparent 60%), var(--bg-0);
+  --shadow-1: 0 1px 0 rgba(0,0,0,0.02) inset, 0 4px 16px -8px rgba(20,25,40,0.10);
+  --shadow-2: 0 2px 0 rgba(0,0,0,0.02) inset, 0 16px 40px -16px rgba(20,25,40,0.15);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 body {
-  font-family: var(--dk-font);
+  font-family: var(--dk-font), -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   background: var(--hero-bg);
   background-attachment: fixed;
   color: var(--txt);
@@ -54,6 +82,7 @@ body {
   padding: 28px 36px 80px;
   transition: background-color 0.3s, color 0.3s;
 }
+button, input, select, textarea { font-family: inherit; }
 
 /* Theme toggle button */
 .theme-toggle {
@@ -67,7 +96,7 @@ body {
 .theme-toggle svg { width: 14px; height: 14px; }
 @media (max-width: 900px) { body { padding: 16px 14px 60px; } }
 
-.num, .mono { font-family: var(--dk-font-num); font-variant-numeric: tabular-nums; }
+.num, .mono { font-family: var(--dk-font-num), ui-monospace, SFMono-Regular, Menlo, monospace; font-variant-numeric: tabular-nums; }
 
 /* ─── HERO ─────────────────────────────────────── */
 .hero {
@@ -78,19 +107,19 @@ body {
 .hero-title { display: flex; align-items: center; gap: 14px; }
 .hero-logo {
   width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--dk-primary), var(--dk-accent));
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px; font-weight: 700; color: var(--dk-on-accent);
-  box-shadow: 0 6px 20px -6px color-mix(in srgb, var(--dk-primary) 60%, transparent);
+  font-size: 22px; font-weight: 700; color: #fff;
+  box-shadow: 0 6px 20px -6px rgba(139, 92, 246, 0.6);
 }
 h1 {
-  font-family: var(--dk-font-dsp);
+  font-family: var(--dk-font), sans-serif;
   font-size: 26px; font-weight: 700; letter-spacing: -0.025em;
   color: var(--txt);
 }
 .hero-sub { color: var(--txt-3); font-size: 13px; margin-top: 4px; display: flex; gap: 10px; align-items: center; }
-.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 60%, transparent); animation: pulse 2.5s infinite; }
-@keyframes pulse { 0%,100%{box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 50%, transparent);} 50%{box-shadow: 0 0 0 8px transparent;} }
+.live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(34,197,94,0.6); animation: pulse 2.5s infinite; }
+@keyframes pulse { 0%,100%{box-shadow: 0 0 0 0 rgba(34,197,94,0.5);} 50%{box-shadow: 0 0 0 8px rgba(34,197,94,0);} }
 
 /* Hero convergence card (big number) */
 .hero-conv {
@@ -100,12 +129,12 @@ h1 {
   border: 1px solid var(--line-strong);
   box-shadow: var(--shadow-1);
 }
-.hero-conv-num { font-family: var(--dk-font-num); font-size: 28px; font-weight: 700; color: var(--green); line-height: 1; }
+.hero-conv-num { font-family: var(--dk-font-num), monospace; font-size: 28px; font-weight: 700; color: var(--green); line-height: 1; }
 .hero-conv-num.warn { color: var(--amber); }
 .hero-conv-num.bad { color: var(--pink); }
 .hero-conv-label { color: var(--txt-3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
 .hero-conv-bar { width: 140px; height: 6px; background: var(--bg-3); border-radius: 999px; overflow: hidden; margin-top: 4px; }
-.hero-conv-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--green) 0%, color-mix(in srgb, var(--green) 78%, #000) 100%); transition: width 0.6s cubic-bezier(.4,0,.2,1); }
+.hero-conv-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--green) 0%, #16a34a 100%); transition: width 0.6s cubic-bezier(.4,0,.2,1); }
 
 /* ─── FILTERS ─────────────────────────────────────── */
 .filters {
@@ -117,7 +146,7 @@ h1 {
   transition: all 0.15s; user-select: none; border: none; background: transparent; font-family: inherit;
 }
 .chip:hover { color: var(--txt); background: var(--bg-3); }
-.chip.active { background: var(--dk-primary); color: var(--dk-on-primary); box-shadow: 0 4px 12px -4px color-mix(in srgb, var(--dk-primary) 50%, transparent); }
+.chip.active { background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; box-shadow: 0 4px 12px -4px rgba(139, 92, 246, 0.5); }
 
 .month-picker { position: relative; }
 .month-btn {
@@ -160,9 +189,9 @@ h1 {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
 }
-.stat .n { font-family: var(--dk-font-num); font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: var(--txt); line-height: 1.1; }
+.stat .n { font-family: var(--dk-font-num), monospace; font-size: 26px; font-weight: 700; letter-spacing: -0.03em; color: var(--txt); line-height: 1.1; }
 .stat .l { color: var(--txt-3); font-size: 11px; margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
-.stat .u { font-size: 12px; color: var(--txt-3); font-family: var(--dk-font); font-weight: 400; margin-left: 4px; }
+.stat .u { font-size: 12px; color: var(--txt-3); font-family: var(--dk-font), sans-serif; font-weight: 400; margin-left: 4px; }
 .stat.green { border-color: var(--green-edge); background: linear-gradient(180deg, var(--green-glow) 0%, var(--bg-1) 100%); }
 .stat.green .n { color: var(--green); }
 .stat.red { border-color: var(--pink-edge); background: linear-gradient(180deg, var(--pink-glow) 0%, var(--bg-1) 100%); }
@@ -171,7 +200,7 @@ h1 {
 .stat.amber .n { color: var(--amber); }
 
 .stat-trend { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; }
-.stat-trend .delta { font-size: 11px; font-family: var(--dk-font-num); color: var(--txt-3); }
+.stat-trend .delta { font-size: 11px; font-family: var(--dk-font-num), monospace; color: var(--txt-3); }
 
 /* ─── TABLE ─────────────────────────────────────── */
 .table-wrap {
@@ -188,7 +217,7 @@ thead th {
 }
 thead th.num { text-align: right; }
 td { padding: 11px 16px; border-top: 1px solid var(--line); }
-td.num { text-align: right; font-family: var(--dk-font-num); font-variant-numeric: tabular-nums; }
+td.num { text-align: right; font-family: var(--dk-font-num), monospace; font-variant-numeric: tabular-nums; }
 
 /* Row hierarchy */
 .day-row { cursor: pointer; font-weight: 600; transition: background 0.12s; position: relative; }
@@ -225,7 +254,7 @@ td.num { text-align: right; font-family: var(--dk-font-num); font-variant-numeri
 .badge {
   display: inline-flex; align-items: center; gap: 4px;
   border-radius: 6px; padding: 2px 8px; font-size: 11px;
-  font-weight: 500; font-family: var(--dk-font);
+  font-weight: 500; font-family: var(--dk-font), sans-serif;
   border: 1px solid;
 }
 .badge.ok { background: var(--green-glow); color: var(--green); border-color: var(--green-edge); }
@@ -283,11 +312,11 @@ td.delta-warn { color: var(--amber); }
 }
 .conv-bar-fill {
   position: absolute; bottom: 0; left: 0; right: 0; height: 100%;
-  background: linear-gradient(180deg, var(--green) 0%, color-mix(in srgb, var(--green) 78%, #000) 100%);
+  background: linear-gradient(180deg, var(--green) 0%, #16a34a 100%);
   transition: width 0.3s;
 }
-.conv-bar.partial .conv-bar-fill { background: linear-gradient(180deg, var(--amber) 0%, color-mix(in srgb, var(--amber) 78%, #000) 100%); }
-.conv-bar.bad .conv-bar-fill { background: linear-gradient(180deg, var(--pink) 0%, color-mix(in srgb, var(--pink) 78%, #000) 100%); }
+.conv-bar.partial .conv-bar-fill { background: linear-gradient(180deg, var(--amber) 0%, #d97706 100%); }
+.conv-bar.bad .conv-bar-fill { background: linear-gradient(180deg, var(--pink) 0%, #dc2626 100%); }
 
 /* Sparkline */
 .spark { display: inline-block; vertical-align: middle; margin-right: 8px; }
@@ -716,9 +745,9 @@ function render() {
   hcn.className = 'hero-conv-num ' + (convPctValue >= 80 ? '' : convPctValue >= 50 ? 'warn' : 'bad');
   hcb.style.width = convPctValue + '%';
   if (convPctValue < 80) hcb.style.background = convPctValue >= 50
-    ? 'linear-gradient(90deg, var(--amber), color-mix(in srgb, var(--amber) 78%, #000))'
-    : 'linear-gradient(90deg, var(--pink), color-mix(in srgb, var(--pink) 78%, #000))';
-  else hcb.style.background = 'linear-gradient(90deg, var(--green), color-mix(in srgb, var(--green) 78%, #000))';
+    ? 'linear-gradient(90deg, var(--amber), #d97706)'
+    : 'linear-gradient(90deg, var(--pink), #dc2626)';
+  else hcb.style.background = 'linear-gradient(90deg, var(--green), #16a34a)';
 
   // Stats
   const devCemTotal  = totalNormCem  > 0 ? ((totalFactCem  - totalNormCem)  / totalNormCem  * 100) : null;
