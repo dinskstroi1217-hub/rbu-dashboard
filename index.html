@@ -622,8 +622,22 @@ function render() {
         const recRow = document.createElement('tr');
         recRow.className = 'recipe-row hidden';
         recRow.dataset.parent = bid;
+        // Recipe freshness badge: green "новый" if ≤7 days, dim date otherwise
+        let recipeMeta = '';
+        if (norm && norm.updated) {
+          const d = new Date(norm.updated + 'T00:00:00Z');
+          const now = new Date();
+          const ageDays = Math.floor((now - d) / 86400000);
+          const dateStr = norm.updated.slice(8,10) + '.' + norm.updated.slice(5,7) + '.' + norm.updated.slice(0,4);
+          if (ageDays <= 7) recipeMeta = ' <span class="badge ok" title="Рецепт обновлён '+dateStr+'">🔄 нов. ' + dateStr + '</span>';
+          else if (ageDays <= 30) recipeMeta = ' <span class="badge amber" title="Рецепт обновлён '+dateStr+'">' + dateStr + '</span>';
+          else recipeMeta = ' <span class="dim" title="Рецепт от '+dateStr+'">· от ' + dateStr + '</span>';
+        } else if (norm) {
+          recipeMeta = ' <span class="badge warn" title="Нет даты в справочнике">без даты</span>';
+        }
+
         recRow.innerHTML =
-          '<td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name +
+          '<td class="indent2"><span class="toggle" id="t-'+rid+'">▶</span>' + rec.name + recipeMeta +
           ' <span class="dim">· ' + rec.batches.length + '</span></td>' +
           '<td class="num">' + fmt(rVol) + '</td>' +
           '<td class="num">' + fmt(rDispVol) + '</td>' +
