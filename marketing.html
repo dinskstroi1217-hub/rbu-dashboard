@@ -109,6 +109,17 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .tag.y { background: rgba(232,195,106,0.14); color: var(--yellow); }
 .tag.r { background: rgba(232,131,106,0.14); color: var(--red); }
 
+/* Executive-сводка сверху Обзора + свёрнутая детализация (18.06.2026) */
+.exec-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 14px; }
+.exec-cell .exec-h { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); margin-bottom: 6px; }
+.exec-cell .exec-b { font-size: 13px; line-height: 1.45; color: var(--text); }
+.detail-block { margin: 4px 0; }
+.detail-summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text2); padding: 11px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); list-style: none; user-select: none; }
+.detail-summary::-webkit-details-marker { display: none; }
+.detail-summary::before { content: '▸ '; color: var(--text3); }
+details[open] > .detail-summary::before { content: '▾ '; }
+@media (max-width: 700px) { .exec-card { grid-template-columns: 1fr; gap: 10px; } }
+
 /* LOADER */
 #loader { display: flex; align-items: center; justify-content: center; height: 80vh; flex-direction: column; gap: 12px; color: var(--text2); font-size: 14px; }
 .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -158,12 +169,19 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
   </div>
   <div class="main">
     <div id="main-blocks">
+    <div id="exec-summary"></div>
     <div class="kpi-row" id="kpi-row"></div>
     <div id="crm-quality"></div>
     <div class="charts-row">
       <div class="chart-card wide">
         <div class="chart-title">Лиды и расход по неделям</div>
         <div id="chart-trend"></div>
+      </div>
+    </div>
+    <div class="charts-row">
+      <div class="chart-card wide">
+        <div class="chart-title">Аналитика от ИИ</div>
+        <div id="ai-insights"></div>
       </div>
     </div>
     <div class="charts-row">
@@ -176,28 +194,27 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
         <div id="chart-categories"></div>
       </div>
     </div>
-    <div class="bottom-row">
-      <div class="chart-card">
-        <div class="chart-title">Конверсия и экономика каналов</div>
-        <div class="table-note">Сделки/лид = сделки, <b>созданные</b> на выбранной неделе, делённые на лиды этой недели. Это операционный срез, не когорта: в B2B-цикле (4–12 нед) сделка часто относится к лиду прошлых недель — не читать как «настоящую конверсию канала».</div>
-        <table class="data-table" id="tbl-sources"></table>
-      </div>
-      <div class="chart-card">
+    <div class="charts-row">
+      <div class="chart-card wide">
         <div class="chart-title">Каналы расхода</div>
         <div id="chart-spend"></div>
       </div>
     </div>
-    <div class="bottom-row">
-      <div class="chart-card">
-        <div class="chart-title">Конверсия по менеджерам</div>
-        <div class="table-note">Выигр./лид считается по маркет-сделкам и маркет-лидам недели. Для управленческого контроля, не для финальной атрибуции.</div>
-        <table class="data-table" id="tbl-managers"></table>
+    <details class="detail-block">
+      <summary class="detail-summary">📋 Детализация: конверсия по каналам и менеджерам</summary>
+      <div class="bottom-row" style="margin-top:12px">
+        <div class="chart-card">
+          <div class="chart-title">Конверсия и экономика каналов</div>
+          <div class="table-note">Сделки/лид = сделки, <b>созданные</b> на выбранной неделе, делённые на лиды этой недели. Это операционный срез, не когорта: в B2B-цикле (4–12 нед) сделка часто относится к лиду прошлых недель — не читать как «настоящую конверсию канала».</div>
+          <table class="data-table" id="tbl-sources"></table>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Конверсия по менеджерам</div>
+          <div class="table-note">Выигр./лид считается по маркет-сделкам и маркет-лидам недели. Для управленческого контроля, не для финальной атрибуции.</div>
+          <table class="data-table" id="tbl-managers"></table>
+        </div>
       </div>
-      <div class="chart-card">
-        <div class="chart-title">Аналитика от ИИ</div>
-        <div id="ai-insights"></div>
-      </div>
-    </div>
+    </details>
     <div class="charts-row" id="seo-row" style="display:none">
       <div class="chart-card wide">
         <div class="chart-title">🔍 SEO-позиции в Яндексе (Topvisor, Краснодар)</div>
@@ -902,6 +919,33 @@ function renderAIInsights(week, prev) {
   `;
 }
 
+// --- Executive-сводка (18.06.2026): «что произошло / главный риск / что сделать» ---
+// Переиспользует ai (summary/risks/actions) как renderAIInsights. Если CRM красный —
+// он становится главным риском (данные важнее любой AI-гипотезы).
+function renderExecutive(week, prev) {
+  const el = document.getElementById('exec-summary');
+  if (!el) return;
+  const ai = week.ai?.summary ? week.ai : buildAutoInsights(week, prev);
+  const risks = ai.risks || [];
+  const actions = ai.actions || [];
+  const txt = (x) => x ? esc(typeof x === 'string' ? x : (x.text || '')) : '';
+  const dq = week.dataQuality;
+  let topRisk = txt(risks[0]);
+  if (dq && dq.status === 'red') {
+    const crmRisk = `Качество CRM: pipeline не заполнен (${dq.inWorkNoOpportunity}/${dq.inWorkMarketing} сделок без суммы) — прогноз ROMI невозможен`;
+    topRisk = crmRisk + (topRisk ? `. ${topRisk}` : '');
+  }
+  const cell = (icon, title, body) =>
+    `<div class="exec-cell"><div class="exec-h">${icon} ${title}</div>`
+    + `<div class="exec-b">${body || '<span style="color:var(--text3)">—</span>'}</div></div>`;
+  el.innerHTML = `
+    <div class="exec-card">
+      ${cell('📈', 'Что произошло', esc(ai.summary || 'Сводка появится после ближайшего прогона отчёта.'))}
+      ${cell('⚠️', 'Главный риск', topRisk)}
+      ${cell('🎯', 'Что сделать', txt(actions[0]))}
+    </div>`;
+}
+
 // --- Качество CRM-данных (18.06.2026) ---
 // Предпосчёт приходит с бэка в week.dataQuality (history.js). Фронт только рисует.
 // Красный — на СОЧЕТАНИИ «сделки в работе есть, а pipeline≈0» (менеджеры не заполняют
@@ -1087,6 +1131,7 @@ function applyPeriod(current, prev) {
   if (!current) return;
   document.getElementById('hdr-period').textContent =
     `${current.from} — ${current.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
+  renderExecutive(current, prev);
   renderKPI(current, prev);
   renderCrmQuality(current);
   renderSources(current);
