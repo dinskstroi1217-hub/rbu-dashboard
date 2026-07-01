@@ -113,6 +113,9 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .exec-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 16px 18px; margin-bottom: 14px; }
 .exec-cell .exec-h { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); margin-bottom: 6px; }
 .exec-cell .exec-b { font-size: 13px; line-height: 1.45; color: var(--text); }
+/* Grid-дети .main (main/product/spec-blocks) — min-width:0, иначе широкая таблица
+   (напр. свёрнутая справка бенчмарков) распирает страницу вместо скролла внутри карточки. */
+.main > div { min-width: 0; }
 .detail-block { margin: 4px 0; }
 .detail-summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text2); padding: 11px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); list-style: none; user-select: none; }
 .detail-summary::-webkit-details-marker { display: none; }
@@ -212,6 +215,37 @@ details[open] > .detail-summary::before { content: '▾ '; }
           <div class="chart-title">Конверсия по менеджерам</div>
           <div class="table-note">Выигр./лид считается по маркет-сделкам и маркет-лидам недели. Для управленческого контроля, не для финальной атрибуции.</div>
           <table class="data-table" id="tbl-managers"></table>
+        </div>
+      </div>
+    </details>
+    <details class="detail-block">
+      <summary class="detail-summary">📐 Ориентиры по бенчмаркам (что считать нормой)</summary>
+      <div class="chart-card" style="margin-top:12px">
+        <div class="table-note" style="margin-bottom:10px">
+          ⚠️ <b>CPL здесь = стоимость маркет-лида</b> (любой контакт: звонок / чат / форма), а НЕ квалифицированного лида — поэтому цифры ниже рыночных «3–5к ₽ за лид». Внутренние пороги ДКБИ (benchmarks.json) + отраслевые ориентиры. Формат: <span style="color:var(--green)">зелёный</span> / <span style="color:var(--yellow)">жёлтый</span> / <span style="color:var(--red)">красный</span> = хорошо / средне / плохо.
+        </div>
+        <div style="overflow-x:auto">
+        <table class="data-table" style="min-width:520px">
+          <thead><tr><th>Канал</th><th class="num">CPL, ₽</th><th class="num">Лид→сделка</th><th class="num">Win-rate</th><th class="num">ROMI</th></tr></thead>
+          <tbody>
+            <tr><td>Я.Директ</td><td class="num">800 / 1500 / 2500</td><td class="num">15 / 8 / 3%</td><td class="num">30 / 15 / 5%</td><td class="num">200 / 50 / 0%</td></tr>
+            <tr><td>Я.Бизнес / Карты</td><td class="num">400 / 900 / 1500</td><td class="num">20 / 10 / 5%</td><td class="num">—</td><td class="num">300 / 100 / 0%</td></tr>
+            <tr><td>2ГИС</td><td class="num">500 / 1000 / 1800</td><td class="num">25 / 12 / 5%</td><td class="num">40 / 20 / 10%</td><td class="num">250 / 80 / 0%</td></tr>
+            <tr><td>Авито</td><td class="num">250 / 700 / 1300</td><td class="num">18 / 8 / 3%</td><td class="num">35 / 18 / 8%</td><td class="num">300 / 100 / 0%</td></tr>
+            <tr><td>Сайт (SEO / прямые)</td><td class="num">200 / 600 / 1200</td><td class="num">25 / 12 / 5%</td><td class="num">40 / 22 / 10%</td><td class="num">400 / 150 / 0%</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="table-note" style="margin-top:14px">
+          <b>🅰️ Авито — как растить конверсию:</b><br>
+          • CR просмотр→контакт: <b>1–3% норма, 3%+ отлично</b>; ниже 1% — слабые фото / цена / описание<br>
+          • Просмотров на объявление: <b>50–200/нед норма</b>; 1–5 — охват «зарыт», пора обновлять<br>
+          • Обновлять карточку <b>~1 раз в неделю</b> (Авито ранжирует активные); частые правки сбрасывают CTR, дубли режут охват<br>
+          • Признак застоя: много объявлений, мало просмотров → поднять / обновить топ-15 карточек
+        </div>
+        <div class="table-note" style="margin-top:10px">
+          <b>📊 Общие ориентиры:</b> сквозная конверсия лид→сделка в B2B-стройке <b>7–15%</b> (норма), 40%+ у зрелого отдела с CRM и обработкой &lt;5 мин · ROMI &gt;100% = окупаемость, здоровый ориентир <b>&gt;200–300%</b> · общий CPL: зелёный &lt;600 ₽, жёлтый &lt;1200 ₽.<br>
+          <span style="color:var(--text3)">Источники: benchmarks.json (опыт ДКБИ + eLama / PromoPult / Roistat) и отраслевые ориентиры (Авито / callibri / vc.ru, 2025–26). Цифры — ориентир, не догма.</span>
         </div>
       </div>
     </details>
