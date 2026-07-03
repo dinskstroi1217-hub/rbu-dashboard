@@ -190,29 +190,32 @@ details[open] > .detail-summary::before { content: '▾ '; }
         <div id="ai-insights"></div>
       </div>
     </div>
-    <div class="charts-row">
-      <div class="chart-card">
-        <div class="chart-title">Лиды по источникам</div>
-        <div id="chart-sources"></div>
+    <details class="detail-block">
+      <summary class="detail-summary">📈 Трафик и каналы (Авито · источники · расход)</summary>
+      <div id="avito-overview" style="margin-top:12px"></div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Лиды по источникам</div>
+          <div id="chart-sources"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Сделки по направлениям</div>
+          <div id="chart-categories"></div>
+        </div>
       </div>
-      <div class="chart-card">
-        <div class="chart-title">Сделки по направлениям</div>
-        <div id="chart-categories"></div>
+      <div class="charts-row">
+        <div class="chart-card wide">
+          <div class="chart-title">Каналы расхода</div>
+          <div id="chart-spend"></div>
+        </div>
       </div>
-    </div>
-    <div id="avito-overview"></div>
-    <div class="charts-row">
-      <div class="chart-card wide">
-        <div class="chart-title">Каналы расхода</div>
-        <div id="chart-spend"></div>
-      </div>
-    </div>
+    </details>
     <details class="detail-block">
       <summary class="detail-summary">📋 Детализация: конверсия по каналам и менеджерам</summary>
       <div class="bottom-row" style="margin-top:12px">
         <div class="chart-card">
           <div class="chart-title">Конверсия и экономика каналов</div>
-          <div class="table-note">Конв. = сделки, <b>созданные</b> на выбранной неделе ÷ лиды этой недели (операционный срез, не когорта: в B2B-цикле 4–12 нед сделка часто относится к лиду прошлых недель — не «настоящая конверсия канала»). <b>Выручка/лид</b> = выигранная выручка канала ÷ лиды (сколько ₽ приносит лид) — это НЕ стоимость лида. Где 0 — сумму сделки не заполнили (OPPORTUNITY), а не «нет отдачи». Стоимость привлечения (CPL) — в KPI «CPL» вверху (blended по всем каналам).</div>
+          <div class="table-note" title="Конв. = сделки, созданные на неделе ÷ лиды этой недели — операционный срез, не когорта (в B2B сделка часто из лида прошлых недель). Выручка/лид = выигранная выручка ÷ лиды — это НЕ стоимость лида. Где 0 — сумму сделки (OPPORTUNITY) не заполнили. Стоимость привлечения (CPL) — в KPI вверху.">Операционный срез (не когорта). «Выручка/лид» ≠ стоимость лида (CPL — в KPI вверху). <span style="border-bottom:1px dotted var(--text3);cursor:help">подробнее</span></div>
           <table class="data-table" id="tbl-sources"></table>
         </div>
         <div class="chart-card">
@@ -845,7 +848,7 @@ function renderChannelCPL(week) {
   el.innerHTML = `
     <div class="chart-card">
       <div class="chart-title">💰 Стоимость лида по каналам (CPL)</div>
-      <div class="table-note">CPL = расход канала ÷ его лиды. Считается там, где расход привязан к лидам. <b>«н/д»</b> — расход есть (напр. Директ), но лиды приходят через сайт/звонки, к каналу не привязаны (нужен коллтрекинг). Органика (Сайт/SEO/Email) — без расхода. Надёжный ориентир по цене лида — KPI «CPL» вверху (blended по всем каналам).</div>
+      <div class="table-note" title="CPL = расход канала ÷ его лиды. «н/д» — расход есть (напр. Директ), но лиды идут через сайт/звонки, к каналу не привязаны (нужен коллтрекинг). Органика (Сайт/SEO/Email) — без расхода. Надёжный ориентир — CPL в KPI вверху (blended).">CPL = расход ÷ лиды канала. «н/д» — расход есть, но лиды не привязаны (нужен коллтрекинг). <span style="border-bottom:1px dotted var(--text3);cursor:help">подробнее</span></div>
       <div style="overflow-x:auto"><table class="data-table" style="min-width:420px">
         <thead><tr><th>Канал</th><th class="num">Расход</th><th class="num">Лиды</th><th class="num">CPL</th></tr></thead>
         <tbody>${rows.map(c => `<tr><td>${c.name}</td><td class="num">${c.spend > 0 ? fmtN(Math.round(c.spend)) + ' ₽' : '—'}</td><td class="num">${fmtN(c.leads)}</td>${cplCell(c)}</tr>`).join('')}</tbody>
@@ -862,13 +865,14 @@ function renderSourcesTable(week) {
       ${rows.map((row) => {
         const rate = ratioLabel(row.dealRate);
         const tag = ratioTag(row.dealRate);
+        const g = (h) => `<span style="color:var(--text3)">${h}</span>`;   // приглушить ноль
         return `<tr>
           <td class="source-cell">${esc(row.name)}</td>
           <td class="num">${fmt(row.leads)}</td>
-          <td class="num">${fmt(row.deals)}</td>
+          <td class="num">${row.deals ? fmt(row.deals) : g('0')}</td>
           <td class="num"><span class="tag ${tag}">${rate}</span></td>
-          <td class="num">${fmtR(row.revenue)}</td>
-          <td class="num">${row.revenuePerLead == null ? '—' : fmtR(row.revenuePerLead)}</td>
+          <td class="num">${row.revenue ? fmtR(row.revenue) : g('0 ₽')}</td>
+          <td class="num">${!row.revenuePerLead ? g('—') : fmtR(row.revenuePerLead)}</td>
         </tr>`;
       }).join('')}
     </tbody>
@@ -904,18 +908,28 @@ function renderManagersTable(week) {
     table.innerHTML = '<tbody><tr><td style="color:var(--text3)">Нет данных по менеджерам</td></tr></tbody>';
     return;
   }
-  table.innerHTML = `
-    <thead><tr><th>Менеджер</th><th class="num">Лиды</th><th class="num">Выиграно</th><th class="num">В работе</th><th class="num">Выигр./лид</th><th class="num">Выручка</th></tr></thead>
-    <tbody>
-      ${rows.map((row) => `<tr>
+  // Читабельность (02.07): активных менеджеров (есть выигрыш/в работе) показываем,
+  // «нулевых» сворачиваем в одну строку — иначе таблица тонет в нулях.
+  const active = rows.filter(r => (r.won > 0) || (r.inWork > 0));
+  const idle = active.length ? rows.filter(r => !((r.won > 0) || (r.inWork > 0))) : [];
+  const shown = active.length ? active : rows;
+  const z = (v) => v ? fmt(v) : '<span style="color:var(--text3)">0</span>';
+  const zR = (v) => v ? fmtR(v) : '<span style="color:var(--text3)">0 ₽</span>';
+  let body = shown.map((row) => `<tr>
         <td class="source-cell">${esc(row.name)}</td>
         <td class="num">${fmt(row.leads)}</td>
-        <td class="num">${fmt(row.won)}</td>
-        <td class="num">${fmt(row.inWork)}</td>
+        <td class="num">${z(row.won)}</td>
+        <td class="num">${z(row.inWork)}</td>
         <td class="num"><span class="tag ${ratioTag(row.wonRate)}">${ratioLabel(row.wonRate)}</span></td>
-        <td class="num">${fmtR(row.wonSum)}</td>
-      </tr>`).join('')}
-    </tbody>
+        <td class="num">${zR(row.wonSum)}</td>
+      </tr>`).join('');
+  if (idle.length) {
+    const idleLeads = idle.reduce((s, r) => s + (r.leads || 0), 0);
+    body += `<tr style="color:var(--text3)"><td class="source-cell">+ ${idle.length} менеджеров без сделок за период</td><td class="num">${fmt(idleLeads)} лид.</td><td class="num">—</td><td class="num">—</td><td></td><td></td></tr>`;
+  }
+  table.innerHTML = `
+    <thead><tr><th>Менеджер</th><th class="num">Лиды</th><th class="num">Выиграно</th><th class="num">В работе</th><th class="num">Выигр./лид</th><th class="num">Выручка</th></tr></thead>
+    <tbody>${body}</tbody>
   `;
 }
 
@@ -1237,6 +1251,7 @@ function applyPeriod(current, prev) {
   if (!current) return;
   document.getElementById('hdr-period').textContent =
     `${current.from} — ${current.to} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
+  window.__cur = current;   // для ленивой перерисовки графиков при раскрытии «Трафик и каналы»
   renderExecutive(current, prev);
   renderKPI(current, prev);
   renderCrmQuality(current);
@@ -1341,6 +1356,20 @@ function renderAll() {
       if (t) t.style.display = 'none';
     }
     renderAll();
+    // ApexCharts в свёрнутом <details> рендерятся в 0 ширины — при раскрытии
+    // шлём resize, чтобы графики (Трафик и каналы) перерисовались на полную (02.07).
+    document.querySelectorAll('details.detail-block').forEach(d => {
+      d.addEventListener('toggle', () => {
+        if (!d.open) return;
+        // Графики (донаты/расход) в свёрнутом details имели 0 ширины — при раскрытии
+        // перерисовываем их заново на полную ширину (render-функции чистят старый через destroy).
+        if (d.querySelector('#chart-sources') && window.__cur) {
+          try { renderSources(window.__cur); renderCategories(window.__cur); renderSpend(window.__cur); } catch (e) {}
+        } else {
+          setTimeout(() => window.dispatchEvent(new Event('resize')), 60);
+        }
+      });
+    });
   } catch (e) {
     document.getElementById('loader').innerHTML = `<div style="color:var(--red)">Ошибка загрузки данных: ${e.message}</div>`;
   }
