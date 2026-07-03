@@ -221,6 +221,7 @@ details[open] > .detail-summary::before { content: '▾ '; }
           <table class="data-table" id="tbl-managers"></table>
         </div>
       </div>
+      <div id="channel-cpl" style="margin-top:12px"></div>
     </details>
     <details class="detail-block">
       <summary class="detail-summary">📐 Ориентиры по бенчмаркам (что считать нормой)</summary>
@@ -821,6 +822,37 @@ function getSourceRows(week) {
   }).sort((a, b) => (b.deals - a.deals) || (b.revenue - a.revenue) || (b.leads - a.leads));
 }
 
+// --- Стоимость лида по каналам (CPL) — 02.07.2026 ---
+// Из channelBenchmarks (расход платформы ÷ её лиды). Честно: CPL считается только там,
+// где расход канала привязан к лидам. Директ платный, но лиды идут как «Сайт»/звонки →
+// «н/д». Надёжный ориентир — blended CPL (KPI вверху).
+function renderChannelCPL(week) {
+  const el = document.getElementById('channel-cpl');
+  if (!el) return;
+  const cb = week.channelBenchmarks && week.channelBenchmarks.byChannel;
+  if (!cb) { el.innerHTML = ''; return; }
+  const fmtN = n => Number(n || 0).toLocaleString('ru-RU');
+  const clr = { green: 'var(--green)', yellow: 'var(--yellow)', red: 'var(--red)' };
+  const rows = Object.entries(cb).map(([name, c]) => ({ name, ...c }))
+    .filter(c => (c.spend > 0) || (c.cpl != null))            // только каналы с расходом/CPL
+    .sort((a, b) => ((b.cpl != null) - (a.cpl != null)) || ((b.spend || 0) - (a.spend || 0)));
+  if (!rows.length) { el.innerHTML = ''; return; }
+  const cplCell = (c) => {
+    if (c.cpl != null) return `<td class="num" style="color:${clr[c.status && c.status.cpl] || 'var(--text)'};font-weight:600">${fmtN(c.cpl)} ₽</td>`;
+    if (c.spend > 0)  return `<td class="num" style="color:var(--text3)" title="Расход есть, но лиды канала идут как «Сайт»/звонки — точный CPL требует коллтрекинга">н/д</td>`;
+    return `<td class="num" style="color:var(--text3)">—</td>`;
+  };
+  el.innerHTML = `
+    <div class="chart-card">
+      <div class="chart-title">💰 Стоимость лида по каналам (CPL)</div>
+      <div class="table-note">CPL = расход канала ÷ его лиды. Считается там, где расход привязан к лидам. <b>«н/д»</b> — расход есть (напр. Директ), но лиды приходят через сайт/звонки, к каналу не привязаны (нужен коллтрекинг). Органика (Сайт/SEO/Email) — без расхода. Надёжный ориентир по цене лида — KPI «CPL» вверху (blended по всем каналам).</div>
+      <div style="overflow-x:auto"><table class="data-table" style="min-width:420px">
+        <thead><tr><th>Канал</th><th class="num">Расход</th><th class="num">Лиды</th><th class="num">CPL</th></tr></thead>
+        <tbody>${rows.map(c => `<tr><td>${c.name}</td><td class="num">${c.spend > 0 ? fmtN(Math.round(c.spend)) + ' ₽' : '—'}</td><td class="num">${fmtN(c.leads)}</td>${cplCell(c)}</tr>`).join('')}</tbody>
+      </table></div>
+    </div>`;
+}
+
 function renderSourcesTable(week) {
   const rows = getSourceRows(week);
   const table = document.getElementById('tbl-sources');
@@ -1214,6 +1246,7 @@ function applyPeriod(current, prev) {
   renderSpend(current);
   renderSourcesTable(current);
   renderManagersTable(current);
+  renderChannelCPL(current);
   renderAIInsights(current, prev);
   renderSeoBlock(current);
 }
