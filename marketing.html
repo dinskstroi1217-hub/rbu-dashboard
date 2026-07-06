@@ -1176,7 +1176,7 @@ function renderCrmQuality(week) {
 }
 
 // --- SEO-блок Topvisor ---
-function renderSeoBlock(week) {
+function renderSeoBlock(week, prevWeek) {
   const row = document.getElementById('seo-row');
   const el = document.getElementById('seo-topvisor');
   if (!row || !el) return;
@@ -1188,11 +1188,19 @@ function renderSeoBlock(week) {
     .filter(([g]) => g !== 'Прочее')
     .sort((a, b) => (b[1].keywords || 0) - (a[1].keywords || 0));
   const other = tv.byGroup['Прочее'];
+  const tvPrev = prevWeek?.topvisor?.byGroup || {};
 
-  const posTag = (avg) => {
-    if (avg == null) return '<span class="tag r">—</span>';
+  // «вне топ-100» вместо загадочного «—»; Δ за неделю (меньше = лучше) — 06.07
+  const posTag = (avg, g) => {
+    if (avg == null) return '<span class="tag r">вне топ-100</span>';
     const cls = avg <= 10 ? 'g' : avg <= 30 ? 'y' : 'r';
-    return `<span class="tag ${cls}">${avg}</span>`;
+    let trend = '';
+    const pp = g != null ? tvPrev[g]?.avgPosition : null;
+    if (pp != null && Math.abs(avg - pp) >= 0.5) {
+      const better = avg < pp;
+      trend = ` <span style="font-size:11px;color:${better ? 'var(--green)' : 'var(--red)'}">${better ? '▲' : '▼'} ${better ? '' : '+'}${(avg - pp).toFixed(1)}</span>`;
+    }
+    return `<span class="tag ${cls}">${avg}</span>${trend}`;
   };
 
   const rows = groups.map(([g, d]) => `
@@ -1200,7 +1208,7 @@ function renderSeoBlock(week) {
       <td>${esc(g)}</td>
       <td class="num">${d.keywords}</td>
       <td class="num">${d.withPosition}</td>
-      <td class="num">${posTag(d.avgPosition)}</td>
+      <td class="num" style="white-space:nowrap">${posTag(d.avgPosition, g)}</td>
       <td class="num">${d.top10}</td>
       <td class="num">${d.top30}</td>
     </tr>`).join('');
@@ -1327,7 +1335,7 @@ function applyPeriod(current, prev) {
   renderManagersTable(current);
   renderChannelCPL(current);
   renderAIInsights(current, prev);
-  renderSeoBlock(current);
+  renderSeoBlock(current, prev);
 }
 
 // Backward-compat
@@ -1398,7 +1406,7 @@ function selectWeek(idx) { selectPeriod('week', idx, null); }
 
 // --- Trend always shows all weeks ---
 function renderAll() {
-  renderTrend(DATA.weeks);
+  renderTrend((DATA.weeks || []).slice(-12));   // 12 недель — как на спец-вкладке (06.07)
   populatePeriodSelects();
   // По умолчанию — последняя неделя (свежая в начале списка)
   const weekSel = document.getElementById('period-week-select');
