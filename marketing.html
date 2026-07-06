@@ -287,7 +287,7 @@ details[open] > .detail-summary::before { content: '▾ '; }
       <div class="charts-row">
         <div class="chart-card wide">
           <div class="chart-title">📈 Тренд по неделям — визиты сайта, контакты Авито, сделки Bitrix</div>
-          <div class="table-note">Резкое падение визитов в W18-W20 коррелирует с сокращением бюджета Я.Директа.</div>
+          <div class="table-note">Последние 12 недель. Визиты — левая ось, сделки/контакты — правая.</div>
           <div id="spec-chart-trend"></div>
           <div class="table-note" style="margin-top:14px">Накопительная выручка (выиграно нарастающим итогом) — сглаживает скачки от заноса сделок задним числом:</div>
           <div id="spec-cumulative"></div>
@@ -301,7 +301,7 @@ details[open] > .detail-summary::before { content: '▾ '; }
         </div>
         <div class="chart-card">
           <div class="chart-title">🅰️ Авито Спецтехники (аренда)</div>
-          <div class="table-note">11 активных объявлений, отдельный кабинет (user_id 425084280).</div>
+          <div class="table-note">Только аренда-услуги; продажа б/у техники — вне маркетинг-контура. Кабинет 425084280.</div>
           <div id="spec-avito"></div>
         </div>
       </div>
@@ -455,19 +455,31 @@ function renderSpecMode() {
   document.getElementById('hdr-period').textContent =
     `🚜 Спецтехника · ${latest.from || '?'} — ${latest.to || '?'} · обновлено ${new Date(DATA.generatedAt).toLocaleDateString('ru-RU')}`;
 
-  // KPI карточки
+  // KPI карточки. Фокус на активность (02.07): когда деньги в CRM не заполнены
+  // (wonSum=0 И inWorkSum=0), денежные плитки — сплошные нули и не говорят ничего.
+  // Показываем вместо них измеримое: контакты аренды Авито и визиты сайта.
+  // Как только менеджеры начнут ставить суммы — денежные плитки вернутся сами.
   const kpis = document.getElementById('spec-kpis');
+  const moneyEmpty = !(s.wonSum > 0) && !(s.inWorkSum > 0);
+  const avC = latest.avito?.contacts, mtrV = latest.metrika?.visits;
+  const moneyTiles = `
+    <div class="kpi-card"><div class="kpi-label">Выручка (выиграно)</div><div class="kpi-value">${fmt(s.wonSum)} ₽</div><div class="kpi-sub">${s.won} сделок</div></div>
+    <div class="kpi-card"><div class="kpi-label">В работе</div><div class="kpi-value">${fmt(s.inWorkSum)} ₽</div><div class="kpi-sub">${s.inWork} сделок</div></div>`;
+  const activityTiles = `
+    <div class="kpi-card"><div class="kpi-label">Контакты Авито (аренда)</div><div class="kpi-value">${avC != null ? fmt(avC) : '—'}</div><div class="kpi-sub">за неделю</div></div>
+    <div class="kpi-card"><div class="kpi-label">Визиты сайта</div><div class="kpi-value">${mtrV != null ? fmt(mtrV) : '—'}</div><div class="kpi-sub">spectehpark.ru</div></div>`;
   kpis.innerHTML = `
     <div class="kpi-card"><div class="kpi-label">Сделок</div><div class="kpi-value">${fmt(s.total)}</div><div class="kpi-sub">за неделю</div></div>
     <div class="kpi-card"><div class="kpi-label">% побед</div><div class="kpi-value">${s.winRate ?? '—'}%</div><div class="kpi-sub">${s.won} выигр. / ${s.lost} проигр.</div></div>
-    <div class="kpi-card"><div class="kpi-label">Выручка (выиграно)</div><div class="kpi-value">${fmt(s.wonSum)} ₽</div><div class="kpi-sub">${s.won} сделок</div></div>
-    <div class="kpi-card"><div class="kpi-label">В работе</div><div class="kpi-value">${fmt(s.inWorkSum)} ₽</div><div class="kpi-sub">${s.inWork} сделок</div></div>
-    <div class="kpi-card"><div class="kpi-label">Без суммы</div><div class="kpi-value" style="${(s.noOppPct != null && s.noOppPct >= 50) ? 'color:var(--yellow)' : ''}">${s.noOppPct != null ? s.noOppPct + '%' : '—'}</div><div class="kpi-sub">${s.noOppCount != null ? s.noOppCount + ' из ' + s.inWork + ' в работе' : 'нет данных'}</div></div>
+    ${moneyEmpty ? activityTiles : moneyTiles}
+    <div class="kpi-card"><div class="kpi-label">Без суммы</div><div class="kpi-value" style="${(s.noOppPct != null && s.noOppPct >= 50) ? 'color:var(--red)' : ''}">${s.noOppPct != null ? s.noOppPct + '%' : '—'}</div><div class="kpi-sub">${s.noOppCount != null ? s.noOppCount + ' из ' + s.inWork + ' в работе' : 'нет данных'}</div></div>
   `;
   const dq = document.getElementById('spec-dq-note');
-  if (dq) dq.innerHTML = (s.noOppPct != null && s.noOppPct >= 50)
-    ? `⚠️ ${s.noOppPct}% сделок в работе — без суммы. Прогноз pipeline неточен; недельная выручка может прыгать из-за заноса сделок задним числом.`
-    : '';
+  if (dq) dq.innerHTML = moneyEmpty
+    ? `💰 Деньги в CRM не заполнены (${s.noOppCount ?? '?'} из ${s.inWork} сделок без суммы) — выручка, pipeline и ₽ потерь недоступны. Одно действие менеджеров (ставить сумму сделки) оживит половину вкладки.`
+    : ((s.noOppPct != null && s.noOppPct >= 50)
+      ? `⚠️ ${s.noOppPct}% сделок в работе — без суммы. Прогноз pipeline неточен; недельная выручка может прыгать из-за заноса сделок задним числом.`
+      : '');
 
   // #1 Воронка по стадиям в порядке пайплайна (Новый ЛИД → КП → … → Выигран).
   // Это распределение текущих сделок по стадиям, не cohort-flow — поэтому без
@@ -475,7 +487,15 @@ function renderSpecMode() {
   const stageOrder = latest.stageOrder || [];
   const stageMap = {};
   for (const st of (latest.byStage || [])) stageMap[st.stageId] = st;
-  if (stageOrder.length) {
+  // Все стадии по нулям → не рисуем простыню нулей, одна честная строка (02.07)
+  const kpiBlockAll = Object.entries(latest.kpiBlock || {}).filter(([k]) => !k.startsWith('_'));
+  const stagesAllZero = stageOrder.length
+    ? stageOrder.every(o => !(stageMap[o.stageId]?.count > 0))
+    : kpiBlockAll.every(([, v]) => !(v.count > 0));
+  if (stagesAllZero) {
+    document.getElementById('spec-stages').innerHTML =
+      `<div style="color:var(--text3);padding:14px 2px;font-size:13px">За неделю сделки не проходили ключевые стадии (КП / текущая сделка / в работе) — либо стадии не проставляются в CRM. Когда менеджеры начнут двигать сделки по стадиям, здесь появится воронка.</div>`;
+  } else if (stageOrder.length) {
     const maxC = Math.max(1, ...stageOrder.map(o => stageMap[o.stageId]?.count || 0));
     const rows = stageOrder.map(o => {
       const st = stageMap[o.stageId] || { count: 0, sum: 0 };
@@ -490,9 +510,8 @@ function renderSpecMode() {
     document.getElementById('spec-stages').innerHTML = rows +
       `<div class="table-note" style="margin-top:10px">Ширина = число сделок на стадии. Спецтех — длинный пайплайн; «узкое горло» = где копятся сделки.</div>`;
   } else {
-    const kpiBlock = latest.kpiBlock || {};
-    const stagesHtml = Object.entries(kpiBlock).filter(([k]) => !k.startsWith('_'))
-      .map(([name, v]) => `<tr><td>${name}</td><td class="num">${fmt(v.count)}</td><td class="num">${fmt(v.sum)} ₽</td></tr>`).join('');
+    const stagesHtml = kpiBlockAll
+      .map(([name, v]) => `<tr><td>${name}</td><td class="num">${fmt(v.count)}</td><td class="num">${v.sum > 0 ? fmt(v.sum) + ' ₽' : '<span style="color:var(--text3)">—</span>'}</td></tr>`).join('');
     document.getElementById('spec-stages').innerHTML = `
       <table class="data-table"><thead><tr><th>Стадия</th><th class="num">Сделок</th><th class="num">Сумма</th></tr></thead>
         <tbody>${stagesHtml || '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody></table>`;
@@ -524,18 +543,21 @@ function renderSpecMode() {
     </table>
   `;
 
-  // #5 Причины потерь — сортируем по сумме ₽ (где теряем больше денег) + визуальный бар
+  // #5 Причины потерь — сортировка/бар по ₽; если суммы не заполнены (CRM без OPPORTUNITY)
+  // — по числу сделок, в колонке ₽ прочерк вместо бессмысленных нулей (02.07)
   const reasons = Object.entries(latest.lostReasons || {})
     .filter(([k]) => !k.startsWith('_'))
     .sort((a, b) => (b[1].sum - a[1].sum) || (b[1].count - a[1].count));
-  const maxLoss = Math.max(1, ...reasons.map(([, d]) => d.sum || 0));
+  const hasLossSums = reasons.some(([, d]) => d.sum > 0);
+  const maxLoss = Math.max(1, ...reasons.map(([, d]) => (hasLossSums ? d.sum : d.count) || 0));
   document.getElementById('spec-reasons').innerHTML = `
     <table class="data-table">
       <thead><tr><th>Причина</th><th class="num">Сделок</th><th class="num">Потеряно ₽</th></tr></thead>
       <tbody>${reasons.length ? reasons.map(([r, d]) =>
-        `<tr><td>${r}<div class="bar-bg" style="margin-top:5px"><div class="bar-fill" style="width:${Math.round((d.sum || 0) / maxLoss * 100)}%;background:var(--red)"></div></div></td><td class="num">${fmt(d.count)}</td><td class="num">${fmt(d.sum)} ₽</td></tr>`).join('')
+        `<tr><td>${r}<div class="bar-bg" style="margin-top:5px"><div class="bar-fill" style="width:${Math.round(((hasLossSums ? d.sum : d.count) || 0) / maxLoss * 100)}%;background:var(--red)"></div></div></td><td class="num">${fmt(d.count)}</td><td class="num">${d.sum > 0 ? fmt(d.sum) + ' ₽' : '<span style="color:var(--text3)">—</span>'}</td></tr>`).join('')
         : '<tr><td colspan=3 style="color:var(--text3)">нет данных</td></tr>'}</tbody>
     </table>
+    ${!hasLossSums && reasons.length ? '<div class="table-note" style="margin-top:8px">Суммы потерь не заполнены в CRM — бар по числу сделок.</div>' : ''}
   `;
 
   // === Метрика Спецтехники (текущая неделя) ===
@@ -595,7 +617,9 @@ function renderSpecMode() {
   })();
 
   // === Тренд по неделям (ApexCharts) ===
-  const weeks = DATA.weeks || [];
+  // Последние 12 недель: выброс W11 (~15 тыс визитов от старого буста) прижимал
+  // весь график к нулю и делал его нечитаемым (фикс читабельности 02.07).
+  const weeks = (DATA.weeks || []).slice(-12);
   const labels = weeks.map(w => 'W' + w.isoWeek);
   const seriesVisits = weeks.map(w => w.metrika?.visits || 0);
   const seriesContacts = weeks.map(w => w.avito?.contacts || 0);
