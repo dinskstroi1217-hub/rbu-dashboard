@@ -269,6 +269,7 @@ details[open] > .detail-summary::before { content: '▾ '; }
     <div id="product-blocks" style="display:none">
       <div id="product-disclaimer" style="font-size:13px;line-height:1.5;color:var(--yellow);background:rgba(232,195,106,0.10);border:1px solid rgba(232,195,106,0.22);border-radius:10px;padding:12px 14px;margin-bottom:16px"></div>
       <div class="kpi-row" id="product-kpis"></div>
+      <div id="product-action" style="margin:2px 2px 10px"></div>
       <div class="charts-row" style="margin-top:16px">
         <div class="chart-card">
           <div class="chart-title">🔍 SEO-позиции по продукту (Topvisor)</div>
@@ -404,17 +405,45 @@ function renderProductMode(p) {
   if (hdr) hdr.textContent = `${icon} ${name} · ${latest.from || '?'} — ${latest.to || '?'} · обновлено ${D.generatedAt ? new Date(D.generatedAt).toLocaleDateString('ru-RU') : '?'}`;
 
   document.getElementById('product-disclaimer').innerHTML = p === 'beton'
-    ? '⚠️ Это воронка «Общая»: Бетон + неразмеченные сделки (91% без продуктовой метки в CRM). Чистый разрез Бетон/ЖБИ по сделкам появится, когда менеджеры начнут заводить сделки в продуктовые воронки. Лиды и SEO ниже — уже по продукту.'
-    : '⚠️ Только сделки, заведённые в воронку ЖБИ. Бóльшая часть ЖБИ-сделок сидит в «Общей» и сюда не попадает — это <b>недосчёт</b>, маркет-атрибуции в воронке ЖБИ почти нет. Опирайся на лиды (оценка) и SEO — они по продукту честные.';
+    ? '<span title="Это воронка «Общая»: Бетон + неразмеченные сделки (91% без продуктовой метки в CRM). Чистый разрез Бетон/ЖБИ появится, когда менеджеры начнут заводить сделки в продуктовые воронки.">⚠️ Сделки = воронка «Общая» (Бетон + неразмеченное). Лиды и SEO — чисто по продукту. <span style="border-bottom:1px dotted var(--yellow);cursor:help">подробнее</span></span>'
+    : '<span title="Только сделки, заведённые в воронку ЖБИ. Бóльшая часть ЖБИ-сделок сидит в «Общей» и сюда не попадает — это недосчёт, маркет-атрибуции в воронке ЖБИ почти нет.">⚠️ Только воронка ЖБИ — это <b>недосчёт</b> (основные ЖБИ-сделки в «Общей»). Лиды и SEO — честные. <span style="border-bottom:1px dotted var(--yellow);cursor:help">подробнее</span></span>';
 
   const leadsProd = p === 'beton' ? ps.beton : ps.zhbi;
+
+  // Дельты к прошлой неделе (06.07): точка без сравнения — не аналитика.
+  const prevBp = (D.prev?.byProduct || {})[p] || { mkt: {}, all: {} };
+  const prevMkt = prevBp.mkt || {}, prevAll = prevBp.all || {};
+  const prevPs = D.prev?.productSplit || {};
+  const prevLeads = p === 'beton' ? prevPs.beton : prevPs.zhbi;
+  const dlt = (cur, prv, suffix = '') => {
+    if (prv == null || cur == null) return '';
+    const d = cur - prv;
+    if (!d) return `<span style="color:var(--text3)"> · = пред. нед.</span>`;
+    const up = d > 0;
+    return ` <span style="color:${up ? 'var(--green)' : 'var(--red)'}">${up ? '▲' : '▼'} ${up ? '+' : ''}${fmt(d)}${suffix}</span>`;
+  };
+  // Pipeline пустой при живых in-work — та же болезнь CRM, что на спецтехе:
+  // не показываем мёртвый «0 ₽», показываем сигнал.
+  const pipeDead = !(mkt.inWorkSum > 0) && mkt.inWork > 0;
+  const pipeTile = pipeDead
+    ? `<div class="kpi-card"><div class="kpi-label">Без суммы</div><div class="kpi-value" style="color:var(--red)">${fmt(mkt.inWork)}</div><div class="kpi-sub">в работе, pipeline не заполнен</div></div>`
+    : `<div class="kpi-card"><div class="kpi-label">Pipeline</div><div class="kpi-value">${fmt(mkt.inWorkSum)} ₽${dlt(mkt.inWorkSum, prevMkt.inWorkSum, ' ₽')}</div><div class="kpi-sub">${fmt(mkt.inWork)} в работе</div></div>`;
   document.getElementById('product-kpis').innerHTML = `
-    <div class="kpi-card"><div class="kpi-label">Маркет-сделок</div><div class="kpi-value">${fmt(mkt.deals)}</div><div class="kpi-sub">won ${fmt(mkt.won)} · в работе ${fmt(mkt.inWork)}</div></div>
-    <div class="kpi-card"><div class="kpi-label">Выручка (won)</div><div class="kpi-value">${fmt(mkt.wonSum)} ₽</div><div class="kpi-sub">${fmt(mkt.won)} сделок</div></div>
-    <div class="kpi-card"><div class="kpi-label">Pipeline</div><div class="kpi-value">${fmt(mkt.inWorkSum)} ₽</div><div class="kpi-sub">${fmt(mkt.inWork)} в работе</div></div>
-    <div class="kpi-card"><div class="kpi-label">Лиды по продукту</div><div class="kpi-value">${leadsProd != null ? fmt(leadsProd) : '—'}</div><div class="kpi-sub">оценка по тексту запроса</div></div>
-    <div class="kpi-card"><div class="kpi-label">Всего в воронке</div><div class="kpi-value">${fmt(all.deals)}</div><div class="kpi-sub">вкл. немаркетинговые</div></div>
+    <div class="kpi-card"><div class="kpi-label">Маркет-сделок</div><div class="kpi-value">${fmt(mkt.deals)}${dlt(mkt.deals, prevMkt.deals)}</div><div class="kpi-sub">won ${fmt(mkt.won)} · в работе ${fmt(mkt.inWork)}</div></div>
+    <div class="kpi-card"><div class="kpi-label">Выручка (won)</div><div class="kpi-value">${fmt(mkt.wonSum)} ₽${dlt(mkt.wonSum, prevMkt.wonSum, ' ₽')}</div><div class="kpi-sub">${fmt(mkt.won)} сделок</div></div>
+    ${pipeTile}
+    <div class="kpi-card"><div class="kpi-label">Лиды по продукту</div><div class="kpi-value">${leadsProd != null ? fmt(leadsProd) : '—'}${dlt(leadsProd, prevLeads)}</div><div class="kpi-sub">оценка по тексту запроса</div></div>
+    <div class="kpi-card"><div class="kpi-label">Всего в воронке</div><div class="kpi-value">${fmt(all.deals)}${dlt(all.deals, prevAll.deals)}</div><div class="kpi-sub">вкл. немаркетинговые</div></div>
   `;
+
+  // Одна строка-действие (06.07): самое прикладное «что делать» по данным, без простыни.
+  const actions = [];
+  if (p === 'zhbi' && !(mkt.deals > 0)) actions.push('ЖБИ-сделки заводятся в «Общую» воронку — просить менеджеров выбирать воронку ЖБИ, иначе вкладка останется пустой.');
+  if (pipeDead) actions.push(`${fmt(mkt.inWork)} маркет-сделок в работе без сумм — проставить суммы, появится pipeline и прогноз.`);
+  const actEl = document.getElementById('product-action');
+  if (actEl) actEl.innerHTML = actions.length
+    ? `<div style="font-size:13px;color:var(--text)"><b style="color:var(--accent)">🎯 Действие:</b> ${actions[0]}</div>`
+    : '';
 
   // Воронка продукта (won/в работе/проиграно по всей воронке категории)
   const total = (all.won || 0) + (all.inWork || 0) + (all.lost || 0) || 1;
@@ -433,12 +462,21 @@ function renderProductMode(p) {
     return p === 'zhbi' ? zhbiKw.some(k => lc.includes(k)) : lc.includes('бетон');
   });
   const seoEl = document.getElementById('product-seo');
+  // Δ к прошлой неделе (06.07): позиция без тренда не читается. Меньше = лучше,
+  // поэтому улучшение = позиция снизилась. «—» = ключи вне топ-100 Яндекса.
+  const tvPrev = D.prev?.topvisor?.byGroup || {};
   if (groups.length) {
     seoEl.innerHTML = groups.map(([g, d]) => {
       const pos = d.avgPosition;
+      const prevPos = tvPrev[g]?.avgPosition;
       const tag = pos == null ? '' : pos <= 10 ? 'g' : pos <= 30 ? 'y' : 'r';
-      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px"><span>${g} <span style="color:var(--text3)">· ${d.keywords} кл.</span></span><span class="tag ${tag}">${pos != null ? pos.toFixed(1) : '—'}</span></div>`;
-    }).join('') + `<div class="table-note" style="margin-top:8px">Группы Topvisor по продукту. «Прочее» (смешанное) — не показываем.</div>`;
+      let trend = '';
+      if (pos != null && prevPos != null && Math.abs(pos - prevPos) >= 0.5) {
+        const better = pos < prevPos;
+        trend = ` <span style="font-size:11px;color:${better ? 'var(--green)' : 'var(--red)'}">${better ? '▲' : '▼'} ${better ? '' : '+'}${(pos - prevPos).toFixed(1)} за нед.</span>`;
+      }
+      return `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px"><span>${g} <span style="color:var(--text3)">· ${d.keywords} кл.</span></span><span><span class="tag ${tag}">${pos != null ? pos.toFixed(1) : 'вне топ-100'}</span>${trend}</span></div>`;
+    }).join('') + `<div class="table-note" style="margin-top:8px">Средняя позиция в Яндексе (меньше = лучше): 🟢 топ-10 · 🟡 топ-30 · 🔴 ниже. «Вне топ-100» = ключи не находятся — кандидаты на SEO-статьи.</div>`;
   } else {
     seoEl.innerHTML = '<div style="color:var(--text3);padding:16px">нет SEO-групп по этому продукту в данных</div>';
   }
