@@ -300,7 +300,7 @@ details[open] > .detail-summary::before { content: '▾ '; }
           <div id="spec-metrika"></div>
         </div>
         <div class="chart-card">
-          <div class="chart-title">🅰️ Авито Спецтехники</div>
+          <div class="chart-title">🅰️ Авито Спецтехники (аренда)</div>
           <div class="table-note">11 активных объявлений, отдельный кабинет (user_id 425084280).</div>
           <div id="spec-avito"></div>
         </div>
@@ -559,14 +559,16 @@ function renderSpecMode() {
   const balStr = av && av.balance != null ? fmt(av.balance) + ' ₽' : '—';
   document.getElementById('spec-avito').innerHTML = av ? `
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:12px">
-      <div><div style="color:var(--text3);font-size:11px">Объявлений</div><div style="font-size:22px;font-weight:600">${fmt(av.itemsCount)}</div></div>
+      <div><div style="color:var(--text3);font-size:11px">Аренд. объявлений</div><div style="font-size:22px;font-weight:600;${av.itemsCount === 0 && av.rentExpired > 0 ? 'color:var(--red)' : ''}">${fmt(av.itemsCount)}${av.rentExpired > 0 ? ` <span style="font-size:12px;color:var(--yellow)">+${fmt(av.rentExpired)} истекло</span>` : ''}</div></div>
       <div><div style="color:var(--text3);font-size:11px">Просмотры</div><div style="font-size:22px;font-weight:600">${fmt(av.views)}</div></div>
       <div><div style="color:var(--text3);font-size:11px">Контакты</div><div style="font-size:22px;font-weight:600">${fmt(av.contacts)}</div></div>
       <div><div style="color:var(--text3);font-size:11px">Конверсия</div><div style="font-size:22px;font-weight:600">${av.conversion || '—'}</div></div>
       <div><div style="color:var(--text3);font-size:11px">Звонки</div><div style="font-size:22px;font-weight:600">${fmt(av.calls)}</div></div>
       <div><div style="color:var(--text3);font-size:11px">Баланс</div><div style="font-size:22px;font-weight:600;${balLow ? 'color:var(--red)' : ''}">${balStr}</div></div>
     </div>
+    ${av.itemsCount === 0 && av.rentExpired > 0 ? `<div style="color:var(--red);font-size:12px;margin-bottom:6px">🔴 Аренда не опубликована: у всех ${fmt(av.rentExpired)} арендных объявлений истёк срок. Канал стоит — опубликовать/бустануть.</div>` : ''}
     ${balLow ? `<div style="color:var(--red);font-size:12px">⚠️ Баланс ниже 5000 ₽ — продвижение объявлений может встать. Пополнить.</div>` : ''}
+    <div style="color:var(--text3);font-size:11px;margin-top:6px">Только аренда-услуги; продажа б/у техники — вне маркетинг-контура (решение 02.07).</div>
   ` : '<div style="color:var(--text3);padding:20px">нет данных Авито за период</div>';
 
   // #2 Накопительная выручка — сглаживает скачки от заноса задним числом (инлайн SVG)
