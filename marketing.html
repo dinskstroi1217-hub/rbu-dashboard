@@ -373,10 +373,16 @@ function switchFunnel(funnel) {
   if (funnel === 'spec') {
     if (!DATA_SPEC) { alert('spec-data.json не загружен'); return; }
     DATA = DATA_SPEC;
-    renderSpecMode();
+    populatePeriodSelects();
+    const ws = DATA_SPEC.weeks || [];
+    const latestIdx = ws.length - 1;
+    renderSpecMode(ws[latestIdx], latestIdx > 0 ? ws[latestIdx - 1] : null);
   } else if (funnel === 'beton' || funnel === 'zhbi') {
     DATA = DATA_MAIN;
-    renderProductMode(funnel);
+    populatePeriodSelects();
+    const ws = DATA_MAIN.weeks || [];
+    const latestIdx = ws.length - 1;
+    renderProductMode(funnel, ws[latestIdx], latestIdx > 0 ? ws[latestIdx - 1] : null);
   } else {                 // overview (бывший main — Бетон+ЖБИ блендед)
     DATA = DATA_MAIN;
     renderMainMode();
@@ -390,10 +396,11 @@ function renderMainMode() {
 
 // Продуктовая вкладка (Бетон / ЖБИ) — честный разрез: сделки/выручка где есть,
 // лиды-оценка по тексту, SEO по группам Topvisor, + дисклеймер о неполноте.
-function renderProductMode(p) {
+function renderProductMode(p, latest, prev) {
   showOnlyBlocks('product-blocks');
   const D = DATA_MAIN || {};
-  const latest = D.latest || {};
+  latest = latest || D.latest || {};
+  prev = prev || D.prev || {};
   const bp = (latest.byProduct && latest.byProduct[p]) || { mkt: {}, all: {} };
   const mkt = bp.mkt || {}, all = bp.all || {};
   const ps = latest.productSplit || {};
@@ -411,9 +418,9 @@ function renderProductMode(p) {
   const leadsProd = p === 'beton' ? ps.beton : ps.zhbi;
 
   // Дельты к прошлой неделе (06.07): точка без сравнения — не аналитика.
-  const prevBp = (D.prev?.byProduct || {})[p] || { mkt: {}, all: {} };
+  const prevBp = (prev?.byProduct || {})[p] || { mkt: {}, all: {} };
   const prevMkt = prevBp.mkt || {}, prevAll = prevBp.all || {};
-  const prevPs = D.prev?.productSplit || {};
+  const prevPs = prev?.productSplit || {};
   const prevLeads = p === 'beton' ? prevPs.beton : prevPs.zhbi;
   const dlt = (cur, prv, suffix = '') => {
     if (prv == null || cur == null) return '';
@@ -464,7 +471,7 @@ function renderProductMode(p) {
   const seoEl = document.getElementById('product-seo');
   // Δ к прошлой неделе (06.07): позиция без тренда не читается. Меньше = лучше,
   // поэтому улучшение = позиция снизилась. «—» = ключи вне топ-100 Яндекса.
-  const tvPrev = D.prev?.topvisor?.byGroup || {};
+  const tvPrev = prev?.topvisor?.byGroup || {};
   if (groups.length) {
     seoEl.innerHTML = groups.map(([g, d]) => {
       const pos = d.avgPosition;
@@ -482,11 +489,11 @@ function renderProductMode(p) {
   }
 }
 
-function renderSpecMode() {
+function renderSpecMode(latest, prev) {
   showOnlyBlocks('spec-blocks');
 
-  const latest = DATA.latest || {};
-  const prev = DATA.prev || {};
+  latest = latest || DATA.latest || {};
+  prev = prev || DATA.prev || {};
   const s = latest.deals || {};
   const fmt = n => Number(n || 0).toLocaleString('ru');
 
@@ -901,7 +908,7 @@ function renderChannelCPL(week) {
   const fmtN = n => Number(n || 0).toLocaleString('ru-RU');
   const clr = { green: 'var(--green)', yellow: 'var(--yellow)', red: 'var(--red)' };
   const rows = Object.entries(cb).map(([name, c]) => ({ name, ...c }))
-    .filter(c => (c.spend > 0) || (c.cpl != null))            // только каналы с расходом/CPL
+    .filter(c => c.cpl != null || (c.spend > 0 && c.leads > 0)) // скрываем расход без атрибуции лидов
     .sort((a, b) => ((b.cpl != null) - (a.cpl != null)) || ((b.spend || 0) - (a.spend || 0)));
   if (!rows.length) { el.innerHTML = ''; return; }
   const cplCell = (c) => {
@@ -1292,13 +1299,29 @@ function setKind(kind) {
 function onWeekChange() {
   const idx = +document.getElementById('period-week-select').value;
   activePeriod = { kind: 'week', idx };
-  applyPeriod(DATA.weeks[idx], idx > 0 ? DATA.weeks[idx - 1] : null);
+  if (activeFunnel === 'spec') {
+    const d = DATA_SPEC || {};
+    renderSpecMode(d.weeks?.[idx], idx > 0 ? d.weeks?.[idx - 1] : null);
+  } else if (activeFunnel === 'beton' || activeFunnel === 'zhbi') {
+    const d = DATA_MAIN || {};
+    renderProductMode(activeFunnel, d.weeks?.[idx], idx > 0 ? d.weeks?.[idx - 1] : null);
+  } else {
+    applyPeriod(DATA.weeks[idx], idx > 0 ? DATA.weeks[idx - 1] : null);
+  }
 }
 
 function onMonthChange() {
   const idx = +document.getElementById('period-month-select').value;
   activePeriod = { kind: 'month', idx };
-  applyPeriod(DATA.months[idx], idx > 0 ? DATA.months[idx - 1] : null);
+  if (activeFunnel === 'spec') {
+    const d = DATA_SPEC || {};
+    renderSpecMode(d.months?.[idx], idx > 0 ? d.months?.[idx - 1] : null);
+  } else if (activeFunnel === 'beton' || activeFunnel === 'zhbi') {
+    const d = DATA_MAIN || {};
+    renderProductMode(activeFunnel, d.months?.[idx], idx > 0 ? d.months?.[idx - 1] : null);
+  } else {
+    applyPeriod(DATA.months[idx], idx > 0 ? DATA.months[idx - 1] : null);
+  }
 }
 
 function applyCustomRange() {
