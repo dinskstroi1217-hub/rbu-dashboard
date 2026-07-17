@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17T06:30:26.881Z",
+  "updated": "2026-07-17T08:30:26.173Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -417446,11 +417446,11 @@
     "2026-07-17": {
       "НТ": {
         "totalVolume": 13.76,
-        "dispatcherVolume": 14.5,
+        "dispatcherVolume": 43.5,
         "recipes": {
           "350Б": {
             "totalVolume": 5.5,
-            "dispatcherVolume": 5.5,
+            "dispatcherVolume": 18,
             "factCement": 1.56,
             "factSand": 5.45,
             "factGravel": 5.56,
@@ -417514,7 +417514,7 @@
           },
           "300Б": {
             "totalVolume": 4.26,
-            "dispatcherVolume": 5,
+            "dispatcherVolume": 21.5,
             "factCement": 1.12,
             "factSand": 4.33,
             "factGravel": 4.19,
@@ -417706,11 +417706,11 @@
       },
       "ТИМ": {
         "totalVolume": 10,
-        "dispatcherVolume": 18.8,
+        "dispatcherVolume": 55.6,
         "recipes": {
           "250Б": {
             "totalVolume": 10,
-            "dispatcherVolume": 10,
+            "dispatcherVolume": 40,
             "factCement": 2.56,
             "factSand": 9.72,
             "factGravel": 9.8,
@@ -417746,12 +417746,25 @@
             "normGravel": 0,
             "normChem": 0,
             "batches": []
+          },
+          "300Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 6.8,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
       "ДИН": {
         "totalVolume": 19.5,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 75.7,
         "recipes": {
           "200Б": {
             "totalVolume": 11,
@@ -429071,7 +429084,8 @@
                 "devGravel": 0.84,
                 "devChem": 2.94
               }
-            ]
+            ],
+            "shipmentVolume": 73
           },
           "М100БФБС": {
             "totalVolume": 24,
@@ -429385,7 +429399,8 @@
                 "devGravel": -14.72,
                 "devChem": 44.44
               }
-            ]
+            ],
+            "shipmentVolume": 24
           },
           "250Б": {
             "totalVolume": 28.7,
@@ -429447,7 +429462,8 @@
                 "devGravel": -1.26,
                 "devChem": 1.81
               }
-            ]
+            ],
+            "shipmentVolume": 28.7
           },
           "200Б": {
             "totalVolume": 43.5,
@@ -429521,7 +429537,8 @@
                 "devGravel": 0.1,
                 "devChem": -6.74
               }
-            ]
+            ],
+            "shipmentVolume": 43.5
           },
           "300Б": {
             "totalVolume": 24.4,
@@ -429583,9 +429600,11 @@
                 "devGravel": 0,
                 "devChem": 0
               }
-            ]
+            ],
+            "shipmentVolume": 24.4
           }
-        }
+        },
+        "shipmentVolume": 193.6
       },
       "ТИМ": {
         "totalVolume": 78.1,
@@ -429615,7 +429634,8 @@
                 "devGravel": 4.62,
                 "devChem": 32.1
               }
-            ]
+            ],
+            "shipmentVolume": 8.8
           },
           "М250КОЛЬЦА": {
             "totalVolume": 15.5,
@@ -429821,7 +429841,8 @@
                 "devGravel": -11.53,
                 "devChem": 15
               }
-            ]
+            ],
+            "shipmentVolume": 15.5
           },
           "250Б": {
             "totalVolume": 20,
@@ -429859,7 +429880,8 @@
                 "devGravel": 0.17,
                 "devChem": -0.54
               }
-            ]
+            ],
+            "shipmentVolume": 20
           },
           "300Б": {
             "totalVolume": 24.8,
@@ -429909,7 +429931,8 @@
                 "devGravel": 0,
                 "devChem": 0
               }
-            ]
+            ],
+            "shipmentVolume": 25.8
           },
           "350Б": {
             "totalVolume": 9,
@@ -429935,9 +429958,11 @@
                 "devGravel": -0.13,
                 "devChem": 0.49
               }
-            ]
+            ],
+            "shipmentVolume": 9
           }
-        }
+        },
+        "shipmentVolume": 79.1
       },
       "ДИН": {
         "totalVolume": 179.7,
