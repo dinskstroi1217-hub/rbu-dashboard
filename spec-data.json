@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T05:25:56.565Z",
+  "generatedAt": "2026-07-20T05:25:57.984Z",
   "schemaVersion": 1,
   "funnel": "spec",
   "funnelLabel": "Спецтехника",
@@ -1804,7 +1804,7 @@
         {
           "stageId": "C14:UC_6Y05CH",
           "name": "Реклама\\ Внутренняя Коммуникация",
-          "count": 11,
+          "count": 12,
           "sum": 0,
           "semantics": "P"
         },
@@ -1837,18 +1837,18 @@
           "semantics": "F"
         },
         {
-          "stageId": "C14:NEW",
-          "name": "Новый ЛИД",
-          "count": 2,
-          "sum": 0,
-          "semantics": "P"
-        },
-        {
           "stageId": "C14:UC_ADAMGA",
           "name": "Стоимость(Дорого)",
           "count": 1,
           "sum": 0,
           "semantics": "F"
+        },
+        {
+          "stageId": "C14:NEW",
+          "name": "Новый ЛИД",
+          "count": 1,
+          "sum": 0,
+          "semantics": "P"
         },
         {
           "stageId": "C14:LOSE",
@@ -2455,8 +2455,8 @@
           "semantics": "F"
         },
         {
-          "stageId": "C14:NEW",
-          "name": "Новый ЛИД",
+          "stageId": "C14:FINAL_INVOICE",
+          "name": "КП",
           "count": 1,
           "sum": 0,
           "semantics": "P"
@@ -2502,7 +2502,7 @@
       "kpiBlock": {
         "КП выставлено": {
           "stageId": "C14:FINAL_INVOICE",
-          "count": 0,
+          "count": 1,
           "sum": 0
         },
         "Текущая сделка": {
@@ -2558,20 +2558,20 @@
       "isoYear": 2026,
       "deals": {
         "total": 36,
-        "won": 9,
-        "wonSum": 8819980,
-        "inWork": 26,
+        "won": 10,
+        "wonSum": 8881980,
+        "inWork": 24,
         "inWorkSum": 0,
-        "lost": 1,
+        "lost": 2,
         "lostSum": 0,
-        "winRate": 90,
-        "noOppCount": 26,
+        "winRate": 83.3,
+        "noOppCount": 24,
         "noOppPct": 100
       },
       "byStage": [
         {
-          "stageId": "C14:NEW",
-          "name": "Новый ЛИД",
+          "stageId": "C14:UC_6Y05CH",
+          "name": "Реклама\\ Внутренняя Коммуникация",
           "count": 22,
           "sum": 0,
           "semantics": "P"
@@ -2579,20 +2579,27 @@
         {
           "stageId": "C14:WON",
           "name": "Сделка успешна",
-          "count": 9,
-          "sum": 8819980,
+          "count": 10,
+          "sum": 8881980,
           "semantics": "S"
         },
         {
-          "stageId": "C14:UC_6Y05CH",
-          "name": "Реклама\\ Внутренняя Коммуникация",
-          "count": 4,
+          "stageId": "C14:FINAL_INVOICE",
+          "name": "КП",
+          "count": 2,
           "sum": 0,
           "semantics": "P"
         },
         {
           "stageId": "C14:UC_EVVEK0",
           "name": "Срок работы(не рентабельно)",
+          "count": 1,
+          "sum": 0,
+          "semantics": "F"
+        },
+        {
+          "stageId": "C14:LOSE",
+          "name": "Запрос Бетона и ЖБИ",
           "count": 1,
           "sum": 0,
           "semantics": "F"
@@ -2605,28 +2612,32 @@
           "total": 19,
           "won": 4,
           "wonSum": 1132700,
-          "inWork": 15,
+          "inWork": 14,
           "inWorkSum": 0,
-          "lost": 0,
+          "lost": 1,
           "avgDeal": 283175,
           "avgCycleDays": null,
-          "conversionRate": 100
+          "conversionRate": 80
         },
         {
           "name": "Ангелина Зименко",
           "total": 17,
-          "won": 5,
-          "wonSum": 7687280,
-          "inWork": 11,
+          "won": 6,
+          "wonSum": 7749280,
+          "inWork": 10,
           "inWorkSum": 0,
           "lost": 1,
-          "avgDeal": 1537456,
-          "avgCycleDays": null,
-          "conversionRate": 83.3
+          "avgDeal": 1291547,
+          "avgCycleDays": 5,
+          "conversionRate": 85.7
         }
       ],
       "lostReasons": {
         "Срок работы (не рентабельно)": {
+          "count": 1,
+          "sum": 0
+        },
+        "Запрос Бетона/ЖБИ (не наш профиль)": {
           "count": 1,
           "sum": 0
         }
@@ -2634,7 +2645,7 @@
       "kpiBlock": {
         "КП выставлено": {
           "stageId": "C14:FINAL_INVOICE",
-          "count": 0,
+          "count": 2,
           "sum": 0
         },
         "Текущая сделка": {
@@ -2691,6 +2702,169 @@
       "isoWeek": 29,
       "isoYear": 2026,
       "deals": {
+        "total": 63,
+        "won": 0,
+        "wonSum": 0,
+        "inWork": 55,
+        "inWorkSum": 0,
+        "lost": 8,
+        "lostSum": 0,
+        "winRate": 0,
+        "noOppCount": 55,
+        "noOppPct": 100
+      },
+      "byStage": [
+        {
+          "stageId": "C14:NEW",
+          "name": "Новый ЛИД",
+          "count": 22,
+          "sum": 0,
+          "semantics": "P"
+        },
+        {
+          "stageId": "C14:UC_6Y05CH",
+          "name": "Реклама\\ Внутренняя Коммуникация",
+          "count": 20,
+          "sum": 0,
+          "semantics": "P"
+        },
+        {
+          "stageId": "C14:FINAL_INVOICE",
+          "name": "КП",
+          "count": 7,
+          "sum": 0,
+          "semantics": "P"
+        },
+        {
+          "stageId": "C14:PREPARATION",
+          "name": "Поиск исполнителей\\Перепродажа",
+          "count": 6,
+          "sum": 0,
+          "semantics": "P"
+        },
+        {
+          "stageId": "C14:UC_6V1JR9",
+          "name": "Сроки(не успеваем предоставить)",
+          "count": 4,
+          "sum": 0,
+          "semantics": "F"
+        },
+        {
+          "stageId": "C14:UC_EVVEK0",
+          "name": "Срок работы(не рентабельно)",
+          "count": 2,
+          "sum": 0,
+          "semantics": "F"
+        },
+        {
+          "stageId": "C14:UC_ADAMGA",
+          "name": "Стоимость(Дорого)",
+          "count": 2,
+          "sum": 0,
+          "semantics": "F"
+        }
+      ],
+      "stageOrder": [],
+      "byManager": [
+        {
+          "name": "Виктория Генадьева",
+          "total": 42,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 37,
+          "inWorkSum": 0,
+          "lost": 5,
+          "avgDeal": null,
+          "avgCycleDays": null,
+          "conversionRate": 0
+        },
+        {
+          "name": "Ангелина Зименко",
+          "total": 21,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 18,
+          "inWorkSum": 0,
+          "lost": 3,
+          "avgDeal": null,
+          "avgCycleDays": null,
+          "conversionRate": 0
+        }
+      ],
+      "lostReasons": {
+        "Срок работы (не рентабельно)": {
+          "count": 2,
+          "sum": 0
+        },
+        "Сроки (не успеваем)": {
+          "count": 4,
+          "sum": 0
+        },
+        "Стоимость (дорого)": {
+          "count": 2,
+          "sum": 0
+        }
+      },
+      "kpiBlock": {
+        "КП выставлено": {
+          "stageId": "C14:FINAL_INVOICE",
+          "count": 7,
+          "sum": 0
+        },
+        "Текущая сделка": {
+          "stageId": "C14:PREPAYMENT_INVOIC",
+          "count": 0,
+          "sum": 0
+        },
+        "Поиск исполнителей": {
+          "stageId": "C14:PREPARATION",
+          "count": 6,
+          "sum": 0
+        },
+        "В работе": {
+          "stageId": "C14:EXECUTING",
+          "count": 0,
+          "sum": 0
+        }
+      },
+      "bySource": {
+        "Ангелина Зименко": 22,
+        "Виктория Генадьева": 40,
+        "Яндекс": 1
+      },
+      "avito": {
+        "itemsCount": 0,
+        "views": 0,
+        "contacts": 0,
+        "favorites": 0,
+        "calls": 0,
+        "balance": 1748.17,
+        "conversion": "—",
+        "rentExpired": 7,
+        "scope": "rent"
+      },
+      "metrika": {
+        "visits": 132,
+        "users": 108,
+        "bounceRate": 38.6,
+        "depth": 1.08,
+        "bySource": {
+          "Ad traffic": 103,
+          "Direct traffic": 19,
+          "Search engine traffic": 7,
+          "Internal traffic": 1,
+          "Link traffic": 1
+        },
+        "goalConversions": {}
+      }
+    },
+    {
+      "label": "Неделя 30",
+      "from": "2026-07-20",
+      "to": "2026-07-26",
+      "isoWeek": 30,
+      "isoYear": 2026,
+      "deals": {
         "total": 0,
         "won": 0,
         "wonSum": 0,
@@ -2737,17 +2911,17 @@
         "calls": 0,
         "balance": 1748.17,
         "conversion": "—",
-        "rentExpired": 7,
+        "rentExpired": 0,
         "scope": "rent"
       },
       "metrika": {
-        "visits": 2,
-        "users": 2,
-        "bounceRate": 50,
+        "visits": 3,
+        "users": 3,
+        "bounceRate": 66.7,
         "depth": 1,
         "bySource": {
-          "Direct traffic": 1,
-          "Search engine traffic": 1
+          "Direct traffic": 2,
+          "Ad traffic": 1
         },
         "goalConversions": {}
       }
@@ -3272,7 +3446,7 @@
         {
           "stageId": "C14:UC_6Y05CH",
           "name": "Реклама\\ Внутренняя Коммуникация",
-          "count": 111,
+          "count": 112,
           "sum": 0,
           "semantics": "P"
         },
@@ -3307,7 +3481,7 @@
         {
           "stageId": "C14:FINAL_INVOICE",
           "name": "КП",
-          "count": 4,
+          "count": 5,
           "sum": 0,
           "semantics": "P"
         },
@@ -3319,18 +3493,18 @@
           "semantics": "F"
         },
         {
-          "stageId": "C14:NEW",
-          "name": "Новый ЛИД",
-          "count": 3,
-          "sum": 0,
-          "semantics": "P"
-        },
-        {
           "stageId": "C14:LOSE",
           "name": "Запрос Бетона и ЖБИ",
           "count": 3,
           "sum": 0,
           "semantics": "F"
+        },
+        {
+          "stageId": "C14:NEW",
+          "name": "Новый ЛИД",
+          "count": 1,
+          "sum": 0,
+          "semantics": "P"
         },
         {
           "stageId": "C14:UC_2A5P4X",
@@ -3397,7 +3571,7 @@
       "kpiBlock": {
         "КП выставлено": {
           "stageId": 0,
-          "count": 4,
+          "count": 5,
           "sum": 0
         },
         "Текущая сделка": {
@@ -3429,18 +3603,25 @@
     {
       "label": "Июль 2026",
       "from": "2026-07-06",
-      "to": "2026-07-19",
-      "weeksCount": 2,
+      "to": "2026-07-26",
+      "weeksCount": 3,
       "deals": {
-        "total": 36,
-        "won": 9,
-        "wonSum": 8819980,
-        "inWork": 26,
+        "total": 99,
+        "won": 10,
+        "wonSum": 8881980,
+        "inWork": 79,
         "inWorkSum": 0,
-        "lost": 1,
-        "winRate": 90
+        "lost": 10,
+        "winRate": 50
       },
       "byStage": [
+        {
+          "stageId": "C14:UC_6Y05CH",
+          "name": "Реклама\\ Внутренняя Коммуникация",
+          "count": 42,
+          "sum": 0,
+          "semantics": "P"
+        },
         {
           "stageId": "C14:NEW",
           "name": "Новый ЛИД",
@@ -3451,20 +3632,48 @@
         {
           "stageId": "C14:WON",
           "name": "Сделка успешна",
-          "count": 9,
-          "sum": 8819980,
+          "count": 10,
+          "sum": 8881980,
           "semantics": "S"
         },
         {
-          "stageId": "C14:UC_6Y05CH",
-          "name": "Реклама\\ Внутренняя Коммуникация",
-          "count": 4,
+          "stageId": "C14:FINAL_INVOICE",
+          "name": "КП",
+          "count": 9,
           "sum": 0,
           "semantics": "P"
         },
         {
+          "stageId": "C14:PREPARATION",
+          "name": "Поиск исполнителей\\Перепродажа",
+          "count": 6,
+          "sum": 0,
+          "semantics": "P"
+        },
+        {
+          "stageId": "C14:UC_6V1JR9",
+          "name": "Сроки(не успеваем предоставить)",
+          "count": 4,
+          "sum": 0,
+          "semantics": "F"
+        },
+        {
           "stageId": "C14:UC_EVVEK0",
           "name": "Срок работы(не рентабельно)",
+          "count": 3,
+          "sum": 0,
+          "semantics": "F"
+        },
+        {
+          "stageId": "C14:UC_ADAMGA",
+          "name": "Стоимость(Дорого)",
+          "count": 2,
+          "sum": 0,
+          "semantics": "F"
+        },
+        {
+          "stageId": "C14:LOSE",
+          "name": "Запрос Бетона и ЖБИ",
           "count": 1,
           "sum": 0,
           "semantics": "F"
@@ -3473,33 +3682,45 @@
       "byManager": [
         {
           "name": "Виктория Генадьева",
-          "total": 19,
+          "total": 61,
           "won": 4,
           "wonSum": 1132700,
-          "inWork": 15,
+          "inWork": 51,
           "inWorkSum": 0,
-          "lost": 0
+          "lost": 6
         },
         {
           "name": "Ангелина Зименко",
-          "total": 17,
-          "won": 5,
-          "wonSum": 7687280,
-          "inWork": 11,
+          "total": 38,
+          "won": 6,
+          "wonSum": 7749280,
+          "inWork": 28,
           "inWorkSum": 0,
-          "lost": 1
+          "lost": 4
         }
       ],
       "lostReasons": {
         "Срок работы (не рентабельно)": {
+          "count": 3,
+          "sum": 0
+        },
+        "Запрос Бетона/ЖБИ (не наш профиль)": {
           "count": 1,
+          "sum": 0
+        },
+        "Сроки (не успеваем)": {
+          "count": 4,
+          "sum": 0
+        },
+        "Стоимость (дорого)": {
+          "count": 2,
           "sum": 0
         }
       },
       "kpiBlock": {
         "КП выставлено": {
           "stageId": 0,
-          "count": 0,
+          "count": 9,
           "sum": 0
         },
         "Текущая сделка": {
@@ -3509,7 +3730,7 @@
         },
         "Поиск исполнителей": {
           "stageId": 0,
-          "count": 0,
+          "count": 6,
           "sum": 0
         },
         "В работе": {
@@ -3519,9 +3740,10 @@
         }
       },
       "bySource": {
-        "Ангелина Зименко": 16,
+        "Ангелина Зименко": 38,
         "(пусто)": 9,
-        "Виктория Генадьева": 11
+        "Виктория Генадьева": 51,
+        "Яндекс": 1
       },
       "year": 2026,
       "month": 7,
@@ -3529,21 +3751,21 @@
     }
   ],
   "latest": {
-    "label": "Неделя 28",
-    "from": "2026-07-06",
-    "to": "2026-07-12",
-    "isoWeek": 28,
+    "label": "Неделя 29",
+    "from": "2026-07-13",
+    "to": "2026-07-19",
+    "isoWeek": 29,
     "isoYear": 2026,
     "deals": {
-      "total": 36,
-      "won": 9,
-      "wonSum": 8819980,
-      "inWork": 26,
+      "total": 63,
+      "won": 0,
+      "wonSum": 0,
+      "inWork": 55,
       "inWorkSum": 0,
-      "lost": 1,
+      "lost": 8,
       "lostSum": 0,
-      "winRate": 90,
-      "noOppCount": 26,
+      "winRate": 0,
+      "noOppCount": 55,
       "noOppPct": 100
     },
     "byStage": [
@@ -3555,22 +3777,192 @@
         "semantics": "P"
       },
       {
-        "stageId": "C14:WON",
-        "name": "Сделка успешна",
-        "count": 9,
-        "sum": 8819980,
-        "semantics": "S"
+        "stageId": "C14:UC_6Y05CH",
+        "name": "Реклама\\ Внутренняя Коммуникация",
+        "count": 20,
+        "sum": 0,
+        "semantics": "P"
       },
+      {
+        "stageId": "C14:FINAL_INVOICE",
+        "name": "КП",
+        "count": 7,
+        "sum": 0,
+        "semantics": "P"
+      },
+      {
+        "stageId": "C14:PREPARATION",
+        "name": "Поиск исполнителей\\Перепродажа",
+        "count": 6,
+        "sum": 0,
+        "semantics": "P"
+      },
+      {
+        "stageId": "C14:UC_6V1JR9",
+        "name": "Сроки(не успеваем предоставить)",
+        "count": 4,
+        "sum": 0,
+        "semantics": "F"
+      },
+      {
+        "stageId": "C14:UC_EVVEK0",
+        "name": "Срок работы(не рентабельно)",
+        "count": 2,
+        "sum": 0,
+        "semantics": "F"
+      },
+      {
+        "stageId": "C14:UC_ADAMGA",
+        "name": "Стоимость(Дорого)",
+        "count": 2,
+        "sum": 0,
+        "semantics": "F"
+      }
+    ],
+    "stageOrder": [],
+    "byManager": [
+      {
+        "name": "Виктория Генадьева",
+        "total": 42,
+        "won": 0,
+        "wonSum": 0,
+        "inWork": 37,
+        "inWorkSum": 0,
+        "lost": 5,
+        "avgDeal": null,
+        "avgCycleDays": null,
+        "conversionRate": 0
+      },
+      {
+        "name": "Ангелина Зименко",
+        "total": 21,
+        "won": 0,
+        "wonSum": 0,
+        "inWork": 18,
+        "inWorkSum": 0,
+        "lost": 3,
+        "avgDeal": null,
+        "avgCycleDays": null,
+        "conversionRate": 0
+      }
+    ],
+    "lostReasons": {
+      "Срок работы (не рентабельно)": {
+        "count": 2,
+        "sum": 0
+      },
+      "Сроки (не успеваем)": {
+        "count": 4,
+        "sum": 0
+      },
+      "Стоимость (дорого)": {
+        "count": 2,
+        "sum": 0
+      }
+    },
+    "kpiBlock": {
+      "КП выставлено": {
+        "stageId": "C14:FINAL_INVOICE",
+        "count": 7,
+        "sum": 0
+      },
+      "Текущая сделка": {
+        "stageId": "C14:PREPAYMENT_INVOIC",
+        "count": 0,
+        "sum": 0
+      },
+      "Поиск исполнителей": {
+        "stageId": "C14:PREPARATION",
+        "count": 6,
+        "sum": 0
+      },
+      "В работе": {
+        "stageId": "C14:EXECUTING",
+        "count": 0,
+        "sum": 0
+      }
+    },
+    "bySource": {
+      "Ангелина Зименко": 22,
+      "Виктория Генадьева": 40,
+      "Яндекс": 1
+    },
+    "avito": {
+      "itemsCount": 0,
+      "views": 0,
+      "contacts": 0,
+      "favorites": 0,
+      "calls": 0,
+      "balance": 1748.17,
+      "conversion": "—",
+      "rentExpired": 7,
+      "scope": "rent"
+    },
+    "metrika": {
+      "visits": 132,
+      "users": 108,
+      "bounceRate": 38.6,
+      "depth": 1.08,
+      "bySource": {
+        "Ad traffic": 103,
+        "Direct traffic": 19,
+        "Search engine traffic": 7,
+        "Internal traffic": 1,
+        "Link traffic": 1
+      },
+      "goalConversions": {}
+    }
+  },
+  "prev": {
+    "label": "Неделя 28",
+    "from": "2026-07-06",
+    "to": "2026-07-12",
+    "isoWeek": 28,
+    "isoYear": 2026,
+    "deals": {
+      "total": 36,
+      "won": 10,
+      "wonSum": 8881980,
+      "inWork": 24,
+      "inWorkSum": 0,
+      "lost": 2,
+      "lostSum": 0,
+      "winRate": 83.3,
+      "noOppCount": 24,
+      "noOppPct": 100
+    },
+    "byStage": [
       {
         "stageId": "C14:UC_6Y05CH",
         "name": "Реклама\\ Внутренняя Коммуникация",
-        "count": 4,
+        "count": 22,
+        "sum": 0,
+        "semantics": "P"
+      },
+      {
+        "stageId": "C14:WON",
+        "name": "Сделка успешна",
+        "count": 10,
+        "sum": 8881980,
+        "semantics": "S"
+      },
+      {
+        "stageId": "C14:FINAL_INVOICE",
+        "name": "КП",
+        "count": 2,
         "sum": 0,
         "semantics": "P"
       },
       {
         "stageId": "C14:UC_EVVEK0",
         "name": "Срок работы(не рентабельно)",
+        "count": 1,
+        "sum": 0,
+        "semantics": "F"
+      },
+      {
+        "stageId": "C14:LOSE",
+        "name": "Запрос Бетона и ЖБИ",
         "count": 1,
         "sum": 0,
         "semantics": "F"
@@ -3583,28 +3975,32 @@
         "total": 19,
         "won": 4,
         "wonSum": 1132700,
-        "inWork": 15,
+        "inWork": 14,
         "inWorkSum": 0,
-        "lost": 0,
+        "lost": 1,
         "avgDeal": 283175,
         "avgCycleDays": null,
-        "conversionRate": 100
+        "conversionRate": 80
       },
       {
         "name": "Ангелина Зименко",
         "total": 17,
-        "won": 5,
-        "wonSum": 7687280,
-        "inWork": 11,
+        "won": 6,
+        "wonSum": 7749280,
+        "inWork": 10,
         "inWorkSum": 0,
         "lost": 1,
-        "avgDeal": 1537456,
-        "avgCycleDays": null,
-        "conversionRate": 83.3
+        "avgDeal": 1291547,
+        "avgCycleDays": 5,
+        "conversionRate": 85.7
       }
     ],
     "lostReasons": {
       "Срок работы (не рентабельно)": {
+        "count": 1,
+        "sum": 0
+      },
+      "Запрос Бетона/ЖБИ (не наш профиль)": {
         "count": 1,
         "sum": 0
       }
@@ -3612,7 +4008,7 @@
     "kpiBlock": {
       "КП выставлено": {
         "stageId": "C14:FINAL_INVOICE",
-        "count": 0,
+        "count": 2,
         "sum": 0
       },
       "Текущая сделка": {
@@ -3662,171 +4058,28 @@
       "goalConversions": {}
     }
   },
-  "prev": {
-    "label": "Неделя 27",
-    "from": "2026-06-29",
-    "to": "2026-07-05",
-    "isoWeek": 27,
-    "isoYear": 2026,
+  "latestMonth": {
+    "label": "Июль 2026",
+    "from": "2026-07-06",
+    "to": "2026-07-26",
+    "weeksCount": 3,
     "deals": {
-      "total": 31,
-      "won": 0,
-      "wonSum": 0,
-      "inWork": 29,
+      "total": 99,
+      "won": 10,
+      "wonSum": 8881980,
+      "inWork": 79,
       "inWorkSum": 0,
-      "lost": 2,
-      "lostSum": 0,
-      "winRate": 0,
-      "noOppCount": 29,
-      "noOppPct": 100
+      "lost": 10,
+      "winRate": 50
     },
     "byStage": [
       {
         "stageId": "C14:UC_6Y05CH",
         "name": "Реклама\\ Внутренняя Коммуникация",
-        "count": 25,
+        "count": 42,
         "sum": 0,
         "semantics": "P"
       },
-      {
-        "stageId": "C14:PREPARATION",
-        "name": "Поиск исполнителей\\Перепродажа",
-        "count": 2,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
-        "stageId": "C14:UC_6V1JR9",
-        "name": "Сроки(не успеваем предоставить)",
-        "count": 1,
-        "sum": 0,
-        "semantics": "F"
-      },
-      {
-        "stageId": "C14:EXECUTING",
-        "name": "В работе",
-        "count": 1,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
-        "stageId": "C14:UC_EVVEK0",
-        "name": "Срок работы(не рентабельно)",
-        "count": 1,
-        "sum": 0,
-        "semantics": "F"
-      },
-      {
-        "stageId": "C14:NEW",
-        "name": "Новый ЛИД",
-        "count": 1,
-        "sum": 0,
-        "semantics": "P"
-      }
-    ],
-    "stageOrder": [],
-    "byManager": [
-      {
-        "name": "Ангелина Зименко",
-        "total": 17,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 16,
-        "inWorkSum": 0,
-        "lost": 1,
-        "avgDeal": null,
-        "avgCycleDays": null,
-        "conversionRate": 0
-      },
-      {
-        "name": "Виктория Генадьева",
-        "total": 14,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 13,
-        "inWorkSum": 0,
-        "lost": 1,
-        "avgDeal": null,
-        "avgCycleDays": null,
-        "conversionRate": 0
-      }
-    ],
-    "lostReasons": {
-      "Сроки (не успеваем)": {
-        "count": 1,
-        "sum": 0
-      },
-      "Срок работы (не рентабельно)": {
-        "count": 1,
-        "sum": 0
-      }
-    },
-    "kpiBlock": {
-      "КП выставлено": {
-        "stageId": "C14:FINAL_INVOICE",
-        "count": 0,
-        "sum": 0
-      },
-      "Текущая сделка": {
-        "stageId": "C14:PREPAYMENT_INVOIC",
-        "count": 0,
-        "sum": 0
-      },
-      "Поиск исполнителей": {
-        "stageId": "C14:PREPARATION",
-        "count": 2,
-        "sum": 0
-      },
-      "В работе": {
-        "stageId": "C14:EXECUTING",
-        "count": 1,
-        "sum": 0
-      }
-    },
-    "bySource": {
-      "Ангелина Зименко": 22,
-      "Виктория Генадьева": 9
-    },
-    "avito": {
-      "itemsCount": 0,
-      "views": 0,
-      "contacts": 0,
-      "favorites": 0,
-      "calls": 0,
-      "balance": 1748.17,
-      "conversion": "—",
-      "rentExpired": 7,
-      "scope": "rent"
-    },
-    "metrika": {
-      "visits": 103,
-      "users": 93,
-      "bounceRate": 36.9,
-      "depth": 1.1,
-      "bySource": {
-        "Ad traffic": 91,
-        "Search engine traffic": 5,
-        "Direct traffic": 4,
-        "Internal traffic": 3
-      },
-      "goalConversions": {}
-    }
-  },
-  "latestMonth": {
-    "label": "Июль 2026",
-    "from": "2026-07-06",
-    "to": "2026-07-19",
-    "weeksCount": 2,
-    "deals": {
-      "total": 36,
-      "won": 9,
-      "wonSum": 8819980,
-      "inWork": 26,
-      "inWorkSum": 0,
-      "lost": 1,
-      "winRate": 90
-    },
-    "byStage": [
       {
         "stageId": "C14:NEW",
         "name": "Новый ЛИД",
@@ -3837,20 +4090,48 @@
       {
         "stageId": "C14:WON",
         "name": "Сделка успешна",
-        "count": 9,
-        "sum": 8819980,
+        "count": 10,
+        "sum": 8881980,
         "semantics": "S"
       },
       {
-        "stageId": "C14:UC_6Y05CH",
-        "name": "Реклама\\ Внутренняя Коммуникация",
-        "count": 4,
+        "stageId": "C14:FINAL_INVOICE",
+        "name": "КП",
+        "count": 9,
         "sum": 0,
         "semantics": "P"
       },
       {
+        "stageId": "C14:PREPARATION",
+        "name": "Поиск исполнителей\\Перепродажа",
+        "count": 6,
+        "sum": 0,
+        "semantics": "P"
+      },
+      {
+        "stageId": "C14:UC_6V1JR9",
+        "name": "Сроки(не успеваем предоставить)",
+        "count": 4,
+        "sum": 0,
+        "semantics": "F"
+      },
+      {
         "stageId": "C14:UC_EVVEK0",
         "name": "Срок работы(не рентабельно)",
+        "count": 3,
+        "sum": 0,
+        "semantics": "F"
+      },
+      {
+        "stageId": "C14:UC_ADAMGA",
+        "name": "Стоимость(Дорого)",
+        "count": 2,
+        "sum": 0,
+        "semantics": "F"
+      },
+      {
+        "stageId": "C14:LOSE",
+        "name": "Запрос Бетона и ЖБИ",
         "count": 1,
         "sum": 0,
         "semantics": "F"
@@ -3859,33 +4140,45 @@
     "byManager": [
       {
         "name": "Виктория Генадьева",
-        "total": 19,
+        "total": 61,
         "won": 4,
         "wonSum": 1132700,
-        "inWork": 15,
+        "inWork": 51,
         "inWorkSum": 0,
-        "lost": 0
+        "lost": 6
       },
       {
         "name": "Ангелина Зименко",
-        "total": 17,
-        "won": 5,
-        "wonSum": 7687280,
-        "inWork": 11,
+        "total": 38,
+        "won": 6,
+        "wonSum": 7749280,
+        "inWork": 28,
         "inWorkSum": 0,
-        "lost": 1
+        "lost": 4
       }
     ],
     "lostReasons": {
       "Срок работы (не рентабельно)": {
+        "count": 3,
+        "sum": 0
+      },
+      "Запрос Бетона/ЖБИ (не наш профиль)": {
         "count": 1,
+        "sum": 0
+      },
+      "Сроки (не успеваем)": {
+        "count": 4,
+        "sum": 0
+      },
+      "Стоимость (дорого)": {
+        "count": 2,
         "sum": 0
       }
     },
     "kpiBlock": {
       "КП выставлено": {
         "stageId": 0,
-        "count": 0,
+        "count": 9,
         "sum": 0
       },
       "Текущая сделка": {
@@ -3895,7 +4188,7 @@
       },
       "Поиск исполнителей": {
         "stageId": 0,
-        "count": 0,
+        "count": 6,
         "sum": 0
       },
       "В работе": {
@@ -3905,9 +4198,10 @@
       }
     },
     "bySource": {
-      "Ангелина Зименко": 16,
+      "Ангелина Зименко": 38,
       "(пусто)": 9,
-      "Виктория Генадьева": 11
+      "Виктория Генадьева": 51,
+      "Яндекс": 1
     },
     "year": 2026,
     "month": 7,
@@ -3931,7 +4225,7 @@
       {
         "stageId": "C14:UC_6Y05CH",
         "name": "Реклама\\ Внутренняя Коммуникация",
-        "count": 111,
+        "count": 112,
         "sum": 0,
         "semantics": "P"
       },
@@ -3966,7 +4260,7 @@
       {
         "stageId": "C14:FINAL_INVOICE",
         "name": "КП",
-        "count": 4,
+        "count": 5,
         "sum": 0,
         "semantics": "P"
       },
@@ -3978,18 +4272,18 @@
         "semantics": "F"
       },
       {
-        "stageId": "C14:NEW",
-        "name": "Новый ЛИД",
-        "count": 3,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
         "stageId": "C14:LOSE",
         "name": "Запрос Бетона и ЖБИ",
         "count": 3,
         "sum": 0,
         "semantics": "F"
+      },
+      {
+        "stageId": "C14:NEW",
+        "name": "Новый ЛИД",
+        "count": 1,
+        "sum": 0,
+        "semantics": "P"
       },
       {
         "stageId": "C14:UC_2A5P4X",
@@ -4056,7 +4350,7 @@
     "kpiBlock": {
       "КП выставлено": {
         "stageId": 0,
-        "count": 4,
+        "count": 5,
         "sum": 0
       },
       "Текущая сделка": {
@@ -4200,6 +4494,12 @@
         "label": "Неделя 29",
         "from": "2026-07-13",
         "to": "2026-07-19"
+      },
+      {
+        "id": "2026-W30",
+        "label": "Неделя 30",
+        "from": "2026-07-20",
+        "to": "2026-07-26"
       }
     ],
     "months": [
@@ -4231,7 +4531,7 @@
         "id": "2026-07",
         "label": "Июль 2026",
         "from": "2026-07-06",
-        "to": "2026-07-19"
+        "to": "2026-07-26"
       }
     ],
     "ranges": [

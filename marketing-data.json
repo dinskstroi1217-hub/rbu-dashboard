@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T05:45:01.987Z",
+  "generatedAt": "2026-07-20T05:45:01.651Z",
   "schemaVersion": 3,
   "weeks": [
     {
@@ -12562,10 +12562,10 @@
       "leadsByManager": {
         "ID-904 (не существует)": 12,
         "Евгений Морозов": 7,
-        "Михаил Кателевец": 29,
-        "Ирина Мухитдинова": 3,
+        "ID-1672": 29,
+        "ID-1956": 3,
         "Сергей Смольников": 3,
-        "Ольга Долгопятова": 9,
+        "ID-1962": 9,
         "Игорь Диденко": 10,
         "Ирина Лукина": 1,
         "Илья Ушаков": 15,
@@ -12579,7 +12579,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
+          "staleDealsCount": 0,
           "staleDealsSum": 0,
           "role": "unknown"
         },
@@ -12594,27 +12594,27 @@
           "staleDealsSum": 405323,
           "role": "sales"
         },
-        "Михаил Кателевец": {
+        "ID-1672": {
           "leadsReceived": 29,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
+          "staleDealsCount": 12,
           "staleDealsSum": 0,
-          "role": "sales"
+          "role": "unknown"
         },
-        "Ирина Мухитдинова": {
+        "ID-1956": {
           "leadsReceived": 3,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 28,
+          "staleDealsCount": 47,
           "staleDealsSum": 84408,
-          "role": "sales"
+          "role": "unknown"
         },
         "Сергей Смольников": {
           "leadsReceived": 3,
@@ -12627,16 +12627,16 @@
           "staleDealsSum": 0,
           "role": "sales"
         },
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "leadsReceived": 9,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 92,
-          "staleDealsSum": 110000,
-          "role": "sales"
+          "staleDealsCount": 130,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Игорь Диденко": {
           "leadsReceived": 10,
@@ -12645,7 +12645,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 7,
+          "staleDealsCount": 6,
           "staleDealsSum": 986578300,
           "role": "sales"
         },
@@ -12656,7 +12656,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 162,
+          "staleDealsCount": 168,
           "staleDealsSum": 152071,
           "role": "sales"
         },
@@ -12667,7 +12667,7 @@
           "dealsInWork": 0,
           "dealsWon": 1,
           "wonSum": 21150,
-          "staleDealsCount": 169,
+          "staleDealsCount": 135,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -12678,18 +12678,7 @@
           "dealsInWork": 0,
           "dealsWon": 4,
           "wonSum": 546350,
-          "staleDealsCount": 178,
-          "staleDealsSum": 0,
-          "role": "sales"
-        },
-        "Елена Андреева": {
-          "leadsReceived": 0,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 123,
+          "staleDealsCount": 211,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -12700,9 +12689,20 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 22,
+          "staleDealsCount": 37,
           "staleDealsSum": 0,
           "role": "unknown"
+        },
+        "Елена Андреева": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 149,
+          "staleDealsSum": 0,
+          "role": "sales"
         },
         "Сайт БСТ (service)": {
           "leadsReceived": 0,
@@ -12711,7 +12711,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 1,
           "role": "service"
         },
@@ -12733,7 +12733,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 23,
+          "staleDealsCount": 22,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -12744,7 +12744,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 16,
+          "staleDealsCount": 14,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -12755,7 +12755,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 8,
+          "staleDealsCount": 7,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -12810,9 +12810,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 5,
+          "staleDealsCount": 4,
           "staleDealsSum": 0,
           "role": "sales"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1964": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Ирина Аникина (admin)": {
           "leadsReceived": 0,
@@ -12825,6 +12847,17 @@
           "staleDealsSum": 0,
           "role": "admin"
         },
+        "Ольга Долгопятова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
+          "role": "sales"
+        },
         "Лилия Иванова (ops)": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -12836,6 +12869,17 @@
           "staleDealsSum": 0,
           "role": "ops"
         },
+        "Михаил Кателевец": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
         "Лилия Иванова (дубль) (ops)": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -12843,20 +12887,9 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "ops"
-        },
-        "ID-1672": {
-          "leadsReceived": 0,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 10,
-          "staleDealsSum": 0,
-          "role": "unknown"
         },
         "Ангелина Зименко": {
           "leadsReceived": 0,
@@ -12865,7 +12898,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 324,
+          "staleDealsCount": 337,
           "staleDealsSum": 390000,
           "role": "sales"
         },
@@ -12876,7 +12909,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 267,
+          "staleDealsCount": 276,
           "staleDealsSum": 345600,
           "role": "sales"
         },
@@ -12893,54 +12926,56 @@
         }
       },
       "staleDeals": {
-        "total": 931,
+        "total": 1040,
         "sum": 3330103,
-        "sumEstimated": 44688103,
-        "estimatedCount": 904,
-        "medianWonUsed": 45750,
+        "sumEstimated": 51979428,
+        "estimatedCount": 1013,
+        "medianWonUsed": 48025,
         "byBucket": {
-          "7d": 182,
-          "14d": 284,
-          "30d": 465
+          "7d": 164,
+          "14d": 311,
+          "30d": 565
         },
         "byManager": {
-          "Елена Андреева": 123,
-          "Илья Ушаков": 169,
-          "Андрей Визильков": 177,
-          "ID-296 (не существует)": 22,
-          "Сайт БСТ": 3,
+          "Илья Ушаков": 135,
+          "Андрей Визильков": 210,
+          "ID-296 (не существует)": 37,
+          "Елена Андреева": 149,
+          "ID-1962": 130,
+          "Сайт БСТ": 1,
           "ЖБИ Оператор": 13,
-          "Тимашевск Оператор": 23,
-          "Динская Оператор": 16,
-          "РБУ Кореновск (новый)": 8,
+          "Тимашевск Оператор": 22,
+          "Динская Оператор": 14,
+          "РБУ Кореновск (новый)": 7,
           "Диспетчер Кореновск": 22,
           "Нина Читчян": 12,
           "Инна Николаева": 8,
           "Андреева Е. (старая учётка)": 2,
-          "Ирина Лукина": 161,
-          "Татьяна Гладышева": 5,
-          "Ирина Мухитдинова": 28,
+          "Ирина Лукина": 167,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 1,
+          "ID-1964": 8,
           "Ирина Аникина": 1,
-          "Ольга Долгопятова": 92,
           "Евгений Морозов": 20,
-          "Игорь Диденко": 7,
-          "ID-904 (не существует)": 1,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 47,
+          "Игорь Диденко": 6,
           "Лилия Иванова": 1,
           "Михаил Кателевец": 1,
-          "Лилия Иванова (дубль)": 3,
-          "ID-1672": 9,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 11,
           "ID-1358": 4
         },
         "byStage": {
           "Выставлен счет": 58,
-          "Получены закрывающие": 18,
-          "Квалифицирован": 239,
-          "Отправлено КП": 11,
-          "Есть интерес": 347,
+          "Получены закрывающие": 10,
+          "Квалифицирован": 296,
+          "Отправлено КП": 17,
+          "Есть интерес": 380,
           "Назначить ТС/Логистика": 6,
           "Оформить документы": 28,
-          "Принять заявку": 198,
-          "Обработать заявку": 17,
+          "Принять заявку": 216,
+          "Обработать заявку": 20,
           "Получить документы": 1,
           "Окончательный рассчет": 1,
           "Контроль доставки": 3,
@@ -12980,7 +13015,7 @@
         "sampleSize": 5
       },
       "funnelStages": {
-        "totalInWork": 100,
+        "totalInWork": 103,
         "totalWon": 5,
         "totalLost": 0,
         "overallWinRate": 100,
@@ -12996,7 +13031,7 @@
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
-            "count": 12,
+            "count": 10,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -13010,7 +13045,7 @@
           {
             "stageId": "NEW",
             "name": "Квалифицирован",
-            "count": 9,
+            "count": 8,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -13024,7 +13059,7 @@
           {
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
-            "count": 64,
+            "count": 70,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -13095,7 +13130,7 @@
         }
       },
       "channelBenchmarks": null,
-      "fetchedAt": "2026-07-13T05:30:59.572Z",
+      "fetchedAt": "2026-07-20T05:31:02.833Z",
       "spend": {
         "total": 0,
         "direct": 0,
@@ -13197,7 +13232,7 @@
           "won": 5,
           "wonSum": 134175
         },
-        "ID-904 (не существует)": {
+        "Елена Андреева": {
           "inWork": 0,
           "won": 6,
           "wonSum": 235400
@@ -13233,10 +13268,10 @@
         "Евгений Морозов": 3,
         "Илья Ушаков": 21,
         "Игорь Диденко": 31,
-        "Михаил Кателевец": 43,
+        "ID-1672": 43,
         "ID-904 (не существует)": 39,
-        "Ольга Долгопятова": 4,
-        "Ирина Мухитдинова": 4,
+        "ID-1962": 4,
+        "ID-1956": 4,
         "Вильдан Азисов (admin)": 1
       },
       "managersPerformance": {
@@ -13247,7 +13282,7 @@
           "dealsInWork": 0,
           "dealsWon": 5,
           "wonSum": 134175,
-          "staleDealsCount": 178,
+          "staleDealsCount": 211,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -13269,7 +13304,7 @@
           "dealsInWork": 0,
           "dealsWon": 4,
           "wonSum": 199100,
-          "staleDealsCount": 169,
+          "staleDealsCount": 135,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -13280,53 +13315,53 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 7,
+          "staleDealsCount": 6,
           "staleDealsSum": 986578300,
           "role": "sales"
         },
-        "Михаил Кателевец": {
+        "ID-1672": {
           "leadsReceived": 43,
           "leadsConverted": 1,
           "conversionRate": 2.3,
           "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 1,
-          "staleDealsSum": 0,
-          "role": "sales"
-        },
-        "ID-904 (не существует)": {
-          "leadsReceived": 39,
-          "leadsConverted": 7,
-          "conversionRate": 17.9,
-          "dealsInWork": 0,
-          "dealsWon": 6,
-          "wonSum": 235400,
-          "staleDealsCount": 1,
+          "dealsWon": 4,
+          "wonSum": 4,
+          "staleDealsCount": 12,
           "staleDealsSum": 0,
           "role": "unknown"
         },
-        "Ольга Долгопятова": {
-          "leadsReceived": 4,
-          "leadsConverted": 2,
-          "conversionRate": 50,
+        "ID-904 (не существует)": {
+          "leadsReceived": 39,
+          "leadsConverted": 0,
+          "conversionRate": 0,
           "dealsInWork": 0,
-          "dealsWon": 2,
-          "wonSum": 301050,
-          "staleDealsCount": 92,
-          "staleDealsSum": 110000,
-          "role": "sales"
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 0,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
-        "Ирина Мухитдинова": {
+        "ID-1962": {
           "leadsReceived": 4,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 28,
+          "staleDealsCount": 130,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        },
+        "ID-1956": {
+          "leadsReceived": 4,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 47,
           "staleDealsSum": 84408,
-          "role": "sales"
+          "role": "unknown"
         },
         "Вильдан Азисов (admin)": {
           "leadsReceived": 1,
@@ -13339,6 +13374,17 @@
           "staleDealsSum": 0,
           "role": "admin"
         },
+        "Елена Андреева": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 6,
+          "wonSum": 235400,
+          "staleDealsCount": 149,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
         "Ирина Лукина": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -13346,29 +13392,29 @@
           "dealsInWork": 1,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 162,
+          "staleDealsCount": 168,
           "staleDealsSum": 152071,
           "role": "sales"
         },
-        "ID-1672": {
+        "Ольга Долгопятова": {
           "leadsReceived": 0,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
-          "dealsWon": 4,
-          "wonSum": 4,
-          "staleDealsCount": 10,
-          "staleDealsSum": 0,
-          "role": "unknown"
+          "dealsWon": 2,
+          "wonSum": 301050,
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
+          "role": "sales"
         },
-        "Елена Андреева": {
+        "Михаил Кателевец": {
           "leadsReceived": 0,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 123,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -13379,7 +13425,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 22,
+          "staleDealsCount": 37,
           "staleDealsSum": 0,
           "role": "unknown"
         },
@@ -13390,7 +13436,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 1,
           "role": "service"
         },
@@ -13412,7 +13458,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 23,
+          "staleDealsCount": 22,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -13423,7 +13469,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 16,
+          "staleDealsCount": 14,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -13434,7 +13480,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 8,
+          "staleDealsCount": 7,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -13489,9 +13535,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 5,
+          "staleDealsCount": 4,
           "staleDealsSum": 0,
           "role": "sales"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1964": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Ирина Аникина (admin)": {
           "leadsReceived": 0,
@@ -13522,7 +13590,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -13533,7 +13601,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 324,
+          "staleDealsCount": 337,
           "staleDealsSum": 390000,
           "role": "sales"
         },
@@ -13544,7 +13612,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 267,
+          "staleDealsCount": 276,
           "staleDealsSum": 345600,
           "role": "sales"
         },
@@ -13561,54 +13629,56 @@
         }
       },
       "staleDeals": {
-        "total": 931,
+        "total": 1040,
         "sum": 3330103,
-        "sumEstimated": 44688103,
-        "estimatedCount": 904,
-        "medianWonUsed": 45750,
+        "sumEstimated": 51979428,
+        "estimatedCount": 1013,
+        "medianWonUsed": 48025,
         "byBucket": {
-          "7d": 182,
-          "14d": 284,
-          "30d": 465
+          "7d": 164,
+          "14d": 311,
+          "30d": 565
         },
         "byManager": {
-          "Елена Андреева": 123,
-          "Илья Ушаков": 169,
-          "Андрей Визильков": 177,
-          "ID-296 (не существует)": 22,
-          "Сайт БСТ": 3,
+          "Илья Ушаков": 135,
+          "Андрей Визильков": 210,
+          "ID-296 (не существует)": 37,
+          "Елена Андреева": 149,
+          "ID-1962": 130,
+          "Сайт БСТ": 1,
           "ЖБИ Оператор": 13,
-          "Тимашевск Оператор": 23,
-          "Динская Оператор": 16,
-          "РБУ Кореновск (новый)": 8,
+          "Тимашевск Оператор": 22,
+          "Динская Оператор": 14,
+          "РБУ Кореновск (новый)": 7,
           "Диспетчер Кореновск": 22,
           "Нина Читчян": 12,
           "Инна Николаева": 8,
           "Андреева Е. (старая учётка)": 2,
-          "Ирина Лукина": 161,
-          "Татьяна Гладышева": 5,
-          "Ирина Мухитдинова": 28,
+          "Ирина Лукина": 167,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 1,
+          "ID-1964": 8,
           "Ирина Аникина": 1,
-          "Ольга Долгопятова": 92,
           "Евгений Морозов": 20,
-          "Игорь Диденко": 7,
-          "ID-904 (не существует)": 1,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 47,
+          "Игорь Диденко": 6,
           "Лилия Иванова": 1,
           "Михаил Кателевец": 1,
-          "Лилия Иванова (дубль)": 3,
-          "ID-1672": 9,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 11,
           "ID-1358": 4
         },
         "byStage": {
           "Выставлен счет": 58,
-          "Получены закрывающие": 18,
-          "Квалифицирован": 239,
-          "Отправлено КП": 11,
-          "Есть интерес": 347,
+          "Получены закрывающие": 10,
+          "Квалифицирован": 296,
+          "Отправлено КП": 17,
+          "Есть интерес": 380,
           "Назначить ТС/Логистика": 6,
           "Оформить документы": 28,
-          "Принять заявку": 198,
-          "Обработать заявку": 17,
+          "Принять заявку": 216,
+          "Обработать заявку": 20,
           "Получить документы": 1,
           "Окончательный рассчет": 1,
           "Контроль доставки": 3,
@@ -13672,7 +13742,7 @@
         "sampleSize": 24
       },
       "funnelStages": {
-        "totalInWork": 101,
+        "totalInWork": 104,
         "totalWon": 21,
         "totalLost": 3,
         "overallWinRate": 87.5,
@@ -13699,7 +13769,7 @@
             "semantic": "P",
             "count": 6,
             "sumOpportunity": 19600,
-            "medianAgeDays": 118.8
+            "medianAgeDays": 125.8
           },
           {
             "stageId": "C4:LOSE",
@@ -13712,7 +13782,7 @@
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
-            "count": 12,
+            "count": 10,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -13726,7 +13796,7 @@
           {
             "stageId": "NEW",
             "name": "Квалифицирован",
-            "count": 9,
+            "count": 8,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -13740,7 +13810,7 @@
           {
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
-            "count": 64,
+            "count": 70,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -13766,7 +13836,7 @@
             "semantic": "P",
             "count": 6,
             "sumOpportunity": 19600,
-            "medianAgeDays": 118.8
+            "medianAgeDays": 125.8
           }
         ],
         "bottleneck": {
@@ -13775,7 +13845,7 @@
           "semantic": "P",
           "count": 6,
           "sumOpportunity": 19600,
-          "medianAgeDays": 118.8
+          "medianAgeDays": 125.8
         }
       },
       "closedThisWeek": {
@@ -13850,7 +13920,7 @@
         }
       },
       "channelBenchmarks": null,
-      "fetchedAt": "2026-07-13T05:32:07.053Z",
+      "fetchedAt": "2026-07-20T05:32:14.327Z",
       "spend": {
         "total": 0,
         "direct": 0,
@@ -13953,7 +14023,7 @@
           "won": 5,
           "wonSum": 329300
         },
-        "Ирина Мухитдинова": {
+        "ID-1956": {
           "inWork": 1,
           "won": 0,
           "wonSum": 0
@@ -13981,11 +14051,11 @@
       },
       "leadsByManager": {
         "Игорь Диденко": 44,
-        "Михаил Кателевец": 45,
-        "Ирина Мухитдинова": 22,
+        "ID-1672": 45,
+        "ID-1956": 22,
         "Илья Ушаков": 54,
         "ID-904 (не существует)": 33,
-        "Ольга Долгопятова": 18,
+        "ID-1962": 18,
         "Ирина Лукина": 28,
         "Евгений Морозов": 5,
         "Андрей Визильков": 52,
@@ -14000,31 +14070,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 7,
+          "staleDealsCount": 6,
           "staleDealsSum": 986578300,
           "role": "sales"
         },
-        "Михаил Кателевец": {
+        "ID-1672": {
           "leadsReceived": 45,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
+          "staleDealsCount": 12,
           "staleDealsSum": 0,
-          "role": "sales"
+          "role": "unknown"
         },
-        "Ирина Мухитдинова": {
+        "ID-1956": {
           "leadsReceived": 22,
           "leadsConverted": 1,
           "conversionRate": 4.5,
           "dealsInWork": 1,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 28,
+          "staleDealsCount": 47,
           "staleDealsSum": 84408,
-          "role": "sales"
+          "role": "unknown"
         },
         "Илья Ушаков": {
           "leadsReceived": 54,
@@ -14033,7 +14103,7 @@
           "dealsInWork": 0,
           "dealsWon": 8,
           "wonSum": 203405,
-          "staleDealsCount": 169,
+          "staleDealsCount": 135,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -14044,20 +14114,20 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
+          "staleDealsCount": 0,
           "staleDealsSum": 0,
           "role": "unknown"
         },
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "leadsReceived": 18,
-          "leadsConverted": 6,
-          "conversionRate": 33.3,
-          "dealsInWork": 1,
-          "dealsWon": 5,
-          "wonSum": 329300,
-          "staleDealsCount": 92,
-          "staleDealsSum": 110000,
-          "role": "sales"
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 130,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Ирина Лукина": {
           "leadsReceived": 28,
@@ -14066,7 +14136,7 @@
           "dealsInWork": 3,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 162,
+          "staleDealsCount": 168,
           "staleDealsSum": 152071,
           "role": "sales"
         },
@@ -14088,7 +14158,7 @@
           "dealsInWork": 0,
           "dealsWon": 6,
           "wonSum": 357475,
-          "staleDealsCount": 178,
+          "staleDealsCount": 211,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -14099,7 +14169,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 23,
+          "staleDealsCount": 22,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -14114,15 +14184,15 @@
           "staleDealsSum": 0,
           "role": "owner"
         },
-        "Елена Андреева": {
+        "Ольга Долгопятова": {
           "leadsReceived": 0,
           "leadsConverted": 0,
           "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 123,
-          "staleDealsSum": 0,
+          "dealsInWork": 1,
+          "dealsWon": 5,
+          "wonSum": 329300,
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
           "role": "sales"
         },
         "ID-296 (не существует)": {
@@ -14132,9 +14202,20 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 22,
+          "staleDealsCount": 37,
           "staleDealsSum": 0,
           "role": "unknown"
+        },
+        "Елена Андреева": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 149,
+          "staleDealsSum": 0,
+          "role": "sales"
         },
         "Сайт БСТ (service)": {
           "leadsReceived": 0,
@@ -14143,7 +14224,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 1,
           "role": "service"
         },
@@ -14165,7 +14246,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 16,
+          "staleDealsCount": 14,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -14176,7 +14257,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 8,
+          "staleDealsCount": 7,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -14231,9 +14312,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 5,
+          "staleDealsCount": 4,
           "staleDealsSum": 0,
           "role": "sales"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1964": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Ирина Аникина (admin)": {
           "leadsReceived": 0,
@@ -14257,6 +14360,17 @@
           "staleDealsSum": 0,
           "role": "ops"
         },
+        "Михаил Кателевец": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
         "Лилия Иванова (дубль) (ops)": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -14264,20 +14378,9 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "ops"
-        },
-        "ID-1672": {
-          "leadsReceived": 0,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 10,
-          "staleDealsSum": 0,
-          "role": "unknown"
         },
         "Ангелина Зименко": {
           "leadsReceived": 0,
@@ -14286,7 +14389,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 324,
+          "staleDealsCount": 337,
           "staleDealsSum": 390000,
           "role": "sales"
         },
@@ -14297,7 +14400,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 267,
+          "staleDealsCount": 276,
           "staleDealsSum": 345600,
           "role": "sales"
         },
@@ -14314,54 +14417,56 @@
         }
       },
       "staleDeals": {
-        "total": 931,
+        "total": 1040,
         "sum": 3330103,
-        "sumEstimated": 44688103,
-        "estimatedCount": 904,
-        "medianWonUsed": 45750,
+        "sumEstimated": 51979428,
+        "estimatedCount": 1013,
+        "medianWonUsed": 48025,
         "byBucket": {
-          "7d": 182,
-          "14d": 284,
-          "30d": 465
+          "7d": 164,
+          "14d": 311,
+          "30d": 565
         },
         "byManager": {
-          "Елена Андреева": 123,
-          "Илья Ушаков": 169,
-          "Андрей Визильков": 177,
-          "ID-296 (не существует)": 22,
-          "Сайт БСТ": 3,
+          "Илья Ушаков": 135,
+          "Андрей Визильков": 210,
+          "ID-296 (не существует)": 37,
+          "Елена Андреева": 149,
+          "ID-1962": 130,
+          "Сайт БСТ": 1,
           "ЖБИ Оператор": 13,
-          "Тимашевск Оператор": 23,
-          "Динская Оператор": 16,
-          "РБУ Кореновск (новый)": 8,
+          "Тимашевск Оператор": 22,
+          "Динская Оператор": 14,
+          "РБУ Кореновск (новый)": 7,
           "Диспетчер Кореновск": 22,
           "Нина Читчян": 12,
           "Инна Николаева": 8,
           "Андреева Е. (старая учётка)": 2,
-          "Ирина Лукина": 161,
-          "Татьяна Гладышева": 5,
-          "Ирина Мухитдинова": 28,
+          "Ирина Лукина": 167,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 1,
+          "ID-1964": 8,
           "Ирина Аникина": 1,
-          "Ольга Долгопятова": 92,
           "Евгений Морозов": 20,
-          "Игорь Диденко": 7,
-          "ID-904 (не существует)": 1,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 47,
+          "Игорь Диденко": 6,
           "Лилия Иванова": 1,
           "Михаил Кателевец": 1,
-          "Лилия Иванова (дубль)": 3,
-          "ID-1672": 9,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 11,
           "ID-1358": 4
         },
         "byStage": {
           "Выставлен счет": 58,
-          "Получены закрывающие": 18,
-          "Квалифицирован": 239,
-          "Отправлено КП": 11,
-          "Есть интерес": 347,
+          "Получены закрывающие": 10,
+          "Квалифицирован": 296,
+          "Отправлено КП": 17,
+          "Есть интерес": 380,
           "Назначить ТС/Логистика": 6,
           "Оформить документы": 28,
-          "Принять заявку": 198,
-          "Обработать заявку": 17,
+          "Принять заявку": 216,
+          "Обработать заявку": 20,
           "Получить документы": 1,
           "Окончательный рассчет": 1,
           "Контроль доставки": 3,
@@ -14449,7 +14554,7 @@
         "sampleSize": 20
       },
       "funnelStages": {
-        "totalInWork": 105,
+        "totalInWork": 108,
         "totalWon": 20,
         "totalLost": 0,
         "overallWinRate": 100,
@@ -14460,7 +14565,7 @@
             "semantic": "P",
             "count": 3,
             "sumOpportunity": 0,
-            "medianAgeDays": 77
+            "medianAgeDays": 84
           },
           {
             "stageId": "C4:FINAL_INVOICE",
@@ -14468,7 +14573,7 @@
             "semantic": "P",
             "count": 2,
             "sumOpportunity": 0,
-            "medianAgeDays": 59.9
+            "medianAgeDays": 66.9
           },
           {
             "stageId": "C4:WON",
@@ -14484,12 +14589,12 @@
             "semantic": "P",
             "count": 8,
             "sumOpportunity": 39200,
-            "medianAgeDays": 83.9
+            "medianAgeDays": 90.9
           },
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
-            "count": 12,
+            "count": 10,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -14503,7 +14608,7 @@
           {
             "stageId": "NEW",
             "name": "Квалифицирован",
-            "count": 9,
+            "count": 8,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -14517,7 +14622,7 @@
           {
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
-            "count": 64,
+            "count": 70,
             "sumOpportunity": 0,
             "medianAgeDays": null
           }
@@ -14529,7 +14634,7 @@
             "semantic": "P",
             "count": 8,
             "sumOpportunity": 39200,
-            "medianAgeDays": 83.9
+            "medianAgeDays": 90.9
           },
           {
             "stageId": "C4:EXECUTING",
@@ -14537,7 +14642,7 @@
             "semantic": "P",
             "count": 3,
             "sumOpportunity": 0,
-            "medianAgeDays": 77
+            "medianAgeDays": 84
           },
           {
             "stageId": "C4:FINAL_INVOICE",
@@ -14545,7 +14650,7 @@
             "semantic": "P",
             "count": 2,
             "sumOpportunity": 0,
-            "medianAgeDays": 59.9
+            "medianAgeDays": 66.9
           }
         ],
         "bottleneck": {
@@ -14554,7 +14659,7 @@
           "semantic": "P",
           "count": 8,
           "sumOpportunity": 39200,
-          "medianAgeDays": 83.9
+          "medianAgeDays": 90.9
         }
       },
       "closedThisWeek": {
@@ -14951,7 +15056,7 @@
         "benchmarksSource": "data/benchmarks.json",
         "updatedAt": "2026-05-17"
       },
-      "fetchedAt": "2026-07-13T05:33:19.050Z",
+      "fetchedAt": "2026-07-20T05:33:30.325Z",
       "spend": {
         "total": 204125.75,
         "direct": 86205.74999999999,
@@ -15015,15 +15120,15 @@
       },
       "deals": {
         "total": 1705,
-        "won": 1063,
-        "wonSum": 90269671,
-        "wonMarketing": 38,
-        "wonSumMarketing": 1426780,
-        "inWorkMarketing": 29,
+        "won": 1067,
+        "wonSum": 90830826,
+        "wonMarketing": 40,
+        "wonSumMarketing": 1489780,
+        "inWorkMarketing": 26,
         "inWorkSumMarketing": 0,
-        "wonSumBackoffice": 33309919,
-        "wonSumNonMarketing": 55532972,
-        "dealsBackofficeCount": 497,
+        "wonSumBackoffice": 33367094,
+        "wonSumNonMarketing": 55973952,
+        "dealsBackofficeCount": 498,
         "dealsTrueBlind": 12
       },
       "cpl": 534,
@@ -15052,9 +15157,9 @@
         "2ГИС БСТ": 1
       },
       "revenueBySource": {
-        "Яндекс.Карты БСТ": 818330,
+        "Яндекс.Карты БСТ": 856630,
         "Авито БСТ": 53150,
-        "Сайт отдел БСТ": 555300
+        "Сайт отдел БСТ": 580000
       },
       "byCategory": {
         "ЖБИ (#4)": 410,
@@ -15068,20 +15173,20 @@
           "won": 13,
           "wonSum": 358675
         },
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "inWork": 1,
           "won": 8,
           "wonSum": 328100
         },
         "Елена Андреева": {
-          "inWork": 1,
-          "won": 0,
-          "wonSum": 0
+          "inWork": 0,
+          "won": 1,
+          "wonSum": 24700
         },
         "Илья Ушаков": {
-          "inWork": 12,
-          "won": 17,
-          "wonSum": 740005
+          "inWork": 10,
+          "won": 18,
+          "wonSum": 778305
         },
         "Инна Николаева (ops)": {
           "inWork": 1,
@@ -15101,11 +15206,10 @@
         "Ирина Лукина": 57,
         "Андрей Визильков": 66,
         "ID-904 (не существует)": 2,
-        "Ольга Долгопятова": 42,
+        "ID-1962": 42,
         "Тимашевск Оператор (ops)": 1,
-        "Михаил Кателевец": 2,
-        "Ирина Мухитдинова": 29,
-        "ID-1672": 11,
+        "ID-1672": 13,
+        "ID-1956": 29,
         "Елена Андреева": 7,
         "Виктория Генадьева": 1,
         "Динская Оператор (ops)": 1
@@ -15129,7 +15233,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 7,
+          "staleDealsCount": 6,
           "staleDealsSum": 986578300,
           "role": "sales"
         },
@@ -15137,10 +15241,10 @@
           "leadsReceived": 85,
           "leadsConverted": 34,
           "conversionRate": 40,
-          "dealsInWork": 12,
-          "dealsWon": 17,
-          "wonSum": 740005,
-          "staleDealsCount": 169,
+          "dealsInWork": 10,
+          "dealsWon": 18,
+          "wonSum": 778305,
+          "staleDealsCount": 135,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -15151,7 +15255,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 162,
+          "staleDealsCount": 168,
           "staleDealsSum": 152071,
           "role": "sales"
         },
@@ -15162,7 +15266,7 @@
           "dealsInWork": 13,
           "dealsWon": 13,
           "wonSum": 358675,
-          "staleDealsCount": 178,
+          "staleDealsCount": 211,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -15173,20 +15277,20 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
+          "staleDealsCount": 0,
           "staleDealsSum": 0,
           "role": "unknown"
         },
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "leadsReceived": 42,
           "leadsConverted": 23,
           "conversionRate": 54.8,
           "dealsInWork": 1,
           "dealsWon": 8,
           "wonSum": 328100,
-          "staleDealsCount": 92,
-          "staleDealsSum": 110000,
-          "role": "sales"
+          "staleDealsCount": 130,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Тимашевск Оператор (ops)": {
           "leadsReceived": 1,
@@ -15195,51 +15299,40 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 23,
+          "staleDealsCount": 22,
           "staleDealsSum": 0,
           "role": "ops"
         },
-        "Михаил Кателевец": {
-          "leadsReceived": 2,
+        "ID-1672": {
+          "leadsReceived": 13,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
+          "staleDealsCount": 12,
           "staleDealsSum": 0,
-          "role": "sales"
+          "role": "unknown"
         },
-        "Ирина Мухитдинова": {
+        "ID-1956": {
           "leadsReceived": 29,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 28,
+          "staleDealsCount": 47,
           "staleDealsSum": 84408,
-          "role": "sales"
-        },
-        "ID-1672": {
-          "leadsReceived": 11,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 10,
-          "staleDealsSum": 0,
           "role": "unknown"
         },
         "Елена Андреева": {
           "leadsReceived": 7,
           "leadsConverted": 1,
           "conversionRate": 14.3,
-          "dealsInWork": 1,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 123,
+          "dealsInWork": 0,
+          "dealsWon": 1,
+          "wonSum": 24700,
+          "staleDealsCount": 149,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -15250,7 +15343,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 267,
+          "staleDealsCount": 276,
           "staleDealsSum": 345600,
           "role": "sales"
         },
@@ -15261,7 +15354,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 16,
+          "staleDealsCount": 14,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -15294,7 +15387,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 22,
+          "staleDealsCount": 37,
           "staleDealsSum": 0,
           "role": "unknown"
         },
@@ -15305,7 +15398,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 1,
           "role": "service"
         },
@@ -15327,7 +15420,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 8,
+          "staleDealsCount": 7,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -15360,9 +15453,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 5,
+          "staleDealsCount": 4,
           "staleDealsSum": 0,
           "role": "sales"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1964": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Ирина Аникина (admin)": {
           "leadsReceived": 0,
@@ -15375,6 +15490,17 @@
           "staleDealsSum": 0,
           "role": "admin"
         },
+        "Ольга Долгопятова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
+          "role": "sales"
+        },
         "Лилия Иванова (ops)": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -15386,6 +15512,17 @@
           "staleDealsSum": 0,
           "role": "ops"
         },
+        "Михаил Кателевец": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
         "Лилия Иванова (дубль) (ops)": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -15393,7 +15530,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -15404,7 +15541,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 324,
+          "staleDealsCount": 337,
           "staleDealsSum": 390000,
           "role": "sales"
         },
@@ -15421,54 +15558,56 @@
         }
       },
       "staleDeals": {
-        "total": 931,
+        "total": 1040,
         "sum": 3330103,
-        "sumEstimated": 44688103,
-        "estimatedCount": 904,
-        "medianWonUsed": 45750,
+        "sumEstimated": 51979428,
+        "estimatedCount": 1013,
+        "medianWonUsed": 48025,
         "byBucket": {
-          "7d": 182,
-          "14d": 284,
-          "30d": 465
+          "7d": 164,
+          "14d": 311,
+          "30d": 565
         },
         "byManager": {
-          "Елена Андреева": 123,
-          "Илья Ушаков": 169,
-          "Андрей Визильков": 177,
-          "ID-296 (не существует)": 22,
-          "Сайт БСТ": 3,
+          "Илья Ушаков": 135,
+          "Андрей Визильков": 210,
+          "ID-296 (не существует)": 37,
+          "Елена Андреева": 149,
+          "ID-1962": 130,
+          "Сайт БСТ": 1,
           "ЖБИ Оператор": 13,
-          "Тимашевск Оператор": 23,
-          "Динская Оператор": 16,
-          "РБУ Кореновск (новый)": 8,
+          "Тимашевск Оператор": 22,
+          "Динская Оператор": 14,
+          "РБУ Кореновск (новый)": 7,
           "Диспетчер Кореновск": 22,
           "Нина Читчян": 12,
           "Инна Николаева": 8,
           "Андреева Е. (старая учётка)": 2,
-          "Ирина Лукина": 161,
-          "Татьяна Гладышева": 5,
-          "Ирина Мухитдинова": 28,
+          "Ирина Лукина": 167,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 1,
+          "ID-1964": 8,
           "Ирина Аникина": 1,
-          "Ольга Долгопятова": 92,
           "Евгений Морозов": 20,
-          "Игорь Диденко": 7,
-          "ID-904 (не существует)": 1,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 47,
+          "Игорь Диденко": 6,
           "Лилия Иванова": 1,
           "Михаил Кателевец": 1,
-          "Лилия Иванова (дубль)": 3,
-          "ID-1672": 9,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 11,
           "ID-1358": 4
         },
         "byStage": {
           "Выставлен счет": 58,
-          "Получены закрывающие": 18,
-          "Квалифицирован": 239,
-          "Отправлено КП": 11,
-          "Есть интерес": 347,
+          "Получены закрывающие": 10,
+          "Квалифицирован": 296,
+          "Отправлено КП": 17,
+          "Есть интерес": 380,
           "Назначить ТС/Логистика": 6,
           "Оформить документы": 28,
-          "Принять заявку": 198,
-          "Обработать заявку": 17,
+          "Принять заявку": 216,
+          "Обработать заявку": 20,
           "Получить документы": 1,
           "Окончательный рассчет": 1,
           "Контроль доставки": 3,
@@ -15485,7 +15624,7 @@
         "outliersSum": 984000000
       },
       "lostReasons": {
-        "total": 207,
+        "total": 209,
         "sum": 89000,
         "byReason": {
           "Архив": {
@@ -15509,7 +15648,7 @@
             "sum": 0
           },
           "Прорабы и подобное": {
-            "count": 75,
+            "count": 77,
             "sum": 0
           },
           "Сделка провалена": {
@@ -15552,12 +15691,12 @@
       },
       "salesVelocity": {
         "overall": {
-          "opportunities": 59,
-          "wonCount": 38,
-          "winRate": 64.4,
-          "avgDealSize": 37547,
-          "avgSalesCycleDays": 24.7,
-          "velocityRubPerDay": 57774
+          "opportunities": 62,
+          "wonCount": 40,
+          "winRate": 64.5,
+          "avgDealSize": 37245,
+          "avgSalesCycleDays": 27.7,
+          "velocityRubPerDay": 53805
         },
         "byManager": {
           "Андрей Визильков": {
@@ -15568,7 +15707,7 @@
             "avgSalesCycleDays": 14.1,
             "velocityRubPerDay": 25381
           },
-          "Ольга Долгопятова": {
+          "ID-1962": {
             "opportunities": 23,
             "wonCount": 8,
             "winRate": 34.8,
@@ -15577,21 +15716,21 @@
             "velocityRubPerDay": 8597
           },
           "Илья Ушаков": {
-            "opportunities": 22,
-            "wonCount": 17,
-            "winRate": 77.3,
-            "avgDealSize": 43530,
-            "avgSalesCycleDays": 10.5,
-            "velocityRubPerDay": 70458
+            "opportunities": 24,
+            "wonCount": 18,
+            "winRate": 75,
+            "avgDealSize": 43239,
+            "avgSalesCycleDays": 17.1,
+            "velocityRubPerDay": 45544
           }
         },
-        "sampleSize": 59
+        "sampleSize": 62
       },
       "funnelStages": {
         "totalInWork": 129,
-        "totalWon": 38,
-        "totalLost": 21,
-        "overallWinRate": 64.4,
+        "totalWon": 40,
+        "totalLost": 22,
+        "overallWinRate": 64.5,
         "stages": [
           {
             "stageId": "1",
@@ -15605,7 +15744,7 @@
             "stageId": "2",
             "name": "Прорабы и подобное",
             "semantic": "F",
-            "count": 4,
+            "count": 5,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -15613,25 +15752,17 @@
             "stageId": "WON",
             "name": "Сделка успешна",
             "semantic": "S",
-            "count": 38,
-            "sumOpportunity": 1426780,
+            "count": 40,
+            "sumOpportunity": 1489780,
             "medianAgeDays": null
-          },
-          {
-            "stageId": "EXECUTING",
-            "name": "Выставлен счет",
-            "semantic": "P",
-            "count": 16,
-            "sumOpportunity": 0,
-            "medianAgeDays": 52
           },
           {
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
             "semantic": "P",
-            "count": 83,
+            "count": 88,
             "sumOpportunity": 0,
-            "medianAgeDays": 48.8
+            "medianAgeDays": 55.8
           },
           {
             "stageId": "PREPARATION",
@@ -15639,7 +15770,7 @@
             "semantic": "P",
             "count": 9,
             "sumOpportunity": 0,
-            "medianAgeDays": 55.8
+            "medianAgeDays": 62.8
           },
           {
             "stageId": "APOLOGY",
@@ -15653,9 +15784,9 @@
             "stageId": "NEW",
             "name": "Квалифицирован",
             "semantic": "P",
-            "count": 11,
+            "count": 10,
             "sumOpportunity": 0,
-            "medianAgeDays": 58.7
+            "medianAgeDays": 65.7
           },
           {
             "stageId": "LOSE",
@@ -15664,6 +15795,14 @@
             "count": 2,
             "sumOpportunity": 0,
             "medianAgeDays": null
+          },
+          {
+            "stageId": "EXECUTING",
+            "name": "Выставлен счет",
+            "semantic": "P",
+            "count": 12,
+            "sumOpportunity": 0,
+            "medianAgeDays": 26.9
           },
           {
             "stageId": "FINAL_INVOICE",
@@ -15699,25 +15838,25 @@
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
             "semantic": "P",
-            "count": 83,
+            "count": 88,
             "sumOpportunity": 0,
-            "medianAgeDays": 48.8
+            "medianAgeDays": 55.8
           },
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
             "semantic": "P",
-            "count": 16,
+            "count": 12,
             "sumOpportunity": 0,
-            "medianAgeDays": 52
+            "medianAgeDays": 26.9
           },
           {
             "stageId": "NEW",
             "name": "Квалифицирован",
             "semantic": "P",
-            "count": 11,
+            "count": 10,
             "sumOpportunity": 0,
-            "medianAgeDays": 58.7
+            "medianAgeDays": 65.7
           },
           {
             "stageId": "PREPARATION",
@@ -15725,21 +15864,21 @@
             "semantic": "P",
             "count": 9,
             "sumOpportunity": 0,
-            "medianAgeDays": 55.8
+            "medianAgeDays": 62.8
           }
         ],
         "bottleneck": {
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 83,
+          "count": 88,
           "sumOpportunity": 0,
-          "medianAgeDays": 48.8
+          "medianAgeDays": 55.8
         }
       },
       "closedThisWeek": {
-        "count": 1918,
-        "won": 985,
+        "count": 1917,
+        "won": 984,
         "wonSum": 96676163,
         "wonMarketing": 34,
         "wonSumMarketing": 990915,
@@ -16159,7 +16298,7 @@
         "benchmarksSource": "data/benchmarks.json",
         "updatedAt": "2026-05-17"
       },
-      "fetchedAt": "2026-07-13T05:34:53.563Z",
+      "fetchedAt": "2026-07-20T05:35:08.843Z",
       "spend": {
         "total": 185914.51999999996,
         "direct": 92114.52,
@@ -16408,15 +16547,15 @@
       },
       "deals": {
         "total": 2376,
-        "won": 1466,
-        "wonSum": 121147121,
+        "won": 1479,
+        "wonSum": 123440584,
         "wonMarketing": 30,
         "wonSumMarketing": 1985051,
-        "inWorkMarketing": 47,
+        "inWorkMarketing": 46,
         "inWorkSumMarketing": 0,
-        "wonSumBackoffice": 49795004,
-        "wonSumNonMarketing": 69367066,
-        "dealsBackofficeCount": 547,
+        "wonSumBackoffice": 50690054,
+        "wonSumNonMarketing": 70765479,
+        "dealsBackofficeCount": 551,
         "dealsTrueBlind": 6
       },
       "cpl": 595,
@@ -16455,13 +16594,13 @@
         "Тестовая воронка (#18)": 1
       },
       "byManager": {
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "inWork": 12,
           "won": 8,
           "wonSum": 1156725
         },
         "Илья Ушаков": {
-          "inWork": 14,
+          "inWork": 13,
           "won": 18,
           "wonSum": 642726
         },
@@ -16477,13 +16616,13 @@
         }
       },
       "leadsByManager": {
-        "Ирина Лукина": 93,
-        "Ольга Долгопятова": 64,
+        "Ирина Лукина": 94,
+        "ID-1962": 64,
         "Евгений Морозов": 46,
-        "Илья Ушаков": 99,
+        "Илья Ушаков": 97,
         "ID-1672": 8,
-        "Андрей Визильков": 77,
-        "Ирина Мухитдинова": 9,
+        "Андрей Визильков": 78,
+        "ID-1956": 9,
         "Нина Читчян": 1,
         "Игорь Диденко": 2,
         "Елена Андреева": 14,
@@ -16499,26 +16638,26 @@
       },
       "managersPerformance": {
         "Ирина Лукина": {
-          "leadsReceived": 93,
+          "leadsReceived": 94,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 162,
+          "staleDealsCount": 168,
           "staleDealsSum": 152071,
           "role": "sales"
         },
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "leadsReceived": 64,
           "leadsConverted": 29,
           "conversionRate": 45.3,
           "dealsInWork": 12,
           "dealsWon": 8,
           "wonSum": 1156725,
-          "staleDealsCount": 92,
-          "staleDealsSum": 110000,
-          "role": "sales"
+          "staleDealsCount": 130,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Евгений Морозов": {
           "leadsReceived": 46,
@@ -16532,13 +16671,13 @@
           "role": "sales"
         },
         "Илья Ушаков": {
-          "leadsReceived": 99,
+          "leadsReceived": 97,
           "leadsConverted": 34,
-          "conversionRate": 34.3,
-          "dealsInWork": 14,
+          "conversionRate": 35.1,
+          "dealsInWork": 13,
           "dealsWon": 18,
           "wonSum": 642726,
-          "staleDealsCount": 169,
+          "staleDealsCount": 135,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -16549,31 +16688,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 10,
+          "staleDealsCount": 12,
           "staleDealsSum": 0,
           "role": "unknown"
         },
         "Андрей Визильков": {
-          "leadsReceived": 77,
+          "leadsReceived": 78,
           "leadsConverted": 25,
-          "conversionRate": 32.5,
+          "conversionRate": 32.1,
           "dealsInWork": 21,
           "dealsWon": 2,
           "wonSum": 58600,
-          "staleDealsCount": 178,
+          "staleDealsCount": 211,
           "staleDealsSum": 0,
           "role": "sales"
         },
-        "Ирина Мухитдинова": {
+        "ID-1956": {
           "leadsReceived": 9,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 28,
+          "staleDealsCount": 47,
           "staleDealsSum": 84408,
-          "role": "sales"
+          "role": "unknown"
         },
         "Нина Читчян": {
           "leadsReceived": 1,
@@ -16593,7 +16732,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 7,
+          "staleDealsCount": 6,
           "staleDealsSum": 986578300,
           "role": "sales"
         },
@@ -16604,7 +16743,7 @@
           "dealsInWork": 0,
           "dealsWon": 2,
           "wonSum": 127000,
-          "staleDealsCount": 123,
+          "staleDealsCount": 149,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -16626,7 +16765,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 324,
+          "staleDealsCount": 337,
           "staleDealsSum": 390000,
           "role": "sales"
         },
@@ -16681,7 +16820,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 1,
           "role": "service"
         },
@@ -16714,7 +16853,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 22,
+          "staleDealsCount": 37,
           "staleDealsSum": 0,
           "role": "unknown"
         },
@@ -16736,7 +16875,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 23,
+          "staleDealsCount": 22,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -16747,7 +16886,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 16,
+          "staleDealsCount": 14,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -16758,7 +16897,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 8,
+          "staleDealsCount": 7,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -16802,9 +16941,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 5,
+          "staleDealsCount": 4,
           "staleDealsSum": 0,
           "role": "sales"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1964": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Ирина Аникина (admin)": {
           "leadsReceived": 0,
@@ -16817,16 +16978,16 @@
           "staleDealsSum": 0,
           "role": "admin"
         },
-        "ID-904 (не существует)": {
+        "Ольга Долгопятова": {
           "leadsReceived": 0,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 1,
-          "staleDealsSum": 0,
-          "role": "unknown"
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
+          "role": "sales"
         },
         "Лилия Иванова (ops)": {
           "leadsReceived": 0,
@@ -16857,7 +17018,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -16868,60 +17029,62 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 267,
+          "staleDealsCount": 276,
           "staleDealsSum": 345600,
           "role": "sales"
         }
       },
       "staleDeals": {
-        "total": 931,
+        "total": 1040,
         "sum": 3330103,
-        "sumEstimated": 44688103,
-        "estimatedCount": 904,
-        "medianWonUsed": 45750,
+        "sumEstimated": 51979428,
+        "estimatedCount": 1013,
+        "medianWonUsed": 48025,
         "byBucket": {
-          "7d": 182,
-          "14d": 284,
-          "30d": 465
+          "7d": 164,
+          "14d": 311,
+          "30d": 565
         },
         "byManager": {
-          "Елена Андреева": 123,
-          "Илья Ушаков": 169,
-          "Андрей Визильков": 177,
-          "ID-296 (не существует)": 22,
-          "Сайт БСТ": 3,
+          "Илья Ушаков": 135,
+          "Андрей Визильков": 210,
+          "ID-296 (не существует)": 37,
+          "Елена Андреева": 149,
+          "ID-1962": 130,
+          "Сайт БСТ": 1,
           "ЖБИ Оператор": 13,
-          "Тимашевск Оператор": 23,
-          "Динская Оператор": 16,
-          "РБУ Кореновск (новый)": 8,
+          "Тимашевск Оператор": 22,
+          "Динская Оператор": 14,
+          "РБУ Кореновск (новый)": 7,
           "Диспетчер Кореновск": 22,
           "Нина Читчян": 12,
           "Инна Николаева": 8,
           "Андреева Е. (старая учётка)": 2,
-          "Ирина Лукина": 161,
-          "Татьяна Гладышева": 5,
-          "Ирина Мухитдинова": 28,
+          "Ирина Лукина": 167,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 1,
+          "ID-1964": 8,
           "Ирина Аникина": 1,
-          "Ольга Долгопятова": 92,
           "Евгений Морозов": 20,
-          "Игорь Диденко": 7,
-          "ID-904 (не существует)": 1,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 47,
+          "Игорь Диденко": 6,
           "Лилия Иванова": 1,
           "Михаил Кателевец": 1,
-          "Лилия Иванова (дубль)": 3,
-          "ID-1672": 9,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 11,
           "ID-1358": 4
         },
         "byStage": {
           "Выставлен счет": 58,
-          "Получены закрывающие": 18,
-          "Квалифицирован": 239,
-          "Отправлено КП": 11,
-          "Есть интерес": 347,
+          "Получены закрывающие": 10,
+          "Квалифицирован": 296,
+          "Отправлено КП": 17,
+          "Есть интерес": 380,
           "Назначить ТС/Логистика": 6,
           "Оформить документы": 28,
-          "Принять заявку": 198,
-          "Обработать заявку": 17,
+          "Принять заявку": 216,
+          "Обработать заявку": 20,
           "Получить документы": 1,
           "Окончательный рассчет": 1,
           "Контроль доставки": 3,
@@ -16938,7 +17101,7 @@
         "outliersSum": 984000000
       },
       "lostReasons": {
-        "total": 329,
+        "total": 339,
         "sum": 27824060,
         "byReason": {
           "Архив": {
@@ -16954,7 +17117,7 @@
             "sum": 32000
           },
           "Прорабы и подобное": {
-            "count": 131,
+            "count": 139,
             "sum": 73950
           },
           "Не устроила ЦЕНА": {
@@ -16970,7 +17133,7 @@
             "sum": 0
           },
           "Спам": {
-            "count": 23,
+            "count": 24,
             "sum": 61040
           },
           "Запрос Бетона и ЖБИ": {
@@ -16978,7 +17141,7 @@
             "sum": 0
           },
           "Сделка провалена": {
-            "count": 8,
+            "count": 9,
             "sum": 0
           },
           "Общение не с клиентом": {
@@ -17009,15 +17172,15 @@
       },
       "salesVelocity": {
         "overall": {
-          "opportunities": 50,
+          "opportunities": 51,
           "wonCount": 30,
-          "winRate": 60,
+          "winRate": 58.8,
           "avgDealSize": 66168,
-          "avgSalesCycleDays": 11.5,
-          "velocityRubPerDay": 172827
+          "avgSalesCycleDays": 11.7,
+          "velocityRubPerDay": 170163
         },
         "byManager": {
-          "Ольга Долгопятова": {
+          "ID-1962": {
             "opportunities": 19,
             "wonCount": 8,
             "winRate": 42.1,
@@ -17026,12 +17189,12 @@
             "velocityRubPerDay": 62995
           },
           "Илья Ушаков": {
-            "opportunities": 25,
+            "opportunities": 26,
             "wonCount": 18,
-            "winRate": 72,
+            "winRate": 69.2,
             "avgDealSize": 35707,
-            "avgSalesCycleDays": 7,
-            "velocityRubPerDay": 91818
+            "avgSalesCycleDays": 7.6,
+            "velocityRubPerDay": 84192
           },
           "Андрей Визильков": {
             "opportunities": 4,
@@ -17042,13 +17205,13 @@
             "velocityRubPerDay": 9906
           }
         },
-        "sampleSize": 50
+        "sampleSize": 51
       },
       "funnelStages": {
-        "totalInWork": 147,
+        "totalInWork": 149,
         "totalWon": 30,
-        "totalLost": 20,
-        "overallWinRate": 60,
+        "totalLost": 21,
+        "overallWinRate": 58.8,
         "stages": [
           {
             "stageId": "1",
@@ -17094,9 +17257,9 @@
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
             "semantic": "P",
-            "count": 96,
+            "count": 102,
             "sumOpportunity": 0,
-            "medianAgeDays": 24.7
+            "medianAgeDays": 31.7
           },
           {
             "stageId": "FINAL_INVOICE",
@@ -17104,13 +17267,13 @@
             "semantic": "P",
             "count": 4,
             "sumOpportunity": 0,
-            "medianAgeDays": 39.9
+            "medianAgeDays": 46.9
           },
           {
             "stageId": "LOSE",
             "name": "Сделка провалена",
             "semantic": "F",
-            "count": 3,
+            "count": 4,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -17118,17 +17281,17 @@
             "stageId": "NEW",
             "name": "Квалифицирован",
             "semantic": "P",
-            "count": 16,
+            "count": 14,
             "sumOpportunity": 0,
-            "medianAgeDays": 19.5
+            "medianAgeDays": 26.5
           },
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
             "semantic": "P",
-            "count": 18,
+            "count": 16,
             "sumOpportunity": 0,
-            "medianAgeDays": 19.9
+            "medianAgeDays": 26.9
           },
           {
             "stageId": "PREPARATION",
@@ -17164,25 +17327,25 @@
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
             "semantic": "P",
-            "count": 96,
+            "count": 102,
             "sumOpportunity": 0,
-            "medianAgeDays": 24.7
+            "medianAgeDays": 31.7
           },
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
             "semantic": "P",
-            "count": 18,
+            "count": 16,
             "sumOpportunity": 0,
-            "medianAgeDays": 19.9
+            "medianAgeDays": 26.9
           },
           {
             "stageId": "NEW",
             "name": "Квалифицирован",
             "semantic": "P",
-            "count": 16,
+            "count": 14,
             "sumOpportunity": 0,
-            "medianAgeDays": 19.5
+            "medianAgeDays": 26.5
           },
           {
             "stageId": "FINAL_INVOICE",
@@ -17190,16 +17353,16 @@
             "semantic": "P",
             "count": 4,
             "sumOpportunity": 0,
-            "medianAgeDays": 39.9
+            "medianAgeDays": 46.9
           }
         ],
         "bottleneck": {
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 96,
+          "count": 102,
           "sumOpportunity": 0,
-          "medianAgeDays": 24.7
+          "medianAgeDays": 31.7
         }
       },
       "closedThisWeek": {
@@ -17587,7 +17750,7 @@
         "benchmarksSource": "data/benchmarks.json",
         "updatedAt": "2026-05-17"
       },
-      "fetchedAt": "2026-07-13T05:36:28.572Z",
+      "fetchedAt": "2026-07-20T05:36:47.863Z",
       "spend": {
         "total": 251610.94000000003,
         "direct": 157810.94,
@@ -17869,52 +18032,52 @@
       "to": "2026-07-31",
       "isCalendarMonth": true,
       "leads": {
-        "total": 1088,
-        "marketing": 191,
-        "sales": 897
+        "total": 1807,
+        "marketing": 323,
+        "sales": 1484
       },
       "deals": {
-        "total": 689,
-        "won": 279,
-        "wonSum": 31437658,
-        "wonMarketing": 5,
-        "wonSumMarketing": 330100,
-        "inWorkMarketing": 16,
+        "total": 1290,
+        "won": 641,
+        "wonSum": 66999973,
+        "wonMarketing": 14,
+        "wonSumMarketing": 547265,
+        "inWorkMarketing": 23,
         "inWorkSumMarketing": 0,
-        "wonSumBackoffice": 12655428,
-        "wonSumNonMarketing": 18452130,
-        "dealsBackofficeCount": 95,
+        "wonSumBackoffice": 30790448,
+        "wonSumNonMarketing": 35662260,
+        "dealsBackofficeCount": 314,
         "dealsTrueBlind": 0
       },
-      "cpl": 277,
+      "cpl": 164,
       "bySource": {
-        "Авито ДКБИ-сообщения": 40,
-        "Сайт отдел БСТ": 59,
-        "Яндекс.Карты БСТ": 33,
-        "2ГИС БСТ": 4,
-        "Авито БСТ": 19,
-        "Электронная почта Info": 20,
-        "Яндекс": 5,
-        "2ГИС ЖБИ": 3,
-        "Сайт отдел ЖБИ": 6,
-        "Telegram - Открытая линия Динской комбинат бетонных изделий": 1,
-        "Яндекс.Карты ЖБИ": 1
+        "Авито ДКБИ-сообщения": 60,
+        "Сайт отдел БСТ": 105,
+        "Яндекс.Карты БСТ": 65,
+        "2ГИС БСТ": 6,
+        "Авито БСТ": 27,
+        "Электронная почта Info": 34,
+        "Яндекс": 9,
+        "2ГИС ЖБИ": 4,
+        "Сайт отдел ЖБИ": 9,
+        "Telegram - Открытая линия Динской комбинат бетонных изделий": 2,
+        "Яндекс.Карты ЖБИ": 2
       },
       "dealsBySource": {
         "2ГИС БСТ": 1,
-        "Авито БСТ": 8,
-        "Яндекс.Карты БСТ": 5,
-        "Сайт отдел БСТ": 9
+        "Авито БСТ": 12,
+        "Яндекс.Карты БСТ": 11,
+        "Сайт отдел БСТ": 17
       },
       "revenueBySource": {
-        "Авито БСТ": 204900,
-        "Яндекс.Карты БСТ": 125200,
-        "Сайт отдел БСТ": 0
+        "Авито БСТ": 220465,
+        "Яндекс.Карты БСТ": 223125,
+        "Сайт отдел БСТ": 103675
       },
       "byCategory": {
-        "Общая (legacy) (#0)": 559,
-        "ЖБИ (#4)": 78,
-        "Спецтехника (#14)": 52
+        "Общая (legacy) (#0)": 925,
+        "ЖБИ (#4)": 250,
+        "Спецтехника (#14)": 115
       },
       "byManager": {
         "Андрей Визильков": {
@@ -17922,72 +18085,86 @@
           "won": 3,
           "wonSum": 106600
         },
-        "Ольга Долгопятова": {
-          "inWork": 8,
+        "ID-1962": {
+          "inWork": 14,
+          "won": 9,
+          "wonSum": 379015
+        },
+        "Елена Андреева": {
+          "inWork": 1,
+          "won": 0,
+          "wonSum": 0
+        },
+        "Илья Ушаков": {
+          "inWork": 0,
           "won": 2,
-          "wonSum": 223500
+          "wonSum": 61650
         }
       },
       "leadsByManager": {
-        "Ирина Лукина": 49,
+        "Ирина Лукина": 79,
         "Илья Ушаков": 28,
-        "Андрей Визильков": 41,
-        "Ольга Долгопятова": 34,
-        "Евгений Морозов": 25,
+        "Андрей Визильков": 63,
+        "ID-1962": 62,
+        "Евгений Морозов": 43,
         "Сергей Смольников": 1,
         "Тимашевск Оператор (ops)": 1,
-        "Елена Андреева": 8,
-        "Ирина Мухитдинова": 1,
+        "Елена Андреева": 21,
+        "ID-1956": 2,
         "Динская Оператор (ops)": 1,
-        "Сайт БСТ (service)": 2
+        "Виктория Генадьева": 1,
+        "Сайт БСТ (service)": 2,
+        "Ирина Мухитдинова": 6,
+        "ID-1672": 2,
+        "ID-1964": 11
       },
       "managersPerformance": {
         "Ирина Лукина": {
-          "leadsReceived": 49,
+          "leadsReceived": 79,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 162,
+          "staleDealsCount": 168,
           "staleDealsSum": 152071,
           "role": "sales"
         },
         "Илья Ушаков": {
           "leadsReceived": 28,
-          "leadsConverted": 0,
-          "conversionRate": 0,
+          "leadsConverted": 3,
+          "conversionRate": 10.7,
           "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 169,
+          "dealsWon": 2,
+          "wonSum": 61650,
+          "staleDealsCount": 135,
           "staleDealsSum": 0,
           "role": "sales"
         },
         "Андрей Визильков": {
-          "leadsReceived": 41,
+          "leadsReceived": 63,
           "leadsConverted": 11,
-          "conversionRate": 26.8,
+          "conversionRate": 17.5,
           "dealsInWork": 8,
           "dealsWon": 3,
           "wonSum": 106600,
-          "staleDealsCount": 178,
+          "staleDealsCount": 211,
           "staleDealsSum": 0,
           "role": "sales"
         },
-        "Ольга Долгопятова": {
-          "leadsReceived": 34,
-          "leadsConverted": 11,
-          "conversionRate": 32.4,
-          "dealsInWork": 8,
-          "dealsWon": 2,
-          "wonSum": 223500,
-          "staleDealsCount": 92,
-          "staleDealsSum": 110000,
-          "role": "sales"
+        "ID-1962": {
+          "leadsReceived": 62,
+          "leadsConverted": 24,
+          "conversionRate": 38.7,
+          "dealsInWork": 14,
+          "dealsWon": 9,
+          "wonSum": 379015,
+          "staleDealsCount": 130,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "Евгений Морозов": {
-          "leadsReceived": 25,
+          "leadsReceived": 43,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
@@ -18015,31 +18192,31 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 23,
+          "staleDealsCount": 22,
           "staleDealsSum": 0,
           "role": "ops"
         },
         "Елена Андреева": {
-          "leadsReceived": 8,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
+          "leadsReceived": 21,
+          "leadsConverted": 1,
+          "conversionRate": 4.8,
+          "dealsInWork": 1,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 123,
+          "staleDealsCount": 149,
           "staleDealsSum": 0,
           "role": "sales"
         },
-        "Ирина Мухитдинова": {
-          "leadsReceived": 1,
+        "ID-1956": {
+          "leadsReceived": 2,
           "leadsConverted": 0,
           "conversionRate": 0,
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 28,
+          "staleDealsCount": 47,
           "staleDealsSum": 84408,
-          "role": "sales"
+          "role": "unknown"
         },
         "Динская Оператор (ops)": {
           "leadsReceived": 1,
@@ -18048,9 +18225,20 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 16,
+          "staleDealsCount": 14,
           "staleDealsSum": 0,
           "role": "ops"
+        },
+        "Виктория Генадьева": {
+          "leadsReceived": 1,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 276,
+          "staleDealsSum": 345600,
+          "role": "sales"
         },
         "Сайт БСТ (service)": {
           "leadsReceived": 2,
@@ -18059,9 +18247,42 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 1,
           "role": "service"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 6,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1672": {
+          "leadsReceived": 2,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 12,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        },
+        "ID-1964": {
+          "leadsReceived": 11,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "unknown"
         },
         "ID-296 (не существует)": {
           "leadsReceived": 0,
@@ -18070,7 +18291,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 22,
+          "staleDealsCount": 37,
           "staleDealsSum": 0,
           "role": "unknown"
         },
@@ -18092,7 +18313,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 8,
+          "staleDealsCount": 7,
           "staleDealsSum": 0,
           "role": "ops"
         },
@@ -18147,7 +18368,7 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 5,
+          "staleDealsCount": 4,
           "staleDealsSum": 0,
           "role": "sales"
         },
@@ -18162,6 +18383,17 @@
           "staleDealsSum": 0,
           "role": "admin"
         },
+        "Ольга Долгопятова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
+          "role": "sales"
+        },
         "Игорь Диденко": {
           "leadsReceived": 0,
           "leadsConverted": 0,
@@ -18169,20 +18401,9 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 7,
+          "staleDealsCount": 6,
           "staleDealsSum": 986578300,
           "role": "sales"
-        },
-        "ID-904 (не существует)": {
-          "leadsReceived": 0,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 1,
-          "staleDealsSum": 0,
-          "role": "unknown"
         },
         "Лилия Иванова (ops)": {
           "leadsReceived": 0,
@@ -18213,20 +18434,9 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 3,
+          "staleDealsCount": 1,
           "staleDealsSum": 0,
           "role": "ops"
-        },
-        "ID-1672": {
-          "leadsReceived": 0,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 10,
-          "staleDealsSum": 0,
-          "role": "unknown"
         },
         "Ангелина Зименко": {
           "leadsReceived": 0,
@@ -18235,19 +18445,8 @@
           "dealsInWork": 0,
           "dealsWon": 0,
           "wonSum": 0,
-          "staleDealsCount": 324,
+          "staleDealsCount": 337,
           "staleDealsSum": 390000,
-          "role": "sales"
-        },
-        "Виктория Генадьева": {
-          "leadsReceived": 0,
-          "leadsConverted": 0,
-          "conversionRate": 0,
-          "dealsInWork": 0,
-          "dealsWon": 0,
-          "wonSum": 0,
-          "staleDealsCount": 267,
-          "staleDealsSum": 345600,
           "role": "sales"
         },
         "ID-1358": {
@@ -18263,54 +18462,56 @@
         }
       },
       "staleDeals": {
-        "total": 931,
+        "total": 1040,
         "sum": 3330103,
-        "sumEstimated": 44688103,
-        "estimatedCount": 904,
-        "medianWonUsed": 45750,
+        "sumEstimated": 51979428,
+        "estimatedCount": 1013,
+        "medianWonUsed": 48025,
         "byBucket": {
-          "7d": 182,
-          "14d": 284,
-          "30d": 465
+          "7d": 164,
+          "14d": 311,
+          "30d": 565
         },
         "byManager": {
-          "Елена Андреева": 123,
-          "Илья Ушаков": 169,
-          "Андрей Визильков": 177,
-          "ID-296 (не существует)": 22,
-          "Сайт БСТ": 3,
+          "Илья Ушаков": 135,
+          "Андрей Визильков": 210,
+          "ID-296 (не существует)": 37,
+          "Елена Андреева": 149,
+          "ID-1962": 130,
+          "Сайт БСТ": 1,
           "ЖБИ Оператор": 13,
-          "Тимашевск Оператор": 23,
-          "Динская Оператор": 16,
-          "РБУ Кореновск (новый)": 8,
+          "Тимашевск Оператор": 22,
+          "Динская Оператор": 14,
+          "РБУ Кореновск (новый)": 7,
           "Диспетчер Кореновск": 22,
           "Нина Читчян": 12,
           "Инна Николаева": 8,
           "Андреева Е. (старая учётка)": 2,
-          "Ирина Лукина": 161,
-          "Татьяна Гладышева": 5,
-          "Ирина Мухитдинова": 28,
+          "Ирина Лукина": 167,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 1,
+          "ID-1964": 8,
           "Ирина Аникина": 1,
-          "Ольга Долгопятова": 92,
           "Евгений Морозов": 20,
-          "Игорь Диденко": 7,
-          "ID-904 (не существует)": 1,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 47,
+          "Игорь Диденко": 6,
           "Лилия Иванова": 1,
           "Михаил Кателевец": 1,
-          "Лилия Иванова (дубль)": 3,
-          "ID-1672": 9,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 11,
           "ID-1358": 4
         },
         "byStage": {
           "Выставлен счет": 58,
-          "Получены закрывающие": 18,
-          "Квалифицирован": 239,
-          "Отправлено КП": 11,
-          "Есть интерес": 347,
+          "Получены закрывающие": 10,
+          "Квалифицирован": 296,
+          "Отправлено КП": 17,
+          "Есть интерес": 380,
           "Назначить ТС/Логистика": 6,
           "Оформить документы": 28,
-          "Принять заявку": 198,
-          "Обработать заявку": 17,
+          "Принять заявку": 216,
+          "Обработать заявку": 20,
           "Получить документы": 1,
           "Окончательный рассчет": 1,
           "Контроль доставки": 3,
@@ -18327,11 +18528,11 @@
         "outliersSum": 984000000
       },
       "lostReasons": {
-        "total": 53,
+        "total": 107,
         "sum": 386300,
         "byReason": {
           "Спам": {
-            "count": 6,
+            "count": 7,
             "sum": 0
           },
           "Сделка провалена": {
@@ -18343,19 +18544,19 @@
             "sum": 0
           },
           "Архив": {
-            "count": 9,
+            "count": 11,
             "sum": 286300
           },
           "Прорабы и подобное": {
-            "count": 23,
+            "count": 62,
             "sum": 100000
           },
           "Анализ причина провала": {
-            "count": 1,
+            "count": 4,
             "sum": 0
           },
           "Срок работы(не рентабельно)": {
-            "count": 2,
+            "count": 4,
             "sum": 0
           },
           "Не устраивают СРОКИ реализации проекта": {
@@ -18369,17 +18570,29 @@
           "Общение не с клиентом": {
             "count": 1,
             "sum": 0
+          },
+          "Запрос Бетона и ЖБИ": {
+            "count": 1,
+            "sum": 0
+          },
+          "Сроки(не успеваем предоставить)": {
+            "count": 4,
+            "sum": 0
+          },
+          "Стоимость(Дорого)": {
+            "count": 2,
+            "sum": 0
           }
         }
       },
       "salesVelocity": {
         "overall": {
-          "opportunities": 7,
-          "wonCount": 5,
-          "winRate": 71.4,
-          "avgDealSize": 66020,
-          "avgSalesCycleDays": 1.5,
-          "velocityRubPerDay": 221471
+          "opportunities": 18,
+          "wonCount": 14,
+          "winRate": 77.8,
+          "avgDealSize": 39090,
+          "avgSalesCycleDays": 1,
+          "velocityRubPerDay": 566004
         },
         "byManager": {
           "Андрей Визильков": {
@@ -18390,28 +18603,28 @@
             "avgSalesCycleDays": 1.5,
             "velocityRubPerDay": 72082
           },
-          "Ольга Долгопятова": {
-            "opportunities": 4,
-            "wonCount": 2,
-            "winRate": 50,
-            "avgDealSize": 111750,
-            "avgSalesCycleDays": 1.5,
-            "velocityRubPerDay": 148791
+          "ID-1962": {
+            "opportunities": 11,
+            "wonCount": 9,
+            "winRate": 81.8,
+            "avgDealSize": 42113,
+            "avgSalesCycleDays": 0.8,
+            "velocityRubPerDay": 476009
           }
         },
-        "sampleSize": 7
+        "sampleSize": 18
       },
       "funnelStages": {
-        "totalInWork": 116,
-        "totalWon": 5,
-        "totalLost": 2,
-        "overallWinRate": 71.4,
+        "totalInWork": 126,
+        "totalWon": 14,
+        "totalLost": 4,
+        "overallWinRate": 77.8,
         "stages": [
           {
             "stageId": "2",
             "name": "Прорабы и подобное",
             "semantic": "F",
-            "count": 2,
+            "count": 4,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -18419,16 +18632,16 @@
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
             "semantic": "P",
-            "count": 77,
+            "count": 90,
             "sumOpportunity": 0,
-            "medianAgeDays": 4.8
+            "medianAgeDays": 10.9
           },
           {
             "stageId": "WON",
             "name": "Сделка успешна",
             "semantic": "S",
-            "count": 5,
-            "sumOpportunity": 330100,
+            "count": 14,
+            "sumOpportunity": 547265,
             "medianAgeDays": null
           },
           {
@@ -18437,15 +18650,15 @@
             "semantic": "P",
             "count": 6,
             "sumOpportunity": 0,
-            "medianAgeDays": 4.7
+            "medianAgeDays": 11.7
           },
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
             "semantic": "P",
-            "count": 14,
+            "count": 12,
             "sumOpportunity": 0,
-            "medianAgeDays": 4.8
+            "medianAgeDays": 11.8
           },
           {
             "stageId": "FINAL_INVOICE",
@@ -18457,7 +18670,7 @@
           {
             "stageId": "NEW",
             "name": "Квалифицирован",
-            "count": 9,
+            "count": 8,
             "sumOpportunity": 0,
             "medianAgeDays": null
           },
@@ -18488,17 +18701,17 @@
             "stageId": "PREPAYMENT_INVOICE",
             "name": "Есть интерес",
             "semantic": "P",
-            "count": 77,
+            "count": 90,
             "sumOpportunity": 0,
-            "medianAgeDays": 4.8
+            "medianAgeDays": 10.9
           },
           {
             "stageId": "EXECUTING",
             "name": "Выставлен счет",
             "semantic": "P",
-            "count": 14,
+            "count": 12,
             "sumOpportunity": 0,
-            "medianAgeDays": 4.8
+            "medianAgeDays": 11.8
           },
           {
             "stageId": "PREPARATION",
@@ -18506,127 +18719,133 @@
             "semantic": "P",
             "count": 6,
             "sumOpportunity": 0,
-            "medianAgeDays": 4.7
+            "medianAgeDays": 11.7
           }
         ],
         "bottleneck": {
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 77,
+          "count": 90,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.8
+          "medianAgeDays": 10.9
         }
       },
       "closedThisWeek": {
-        "count": 449,
-        "won": 294,
-        "wonSum": 23321332,
-        "wonMarketing": 5,
-        "wonSumMarketing": 330100,
-        "lost": 155
+        "count": 895,
+        "won": 674,
+        "wonSum": 61738265,
+        "wonMarketing": 16,
+        "wonSumMarketing": 610265,
+        "lost": 221
       },
       "leadConversionTime": {
         "byChannel": {
           "РБУ Регина Динская": {
-            "count": 45,
+            "count": 73,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
           "РБУ Нина Новотиторовка": {
-            "count": 87,
+            "count": 123,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
           "РБУ Тимашевск": {
-            "count": 30,
-            "medianHours": 0,
-            "medianDays": 0,
-            "p90Hours": 0
-          },
-          "Прямой звонок Менеджеру": {
-            "count": 110,
-            "medianHours": 0,
-            "medianDays": 0,
-            "p90Hours": 0
-          },
-          "РБУ Кореновск": {
-            "count": 15,
-            "medianHours": 0,
-            "medianDays": 0,
-            "p90Hours": 0
-          },
-          "Ирина Лукина": {
-            "count": 19,
-            "medianHours": 0,
-            "medianDays": 0,
-            "p90Hours": 0
-          },
-          "Ольга Долгопятова": {
             "count": 40,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
+          "Прямой звонок Менеджеру": {
+            "count": 179,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "РБУ Кореновск": {
+            "count": 23,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Ирина Лукина": {
+            "count": 29,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Ольга Долгопятова": {
+            "count": 65,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
           "Ирина Мухитдинова": {
-            "count": 16,
+            "count": 25,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
           "РБУ Кореновск Новый": {
-            "count": 30,
+            "count": 44,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
           "Виктория Генадьева": {
-            "count": 16,
+            "count": 56,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
           "Обзвон по базе": {
-            "count": 7,
+            "count": 17,
             "medianHours": 0,
             "medianDays": 0,
-            "p90Hours": 19
+            "p90Hours": 146
           },
           "Авито БСТ": {
-            "count": 9,
-            "medianHours": 5,
-            "medianDays": 0.2,
+            "count": 13,
+            "medianHours": 6,
+            "medianDays": 0.3,
             "p90Hours": 93
           },
           "Яндекс.Карты БСТ": {
-            "count": 5,
-            "medianHours": 24,
-            "medianDays": 1,
-            "p90Hours": 72
+            "count": 13,
+            "medianHours": 5,
+            "medianDays": 0.2,
+            "p90Hours": 111
           },
           "Сайт отдел БСТ": {
-            "count": 9,
-            "medianHours": 19,
-            "medianDays": 0.8,
+            "count": 19,
+            "medianHours": 25,
+            "medianDays": 1,
             "p90Hours": 144
           },
           "Диспетчер Лилия Тимашевск": {
-            "count": 3,
+            "count": 5,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           },
           "Ангелина Зименко": {
-            "count": 27,
+            "count": 49,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Михаил Кателевец": {
+            "count": 4,
             "medianHours": 0,
             "medianDays": 0,
             "p90Hours": 0
           }
         },
         "overall": {
-          "count": 472,
+          "count": 781,
           "medianHours": 0,
           "medianDays": 0
         }
@@ -18891,7 +19110,7 @@
         "benchmarksSource": "data/benchmarks.json",
         "updatedAt": "2026-05-17"
       },
-      "fetchedAt": "2026-07-13T05:37:37.567Z",
+      "fetchedAt": "2026-07-20T05:38:05.338Z",
       "spend": {
         "total": 52995.22,
         "direct": 34235.22,
@@ -21663,52 +21882,52 @@
     "to": "2026-07-31",
     "isCalendarMonth": true,
     "leads": {
-      "total": 1088,
-      "marketing": 191,
-      "sales": 897
+      "total": 1807,
+      "marketing": 323,
+      "sales": 1484
     },
     "deals": {
-      "total": 689,
-      "won": 279,
-      "wonSum": 31437658,
-      "wonMarketing": 5,
-      "wonSumMarketing": 330100,
-      "inWorkMarketing": 16,
+      "total": 1290,
+      "won": 641,
+      "wonSum": 66999973,
+      "wonMarketing": 14,
+      "wonSumMarketing": 547265,
+      "inWorkMarketing": 23,
       "inWorkSumMarketing": 0,
-      "wonSumBackoffice": 12655428,
-      "wonSumNonMarketing": 18452130,
-      "dealsBackofficeCount": 95,
+      "wonSumBackoffice": 30790448,
+      "wonSumNonMarketing": 35662260,
+      "dealsBackofficeCount": 314,
       "dealsTrueBlind": 0
     },
-    "cpl": 277,
+    "cpl": 164,
     "bySource": {
-      "Авито ДКБИ-сообщения": 40,
-      "Сайт отдел БСТ": 59,
-      "Яндекс.Карты БСТ": 33,
-      "2ГИС БСТ": 4,
-      "Авито БСТ": 19,
-      "Электронная почта Info": 20,
-      "Яндекс": 5,
-      "2ГИС ЖБИ": 3,
-      "Сайт отдел ЖБИ": 6,
-      "Telegram - Открытая линия Динской комбинат бетонных изделий": 1,
-      "Яндекс.Карты ЖБИ": 1
+      "Авито ДКБИ-сообщения": 60,
+      "Сайт отдел БСТ": 105,
+      "Яндекс.Карты БСТ": 65,
+      "2ГИС БСТ": 6,
+      "Авито БСТ": 27,
+      "Электронная почта Info": 34,
+      "Яндекс": 9,
+      "2ГИС ЖБИ": 4,
+      "Сайт отдел ЖБИ": 9,
+      "Telegram - Открытая линия Динской комбинат бетонных изделий": 2,
+      "Яндекс.Карты ЖБИ": 2
     },
     "dealsBySource": {
       "2ГИС БСТ": 1,
-      "Авито БСТ": 8,
-      "Яндекс.Карты БСТ": 5,
-      "Сайт отдел БСТ": 9
+      "Авито БСТ": 12,
+      "Яндекс.Карты БСТ": 11,
+      "Сайт отдел БСТ": 17
     },
     "revenueBySource": {
-      "Авито БСТ": 204900,
-      "Яндекс.Карты БСТ": 125200,
-      "Сайт отдел БСТ": 0
+      "Авито БСТ": 220465,
+      "Яндекс.Карты БСТ": 223125,
+      "Сайт отдел БСТ": 103675
     },
     "byCategory": {
-      "Общая (legacy) (#0)": 559,
-      "ЖБИ (#4)": 78,
-      "Спецтехника (#14)": 52
+      "Общая (legacy) (#0)": 925,
+      "ЖБИ (#4)": 250,
+      "Спецтехника (#14)": 115
     },
     "byManager": {
       "Андрей Визильков": {
@@ -21716,72 +21935,86 @@
         "won": 3,
         "wonSum": 106600
       },
-      "Ольга Долгопятова": {
-        "inWork": 8,
+      "ID-1962": {
+        "inWork": 14,
+        "won": 9,
+        "wonSum": 379015
+      },
+      "Елена Андреева": {
+        "inWork": 1,
+        "won": 0,
+        "wonSum": 0
+      },
+      "Илья Ушаков": {
+        "inWork": 0,
         "won": 2,
-        "wonSum": 223500
+        "wonSum": 61650
       }
     },
     "leadsByManager": {
-      "Ирина Лукина": 49,
+      "Ирина Лукина": 79,
       "Илья Ушаков": 28,
-      "Андрей Визильков": 41,
-      "Ольга Долгопятова": 34,
-      "Евгений Морозов": 25,
+      "Андрей Визильков": 63,
+      "ID-1962": 62,
+      "Евгений Морозов": 43,
       "Сергей Смольников": 1,
       "Тимашевск Оператор (ops)": 1,
-      "Елена Андреева": 8,
-      "Ирина Мухитдинова": 1,
+      "Елена Андреева": 21,
+      "ID-1956": 2,
       "Динская Оператор (ops)": 1,
-      "Сайт БСТ (service)": 2
+      "Виктория Генадьева": 1,
+      "Сайт БСТ (service)": 2,
+      "Ирина Мухитдинова": 6,
+      "ID-1672": 2,
+      "ID-1964": 11
     },
     "managersPerformance": {
       "Ирина Лукина": {
-        "leadsReceived": 49,
+        "leadsReceived": 79,
         "leadsConverted": 0,
         "conversionRate": 0,
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 162,
+        "staleDealsCount": 168,
         "staleDealsSum": 152071,
         "role": "sales"
       },
       "Илья Ушаков": {
         "leadsReceived": 28,
-        "leadsConverted": 0,
-        "conversionRate": 0,
+        "leadsConverted": 3,
+        "conversionRate": 10.7,
         "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 169,
+        "dealsWon": 2,
+        "wonSum": 61650,
+        "staleDealsCount": 135,
         "staleDealsSum": 0,
         "role": "sales"
       },
       "Андрей Визильков": {
-        "leadsReceived": 41,
+        "leadsReceived": 63,
         "leadsConverted": 11,
-        "conversionRate": 26.8,
+        "conversionRate": 17.5,
         "dealsInWork": 8,
         "dealsWon": 3,
         "wonSum": 106600,
-        "staleDealsCount": 178,
+        "staleDealsCount": 211,
         "staleDealsSum": 0,
         "role": "sales"
       },
-      "Ольга Долгопятова": {
-        "leadsReceived": 34,
-        "leadsConverted": 11,
-        "conversionRate": 32.4,
-        "dealsInWork": 8,
-        "dealsWon": 2,
-        "wonSum": 223500,
-        "staleDealsCount": 92,
-        "staleDealsSum": 110000,
-        "role": "sales"
+      "ID-1962": {
+        "leadsReceived": 62,
+        "leadsConverted": 24,
+        "conversionRate": 38.7,
+        "dealsInWork": 14,
+        "dealsWon": 9,
+        "wonSum": 379015,
+        "staleDealsCount": 130,
+        "staleDealsSum": 0,
+        "role": "unknown"
       },
       "Евгений Морозов": {
-        "leadsReceived": 25,
+        "leadsReceived": 43,
         "leadsConverted": 0,
         "conversionRate": 0,
         "dealsInWork": 0,
@@ -21809,31 +22042,31 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 23,
+        "staleDealsCount": 22,
         "staleDealsSum": 0,
         "role": "ops"
       },
       "Елена Андреева": {
-        "leadsReceived": 8,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
+        "leadsReceived": 21,
+        "leadsConverted": 1,
+        "conversionRate": 4.8,
+        "dealsInWork": 1,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 123,
+        "staleDealsCount": 149,
         "staleDealsSum": 0,
         "role": "sales"
       },
-      "Ирина Мухитдинова": {
-        "leadsReceived": 1,
+      "ID-1956": {
+        "leadsReceived": 2,
         "leadsConverted": 0,
         "conversionRate": 0,
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 28,
+        "staleDealsCount": 47,
         "staleDealsSum": 84408,
-        "role": "sales"
+        "role": "unknown"
       },
       "Динская Оператор (ops)": {
         "leadsReceived": 1,
@@ -21842,9 +22075,20 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 16,
+        "staleDealsCount": 14,
         "staleDealsSum": 0,
         "role": "ops"
+      },
+      "Виктория Генадьева": {
+        "leadsReceived": 1,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 276,
+        "staleDealsSum": 345600,
+        "role": "sales"
       },
       "Сайт БСТ (service)": {
         "leadsReceived": 2,
@@ -21853,9 +22097,42 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 3,
+        "staleDealsCount": 1,
         "staleDealsSum": 1,
         "role": "service"
+      },
+      "Ирина Мухитдинова": {
+        "leadsReceived": 6,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "ID-1672": {
+        "leadsReceived": 2,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 12,
+        "staleDealsSum": 0,
+        "role": "unknown"
+      },
+      "ID-1964": {
+        "leadsReceived": 11,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 8,
+        "staleDealsSum": 0,
+        "role": "unknown"
       },
       "ID-296 (не существует)": {
         "leadsReceived": 0,
@@ -21864,7 +22141,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 22,
+        "staleDealsCount": 37,
         "staleDealsSum": 0,
         "role": "unknown"
       },
@@ -21886,7 +22163,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 8,
+        "staleDealsCount": 7,
         "staleDealsSum": 0,
         "role": "ops"
       },
@@ -21941,7 +22218,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 5,
+        "staleDealsCount": 4,
         "staleDealsSum": 0,
         "role": "sales"
       },
@@ -21956,6 +22233,17 @@
         "staleDealsSum": 0,
         "role": "admin"
       },
+      "Ольга Долгопятова": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 6,
+        "staleDealsSum": 110000,
+        "role": "sales"
+      },
       "Игорь Диденко": {
         "leadsReceived": 0,
         "leadsConverted": 0,
@@ -21963,20 +22251,9 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 7,
+        "staleDealsCount": 6,
         "staleDealsSum": 986578300,
         "role": "sales"
-      },
-      "ID-904 (не существует)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "unknown"
       },
       "Лилия Иванова (ops)": {
         "leadsReceived": 0,
@@ -22007,20 +22284,9 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 3,
+        "staleDealsCount": 1,
         "staleDealsSum": 0,
         "role": "ops"
-      },
-      "ID-1672": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 10,
-        "staleDealsSum": 0,
-        "role": "unknown"
       },
       "Ангелина Зименко": {
         "leadsReceived": 0,
@@ -22029,19 +22295,8 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 324,
+        "staleDealsCount": 337,
         "staleDealsSum": 390000,
-        "role": "sales"
-      },
-      "Виктория Генадьева": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 267,
-        "staleDealsSum": 345600,
         "role": "sales"
       },
       "ID-1358": {
@@ -22057,54 +22312,56 @@
       }
     },
     "staleDeals": {
-      "total": 931,
+      "total": 1040,
       "sum": 3330103,
-      "sumEstimated": 44688103,
-      "estimatedCount": 904,
-      "medianWonUsed": 45750,
+      "sumEstimated": 51979428,
+      "estimatedCount": 1013,
+      "medianWonUsed": 48025,
       "byBucket": {
-        "7d": 182,
-        "14d": 284,
-        "30d": 465
+        "7d": 164,
+        "14d": 311,
+        "30d": 565
       },
       "byManager": {
-        "Елена Андреева": 123,
-        "Илья Ушаков": 169,
-        "Андрей Визильков": 177,
-        "ID-296 (не существует)": 22,
-        "Сайт БСТ": 3,
+        "Илья Ушаков": 135,
+        "Андрей Визильков": 210,
+        "ID-296 (не существует)": 37,
+        "Елена Андреева": 149,
+        "ID-1962": 130,
+        "Сайт БСТ": 1,
         "ЖБИ Оператор": 13,
-        "Тимашевск Оператор": 23,
-        "Динская Оператор": 16,
-        "РБУ Кореновск (новый)": 8,
+        "Тимашевск Оператор": 22,
+        "Динская Оператор": 14,
+        "РБУ Кореновск (новый)": 7,
         "Диспетчер Кореновск": 22,
         "Нина Читчян": 12,
         "Инна Николаева": 8,
         "Андреева Е. (старая учётка)": 2,
-        "Ирина Лукина": 161,
-        "Татьяна Гладышева": 5,
-        "Ирина Мухитдинова": 28,
+        "Ирина Лукина": 167,
+        "Татьяна Гладышева": 4,
+        "Ирина Мухитдинова": 1,
+        "ID-1964": 8,
         "Ирина Аникина": 1,
-        "Ольга Долгопятова": 92,
         "Евгений Морозов": 20,
-        "Игорь Диденко": 7,
-        "ID-904 (не существует)": 1,
+        "Ольга Долгопятова": 6,
+        "ID-1956": 47,
+        "Игорь Диденко": 6,
         "Лилия Иванова": 1,
         "Михаил Кателевец": 1,
-        "Лилия Иванова (дубль)": 3,
-        "ID-1672": 9,
+        "Лилия Иванова (дубль)": 1,
+        "ID-1672": 11,
         "ID-1358": 4
       },
       "byStage": {
         "Выставлен счет": 58,
-        "Получены закрывающие": 18,
-        "Квалифицирован": 239,
-        "Отправлено КП": 11,
-        "Есть интерес": 347,
+        "Получены закрывающие": 10,
+        "Квалифицирован": 296,
+        "Отправлено КП": 17,
+        "Есть интерес": 380,
         "Назначить ТС/Логистика": 6,
         "Оформить документы": 28,
-        "Принять заявку": 198,
-        "Обработать заявку": 17,
+        "Принять заявку": 216,
+        "Обработать заявку": 20,
         "Получить документы": 1,
         "Окончательный рассчет": 1,
         "Контроль доставки": 3,
@@ -22121,11 +22378,11 @@
       "outliersSum": 984000000
     },
     "lostReasons": {
-      "total": 53,
+      "total": 107,
       "sum": 386300,
       "byReason": {
         "Спам": {
-          "count": 6,
+          "count": 7,
           "sum": 0
         },
         "Сделка провалена": {
@@ -22137,19 +22394,19 @@
           "sum": 0
         },
         "Архив": {
-          "count": 9,
+          "count": 11,
           "sum": 286300
         },
         "Прорабы и подобное": {
-          "count": 23,
+          "count": 62,
           "sum": 100000
         },
         "Анализ причина провала": {
-          "count": 1,
+          "count": 4,
           "sum": 0
         },
         "Срок работы(не рентабельно)": {
-          "count": 2,
+          "count": 4,
           "sum": 0
         },
         "Не устраивают СРОКИ реализации проекта": {
@@ -22163,17 +22420,29 @@
         "Общение не с клиентом": {
           "count": 1,
           "sum": 0
+        },
+        "Запрос Бетона и ЖБИ": {
+          "count": 1,
+          "sum": 0
+        },
+        "Сроки(не успеваем предоставить)": {
+          "count": 4,
+          "sum": 0
+        },
+        "Стоимость(Дорого)": {
+          "count": 2,
+          "sum": 0
         }
       }
     },
     "salesVelocity": {
       "overall": {
-        "opportunities": 7,
-        "wonCount": 5,
-        "winRate": 71.4,
-        "avgDealSize": 66020,
-        "avgSalesCycleDays": 1.5,
-        "velocityRubPerDay": 221471
+        "opportunities": 18,
+        "wonCount": 14,
+        "winRate": 77.8,
+        "avgDealSize": 39090,
+        "avgSalesCycleDays": 1,
+        "velocityRubPerDay": 566004
       },
       "byManager": {
         "Андрей Визильков": {
@@ -22184,28 +22453,28 @@
           "avgSalesCycleDays": 1.5,
           "velocityRubPerDay": 72082
         },
-        "Ольга Долгопятова": {
-          "opportunities": 4,
-          "wonCount": 2,
-          "winRate": 50,
-          "avgDealSize": 111750,
-          "avgSalesCycleDays": 1.5,
-          "velocityRubPerDay": 148791
+        "ID-1962": {
+          "opportunities": 11,
+          "wonCount": 9,
+          "winRate": 81.8,
+          "avgDealSize": 42113,
+          "avgSalesCycleDays": 0.8,
+          "velocityRubPerDay": 476009
         }
       },
-      "sampleSize": 7
+      "sampleSize": 18
     },
     "funnelStages": {
-      "totalInWork": 116,
-      "totalWon": 5,
-      "totalLost": 2,
-      "overallWinRate": 71.4,
+      "totalInWork": 126,
+      "totalWon": 14,
+      "totalLost": 4,
+      "overallWinRate": 77.8,
       "stages": [
         {
           "stageId": "2",
           "name": "Прорабы и подобное",
           "semantic": "F",
-          "count": 2,
+          "count": 4,
           "sumOpportunity": 0,
           "medianAgeDays": null
         },
@@ -22213,16 +22482,16 @@
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 77,
+          "count": 90,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.8
+          "medianAgeDays": 10.9
         },
         {
           "stageId": "WON",
           "name": "Сделка успешна",
           "semantic": "S",
-          "count": 5,
-          "sumOpportunity": 330100,
+          "count": 14,
+          "sumOpportunity": 547265,
           "medianAgeDays": null
         },
         {
@@ -22231,15 +22500,15 @@
           "semantic": "P",
           "count": 6,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.7
+          "medianAgeDays": 11.7
         },
         {
           "stageId": "EXECUTING",
           "name": "Выставлен счет",
           "semantic": "P",
-          "count": 14,
+          "count": 12,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.8
+          "medianAgeDays": 11.8
         },
         {
           "stageId": "FINAL_INVOICE",
@@ -22251,7 +22520,7 @@
         {
           "stageId": "NEW",
           "name": "Квалифицирован",
-          "count": 9,
+          "count": 8,
           "sumOpportunity": 0,
           "medianAgeDays": null
         },
@@ -22282,17 +22551,17 @@
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 77,
+          "count": 90,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.8
+          "medianAgeDays": 10.9
         },
         {
           "stageId": "EXECUTING",
           "name": "Выставлен счет",
           "semantic": "P",
-          "count": 14,
+          "count": 12,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.8
+          "medianAgeDays": 11.8
         },
         {
           "stageId": "PREPARATION",
@@ -22300,127 +22569,133 @@
           "semantic": "P",
           "count": 6,
           "sumOpportunity": 0,
-          "medianAgeDays": 4.7
+          "medianAgeDays": 11.7
         }
       ],
       "bottleneck": {
         "stageId": "PREPAYMENT_INVOICE",
         "name": "Есть интерес",
         "semantic": "P",
-        "count": 77,
+        "count": 90,
         "sumOpportunity": 0,
-        "medianAgeDays": 4.8
+        "medianAgeDays": 10.9
       }
     },
     "closedThisWeek": {
-      "count": 449,
-      "won": 294,
-      "wonSum": 23321332,
-      "wonMarketing": 5,
-      "wonSumMarketing": 330100,
-      "lost": 155
+      "count": 895,
+      "won": 674,
+      "wonSum": 61738265,
+      "wonMarketing": 16,
+      "wonSumMarketing": 610265,
+      "lost": 221
     },
     "leadConversionTime": {
       "byChannel": {
         "РБУ Регина Динская": {
-          "count": 45,
+          "count": 73,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
         "РБУ Нина Новотиторовка": {
-          "count": 87,
+          "count": 123,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
         "РБУ Тимашевск": {
-          "count": 30,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Прямой звонок Менеджеру": {
-          "count": 110,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "РБУ Кореновск": {
-          "count": 15,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Ирина Лукина": {
-          "count": 19,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Ольга Долгопятова": {
           "count": 40,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
+        "Прямой звонок Менеджеру": {
+          "count": 179,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "РБУ Кореновск": {
+          "count": 23,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Ирина Лукина": {
+          "count": 29,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Ольга Долгопятова": {
+          "count": 65,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
         "Ирина Мухитдинова": {
-          "count": 16,
+          "count": 25,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
         "РБУ Кореновск Новый": {
-          "count": 30,
+          "count": 44,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
         "Виктория Генадьева": {
-          "count": 16,
+          "count": 56,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
         "Обзвон по базе": {
-          "count": 7,
+          "count": 17,
           "medianHours": 0,
           "medianDays": 0,
-          "p90Hours": 19
+          "p90Hours": 146
         },
         "Авито БСТ": {
-          "count": 9,
-          "medianHours": 5,
-          "medianDays": 0.2,
+          "count": 13,
+          "medianHours": 6,
+          "medianDays": 0.3,
           "p90Hours": 93
         },
         "Яндекс.Карты БСТ": {
-          "count": 5,
-          "medianHours": 24,
-          "medianDays": 1,
-          "p90Hours": 72
+          "count": 13,
+          "medianHours": 5,
+          "medianDays": 0.2,
+          "p90Hours": 111
         },
         "Сайт отдел БСТ": {
-          "count": 9,
-          "medianHours": 19,
-          "medianDays": 0.8,
+          "count": 19,
+          "medianHours": 25,
+          "medianDays": 1,
           "p90Hours": 144
         },
         "Диспетчер Лилия Тимашевск": {
-          "count": 3,
+          "count": 5,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         },
         "Ангелина Зименко": {
-          "count": 27,
+          "count": 49,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Михаил Кателевец": {
+          "count": 4,
           "medianHours": 0,
           "medianDays": 0,
           "p90Hours": 0
         }
       },
       "overall": {
-        "count": 472,
+        "count": 781,
         "medianHours": 0,
         "medianDays": 0
       }
@@ -22685,7 +22960,7 @@
       "benchmarksSource": "data/benchmarks.json",
       "updatedAt": "2026-05-17"
     },
-    "fetchedAt": "2026-07-13T05:37:37.567Z",
+    "fetchedAt": "2026-07-20T05:38:05.338Z",
     "spend": {
       "total": 52995.22,
       "direct": 34235.22,
@@ -22969,15 +23244,15 @@
     },
     "deals": {
       "total": 2376,
-      "won": 1466,
-      "wonSum": 121147121,
+      "won": 1479,
+      "wonSum": 123440584,
       "wonMarketing": 30,
       "wonSumMarketing": 1985051,
-      "inWorkMarketing": 47,
+      "inWorkMarketing": 46,
       "inWorkSumMarketing": 0,
-      "wonSumBackoffice": 49795004,
-      "wonSumNonMarketing": 69367066,
-      "dealsBackofficeCount": 547,
+      "wonSumBackoffice": 50690054,
+      "wonSumNonMarketing": 70765479,
+      "dealsBackofficeCount": 551,
       "dealsTrueBlind": 6
     },
     "cpl": 595,
@@ -23016,13 +23291,13 @@
       "Тестовая воронка (#18)": 1
     },
     "byManager": {
-      "Ольга Долгопятова": {
+      "ID-1962": {
         "inWork": 12,
         "won": 8,
         "wonSum": 1156725
       },
       "Илья Ушаков": {
-        "inWork": 14,
+        "inWork": 13,
         "won": 18,
         "wonSum": 642726
       },
@@ -23038,13 +23313,13 @@
       }
     },
     "leadsByManager": {
-      "Ирина Лукина": 93,
-      "Ольга Долгопятова": 64,
+      "Ирина Лукина": 94,
+      "ID-1962": 64,
       "Евгений Морозов": 46,
-      "Илья Ушаков": 99,
+      "Илья Ушаков": 97,
       "ID-1672": 8,
-      "Андрей Визильков": 77,
-      "Ирина Мухитдинова": 9,
+      "Андрей Визильков": 78,
+      "ID-1956": 9,
       "Нина Читчян": 1,
       "Игорь Диденко": 2,
       "Елена Андреева": 14,
@@ -23060,26 +23335,26 @@
     },
     "managersPerformance": {
       "Ирина Лукина": {
-        "leadsReceived": 93,
+        "leadsReceived": 94,
         "leadsConverted": 0,
         "conversionRate": 0,
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 162,
+        "staleDealsCount": 168,
         "staleDealsSum": 152071,
         "role": "sales"
       },
-      "Ольга Долгопятова": {
+      "ID-1962": {
         "leadsReceived": 64,
         "leadsConverted": 29,
         "conversionRate": 45.3,
         "dealsInWork": 12,
         "dealsWon": 8,
         "wonSum": 1156725,
-        "staleDealsCount": 92,
-        "staleDealsSum": 110000,
-        "role": "sales"
+        "staleDealsCount": 130,
+        "staleDealsSum": 0,
+        "role": "unknown"
       },
       "Евгений Морозов": {
         "leadsReceived": 46,
@@ -23093,13 +23368,13 @@
         "role": "sales"
       },
       "Илья Ушаков": {
-        "leadsReceived": 99,
+        "leadsReceived": 97,
         "leadsConverted": 34,
-        "conversionRate": 34.3,
-        "dealsInWork": 14,
+        "conversionRate": 35.1,
+        "dealsInWork": 13,
         "dealsWon": 18,
         "wonSum": 642726,
-        "staleDealsCount": 169,
+        "staleDealsCount": 135,
         "staleDealsSum": 0,
         "role": "sales"
       },
@@ -23110,31 +23385,31 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 10,
+        "staleDealsCount": 12,
         "staleDealsSum": 0,
         "role": "unknown"
       },
       "Андрей Визильков": {
-        "leadsReceived": 77,
+        "leadsReceived": 78,
         "leadsConverted": 25,
-        "conversionRate": 32.5,
+        "conversionRate": 32.1,
         "dealsInWork": 21,
         "dealsWon": 2,
         "wonSum": 58600,
-        "staleDealsCount": 178,
+        "staleDealsCount": 211,
         "staleDealsSum": 0,
         "role": "sales"
       },
-      "Ирина Мухитдинова": {
+      "ID-1956": {
         "leadsReceived": 9,
         "leadsConverted": 0,
         "conversionRate": 0,
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 28,
+        "staleDealsCount": 47,
         "staleDealsSum": 84408,
-        "role": "sales"
+        "role": "unknown"
       },
       "Нина Читчян": {
         "leadsReceived": 1,
@@ -23154,7 +23429,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 7,
+        "staleDealsCount": 6,
         "staleDealsSum": 986578300,
         "role": "sales"
       },
@@ -23165,7 +23440,7 @@
         "dealsInWork": 0,
         "dealsWon": 2,
         "wonSum": 127000,
-        "staleDealsCount": 123,
+        "staleDealsCount": 149,
         "staleDealsSum": 0,
         "role": "sales"
       },
@@ -23187,7 +23462,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 324,
+        "staleDealsCount": 337,
         "staleDealsSum": 390000,
         "role": "sales"
       },
@@ -23242,7 +23517,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 3,
+        "staleDealsCount": 1,
         "staleDealsSum": 1,
         "role": "service"
       },
@@ -23275,7 +23550,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 22,
+        "staleDealsCount": 37,
         "staleDealsSum": 0,
         "role": "unknown"
       },
@@ -23297,7 +23572,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 23,
+        "staleDealsCount": 22,
         "staleDealsSum": 0,
         "role": "ops"
       },
@@ -23308,7 +23583,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 16,
+        "staleDealsCount": 14,
         "staleDealsSum": 0,
         "role": "ops"
       },
@@ -23319,7 +23594,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 8,
+        "staleDealsCount": 7,
         "staleDealsSum": 0,
         "role": "ops"
       },
@@ -23363,9 +23638,31 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 5,
+        "staleDealsCount": 4,
         "staleDealsSum": 0,
         "role": "sales"
+      },
+      "Ирина Мухитдинова": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "ID-1964": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 8,
+        "staleDealsSum": 0,
+        "role": "unknown"
       },
       "Ирина Аникина (admin)": {
         "leadsReceived": 0,
@@ -23378,16 +23675,16 @@
         "staleDealsSum": 0,
         "role": "admin"
       },
-      "ID-904 (не существует)": {
+      "Ольга Долгопятова": {
         "leadsReceived": 0,
         "leadsConverted": 0,
         "conversionRate": 0,
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "unknown"
+        "staleDealsCount": 6,
+        "staleDealsSum": 110000,
+        "role": "sales"
       },
       "Лилия Иванова (ops)": {
         "leadsReceived": 0,
@@ -23418,7 +23715,7 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 3,
+        "staleDealsCount": 1,
         "staleDealsSum": 0,
         "role": "ops"
       },
@@ -23429,60 +23726,62 @@
         "dealsInWork": 0,
         "dealsWon": 0,
         "wonSum": 0,
-        "staleDealsCount": 267,
+        "staleDealsCount": 276,
         "staleDealsSum": 345600,
         "role": "sales"
       }
     },
     "staleDeals": {
-      "total": 931,
+      "total": 1040,
       "sum": 3330103,
-      "sumEstimated": 44688103,
-      "estimatedCount": 904,
-      "medianWonUsed": 45750,
+      "sumEstimated": 51979428,
+      "estimatedCount": 1013,
+      "medianWonUsed": 48025,
       "byBucket": {
-        "7d": 182,
-        "14d": 284,
-        "30d": 465
+        "7d": 164,
+        "14d": 311,
+        "30d": 565
       },
       "byManager": {
-        "Елена Андреева": 123,
-        "Илья Ушаков": 169,
-        "Андрей Визильков": 177,
-        "ID-296 (не существует)": 22,
-        "Сайт БСТ": 3,
+        "Илья Ушаков": 135,
+        "Андрей Визильков": 210,
+        "ID-296 (не существует)": 37,
+        "Елена Андреева": 149,
+        "ID-1962": 130,
+        "Сайт БСТ": 1,
         "ЖБИ Оператор": 13,
-        "Тимашевск Оператор": 23,
-        "Динская Оператор": 16,
-        "РБУ Кореновск (новый)": 8,
+        "Тимашевск Оператор": 22,
+        "Динская Оператор": 14,
+        "РБУ Кореновск (новый)": 7,
         "Диспетчер Кореновск": 22,
         "Нина Читчян": 12,
         "Инна Николаева": 8,
         "Андреева Е. (старая учётка)": 2,
-        "Ирина Лукина": 161,
-        "Татьяна Гладышева": 5,
-        "Ирина Мухитдинова": 28,
+        "Ирина Лукина": 167,
+        "Татьяна Гладышева": 4,
+        "Ирина Мухитдинова": 1,
+        "ID-1964": 8,
         "Ирина Аникина": 1,
-        "Ольга Долгопятова": 92,
         "Евгений Морозов": 20,
-        "Игорь Диденко": 7,
-        "ID-904 (не существует)": 1,
+        "Ольга Долгопятова": 6,
+        "ID-1956": 47,
+        "Игорь Диденко": 6,
         "Лилия Иванова": 1,
         "Михаил Кателевец": 1,
-        "Лилия Иванова (дубль)": 3,
-        "ID-1672": 9,
+        "Лилия Иванова (дубль)": 1,
+        "ID-1672": 11,
         "ID-1358": 4
       },
       "byStage": {
         "Выставлен счет": 58,
-        "Получены закрывающие": 18,
-        "Квалифицирован": 239,
-        "Отправлено КП": 11,
-        "Есть интерес": 347,
+        "Получены закрывающие": 10,
+        "Квалифицирован": 296,
+        "Отправлено КП": 17,
+        "Есть интерес": 380,
         "Назначить ТС/Логистика": 6,
         "Оформить документы": 28,
-        "Принять заявку": 198,
-        "Обработать заявку": 17,
+        "Принять заявку": 216,
+        "Обработать заявку": 20,
         "Получить документы": 1,
         "Окончательный рассчет": 1,
         "Контроль доставки": 3,
@@ -23499,7 +23798,7 @@
       "outliersSum": 984000000
     },
     "lostReasons": {
-      "total": 329,
+      "total": 339,
       "sum": 27824060,
       "byReason": {
         "Архив": {
@@ -23515,7 +23814,7 @@
           "sum": 32000
         },
         "Прорабы и подобное": {
-          "count": 131,
+          "count": 139,
           "sum": 73950
         },
         "Не устроила ЦЕНА": {
@@ -23531,7 +23830,7 @@
           "sum": 0
         },
         "Спам": {
-          "count": 23,
+          "count": 24,
           "sum": 61040
         },
         "Запрос Бетона и ЖБИ": {
@@ -23539,7 +23838,7 @@
           "sum": 0
         },
         "Сделка провалена": {
-          "count": 8,
+          "count": 9,
           "sum": 0
         },
         "Общение не с клиентом": {
@@ -23570,15 +23869,15 @@
     },
     "salesVelocity": {
       "overall": {
-        "opportunities": 50,
+        "opportunities": 51,
         "wonCount": 30,
-        "winRate": 60,
+        "winRate": 58.8,
         "avgDealSize": 66168,
-        "avgSalesCycleDays": 11.5,
-        "velocityRubPerDay": 172827
+        "avgSalesCycleDays": 11.7,
+        "velocityRubPerDay": 170163
       },
       "byManager": {
-        "Ольга Долгопятова": {
+        "ID-1962": {
           "opportunities": 19,
           "wonCount": 8,
           "winRate": 42.1,
@@ -23587,12 +23886,12 @@
           "velocityRubPerDay": 62995
         },
         "Илья Ушаков": {
-          "opportunities": 25,
+          "opportunities": 26,
           "wonCount": 18,
-          "winRate": 72,
+          "winRate": 69.2,
           "avgDealSize": 35707,
-          "avgSalesCycleDays": 7,
-          "velocityRubPerDay": 91818
+          "avgSalesCycleDays": 7.6,
+          "velocityRubPerDay": 84192
         },
         "Андрей Визильков": {
           "opportunities": 4,
@@ -23603,13 +23902,13 @@
           "velocityRubPerDay": 9906
         }
       },
-      "sampleSize": 50
+      "sampleSize": 51
     },
     "funnelStages": {
-      "totalInWork": 147,
+      "totalInWork": 149,
       "totalWon": 30,
-      "totalLost": 20,
-      "overallWinRate": 60,
+      "totalLost": 21,
+      "overallWinRate": 58.8,
       "stages": [
         {
           "stageId": "1",
@@ -23655,9 +23954,9 @@
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 96,
+          "count": 102,
           "sumOpportunity": 0,
-          "medianAgeDays": 24.7
+          "medianAgeDays": 31.7
         },
         {
           "stageId": "FINAL_INVOICE",
@@ -23665,13 +23964,13 @@
           "semantic": "P",
           "count": 4,
           "sumOpportunity": 0,
-          "medianAgeDays": 39.9
+          "medianAgeDays": 46.9
         },
         {
           "stageId": "LOSE",
           "name": "Сделка провалена",
           "semantic": "F",
-          "count": 3,
+          "count": 4,
           "sumOpportunity": 0,
           "medianAgeDays": null
         },
@@ -23679,17 +23978,17 @@
           "stageId": "NEW",
           "name": "Квалифицирован",
           "semantic": "P",
-          "count": 16,
+          "count": 14,
           "sumOpportunity": 0,
-          "medianAgeDays": 19.5
+          "medianAgeDays": 26.5
         },
         {
           "stageId": "EXECUTING",
           "name": "Выставлен счет",
           "semantic": "P",
-          "count": 18,
+          "count": 16,
           "sumOpportunity": 0,
-          "medianAgeDays": 19.9
+          "medianAgeDays": 26.9
         },
         {
           "stageId": "PREPARATION",
@@ -23725,25 +24024,25 @@
           "stageId": "PREPAYMENT_INVOICE",
           "name": "Есть интерес",
           "semantic": "P",
-          "count": 96,
+          "count": 102,
           "sumOpportunity": 0,
-          "medianAgeDays": 24.7
+          "medianAgeDays": 31.7
         },
         {
           "stageId": "EXECUTING",
           "name": "Выставлен счет",
           "semantic": "P",
-          "count": 18,
+          "count": 16,
           "sumOpportunity": 0,
-          "medianAgeDays": 19.9
+          "medianAgeDays": 26.9
         },
         {
           "stageId": "NEW",
           "name": "Квалифицирован",
           "semantic": "P",
-          "count": 16,
+          "count": 14,
           "sumOpportunity": 0,
-          "medianAgeDays": 19.5
+          "medianAgeDays": 26.5
         },
         {
           "stageId": "FINAL_INVOICE",
@@ -23751,16 +24050,16 @@
           "semantic": "P",
           "count": 4,
           "sumOpportunity": 0,
-          "medianAgeDays": 39.9
+          "medianAgeDays": 46.9
         }
       ],
       "bottleneck": {
         "stageId": "PREPAYMENT_INVOICE",
         "name": "Есть интерес",
         "semantic": "P",
-        "count": 96,
+        "count": 102,
         "sumOpportunity": 0,
-        "medianAgeDays": 24.7
+        "medianAgeDays": 31.7
       }
     },
     "closedThisWeek": {
@@ -24148,7 +24447,7 @@
       "benchmarksSource": "data/benchmarks.json",
       "updatedAt": "2026-05-17"
     },
-    "fetchedAt": "2026-07-13T05:36:28.572Z",
+    "fetchedAt": "2026-07-20T05:36:47.863Z",
     "spend": {
       "total": 251610.94000000003,
       "direct": 157810.94,
