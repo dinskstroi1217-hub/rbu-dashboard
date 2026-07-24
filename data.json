@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-24T08:30:26.282Z",
+  "updated": "2026-07-24T10:30:23.527Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -435904,11 +435904,11 @@
       },
       "ТИМ": {
         "totalVolume": 55.3,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 55.6,
         "recipes": {
           "М300Б\\Х": {
             "totalVolume": 4.5,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 4.5,
             "factCement": 1.42,
             "factSand": 4.27,
             "factGravel": 4.24,
@@ -435934,7 +435934,7 @@
           },
           "250Б": {
             "totalVolume": 9.2,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 9.5,
             "factCement": 2.3,
             "factSand": 9.03,
             "factGravel": 9.02,
@@ -435972,7 +435972,7 @@
           },
           "М250КРЫШКИ": {
             "totalVolume": 9.6,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 9.6,
             "factCement": 2.3,
             "factSand": 9.2,
             "factGravel": 9.31,
@@ -436010,7 +436010,7 @@
           },
           "М250КОЛЬЦА": {
             "totalVolume": 15,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 15,
             "factCement": 3.87,
             "factSand": 17.25,
             "factGravel": 12.76,
@@ -436204,7 +436204,7 @@
           },
           "300Б": {
             "totalVolume": 8,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 8,
             "factCement": 2.1,
             "factSand": 7.7,
             "factGravel": 8.01,
@@ -436230,7 +436230,7 @@
           },
           "350Б": {
             "totalVolume": 9,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 9,
             "factCement": 2.8,
             "factSand": 8.19,
             "factGravel": 9.21,
@@ -437086,7 +437086,7 @@
     "2026-07-24": {
       "НТ": {
         "totalVolume": 6,
-        "dispatcherVolume": 48,
+        "dispatcherVolume": 73,
         "recipes": {
           "250Б": {
             "totalVolume": 6,
@@ -437116,7 +437116,7 @@
           },
           "200Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 2,
+            "dispatcherVolume": 5,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -437129,7 +437129,7 @@
           },
           "300Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 11.5,
+            "dispatcherVolume": 33.5,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -437252,11 +437252,11 @@
       },
       "КР": {
         "totalVolume": 11,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 19.5,
         "recipes": {
           "300Б": {
             "totalVolume": 11,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 11,
             "factCement": 3.04,
             "factSand": 9.96,
             "factGravel": 11.44,
@@ -437291,16 +437291,42 @@
                 "devChem": 0
               }
             ]
+          },
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 7,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "М150 Р": {
+            "totalVolume": 0,
+            "dispatcherVolume": 1.5,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
       "ТИМ": {
         "totalVolume": 16,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 79.6,
         "recipes": {
           "300Б": {
             "totalVolume": 16,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 69.5,
             "factCement": 4.84,
             "factSand": 16.77,
             "factGravel": 16.15,
@@ -437347,12 +437373,25 @@
                 "devChem": 0
               }
             ]
+          },
+          "400Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 10.1,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
       "ДИН": {
         "totalVolume": 7,
-        "dispatcherVolume": 58.3,
+        "dispatcherVolume": 84.5,
         "recipes": {
           "250Б": {
             "totalVolume": 2,
