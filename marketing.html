@@ -209,6 +209,7 @@ details[open] > .detail-summary::before { content: '▾ '; }
           <div id="chart-spend"></div>
         </div>
       </div>
+      <div id="direct-campaigns" style="margin-top:12px"></div>
     </details>
     <details class="detail-block">
       <summary class="detail-summary">📋 Детализация: конверсия по каналам и менеджерам</summary>
@@ -373,16 +374,10 @@ function switchFunnel(funnel) {
   if (funnel === 'spec') {
     if (!DATA_SPEC) { alert('spec-data.json не загружен'); return; }
     DATA = DATA_SPEC;
-    populatePeriodSelects();
-    const ws = DATA_SPEC.weeks || [];
-    const latestIdx = ws.length - 1;
-    renderSpecMode(ws[latestIdx], latestIdx > 0 ? ws[latestIdx - 1] : null);
+    renderSpecMode();
   } else if (funnel === 'beton' || funnel === 'zhbi') {
     DATA = DATA_MAIN;
-    populatePeriodSelects();
-    const ws = DATA_MAIN.weeks || [];
-    const latestIdx = ws.length - 1;
-    renderProductMode(funnel, ws[latestIdx], latestIdx > 0 ? ws[latestIdx - 1] : null);
+    renderProductMode(funnel);
   } else {                 // overview (бывший main — Бетон+ЖБИ блендед)
     DATA = DATA_MAIN;
     renderMainMode();
@@ -396,11 +391,10 @@ function renderMainMode() {
 
 // Продуктовая вкладка (Бетон / ЖБИ) — честный разрез: сделки/выручка где есть,
 // лиды-оценка по тексту, SEO по группам Topvisor, + дисклеймер о неполноте.
-function renderProductMode(p, latest, prev) {
+function renderProductMode(p) {
   showOnlyBlocks('product-blocks');
   const D = DATA_MAIN || {};
-  latest = latest || D.latest || {};
-  prev = prev || D.prev || {};
+  const latest = D.latest || {};
   const bp = (latest.byProduct && latest.byProduct[p]) || { mkt: {}, all: {} };
   const mkt = bp.mkt || {}, all = bp.all || {};
   const ps = latest.productSplit || {};
@@ -418,9 +412,9 @@ function renderProductMode(p, latest, prev) {
   const leadsProd = p === 'beton' ? ps.beton : ps.zhbi;
 
   // Дельты к прошлой неделе (06.07): точка без сравнения — не аналитика.
-  const prevBp = (prev?.byProduct || {})[p] || { mkt: {}, all: {} };
+  const prevBp = (D.prev?.byProduct || {})[p] || { mkt: {}, all: {} };
   const prevMkt = prevBp.mkt || {}, prevAll = prevBp.all || {};
-  const prevPs = prev?.productSplit || {};
+  const prevPs = D.prev?.productSplit || {};
   const prevLeads = p === 'beton' ? prevPs.beton : prevPs.zhbi;
   const dlt = (cur, prv, suffix = '') => {
     if (prv == null || cur == null) return '';
@@ -471,7 +465,7 @@ function renderProductMode(p, latest, prev) {
   const seoEl = document.getElementById('product-seo');
   // Δ к прошлой неделе (06.07): позиция без тренда не читается. Меньше = лучше,
   // поэтому улучшение = позиция снизилась. «—» = ключи вне топ-100 Яндекса.
-  const tvPrev = prev?.topvisor?.byGroup || {};
+  const tvPrev = D.prev?.topvisor?.byGroup || {};
   if (groups.length) {
     seoEl.innerHTML = groups.map(([g, d]) => {
       const pos = d.avgPosition;
@@ -489,11 +483,11 @@ function renderProductMode(p, latest, prev) {
   }
 }
 
-function renderSpecMode(latest, prev) {
+function renderSpecMode() {
   showOnlyBlocks('spec-blocks');
 
-  latest = latest || DATA.latest || {};
-  prev = prev || DATA.prev || {};
+  const latest = DATA.latest || {};
+  const prev = DATA.prev || {};
   const s = latest.deals || {};
   const fmt = n => Number(n || 0).toLocaleString('ru');
 
@@ -896,6 +890,37 @@ function getSourceRows(week) {
   }).sort((a, b) => (b.deals - a.deals) || (b.revenue - a.revenue) || (b.leads - a.leads));
 }
 
+// --- Директ по кампаниям (04.08.2026, по итогам аудита HEADSHOT) ---
+// Аудит показал: 55% бюджета в кампаниях с CPA в 6-8 раз дороже лучших. Теперь это
+// видно без ручного ковыряния кабинета: расход/конверсии/CPA по каждой кампании.
+function renderDirectCampaigns(week) {
+  const el = document.getElementById('direct-campaigns');
+  if (!el) return;
+  const bc = week.direct && week.direct.byCampaign;
+  if (!bc || !Object.keys(bc).length) { el.innerHTML = ''; return; }
+  const fmtN = n => Number(n || 0).toLocaleString('ru-RU');
+  const rows = Object.entries(bc).map(([name, c]) => ({
+    name, cost: c.cost || 0, clicks: c.clicks || 0, conv: c.conversions || 0,
+    cpa: (c.conversions > 0) ? Math.round((c.cost || 0) / c.conversions) : null,
+  })).filter(r => r.cost > 0 || r.conv > 0)
+    .sort((a, b) => b.cost - a.cost);
+  if (!rows.length) { el.innerHTML = ''; return; }
+  const cpaCell = (r) => {
+    if (r.cpa == null) return `<td class="num"><span class="tag r">0 конв.</span></td>`;
+    const cls = r.cpa <= 1500 ? 'g' : r.cpa <= 3500 ? 'y' : 'r';
+    return `<td class="num"><span class="tag ${cls}">${fmtN(r.cpa)} ₽</span></td>`;
+  };
+  el.innerHTML = `
+    <div class="chart-card">
+      <div class="chart-title">🎯 Директ по кампаниям</div>
+      <div class="table-note">CPA = расход ÷ конверсии Директа (клик по телефону / форма). Деньги — в кампании с зелёным CPA; красный при заметном расходе — кандидат на пересбор/отключение.</div>
+      <div style="overflow-x:auto"><table class="data-table" style="min-width:460px">
+        <thead><tr><th>Кампания</th><th class="num">Расход</th><th class="num">Клики</th><th class="num">Конв.</th><th class="num">CPA</th></tr></thead>
+        <tbody>${rows.map(r => `<tr><td class="source-cell">${esc(r.name)}</td><td class="num">${fmtN(r.cost)} ₽</td><td class="num">${fmtN(r.clicks)}</td><td class="num">${r.conv ? fmtN(r.conv) : '<span style="color:var(--text3)">0</span>'}</td>${cpaCell(r)}</tr>`).join('')}</tbody>
+      </table></div>
+    </div>`;
+}
+
 // --- Стоимость лида по каналам (CPL) — 02.07.2026 ---
 // Из channelBenchmarks (расход платформы ÷ её лиды). Честно: CPL считается только там,
 // где расход канала привязан к лидам. Директ платный, но лиды идут как «Сайт»/звонки →
@@ -908,7 +933,7 @@ function renderChannelCPL(week) {
   const fmtN = n => Number(n || 0).toLocaleString('ru-RU');
   const clr = { green: 'var(--green)', yellow: 'var(--yellow)', red: 'var(--red)' };
   const rows = Object.entries(cb).map(([name, c]) => ({ name, ...c }))
-    .filter(c => c.cpl != null || (c.spend > 0 && c.leads > 0)) // скрываем расход без атрибуции лидов
+    .filter(c => (c.spend > 0) || (c.cpl != null))            // только каналы с расходом/CPL
     .sort((a, b) => ((b.cpl != null) - (a.cpl != null)) || ((b.spend || 0) - (a.spend || 0)));
   if (!rows.length) { el.innerHTML = ''; return; }
   const cplCell = (c) => {
@@ -1299,29 +1324,13 @@ function setKind(kind) {
 function onWeekChange() {
   const idx = +document.getElementById('period-week-select').value;
   activePeriod = { kind: 'week', idx };
-  if (activeFunnel === 'spec') {
-    const d = DATA_SPEC || {};
-    renderSpecMode(d.weeks?.[idx], idx > 0 ? d.weeks?.[idx - 1] : null);
-  } else if (activeFunnel === 'beton' || activeFunnel === 'zhbi') {
-    const d = DATA_MAIN || {};
-    renderProductMode(activeFunnel, d.weeks?.[idx], idx > 0 ? d.weeks?.[idx - 1] : null);
-  } else {
-    applyPeriod(DATA.weeks[idx], idx > 0 ? DATA.weeks[idx - 1] : null);
-  }
+  applyPeriod(DATA.weeks[idx], idx > 0 ? DATA.weeks[idx - 1] : null);
 }
 
 function onMonthChange() {
   const idx = +document.getElementById('period-month-select').value;
   activePeriod = { kind: 'month', idx };
-  if (activeFunnel === 'spec') {
-    const d = DATA_SPEC || {};
-    renderSpecMode(d.months?.[idx], idx > 0 ? d.months?.[idx - 1] : null);
-  } else if (activeFunnel === 'beton' || activeFunnel === 'zhbi') {
-    const d = DATA_MAIN || {};
-    renderProductMode(activeFunnel, d.months?.[idx], idx > 0 ? d.months?.[idx - 1] : null);
-  } else {
-    applyPeriod(DATA.months[idx], idx > 0 ? DATA.months[idx - 1] : null);
-  }
+  applyPeriod(DATA.months[idx], idx > 0 ? DATA.months[idx - 1] : null);
 }
 
 function applyCustomRange() {
@@ -1357,6 +1366,7 @@ function applyPeriod(current, prev) {
   renderSourcesTable(current);
   renderManagersTable(current);
   renderChannelCPL(current);
+  renderDirectCampaigns(current);
   renderAIInsights(current, prev);
   renderSeoBlock(current, prev);
 }
