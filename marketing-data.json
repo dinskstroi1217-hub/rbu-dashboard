@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T08:59:26.547Z",
+  "generatedAt": "2026-08-10T05:45:01.919Z",
   "schemaVersion": 3,
   "weeks": [
     {
@@ -15543,6 +15543,1331 @@
         "model": "heuristic-fallback",
         "generatedAt": "2026-08-03T05:25:48.779Z"
       }
+    },
+    {
+      "label": "Неделя 32",
+      "from": "2026-08-03",
+      "to": "2026-08-09",
+      "isoWeek": 32,
+      "isoYear": 2026,
+      "spend": {
+        "total": 43813.55,
+        "direct": 26640.550000000003,
+        "business": 17173,
+        "twogis": 0
+      },
+      "leads": {
+        "total": 672,
+        "marketing": 157,
+        "sales": 495
+      },
+      "deals": {
+        "total": 509,
+        "won": 202,
+        "wonSum": 23039667,
+        "wonMarketing": 10,
+        "wonSumMarketing": 257625,
+        "wonSumBackoffice": 12977300,
+        "wonSumNonMarketing": 9804742,
+        "inWorkMarketing": 30,
+        "inWorkSumMarketing": 0,
+        "dealsTrueBlind": 8,
+        "dealsBackofficeCount": 111
+      },
+      "cpl": 279,
+      "metrika": {
+        "visits": 5247,
+        "users": 3925,
+        "bounceRate": 39.56546598,
+        "depth": 1.27672956
+      },
+      "direct": {
+        "clicks": 587,
+        "impressions": 27589,
+        "ctr": 0.02127659574468085,
+        "cpc": 45.38424190800682,
+        "conversions": 19,
+        "balance": 106479.76,
+        "byCampaign": {
+          "ДКБИ ПОИСК (БЕТОН)": {
+            "cost": 7313,
+            "clicks": 73,
+            "conversions": 7
+          },
+          "ДКБИ ПОИСК | ЖБИ Кольца бетонные": {
+            "cost": 1269,
+            "clicks": 35,
+            "conversions": 4
+          },
+          "ДКБИ ПОИСК | Стойки СВ": {
+            "cost": 3416,
+            "clicks": 35,
+            "conversions": 1
+          },
+          "ДКБИ ПОИСК | Блоки ФБС": {
+            "cost": 2896,
+            "clicks": 25,
+            "conversions": 2
+          },
+          "ДКБИ РСЯ | Ретаргетинг": {
+            "cost": 3613,
+            "clicks": 271,
+            "conversions": 4
+          },
+          "ДКБИ ПОИСК | Кольца КС B2B (опт)": {
+            "cost": 4213,
+            "clicks": 79,
+            "conversions": 0
+          },
+          "ДКБИ ПОИСК | ФБС БЛОКИ B2B (опт)": {
+            "cost": 3346,
+            "clicks": 58,
+            "conversions": 1
+          },
+          "ДКБИ ПОИСК | Опоры СВ B2B (опт)": {
+            "cost": 576,
+            "clicks": 11,
+            "conversions": 0
+          }
+        }
+      },
+      "business": {
+        "impressions": 489168,
+        "transitions": 14790,
+        "targetClients": 1266,
+        "calls": 80,
+        "daysLeft": 73,
+        "balance": null
+      },
+      "avito": {
+        "views": 250,
+        "contacts": 22,
+        "itemsCount": 124,
+        "balance": null,
+        "calls": 0,
+        "chatsByProduct": {
+          "total": 19,
+          "zhbi": 9,
+          "beton": 7,
+          "other": 3
+        }
+      },
+      "twogis": {
+        "impressions": 696,
+        "views": 48,
+        "calls": 7
+      },
+      "bySource": {
+        "Электронная почта Info": 20,
+        "Яндекс.Карты БСТ": 28,
+        "Сайт отдел БСТ": 57,
+        "Яндекс": 7,
+        "Яндекс.Карты ЖБИ": 2,
+        "Сайт отдел ЖБИ": 6,
+        "Авито ДКБИ-сообщения": 20,
+        "2ГИС БСТ": 2,
+        "2ГИС ЖБИ": 2,
+        "Авито БСТ": 7,
+        "Веб-сайт": 6
+      },
+      "dealsBySource": {
+        "Сайт отдел БСТ": 23,
+        "Яндекс.Карты БСТ": 16,
+        "2ГИС ЖБИ": 1,
+        "2ГИС БСТ": 1,
+        "Авито БСТ": 7
+      },
+      "revenueBySource": {
+        "Сайт отдел БСТ": 58750,
+        "Яндекс.Карты БСТ": 78400,
+        "2ГИС ЖБИ": 28100,
+        "2ГИС БСТ": 0,
+        "Авито БСТ": 92375
+      },
+      "byCategory": {
+        "Общая (legacy) (#0)": 375,
+        "ЖБИ (#4)": 59,
+        "Спецтехника (#14)": 75
+      },
+      "byManager": {
+        "Ульяна Загумённова": {
+          "inWork": 11,
+          "won": 3,
+          "wonSum": 88450
+        },
+        "Елена Андреева": {
+          "inWork": 4,
+          "won": 1,
+          "wonSum": 0
+        },
+        "ID-1964": {
+          "inWork": 7,
+          "won": 5,
+          "wonSum": 129125
+        },
+        "Андрей Визильков": {
+          "inWork": 8,
+          "won": 1,
+          "wonSum": 40050
+        }
+      },
+      "leadsByManager": {
+        "Евгений Морозов": 25,
+        "Ульяна Загумённова": 18,
+        "ID-1672": 3,
+        "Елена Андреева": 16,
+        "ID-1964": 28,
+        "Игорь Диденко": 2,
+        "Андрей Визильков": 19,
+        "Ирина Мухитдинова": 8,
+        "Ирина Лукина": 25,
+        "ID-1956": 4,
+        "Сергей Смольников": 2,
+        "Юрий Дударев (owner)": 6,
+        "Виктория Генадьева": 1
+      },
+      "inWork": 30,
+      "inWorkSum": 0,
+      "dealsTrueBlind": 8,
+      "dealsBackofficeCount": 111,
+      "managersPerformance": {
+        "Евгений Морозов": {
+          "leadsReceived": 25,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 25,
+          "staleDealsSum": 405323,
+          "role": "sales"
+        },
+        "Ульяна Загумённова": {
+          "leadsReceived": 18,
+          "leadsConverted": 9,
+          "conversionRate": 50,
+          "dealsInWork": 11,
+          "dealsWon": 3,
+          "wonSum": 88450,
+          "staleDealsCount": 185,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1672": {
+          "leadsReceived": 3,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 11,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        },
+        "Елена Андреева": {
+          "leadsReceived": 16,
+          "leadsConverted": 3,
+          "conversionRate": 18.8,
+          "dealsInWork": 4,
+          "dealsWon": 1,
+          "wonSum": 0,
+          "staleDealsCount": 223,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-1964": {
+          "leadsReceived": 28,
+          "leadsConverted": 14,
+          "conversionRate": 50,
+          "dealsInWork": 7,
+          "dealsWon": 5,
+          "wonSum": 129125,
+          "staleDealsCount": 63,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        },
+        "Игорь Диденко": {
+          "leadsReceived": 2,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 986578300,
+          "role": "sales"
+        },
+        "Андрей Визильков": {
+          "leadsReceived": 19,
+          "leadsConverted": 4,
+          "conversionRate": 21.1,
+          "dealsInWork": 8,
+          "dealsWon": 1,
+          "wonSum": 40050,
+          "staleDealsCount": 99,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "Ирина Мухитдинова": {
+          "leadsReceived": 8,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 21,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "Ирина Лукина": {
+          "leadsReceived": 25,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 192,
+          "staleDealsSum": 152071,
+          "role": "sales"
+        },
+        "ID-1956": {
+          "leadsReceived": 4,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 59,
+          "staleDealsSum": 339718,
+          "role": "unknown"
+        },
+        "Сергей Смольников": {
+          "leadsReceived": 2,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 0,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "Юрий Дударев (owner)": {
+          "leadsReceived": 6,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 0,
+          "staleDealsSum": 0,
+          "role": "owner"
+        },
+        "Виктория Генадьева": {
+          "leadsReceived": 1,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 350,
+          "staleDealsSum": 345600,
+          "role": "sales"
+        },
+        "Илья Ушаков": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 157,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-296 (не существует)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 25,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        },
+        "Нина Читчян": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 33,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "Диспетчер Кореновск (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 21,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Сайт БСТ (service)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 2,
+          "staleDealsSum": 1,
+          "role": "service"
+        },
+        "ЖБИ Оператор (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 14,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Тимашевск Оператор (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 26,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Динская Оператор (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 28,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "РБУ Кореновск (новый) (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 27,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Инна Николаева (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 8,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Андреева Е. (старая учётка) (broken)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 2,
+          "staleDealsSum": 0,
+          "role": "broken"
+        },
+        "Татьяна Гладышева": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 4,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "ID-320": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        },
+        "Ирина Аникина (admin)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "admin"
+        },
+        "Ольга Долгопятова": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 6,
+          "staleDealsSum": 110000,
+          "role": "sales"
+        },
+        "Лилия Иванова (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Михаил Кателевец": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "sales"
+        },
+        "Лилия Иванова (дубль) (ops)": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 1,
+          "staleDealsSum": 0,
+          "role": "ops"
+        },
+        "Ангелина Зименко": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 412,
+          "staleDealsSum": 390000,
+          "role": "sales"
+        },
+        "ID-1358": {
+          "leadsReceived": 0,
+          "leadsConverted": 0,
+          "conversionRate": 0,
+          "dealsInWork": 0,
+          "dealsWon": 0,
+          "wonSum": 0,
+          "staleDealsCount": 4,
+          "staleDealsSum": 0,
+          "role": "unknown"
+        }
+      },
+      "staleDeals": {
+        "total": 1241,
+        "sum": 3585413,
+        "sumEstimated": 68858313,
+        "estimatedCount": 1211,
+        "medianWonUsed": 53900,
+        "byBucket": {
+          "7d": 133,
+          "14d": 239,
+          "30d": 869
+        },
+        "byManager": {
+          "Илья Ушаков": 157,
+          "Андрей Визильков": 98,
+          "ID-296 (не существует)": 25,
+          "Елена Андреева": 223,
+          "Ульяна Загумённова": 184,
+          "Нина Читчян": 33,
+          "Диспетчер Кореновск": 21,
+          "ID-1964": 63,
+          "Сайт БСТ": 2,
+          "ЖБИ Оператор": 13,
+          "Тимашевск Оператор": 26,
+          "Динская Оператор": 28,
+          "РБУ Кореновск (новый)": 27,
+          "Инна Николаева": 8,
+          "Андреева Е. (старая учётка)": 2,
+          "Ирина Лукина": 191,
+          "Татьяна Гладышева": 4,
+          "Ирина Мухитдинова": 21,
+          "ID-320": 1,
+          "Ирина Аникина": 1,
+          "Евгений Морозов": 24,
+          "Ольга Долгопятова": 6,
+          "ID-1956": 59,
+          "Игорь Диденко": 8,
+          "Лилия Иванова": 1,
+          "Михаил Кателевец": 1,
+          "Лилия Иванова (дубль)": 1,
+          "ID-1672": 9,
+          "ID-1358": 4
+        },
+        "byStage": {
+          "Выставлен счет": 60,
+          "Получены закрывающие": 11,
+          "Квалифицирован": 412,
+          "Отправлено КП": 18,
+          "Есть интерес": 398,
+          "Назначить ТС/Логистика": 6,
+          "Оформить документы": 30,
+          "Принять заявку": 274,
+          "Обработать заявку": 23,
+          "Получить документы": 1,
+          "Окончательный рассчет": 1,
+          "Контроль доставки": 3,
+          "Новая": 4
+        },
+        "outliers": [
+          {
+            "id": "113142",
+            "opp": 984000000,
+            "title": "Запрос"
+          }
+        ],
+        "outliersCount": 1,
+        "outliersSum": 984000000
+      },
+      "lostReasons": {
+        "total": 28,
+        "sum": 108235,
+        "byReason": {
+          "Прорабы и подобное": {
+            "count": 17,
+            "sum": 4000
+          },
+          "Срок работы(не рентабельно)": {
+            "count": 1,
+            "sum": 0
+          },
+          "Спам": {
+            "count": 4,
+            "sum": 0
+          },
+          "Сделка провалена": {
+            "count": 3,
+            "sum": 104235
+          },
+          "Анализ причина провала": {
+            "count": 1,
+            "sum": 0
+          },
+          "Архив": {
+            "count": 2,
+            "sum": 0
+          }
+        }
+      },
+      "channelBenchmarks": {
+        "byChannel": {
+          "Email": {
+            "rawNames": [
+              "Электронная почта Info"
+            ],
+            "leads": 20,
+            "deals": 0,
+            "revenue": 0,
+            "spend": null,
+            "cpl": null,
+            "conversionLeadToDeal": 0,
+            "romi": null,
+            "benchmark": {
+              "cpl": {
+                "green": 100,
+                "yellow": 400,
+                "red": 1000
+              },
+              "conversionLeadToDeal": {
+                "green": 30,
+                "yellow": 15,
+                "red": 5
+              },
+              "winRate": {
+                "green": 45,
+                "yellow": 25,
+                "red": 10
+              },
+              "romi": {
+                "green": 500,
+                "yellow": 200,
+                "red": 0
+              },
+              "note": "Самообращения — выше конверсия, ниже объём."
+            },
+            "status": {
+              "cpl": "grey",
+              "conversion": "red",
+              "romi": "grey"
+            }
+          },
+          "Я.Бизнес/Карты": {
+            "rawNames": [
+              "Яндекс.Карты БСТ",
+              "Яндекс.Карты ЖБИ"
+            ],
+            "leads": 30,
+            "deals": 16,
+            "revenue": 78400,
+            "spend": 17173,
+            "cpl": 572,
+            "conversionLeadToDeal": 53.3,
+            "romi": 357,
+            "benchmark": {
+              "cpl": {
+                "green": 400,
+                "yellow": 900,
+                "red": 1500
+              },
+              "conversionLeadToDeal": {
+                "green": 20,
+                "yellow": 10,
+                "red": 5
+              },
+              "winRate": {
+                "green": 35,
+                "yellow": 20,
+                "red": 8
+              },
+              "romi": {
+                "green": 300,
+                "yellow": 100,
+                "red": 0
+              },
+              "note": "Геозависимый трафик высокого намерения."
+            },
+            "status": {
+              "cpl": "yellow",
+              "conversion": "green",
+              "romi": "green"
+            }
+          },
+          "Сайт (SEO/прямые)": {
+            "rawNames": [
+              "Сайт отдел БСТ",
+              "Сайт отдел ЖБИ",
+              "Веб-сайт"
+            ],
+            "leads": 69,
+            "deals": 23,
+            "revenue": 58750,
+            "spend": null,
+            "cpl": null,
+            "conversionLeadToDeal": 33.3,
+            "romi": null,
+            "benchmark": {
+              "cpl": {
+                "green": 200,
+                "yellow": 600,
+                "red": 1200
+              },
+              "conversionLeadToDeal": {
+                "green": 25,
+                "yellow": 12,
+                "red": 5
+              },
+              "winRate": {
+                "green": 40,
+                "yellow": 22,
+                "red": 10
+              },
+              "romi": {
+                "green": 400,
+                "yellow": 150,
+                "red": 0
+              },
+              "note": "SEO + прямые заходы — самый качественный канал по конверсии."
+            },
+            "status": {
+              "cpl": "grey",
+              "conversion": "green",
+              "romi": "grey"
+            }
+          },
+          "Прочее": {
+            "rawNames": [
+              "Яндекс"
+            ],
+            "leads": 7,
+            "deals": 0,
+            "revenue": 0,
+            "spend": null,
+            "cpl": null,
+            "conversionLeadToDeal": 0,
+            "romi": null,
+            "benchmark": null,
+            "status": null
+          },
+          "Авито": {
+            "rawNames": [
+              "Авито ДКБИ-сообщения",
+              "Авито БСТ"
+            ],
+            "leads": 27,
+            "deals": 7,
+            "revenue": 92375,
+            "spend": null,
+            "cpl": null,
+            "conversionLeadToDeal": 25.9,
+            "romi": null,
+            "benchmark": {
+              "cpl": {
+                "green": 250,
+                "yellow": 700,
+                "red": 1300
+              },
+              "conversionLeadToDeal": {
+                "green": 18,
+                "yellow": 8,
+                "red": 3
+              },
+              "winRate": {
+                "green": 35,
+                "yellow": 18,
+                "red": 8
+              },
+              "romi": {
+                "green": 300,
+                "yellow": 100,
+                "red": 0
+              },
+              "note": "Marketplace-канал, дешёвые лиды но качество смешанное."
+            },
+            "status": {
+              "cpl": "grey",
+              "conversion": "green",
+              "romi": "grey"
+            }
+          },
+          "2ГИС": {
+            "rawNames": [
+              "2ГИС БСТ",
+              "2ГИС ЖБИ"
+            ],
+            "leads": 4,
+            "deals": 2,
+            "revenue": 28100,
+            "spend": null,
+            "cpl": null,
+            "conversionLeadToDeal": 50,
+            "romi": null,
+            "benchmark": {
+              "cpl": {
+                "green": 500,
+                "yellow": 1000,
+                "red": 1800
+              },
+              "conversionLeadToDeal": {
+                "green": 25,
+                "yellow": 12,
+                "red": 5
+              },
+              "winRate": {
+                "green": 40,
+                "yellow": 20,
+                "red": 10
+              },
+              "romi": {
+                "green": 250,
+                "yellow": 80,
+                "red": 0
+              },
+              "note": "Локальный коммерческий каталог."
+            },
+            "status": {
+              "cpl": "grey",
+              "conversion": "green",
+              "romi": "grey"
+            }
+          },
+          "Я.Директ": {
+            "rawNames": [],
+            "leads": 0,
+            "deals": 0,
+            "revenue": 0,
+            "spend": 26640.550000000003,
+            "cpl": null,
+            "conversionLeadToDeal": null,
+            "romi": -100,
+            "benchmark": {
+              "cpl": {
+                "green": 800,
+                "yellow": 1500,
+                "red": 2500
+              },
+              "conversionLeadToDeal": {
+                "green": 15,
+                "yellow": 8,
+                "red": 3
+              },
+              "winRate": {
+                "green": 30,
+                "yellow": 15,
+                "red": 5
+              },
+              "romi": {
+                "green": 200,
+                "yellow": 50,
+                "red": 0
+              },
+              "note": "Поисковая контекстная реклама. B2B-стройка обычно дорогая."
+            },
+            "status": {
+              "cpl": "grey",
+              "conversion": "grey",
+              "romi": "red"
+            }
+          }
+        },
+        "benchmarksSource": "data/benchmarks.json",
+        "updatedAt": "2026-05-17"
+      },
+      "leadConversionTime": {
+        "byChannel": {
+          "Прямой звонок Менеджеру": {
+            "count": 41,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Виктория Генадьева": {
+            "count": 12,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "РБУ Кореновск Новый": {
+            "count": 19,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Ирина Мухитдинова": {
+            "count": 11,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Ангелина Зименко": {
+            "count": 46,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Ирина Лукина": {
+            "count": 13,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Сайт отдел БСТ": {
+            "count": 17,
+            "medianHours": 5,
+            "medianDays": 0.2,
+            "p90Hours": 53
+          },
+          "РБУ Тимашевск": {
+            "count": 21,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "РБУ Нина Новотиторовка": {
+            "count": 28,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "РБУ Регина Динская": {
+            "count": 23,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "РБУ Кореновск": {
+            "count": 12,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Диспетчер Лилия Тимашевск": {
+            "count": 3,
+            "medianHours": 0,
+            "medianDays": 0,
+            "p90Hours": 0
+          },
+          "Яндекс.Карты БСТ": {
+            "count": 13,
+            "medianHours": 24,
+            "medianDays": 1,
+            "p90Hours": 53
+          },
+          "Ольга Долгопятова": {
+            "count": 9,
+            "medianHours": 20,
+            "medianDays": 0.8,
+            "p90Hours": 84
+          },
+          "Обзвон по базе": {
+            "count": 21,
+            "medianHours": 5,
+            "medianDays": 0.2,
+            "p90Hours": 50
+          },
+          "Авито БСТ": {
+            "count": 5,
+            "medianHours": 26,
+            "medianDays": 1.1,
+            "p90Hours": 58
+          }
+        },
+        "overall": {
+          "count": 298,
+          "medianHours": 0,
+          "medianDays": 0
+        }
+      },
+      "closedThisWeek": {
+        "count": 265,
+        "won": 192,
+        "wonSum": 12368175,
+        "wonMarketing": 10,
+        "wonSumMarketing": 364775,
+        "lost": 73
+      },
+      "salesVelocity": {
+        "overall": null,
+        "byManager": {},
+        "sampleSize": 18
+      },
+      "funnelStages": {
+        "totalInWork": 177,
+        "totalWon": 10,
+        "totalLost": 8,
+        "overallWinRate": 55.6,
+        "stages": [
+          {
+            "stageId": "1",
+            "name": "Архив",
+            "semantic": "F",
+            "count": 2,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "2",
+            "name": "Прорабы и подобное",
+            "semantic": "F",
+            "count": 5,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "WON",
+            "name": "Сделка успешна",
+            "semantic": "S",
+            "count": 10,
+            "sumOpportunity": 257625,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "PREPAYMENT_INVOICE",
+            "name": "Есть интерес",
+            "semantic": "P",
+            "count": 108,
+            "sumOpportunity": 0,
+            "medianAgeDays": 4.7
+          },
+          {
+            "stageId": "EXECUTING",
+            "name": "Выставлен счет",
+            "semantic": "P",
+            "count": 25,
+            "sumOpportunity": 0,
+            "medianAgeDays": 4
+          },
+          {
+            "stageId": "NEW",
+            "name": "Квалифицирован",
+            "semantic": "P",
+            "count": 25,
+            "sumOpportunity": 0,
+            "medianAgeDays": 3.8
+          },
+          {
+            "stageId": "APOLOGY",
+            "name": "Анализ причина провала",
+            "semantic": "F",
+            "count": 1,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "FINAL_INVOICE",
+            "name": "Получены закрывающие",
+            "count": 2,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "PREPARATION",
+            "name": "Отправлено КП",
+            "count": 8,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "C4:EXECUTING",
+            "name": "Назначить ТС/Логистика",
+            "count": 2,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "C4:FINAL_INVOICE",
+            "name": "Оформить документы",
+            "count": 1,
+            "sumOpportunity": 0,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "C4:NEW",
+            "name": "Принять заявку",
+            "count": 5,
+            "sumOpportunity": 19600,
+            "medianAgeDays": null
+          },
+          {
+            "stageId": "C4:PREPARATION",
+            "name": "Обработать заявку",
+            "count": 1,
+            "sumOpportunity": 984000000,
+            "medianAgeDays": null
+          }
+        ],
+        "inWorkStages": [
+          {
+            "stageId": "PREPAYMENT_INVOICE",
+            "name": "Есть интерес",
+            "semantic": "P",
+            "count": 108,
+            "sumOpportunity": 0,
+            "medianAgeDays": 4.7
+          },
+          {
+            "stageId": "EXECUTING",
+            "name": "Выставлен счет",
+            "semantic": "P",
+            "count": 25,
+            "sumOpportunity": 0,
+            "medianAgeDays": 4
+          },
+          {
+            "stageId": "NEW",
+            "name": "Квалифицирован",
+            "semantic": "P",
+            "count": 25,
+            "sumOpportunity": 0,
+            "medianAgeDays": 3.8
+          }
+        ],
+        "bottleneck": {
+          "stageId": "PREPAYMENT_INVOICE",
+          "name": "Есть интерес",
+          "semantic": "P",
+          "count": 108,
+          "sumOpportunity": 0,
+          "medianAgeDays": 4.7
+        }
+      },
+      "googleRecommendations": null,
+      "claudeRecommendations": null,
+      "gsc": null,
+      "topvisor": {
+        "totalKeywords": 1650,
+        "totalWithPosition": 906,
+        "byGroup": {
+          "Бетон": {
+            "keywords": 277,
+            "withPosition": 173,
+            "avgPosition": 26.5,
+            "top10": 76,
+            "top30": 118
+          },
+          "Кольца ЖБИ": {
+            "keywords": 347,
+            "withPosition": 207,
+            "avgPosition": 20.9,
+            "top10": 123,
+            "top30": 164
+          },
+          "Днище колодцев": {
+            "keywords": 161,
+            "withPosition": 100,
+            "avgPosition": 16,
+            "top10": 64,
+            "top30": 86
+          },
+          "Плиты перекрытия": {
+            "keywords": 148,
+            "withPosition": 98,
+            "avgPosition": 25.8,
+            "top10": 44,
+            "top30": 70
+          },
+          "Блоки ФБС": {
+            "keywords": 163,
+            "withPosition": 82,
+            "avgPosition": 25,
+            "top10": 43,
+            "top30": 58
+          },
+          "Опоры СВ": {
+            "keywords": 75,
+            "withPosition": 55,
+            "avgPosition": 22.2,
+            "top10": 22,
+            "top30": 44
+          },
+          "Дорожные плиты": {
+            "keywords": 144,
+            "withPosition": 70,
+            "avgPosition": 38.5,
+            "top10": 18,
+            "top30": 42
+          },
+          "Прочее": {
+            "keywords": 335,
+            "withPosition": 121,
+            "avgPosition": 21.5,
+            "top10": 71,
+            "top30": 93
+          }
+        },
+        "noPositionCount": 50
+      },
+      "byProduct": {
+        "beton": {
+          "mkt": {
+            "deals": 48,
+            "won": 10,
+            "wonSum": 257625,
+            "inWork": 30,
+            "inWorkSum": 0,
+            "lost": 8,
+            "lostSum": 0,
+            "noOpp": 30
+          },
+          "all": {
+            "deals": 375,
+            "won": 165,
+            "wonSum": 10703907,
+            "inWork": 183,
+            "inWorkSum": 149939,
+            "lost": 27,
+            "lostSum": 108235,
+            "noOpp": 178
+          }
+        },
+        "zhbi": {
+          "mkt": {
+            "deals": 0,
+            "won": 0,
+            "wonSum": 0,
+            "inWork": 0,
+            "inWorkSum": 0,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 0
+          },
+          "all": {
+            "deals": 59,
+            "won": 21,
+            "wonSum": 2509560,
+            "inWork": 38,
+            "inWorkSum": 282132,
+            "lost": 0,
+            "lostSum": 0,
+            "noOpp": 34
+          }
+        }
+      },
+      "productSplit": {
+        "zhbi": 5,
+        "beton": 7,
+        "unknown": 145,
+        "zhbiSharePct": 42,
+        "zhbiBySource": {
+          "Электронная почта Info": 4,
+          "Веб-сайт": 1
+        }
+      },
+      "dataQuality": {
+        "inWorkMarketing": 30,
+        "inWorkNoOpportunity": 30,
+        "noOppPct": 100,
+        "pipelineSum": 0,
+        "wonMarketing": 10,
+        "zeroRevenueDeals": 3,
+        "zeroRevenuePct": 30,
+        "unknownManagerDeals": 96,
+        "unknownManagers": [
+          "ID-1672",
+          "ID-1956",
+          "ID-1964"
+        ],
+        "sourceMissingCount": 8,
+        "status": "red"
+      },
+      "ai": {
+        "summary": "Неделя 2026-32: маркетинговые лиды держатся, факт маркет-выручки 257 625 ₽, прогноз по pipeline 257 625 ₽.",
+        "whatsChanged": [],
+        "risks": [],
+        "actions": [
+          {
+            "text": "Проверить кампании Директа с самым дорогим кликом и слабой глубиной воронки.",
+            "owner": "маркетолог",
+            "priority": "на этой неделе"
+          }
+        ],
+        "concrete": "Бетон держится на сайтах и картах. Приоритетом остаётся не объём лидов, а доведение их до сделок и сохранение атрибуции.",
+        "zhbi": "ЖБИ остаётся длинным циклом: weekly-факт здесь слабый ориентир, смотреть нужно на когорты 8w/12w.",
+        "model": "heuristic-fallback",
+        "generatedAt": "2026-08-10T05:26:20.673Z"
+      }
     }
   ],
   "months": [
@@ -21944,7 +23269,7 @@
         "dealsBackofficeCount": 8,
         "dealsTrueBlind": 0
       },
-      "cpl": 2780,
+      "cpl": 5701,
       "bySource": {
         "Сайт отдел БСТ": 4,
         "Электронная почта Info": 3,
@@ -22530,93 +23855,11 @@
       },
       "channelBenchmarks": {
         "byChannel": {
-          "Я.Бизнес/Карты": {
-            "rawNames": [
-              "Яндекс.Карты БСТ"
-            ],
-            "leads": 23,
-            "deals": 7,
-            "revenue": 529250,
-            "spend": 17173,
-            "cpl": 747,
-            "conversionLeadToDeal": 30.4,
-            "romi": 2982,
-            "benchmark": {
-              "cpl": {
-                "green": 400,
-                "yellow": 900,
-                "red": 1500
-              },
-              "conversionLeadToDeal": {
-                "green": 20,
-                "yellow": 10,
-                "red": 5
-              },
-              "winRate": {
-                "green": 35,
-                "yellow": 20,
-                "red": 8
-              },
-              "romi": {
-                "green": 300,
-                "yellow": 100,
-                "red": 0
-              },
-              "note": "Геозависимый трафик высокого намерения."
-            },
-            "status": {
-              "cpl": "yellow",
-              "conversion": "green",
-              "romi": "green"
-            }
-          },
-          "Сайт (SEO/прямые)": {
-            "rawNames": [
-              "Сайт отдел БСТ",
-              "Сайт отдел ЖБИ",
-              "Веб-сайт"
-            ],
-            "leads": 48,
-            "deals": 10,
-            "revenue": 606650,
-            "spend": null,
-            "cpl": null,
-            "conversionLeadToDeal": 20.8,
-            "romi": null,
-            "benchmark": {
-              "cpl": {
-                "green": 200,
-                "yellow": 600,
-                "red": 1200
-              },
-              "conversionLeadToDeal": {
-                "green": 25,
-                "yellow": 12,
-                "red": 5
-              },
-              "winRate": {
-                "green": 40,
-                "yellow": 22,
-                "red": 10
-              },
-              "romi": {
-                "green": 400,
-                "yellow": 150,
-                "red": 0
-              },
-              "note": "SEO + прямые заходы — самый качественный канал по конверсии."
-            },
-            "status": {
-              "cpl": "grey",
-              "conversion": "yellow",
-              "romi": "grey"
-            }
-          },
           "Email": {
             "rawNames": [
               "Электронная почта Info"
             ],
-            "leads": 18,
+            "leads": 20,
             "deals": 0,
             "revenue": 0,
             "spend": null,
@@ -22652,23 +23895,65 @@
               "romi": "grey"
             }
           },
-          "2ГИС": {
+          "Я.Бизнес/Карты": {
             "rawNames": [
-              "2ГИС ЖБИ",
-              "2ГИС БСТ"
+              "Яндекс.Карты БСТ",
+              "Яндекс.Карты ЖБИ"
             ],
-            "leads": 7,
-            "deals": 0,
-            "revenue": 0,
+            "leads": 30,
+            "deals": 16,
+            "revenue": 78400,
+            "spend": 17173,
+            "cpl": 572,
+            "conversionLeadToDeal": 53.3,
+            "romi": 357,
+            "benchmark": {
+              "cpl": {
+                "green": 400,
+                "yellow": 900,
+                "red": 1500
+              },
+              "conversionLeadToDeal": {
+                "green": 20,
+                "yellow": 10,
+                "red": 5
+              },
+              "winRate": {
+                "green": 35,
+                "yellow": 20,
+                "red": 8
+              },
+              "romi": {
+                "green": 300,
+                "yellow": 100,
+                "red": 0
+              },
+              "note": "Геозависимый трафик высокого намерения."
+            },
+            "status": {
+              "cpl": "yellow",
+              "conversion": "green",
+              "romi": "green"
+            }
+          },
+          "Сайт (SEO/прямые)": {
+            "rawNames": [
+              "Сайт отдел БСТ",
+              "Сайт отдел ЖБИ",
+              "Веб-сайт"
+            ],
+            "leads": 69,
+            "deals": 23,
+            "revenue": 58750,
             "spend": null,
             "cpl": null,
-            "conversionLeadToDeal": 0,
+            "conversionLeadToDeal": 33.3,
             "romi": null,
             "benchmark": {
               "cpl": {
-                "green": 500,
-                "yellow": 1000,
-                "red": 1800
+                "green": 200,
+                "yellow": 600,
+                "red": 1200
               },
               "conversionLeadToDeal": {
                 "green": 25,
@@ -22677,33 +23962,47 @@
               },
               "winRate": {
                 "green": 40,
-                "yellow": 20,
+                "yellow": 22,
                 "red": 10
               },
               "romi": {
-                "green": 250,
-                "yellow": 80,
+                "green": 400,
+                "yellow": 150,
                 "red": 0
               },
-              "note": "Локальный коммерческий каталог."
+              "note": "SEO + прямые заходы — самый качественный канал по конверсии."
             },
             "status": {
               "cpl": "grey",
-              "conversion": "red",
+              "conversion": "green",
               "romi": "grey"
             }
+          },
+          "Прочее": {
+            "rawNames": [
+              "Яндекс"
+            ],
+            "leads": 7,
+            "deals": 0,
+            "revenue": 0,
+            "spend": null,
+            "cpl": null,
+            "conversionLeadToDeal": 0,
+            "romi": null,
+            "benchmark": null,
+            "status": null
           },
           "Авито": {
             "rawNames": [
               "Авито ДКБИ-сообщения",
               "Авито БСТ"
             ],
-            "leads": 23,
-            "deals": 1,
-            "revenue": 30525,
+            "leads": 27,
+            "deals": 7,
+            "revenue": 92375,
             "spend": null,
             "cpl": null,
-            "conversionLeadToDeal": 4.3,
+            "conversionLeadToDeal": 25.9,
             "romi": null,
             "benchmark": {
               "cpl": {
@@ -22730,30 +24029,57 @@
             },
             "status": {
               "cpl": "grey",
-              "conversion": "yellow",
+              "conversion": "green",
               "romi": "grey"
             }
           },
-          "Прочее": {
+          "2ГИС": {
             "rawNames": [
-              "Яндекс"
+              "2ГИС БСТ",
+              "2ГИС ЖБИ"
             ],
-            "leads": 3,
-            "deals": 0,
-            "revenue": 0,
+            "leads": 4,
+            "deals": 2,
+            "revenue": 28100,
             "spend": null,
             "cpl": null,
-            "conversionLeadToDeal": 0,
+            "conversionLeadToDeal": 50,
             "romi": null,
-            "benchmark": null,
-            "status": null
+            "benchmark": {
+              "cpl": {
+                "green": 500,
+                "yellow": 1000,
+                "red": 1800
+              },
+              "conversionLeadToDeal": {
+                "green": 25,
+                "yellow": 12,
+                "red": 5
+              },
+              "winRate": {
+                "green": 40,
+                "yellow": 20,
+                "red": 10
+              },
+              "romi": {
+                "green": 250,
+                "yellow": 80,
+                "red": 0
+              },
+              "note": "Локальный коммерческий каталог."
+            },
+            "status": {
+              "cpl": "grey",
+              "conversion": "green",
+              "romi": "grey"
+            }
           },
           "Я.Директ": {
             "rawNames": [],
             "leads": 0,
             "deals": 0,
             "revenue": 0,
-            "spend": 24534.370000000003,
+            "spend": 26640.550000000003,
             "cpl": null,
             "conversionLeadToDeal": null,
             "romi": -100,
@@ -22792,36 +24118,37 @@
       },
       "fetchedAt": "2026-08-03T06:20:42.806Z",
       "spend": {
-        "total": 41707.37,
-        "direct": 24534.370000000003,
-        "business": 17173,
+        "total": 85520.92000000001,
+        "direct": 51174.920000000006,
+        "business": 34346,
         "twogis": 0
       },
-      "weeksCount": 1,
+      "weeksCount": 2,
       "weeks": [
-        "2026-W31"
+        "2026-W31",
+        "2026-W32"
       ],
       "metrika": {
-        "visits": 5167,
-        "users": 4207,
+        "visits": 10414,
+        "users": 8132,
         "bounceRate": null
       },
       "direct": {
-        "clicks": 716,
-        "impressions": 26179
+        "clicks": 1303,
+        "impressions": 53768
       },
       "avito": {
-        "views": 256,
-        "contacts": 22,
+        "views": 506,
+        "contacts": 44,
         "itemsCount": 124
       },
       "twogis": {
-        "impressions": 332,
-        "views": 14,
-        "calls": 3
+        "impressions": 1028,
+        "views": 62,
+        "calls": 10
       },
       "ai": {
-        "summary": "Неделя 2026-31: маркетинговые лиды держатся, факт маркет-выручки 1 166 425 ₽, прогноз по pipeline 1 166 425 ₽.",
+        "summary": "Неделя 2026-32: маркетинговые лиды держатся, факт маркет-выручки 257 625 ₽, прогноз по pipeline 257 625 ₽.",
         "whatsChanged": [],
         "risks": [],
         "actions": [
@@ -22834,67 +24161,67 @@
         "concrete": "Бетон держится на сайтах и картах. Приоритетом остаётся не объём лидов, а доведение их до сделок и сохранение атрибуции.",
         "zhbi": "ЖБИ остаётся длинным циклом: weekly-факт здесь слабый ориентир, смотреть нужно на когорты 8w/12w.",
         "model": "heuristic-fallback",
-        "generatedAt": "2026-08-03T05:25:48.779Z"
+        "generatedAt": "2026-08-10T05:26:20.673Z"
       },
       "topvisor": {
-        "totalKeywords": 1103,
-        "totalWithPosition": 559,
+        "totalKeywords": 1650,
+        "totalWithPosition": 906,
         "byGroup": {
           "Бетон": {
-            "keywords": 104,
-            "withPosition": 62,
-            "avgPosition": 23.9,
-            "top10": 36,
-            "top30": 45
+            "keywords": 277,
+            "withPosition": 173,
+            "avgPosition": 26.5,
+            "top10": 76,
+            "top30": 118
           },
           "Кольца ЖБИ": {
-            "keywords": 184,
-            "withPosition": 87,
-            "avgPosition": 30.5,
-            "top10": 35,
-            "top30": 57
+            "keywords": 347,
+            "withPosition": 207,
+            "avgPosition": 20.9,
+            "top10": 123,
+            "top30": 164
           },
           "Днище колодцев": {
             "keywords": 161,
-            "withPosition": 90,
-            "avgPosition": 16.2,
-            "top10": 63,
-            "top30": 78
+            "withPosition": 100,
+            "avgPosition": 16,
+            "top10": 64,
+            "top30": 86
           },
           "Плиты перекрытия": {
             "keywords": 148,
             "withPosition": 98,
-            "avgPosition": 30.6,
-            "top10": 43,
-            "top30": 65
+            "avgPosition": 25.8,
+            "top10": 44,
+            "top30": 70
           },
           "Блоки ФБС": {
             "keywords": 163,
-            "withPosition": 80,
-            "avgPosition": 28.1,
-            "top10": 38,
-            "top30": 51
+            "withPosition": 82,
+            "avgPosition": 25,
+            "top10": 43,
+            "top30": 58
           },
           "Опоры СВ": {
             "keywords": 75,
-            "withPosition": 41,
-            "avgPosition": 29.9,
-            "top10": 13,
-            "top30": 29
+            "withPosition": 55,
+            "avgPosition": 22.2,
+            "top10": 22,
+            "top30": 44
           },
           "Дорожные плиты": {
             "keywords": 144,
-            "withPosition": 56,
-            "avgPosition": 38.1,
+            "withPosition": 70,
+            "avgPosition": 38.5,
             "top10": 18,
-            "top30": 32
+            "top30": 42
           },
           "Прочее": {
-            "keywords": 124,
-            "withPosition": 45,
-            "avgPosition": 25.4,
-            "top10": 19,
-            "top30": 35
+            "keywords": 335,
+            "withPosition": 121,
+            "avgPosition": 21.5,
+            "top10": 71,
+            "top30": 93
           }
         },
         "noPositionCount": 50
@@ -22904,24 +24231,24 @@
       "byProduct": {
         "beton": {
           "mkt": {
-            "deals": 18,
-            "won": 9,
-            "wonSum": 1166425,
-            "inWork": 8,
+            "deals": 48,
+            "won": 10,
+            "wonSum": 257625,
+            "inWork": 30,
             "inWorkSum": 0,
-            "lost": 1,
+            "lost": 8,
             "lostSum": 0,
-            "noOpp": 8
+            "noOpp": 30
           },
           "all": {
-            "deals": 417,
-            "won": 262,
-            "wonSum": 26004686,
-            "inWork": 135,
-            "inWorkSum": 0,
-            "lost": 20,
-            "lostSum": 0,
-            "noOpp": 135
+            "deals": 375,
+            "won": 165,
+            "wonSum": 10703907,
+            "inWork": 183,
+            "inWorkSum": 149939,
+            "lost": 27,
+            "lostSum": 108235,
+            "noOpp": 178
           }
         },
         "zhbi": {
@@ -22936,48 +24263,1372 @@
             "noOpp": 0
           },
           "all": {
-            "deals": 99,
-            "won": 75,
-            "wonSum": 8727554,
-            "inWork": 24,
-            "inWorkSum": 0,
+            "deals": 59,
+            "won": 21,
+            "wonSum": 2509560,
+            "inWork": 38,
+            "inWorkSum": 282132,
             "lost": 0,
             "lostSum": 0,
-            "noOpp": 24
+            "noOpp": 34
           }
         }
       },
       "productSplit": {
-        "zhbi": 3,
-        "beton": 2,
-        "unknown": 117,
-        "zhbiSharePct": 60,
+        "zhbi": 5,
+        "beton": 7,
+        "unknown": 145,
+        "zhbiSharePct": 42,
         "zhbiBySource": {
-          "Сайт отдел БСТ": 1,
-          "Электронная почта Info": 2
+          "Электронная почта Info": 4,
+          "Веб-сайт": 1
         }
       },
       "dataQuality": {
-        "inWorkMarketing": 8,
-        "inWorkNoOpportunity": 8,
+        "inWorkMarketing": 30,
+        "inWorkNoOpportunity": 30,
         "noOppPct": 100,
         "pipelineSum": 0,
-        "wonMarketing": 9,
-        "zeroRevenueDeals": 0,
-        "zeroRevenuePct": 0,
-        "unknownManagerDeals": 68,
+        "wonMarketing": 10,
+        "zeroRevenueDeals": 3,
+        "zeroRevenuePct": 30,
+        "unknownManagerDeals": 96,
         "unknownManagers": [
           "ID-1672",
           "ID-1956",
-          "ID-1964",
-          "ID-296"
+          "ID-1964"
         ],
-        "sourceMissingCount": 0,
+        "sourceMissingCount": 8,
         "status": "red"
       }
     }
   ],
   "latest": {
+    "label": "Неделя 32",
+    "from": "2026-08-03",
+    "to": "2026-08-09",
+    "isoWeek": 32,
+    "isoYear": 2026,
+    "spend": {
+      "total": 43813.55,
+      "direct": 26640.550000000003,
+      "business": 17173,
+      "twogis": 0
+    },
+    "leads": {
+      "total": 672,
+      "marketing": 157,
+      "sales": 495
+    },
+    "deals": {
+      "total": 509,
+      "won": 202,
+      "wonSum": 23039667,
+      "wonMarketing": 10,
+      "wonSumMarketing": 257625,
+      "wonSumBackoffice": 12977300,
+      "wonSumNonMarketing": 9804742,
+      "inWorkMarketing": 30,
+      "inWorkSumMarketing": 0,
+      "dealsTrueBlind": 8,
+      "dealsBackofficeCount": 111
+    },
+    "cpl": 279,
+    "metrika": {
+      "visits": 5247,
+      "users": 3925,
+      "bounceRate": 39.56546598,
+      "depth": 1.27672956
+    },
+    "direct": {
+      "clicks": 587,
+      "impressions": 27589,
+      "ctr": 0.02127659574468085,
+      "cpc": 45.38424190800682,
+      "conversions": 19,
+      "balance": 106479.76,
+      "byCampaign": {
+        "ДКБИ ПОИСК (БЕТОН)": {
+          "cost": 7313,
+          "clicks": 73,
+          "conversions": 7
+        },
+        "ДКБИ ПОИСК | ЖБИ Кольца бетонные": {
+          "cost": 1269,
+          "clicks": 35,
+          "conversions": 4
+        },
+        "ДКБИ ПОИСК | Стойки СВ": {
+          "cost": 3416,
+          "clicks": 35,
+          "conversions": 1
+        },
+        "ДКБИ ПОИСК | Блоки ФБС": {
+          "cost": 2896,
+          "clicks": 25,
+          "conversions": 2
+        },
+        "ДКБИ РСЯ | Ретаргетинг": {
+          "cost": 3613,
+          "clicks": 271,
+          "conversions": 4
+        },
+        "ДКБИ ПОИСК | Кольца КС B2B (опт)": {
+          "cost": 4213,
+          "clicks": 79,
+          "conversions": 0
+        },
+        "ДКБИ ПОИСК | ФБС БЛОКИ B2B (опт)": {
+          "cost": 3346,
+          "clicks": 58,
+          "conversions": 1
+        },
+        "ДКБИ ПОИСК | Опоры СВ B2B (опт)": {
+          "cost": 576,
+          "clicks": 11,
+          "conversions": 0
+        }
+      }
+    },
+    "business": {
+      "impressions": 489168,
+      "transitions": 14790,
+      "targetClients": 1266,
+      "calls": 80,
+      "daysLeft": 73,
+      "balance": null
+    },
+    "avito": {
+      "views": 250,
+      "contacts": 22,
+      "itemsCount": 124,
+      "balance": null,
+      "calls": 0,
+      "chatsByProduct": {
+        "total": 19,
+        "zhbi": 9,
+        "beton": 7,
+        "other": 3
+      }
+    },
+    "twogis": {
+      "impressions": 696,
+      "views": 48,
+      "calls": 7
+    },
+    "bySource": {
+      "Электронная почта Info": 20,
+      "Яндекс.Карты БСТ": 28,
+      "Сайт отдел БСТ": 57,
+      "Яндекс": 7,
+      "Яндекс.Карты ЖБИ": 2,
+      "Сайт отдел ЖБИ": 6,
+      "Авито ДКБИ-сообщения": 20,
+      "2ГИС БСТ": 2,
+      "2ГИС ЖБИ": 2,
+      "Авито БСТ": 7,
+      "Веб-сайт": 6
+    },
+    "dealsBySource": {
+      "Сайт отдел БСТ": 23,
+      "Яндекс.Карты БСТ": 16,
+      "2ГИС ЖБИ": 1,
+      "2ГИС БСТ": 1,
+      "Авито БСТ": 7
+    },
+    "revenueBySource": {
+      "Сайт отдел БСТ": 58750,
+      "Яндекс.Карты БСТ": 78400,
+      "2ГИС ЖБИ": 28100,
+      "2ГИС БСТ": 0,
+      "Авито БСТ": 92375
+    },
+    "byCategory": {
+      "Общая (legacy) (#0)": 375,
+      "ЖБИ (#4)": 59,
+      "Спецтехника (#14)": 75
+    },
+    "byManager": {
+      "Ульяна Загумённова": {
+        "inWork": 11,
+        "won": 3,
+        "wonSum": 88450
+      },
+      "Елена Андреева": {
+        "inWork": 4,
+        "won": 1,
+        "wonSum": 0
+      },
+      "ID-1964": {
+        "inWork": 7,
+        "won": 5,
+        "wonSum": 129125
+      },
+      "Андрей Визильков": {
+        "inWork": 8,
+        "won": 1,
+        "wonSum": 40050
+      }
+    },
+    "leadsByManager": {
+      "Евгений Морозов": 25,
+      "Ульяна Загумённова": 18,
+      "ID-1672": 3,
+      "Елена Андреева": 16,
+      "ID-1964": 28,
+      "Игорь Диденко": 2,
+      "Андрей Визильков": 19,
+      "Ирина Мухитдинова": 8,
+      "Ирина Лукина": 25,
+      "ID-1956": 4,
+      "Сергей Смольников": 2,
+      "Юрий Дударев (owner)": 6,
+      "Виктория Генадьева": 1
+    },
+    "inWork": 30,
+    "inWorkSum": 0,
+    "dealsTrueBlind": 8,
+    "dealsBackofficeCount": 111,
+    "managersPerformance": {
+      "Евгений Морозов": {
+        "leadsReceived": 25,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 25,
+        "staleDealsSum": 405323,
+        "role": "sales"
+      },
+      "Ульяна Загумённова": {
+        "leadsReceived": 18,
+        "leadsConverted": 9,
+        "conversionRate": 50,
+        "dealsInWork": 11,
+        "dealsWon": 3,
+        "wonSum": 88450,
+        "staleDealsCount": 185,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "ID-1672": {
+        "leadsReceived": 3,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 11,
+        "staleDealsSum": 0,
+        "role": "unknown"
+      },
+      "Елена Андреева": {
+        "leadsReceived": 16,
+        "leadsConverted": 3,
+        "conversionRate": 18.8,
+        "dealsInWork": 4,
+        "dealsWon": 1,
+        "wonSum": 0,
+        "staleDealsCount": 223,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "ID-1964": {
+        "leadsReceived": 28,
+        "leadsConverted": 14,
+        "conversionRate": 50,
+        "dealsInWork": 7,
+        "dealsWon": 5,
+        "wonSum": 129125,
+        "staleDealsCount": 63,
+        "staleDealsSum": 0,
+        "role": "unknown"
+      },
+      "Игорь Диденко": {
+        "leadsReceived": 2,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 8,
+        "staleDealsSum": 986578300,
+        "role": "sales"
+      },
+      "Андрей Визильков": {
+        "leadsReceived": 19,
+        "leadsConverted": 4,
+        "conversionRate": 21.1,
+        "dealsInWork": 8,
+        "dealsWon": 1,
+        "wonSum": 40050,
+        "staleDealsCount": 99,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "Ирина Мухитдинова": {
+        "leadsReceived": 8,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 21,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "Ирина Лукина": {
+        "leadsReceived": 25,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 192,
+        "staleDealsSum": 152071,
+        "role": "sales"
+      },
+      "ID-1956": {
+        "leadsReceived": 4,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 59,
+        "staleDealsSum": 339718,
+        "role": "unknown"
+      },
+      "Сергей Смольников": {
+        "leadsReceived": 2,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 0,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "Юрий Дударев (owner)": {
+        "leadsReceived": 6,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 0,
+        "staleDealsSum": 0,
+        "role": "owner"
+      },
+      "Виктория Генадьева": {
+        "leadsReceived": 1,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 350,
+        "staleDealsSum": 345600,
+        "role": "sales"
+      },
+      "Илья Ушаков": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 157,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "ID-296 (не существует)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 25,
+        "staleDealsSum": 0,
+        "role": "unknown"
+      },
+      "Нина Читчян": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 33,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "Диспетчер Кореновск (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 21,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Сайт БСТ (service)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 2,
+        "staleDealsSum": 1,
+        "role": "service"
+      },
+      "ЖБИ Оператор (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 14,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Тимашевск Оператор (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 26,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Динская Оператор (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 28,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "РБУ Кореновск (новый) (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 27,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Инна Николаева (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 8,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Андреева Е. (старая учётка) (broken)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 2,
+        "staleDealsSum": 0,
+        "role": "broken"
+      },
+      "Татьяна Гладышева": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 4,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "ID-320": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "unknown"
+      },
+      "Ирина Аникина (admin)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "admin"
+      },
+      "Ольга Долгопятова": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 6,
+        "staleDealsSum": 110000,
+        "role": "sales"
+      },
+      "Лилия Иванова (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Михаил Кателевец": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "sales"
+      },
+      "Лилия Иванова (дубль) (ops)": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 1,
+        "staleDealsSum": 0,
+        "role": "ops"
+      },
+      "Ангелина Зименко": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 412,
+        "staleDealsSum": 390000,
+        "role": "sales"
+      },
+      "ID-1358": {
+        "leadsReceived": 0,
+        "leadsConverted": 0,
+        "conversionRate": 0,
+        "dealsInWork": 0,
+        "dealsWon": 0,
+        "wonSum": 0,
+        "staleDealsCount": 4,
+        "staleDealsSum": 0,
+        "role": "unknown"
+      }
+    },
+    "staleDeals": {
+      "total": 1241,
+      "sum": 3585413,
+      "sumEstimated": 68858313,
+      "estimatedCount": 1211,
+      "medianWonUsed": 53900,
+      "byBucket": {
+        "7d": 133,
+        "14d": 239,
+        "30d": 869
+      },
+      "byManager": {
+        "Илья Ушаков": 157,
+        "Андрей Визильков": 98,
+        "ID-296 (не существует)": 25,
+        "Елена Андреева": 223,
+        "Ульяна Загумённова": 184,
+        "Нина Читчян": 33,
+        "Диспетчер Кореновск": 21,
+        "ID-1964": 63,
+        "Сайт БСТ": 2,
+        "ЖБИ Оператор": 13,
+        "Тимашевск Оператор": 26,
+        "Динская Оператор": 28,
+        "РБУ Кореновск (новый)": 27,
+        "Инна Николаева": 8,
+        "Андреева Е. (старая учётка)": 2,
+        "Ирина Лукина": 191,
+        "Татьяна Гладышева": 4,
+        "Ирина Мухитдинова": 21,
+        "ID-320": 1,
+        "Ирина Аникина": 1,
+        "Евгений Морозов": 24,
+        "Ольга Долгопятова": 6,
+        "ID-1956": 59,
+        "Игорь Диденко": 8,
+        "Лилия Иванова": 1,
+        "Михаил Кателевец": 1,
+        "Лилия Иванова (дубль)": 1,
+        "ID-1672": 9,
+        "ID-1358": 4
+      },
+      "byStage": {
+        "Выставлен счет": 60,
+        "Получены закрывающие": 11,
+        "Квалифицирован": 412,
+        "Отправлено КП": 18,
+        "Есть интерес": 398,
+        "Назначить ТС/Логистика": 6,
+        "Оформить документы": 30,
+        "Принять заявку": 274,
+        "Обработать заявку": 23,
+        "Получить документы": 1,
+        "Окончательный рассчет": 1,
+        "Контроль доставки": 3,
+        "Новая": 4
+      },
+      "outliers": [
+        {
+          "id": "113142",
+          "opp": 984000000,
+          "title": "Запрос"
+        }
+      ],
+      "outliersCount": 1,
+      "outliersSum": 984000000
+    },
+    "lostReasons": {
+      "total": 28,
+      "sum": 108235,
+      "byReason": {
+        "Прорабы и подобное": {
+          "count": 17,
+          "sum": 4000
+        },
+        "Срок работы(не рентабельно)": {
+          "count": 1,
+          "sum": 0
+        },
+        "Спам": {
+          "count": 4,
+          "sum": 0
+        },
+        "Сделка провалена": {
+          "count": 3,
+          "sum": 104235
+        },
+        "Анализ причина провала": {
+          "count": 1,
+          "sum": 0
+        },
+        "Архив": {
+          "count": 2,
+          "sum": 0
+        }
+      }
+    },
+    "channelBenchmarks": {
+      "byChannel": {
+        "Email": {
+          "rawNames": [
+            "Электронная почта Info"
+          ],
+          "leads": 20,
+          "deals": 0,
+          "revenue": 0,
+          "spend": null,
+          "cpl": null,
+          "conversionLeadToDeal": 0,
+          "romi": null,
+          "benchmark": {
+            "cpl": {
+              "green": 100,
+              "yellow": 400,
+              "red": 1000
+            },
+            "conversionLeadToDeal": {
+              "green": 30,
+              "yellow": 15,
+              "red": 5
+            },
+            "winRate": {
+              "green": 45,
+              "yellow": 25,
+              "red": 10
+            },
+            "romi": {
+              "green": 500,
+              "yellow": 200,
+              "red": 0
+            },
+            "note": "Самообращения — выше конверсия, ниже объём."
+          },
+          "status": {
+            "cpl": "grey",
+            "conversion": "red",
+            "romi": "grey"
+          }
+        },
+        "Я.Бизнес/Карты": {
+          "rawNames": [
+            "Яндекс.Карты БСТ",
+            "Яндекс.Карты ЖБИ"
+          ],
+          "leads": 30,
+          "deals": 16,
+          "revenue": 78400,
+          "spend": 17173,
+          "cpl": 572,
+          "conversionLeadToDeal": 53.3,
+          "romi": 357,
+          "benchmark": {
+            "cpl": {
+              "green": 400,
+              "yellow": 900,
+              "red": 1500
+            },
+            "conversionLeadToDeal": {
+              "green": 20,
+              "yellow": 10,
+              "red": 5
+            },
+            "winRate": {
+              "green": 35,
+              "yellow": 20,
+              "red": 8
+            },
+            "romi": {
+              "green": 300,
+              "yellow": 100,
+              "red": 0
+            },
+            "note": "Геозависимый трафик высокого намерения."
+          },
+          "status": {
+            "cpl": "yellow",
+            "conversion": "green",
+            "romi": "green"
+          }
+        },
+        "Сайт (SEO/прямые)": {
+          "rawNames": [
+            "Сайт отдел БСТ",
+            "Сайт отдел ЖБИ",
+            "Веб-сайт"
+          ],
+          "leads": 69,
+          "deals": 23,
+          "revenue": 58750,
+          "spend": null,
+          "cpl": null,
+          "conversionLeadToDeal": 33.3,
+          "romi": null,
+          "benchmark": {
+            "cpl": {
+              "green": 200,
+              "yellow": 600,
+              "red": 1200
+            },
+            "conversionLeadToDeal": {
+              "green": 25,
+              "yellow": 12,
+              "red": 5
+            },
+            "winRate": {
+              "green": 40,
+              "yellow": 22,
+              "red": 10
+            },
+            "romi": {
+              "green": 400,
+              "yellow": 150,
+              "red": 0
+            },
+            "note": "SEO + прямые заходы — самый качественный канал по конверсии."
+          },
+          "status": {
+            "cpl": "grey",
+            "conversion": "green",
+            "romi": "grey"
+          }
+        },
+        "Прочее": {
+          "rawNames": [
+            "Яндекс"
+          ],
+          "leads": 7,
+          "deals": 0,
+          "revenue": 0,
+          "spend": null,
+          "cpl": null,
+          "conversionLeadToDeal": 0,
+          "romi": null,
+          "benchmark": null,
+          "status": null
+        },
+        "Авито": {
+          "rawNames": [
+            "Авито ДКБИ-сообщения",
+            "Авито БСТ"
+          ],
+          "leads": 27,
+          "deals": 7,
+          "revenue": 92375,
+          "spend": null,
+          "cpl": null,
+          "conversionLeadToDeal": 25.9,
+          "romi": null,
+          "benchmark": {
+            "cpl": {
+              "green": 250,
+              "yellow": 700,
+              "red": 1300
+            },
+            "conversionLeadToDeal": {
+              "green": 18,
+              "yellow": 8,
+              "red": 3
+            },
+            "winRate": {
+              "green": 35,
+              "yellow": 18,
+              "red": 8
+            },
+            "romi": {
+              "green": 300,
+              "yellow": 100,
+              "red": 0
+            },
+            "note": "Marketplace-канал, дешёвые лиды но качество смешанное."
+          },
+          "status": {
+            "cpl": "grey",
+            "conversion": "green",
+            "romi": "grey"
+          }
+        },
+        "2ГИС": {
+          "rawNames": [
+            "2ГИС БСТ",
+            "2ГИС ЖБИ"
+          ],
+          "leads": 4,
+          "deals": 2,
+          "revenue": 28100,
+          "spend": null,
+          "cpl": null,
+          "conversionLeadToDeal": 50,
+          "romi": null,
+          "benchmark": {
+            "cpl": {
+              "green": 500,
+              "yellow": 1000,
+              "red": 1800
+            },
+            "conversionLeadToDeal": {
+              "green": 25,
+              "yellow": 12,
+              "red": 5
+            },
+            "winRate": {
+              "green": 40,
+              "yellow": 20,
+              "red": 10
+            },
+            "romi": {
+              "green": 250,
+              "yellow": 80,
+              "red": 0
+            },
+            "note": "Локальный коммерческий каталог."
+          },
+          "status": {
+            "cpl": "grey",
+            "conversion": "green",
+            "romi": "grey"
+          }
+        },
+        "Я.Директ": {
+          "rawNames": [],
+          "leads": 0,
+          "deals": 0,
+          "revenue": 0,
+          "spend": 26640.550000000003,
+          "cpl": null,
+          "conversionLeadToDeal": null,
+          "romi": -100,
+          "benchmark": {
+            "cpl": {
+              "green": 800,
+              "yellow": 1500,
+              "red": 2500
+            },
+            "conversionLeadToDeal": {
+              "green": 15,
+              "yellow": 8,
+              "red": 3
+            },
+            "winRate": {
+              "green": 30,
+              "yellow": 15,
+              "red": 5
+            },
+            "romi": {
+              "green": 200,
+              "yellow": 50,
+              "red": 0
+            },
+            "note": "Поисковая контекстная реклама. B2B-стройка обычно дорогая."
+          },
+          "status": {
+            "cpl": "grey",
+            "conversion": "grey",
+            "romi": "red"
+          }
+        }
+      },
+      "benchmarksSource": "data/benchmarks.json",
+      "updatedAt": "2026-05-17"
+    },
+    "leadConversionTime": {
+      "byChannel": {
+        "Прямой звонок Менеджеру": {
+          "count": 41,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Виктория Генадьева": {
+          "count": 12,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "РБУ Кореновск Новый": {
+          "count": 19,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Ирина Мухитдинова": {
+          "count": 11,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Ангелина Зименко": {
+          "count": 46,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Ирина Лукина": {
+          "count": 13,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Сайт отдел БСТ": {
+          "count": 17,
+          "medianHours": 5,
+          "medianDays": 0.2,
+          "p90Hours": 53
+        },
+        "РБУ Тимашевск": {
+          "count": 21,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "РБУ Нина Новотиторовка": {
+          "count": 28,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "РБУ Регина Динская": {
+          "count": 23,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "РБУ Кореновск": {
+          "count": 12,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Диспетчер Лилия Тимашевск": {
+          "count": 3,
+          "medianHours": 0,
+          "medianDays": 0,
+          "p90Hours": 0
+        },
+        "Яндекс.Карты БСТ": {
+          "count": 13,
+          "medianHours": 24,
+          "medianDays": 1,
+          "p90Hours": 53
+        },
+        "Ольга Долгопятова": {
+          "count": 9,
+          "medianHours": 20,
+          "medianDays": 0.8,
+          "p90Hours": 84
+        },
+        "Обзвон по базе": {
+          "count": 21,
+          "medianHours": 5,
+          "medianDays": 0.2,
+          "p90Hours": 50
+        },
+        "Авито БСТ": {
+          "count": 5,
+          "medianHours": 26,
+          "medianDays": 1.1,
+          "p90Hours": 58
+        }
+      },
+      "overall": {
+        "count": 298,
+        "medianHours": 0,
+        "medianDays": 0
+      }
+    },
+    "closedThisWeek": {
+      "count": 265,
+      "won": 192,
+      "wonSum": 12368175,
+      "wonMarketing": 10,
+      "wonSumMarketing": 364775,
+      "lost": 73
+    },
+    "salesVelocity": {
+      "overall": null,
+      "byManager": {},
+      "sampleSize": 18
+    },
+    "funnelStages": {
+      "totalInWork": 177,
+      "totalWon": 10,
+      "totalLost": 8,
+      "overallWinRate": 55.6,
+      "stages": [
+        {
+          "stageId": "1",
+          "name": "Архив",
+          "semantic": "F",
+          "count": 2,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "2",
+          "name": "Прорабы и подобное",
+          "semantic": "F",
+          "count": 5,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "WON",
+          "name": "Сделка успешна",
+          "semantic": "S",
+          "count": 10,
+          "sumOpportunity": 257625,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "PREPAYMENT_INVOICE",
+          "name": "Есть интерес",
+          "semantic": "P",
+          "count": 108,
+          "sumOpportunity": 0,
+          "medianAgeDays": 4.7
+        },
+        {
+          "stageId": "EXECUTING",
+          "name": "Выставлен счет",
+          "semantic": "P",
+          "count": 25,
+          "sumOpportunity": 0,
+          "medianAgeDays": 4
+        },
+        {
+          "stageId": "NEW",
+          "name": "Квалифицирован",
+          "semantic": "P",
+          "count": 25,
+          "sumOpportunity": 0,
+          "medianAgeDays": 3.8
+        },
+        {
+          "stageId": "APOLOGY",
+          "name": "Анализ причина провала",
+          "semantic": "F",
+          "count": 1,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "FINAL_INVOICE",
+          "name": "Получены закрывающие",
+          "count": 2,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "PREPARATION",
+          "name": "Отправлено КП",
+          "count": 8,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "C4:EXECUTING",
+          "name": "Назначить ТС/Логистика",
+          "count": 2,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "C4:FINAL_INVOICE",
+          "name": "Оформить документы",
+          "count": 1,
+          "sumOpportunity": 0,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "C4:NEW",
+          "name": "Принять заявку",
+          "count": 5,
+          "sumOpportunity": 19600,
+          "medianAgeDays": null
+        },
+        {
+          "stageId": "C4:PREPARATION",
+          "name": "Обработать заявку",
+          "count": 1,
+          "sumOpportunity": 984000000,
+          "medianAgeDays": null
+        }
+      ],
+      "inWorkStages": [
+        {
+          "stageId": "PREPAYMENT_INVOICE",
+          "name": "Есть интерес",
+          "semantic": "P",
+          "count": 108,
+          "sumOpportunity": 0,
+          "medianAgeDays": 4.7
+        },
+        {
+          "stageId": "EXECUTING",
+          "name": "Выставлен счет",
+          "semantic": "P",
+          "count": 25,
+          "sumOpportunity": 0,
+          "medianAgeDays": 4
+        },
+        {
+          "stageId": "NEW",
+          "name": "Квалифицирован",
+          "semantic": "P",
+          "count": 25,
+          "sumOpportunity": 0,
+          "medianAgeDays": 3.8
+        }
+      ],
+      "bottleneck": {
+        "stageId": "PREPAYMENT_INVOICE",
+        "name": "Есть интерес",
+        "semantic": "P",
+        "count": 108,
+        "sumOpportunity": 0,
+        "medianAgeDays": 4.7
+      }
+    },
+    "googleRecommendations": null,
+    "claudeRecommendations": null,
+    "gsc": null,
+    "topvisor": {
+      "totalKeywords": 1650,
+      "totalWithPosition": 906,
+      "byGroup": {
+        "Бетон": {
+          "keywords": 277,
+          "withPosition": 173,
+          "avgPosition": 26.5,
+          "top10": 76,
+          "top30": 118
+        },
+        "Кольца ЖБИ": {
+          "keywords": 347,
+          "withPosition": 207,
+          "avgPosition": 20.9,
+          "top10": 123,
+          "top30": 164
+        },
+        "Днище колодцев": {
+          "keywords": 161,
+          "withPosition": 100,
+          "avgPosition": 16,
+          "top10": 64,
+          "top30": 86
+        },
+        "Плиты перекрытия": {
+          "keywords": 148,
+          "withPosition": 98,
+          "avgPosition": 25.8,
+          "top10": 44,
+          "top30": 70
+        },
+        "Блоки ФБС": {
+          "keywords": 163,
+          "withPosition": 82,
+          "avgPosition": 25,
+          "top10": 43,
+          "top30": 58
+        },
+        "Опоры СВ": {
+          "keywords": 75,
+          "withPosition": 55,
+          "avgPosition": 22.2,
+          "top10": 22,
+          "top30": 44
+        },
+        "Дорожные плиты": {
+          "keywords": 144,
+          "withPosition": 70,
+          "avgPosition": 38.5,
+          "top10": 18,
+          "top30": 42
+        },
+        "Прочее": {
+          "keywords": 335,
+          "withPosition": 121,
+          "avgPosition": 21.5,
+          "top10": 71,
+          "top30": 93
+        }
+      },
+      "noPositionCount": 50
+    },
+    "byProduct": {
+      "beton": {
+        "mkt": {
+          "deals": 48,
+          "won": 10,
+          "wonSum": 257625,
+          "inWork": 30,
+          "inWorkSum": 0,
+          "lost": 8,
+          "lostSum": 0,
+          "noOpp": 30
+        },
+        "all": {
+          "deals": 375,
+          "won": 165,
+          "wonSum": 10703907,
+          "inWork": 183,
+          "inWorkSum": 149939,
+          "lost": 27,
+          "lostSum": 108235,
+          "noOpp": 178
+        }
+      },
+      "zhbi": {
+        "mkt": {
+          "deals": 0,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 0,
+          "inWorkSum": 0,
+          "lost": 0,
+          "lostSum": 0,
+          "noOpp": 0
+        },
+        "all": {
+          "deals": 59,
+          "won": 21,
+          "wonSum": 2509560,
+          "inWork": 38,
+          "inWorkSum": 282132,
+          "lost": 0,
+          "lostSum": 0,
+          "noOpp": 34
+        }
+      }
+    },
+    "productSplit": {
+      "zhbi": 5,
+      "beton": 7,
+      "unknown": 145,
+      "zhbiSharePct": 42,
+      "zhbiBySource": {
+        "Электронная почта Info": 4,
+        "Веб-сайт": 1
+      }
+    },
+    "dataQuality": {
+      "inWorkMarketing": 30,
+      "inWorkNoOpportunity": 30,
+      "noOppPct": 100,
+      "pipelineSum": 0,
+      "wonMarketing": 10,
+      "zeroRevenueDeals": 3,
+      "zeroRevenuePct": 30,
+      "unknownManagerDeals": 96,
+      "unknownManagers": [
+        "ID-1672",
+        "ID-1956",
+        "ID-1964"
+      ],
+      "sourceMissingCount": 8,
+      "status": "red"
+    },
+    "ai": {
+      "summary": "Неделя 2026-32: маркетинговые лиды держатся, факт маркет-выручки 257 625 ₽, прогноз по pipeline 257 625 ₽.",
+      "whatsChanged": [],
+      "risks": [],
+      "actions": [
+        {
+          "text": "Проверить кампании Директа с самым дорогим кликом и слабой глубиной воронки.",
+          "owner": "маркетолог",
+          "priority": "на этой неделе"
+        }
+      ],
+      "concrete": "Бетон держится на сайтах и картах. Приоритетом остаётся не объём лидов, а доведение их до сделок и сохранение атрибуции.",
+      "zhbi": "ЖБИ остаётся длинным циклом: weekly-факт здесь слабый ориентир, смотреть нужно на когорты 8w/12w.",
+      "model": "heuristic-fallback",
+      "generatedAt": "2026-08-10T05:26:20.673Z"
+    }
+  },
+  "prev": {
     "label": "Неделя 31",
     "from": "2026-07-27",
     "to": "2026-08-02",
@@ -24251,1350 +26902,6 @@
       "generatedAt": "2026-08-03T05:25:48.779Z"
     }
   },
-  "prev": {
-    "label": "2026-07-06..2026-07-12",
-    "from": "2026-07-06",
-    "to": "2026-07-12",
-    "isoWeek": 28,
-    "isoYear": 2026,
-    "spend": {
-      "total": 27953.18,
-      "direct": 27953.18,
-      "business": 0,
-      "twogis": 0
-    },
-    "leads": {
-      "total": 647,
-      "marketing": 129,
-      "sales": 518
-    },
-    "deals": {
-      "total": 451,
-      "won": 244,
-      "wonSum": 29887181,
-      "wonMarketing": 5,
-      "wonSumMarketing": 332950,
-      "wonSumBackoffice": 11423291,
-      "wonSumNonMarketing": 18130940,
-      "inWorkMarketing": 12,
-      "inWorkSumMarketing": 0,
-      "dealsTrueBlind": 0,
-      "dealsBackofficeCount": 68
-    },
-    "cpl": 217,
-    "metrika": {
-      "visits": 2634,
-      "users": 1783,
-      "bounceRate": 36.02885345,
-      "depth": 1.38610478
-    },
-    "direct": {
-      "clicks": 1157,
-      "impressions": 32844,
-      "ctr": 0.03522713433199367,
-      "cpc": 24.160051858254107,
-      "conversions": 10,
-      "balance": 61359.48,
-      "byCampaign": {
-        "ДКБИ ПОИСК (БЕТОН)": {
-          "cost": 3308,
-          "clicks": 30,
-          "conversions": 5
-        },
-        "ДКБИ ПОИСК | ЖБИ Кольца бетонные": {
-          "cost": 1536,
-          "clicks": 34,
-          "conversions": 2
-        },
-        "ДКБИ ПОИСК | Стойки СВ": {
-          "cost": 1644,
-          "clicks": 16,
-          "conversions": 0
-        },
-        "ДКБИ ПОИСК | Блоки ФБС": {
-          "cost": 3154,
-          "clicks": 27,
-          "conversions": 0
-        },
-        "ДКБИ РСЯ | Ретаргетинг": {
-          "cost": 12633,
-          "clicks": 944,
-          "conversions": 2
-        },
-        "ДКБИ ПОИСК | Кольца КС B2B (опт)": {
-          "cost": 2611,
-          "clicks": 50,
-          "conversions": 0
-        },
-        "ДКБИ ПОИСК | ФБС БЛОКИ B2B (опт)": {
-          "cost": 2878,
-          "clicks": 53,
-          "conversions": 1
-        },
-        "ДКБИ ПОИСК | Опоры СВ B2B (опт)": {
-          "cost": 190,
-          "clicks": 3,
-          "conversions": 0
-        }
-      }
-    },
-    "business": {},
-    "avito": {
-      "views": 225,
-      "contacts": 35,
-      "itemsCount": 124,
-      "balance": null,
-      "calls": 0,
-      "chatsByProduct": {
-        "total": 22,
-        "zhbi": 7,
-        "beton": 15,
-        "other": 0
-      }
-    },
-    "twogis": {},
-    "bySource": {
-      "Яндекс.Карты БСТ": 25,
-      "Авито ДКБИ-сообщения": 21,
-      "Авито БСТ": 11,
-      "Сайт отдел БСТ": 43,
-      "2ГИС ЖБИ": 2,
-      "Электронная почта Info": 14,
-      "Сайт отдел ЖБИ": 6,
-      "Яндекс": 4,
-      "2ГИС БСТ": 1,
-      "Telegram - Открытая линия Динской комбинат бетонных изделий": 1,
-      "Яндекс.Карты ЖБИ": 1
-    },
-    "dealsBySource": {
-      "Яндекс.Карты БСТ": 4,
-      "Авито БСТ": 7,
-      "Сайт отдел БСТ": 8
-    },
-    "revenueBySource": {
-      "Авито БСТ": 184100,
-      "Яндекс.Карты БСТ": 148850,
-      "Сайт отдел БСТ": 0
-    },
-    "byCategory": {
-      "Общая (legacy) (#0)": 375,
-      "ЖБИ (#4)": 40,
-      "Спецтехника (#14)": 36
-    },
-    "byManager": {
-      "ID-1962": {
-        "inWork": 7,
-        "won": 2,
-        "wonSum": 223500
-      },
-      "Андрей Визильков": {
-        "inWork": 5,
-        "won": 3,
-        "wonSum": 109450
-      }
-    },
-    "leadsByManager": {
-      "ID-1962": 28,
-      "Ирина Лукина": 30,
-      "Андрей Визильков": 23,
-      "Илья Ушаков": 16,
-      "ID-1956": 1,
-      "Евгений Морозов": 17,
-      "Елена Андреева": 9,
-      "Динская Оператор (ops)": 1,
-      "Виктория Генадьева": 1,
-      "Сайт БСТ (service)": 2,
-      "Ирина Мухитдинова": 1
-    },
-    "inWork": 12,
-    "inWorkSum": 0,
-    "dealsTrueBlind": 0,
-    "dealsBackofficeCount": 68,
-    "managersPerformance": {
-      "ID-1962": {
-        "leadsReceived": 28,
-        "leadsConverted": 9,
-        "conversionRate": 32.1,
-        "dealsInWork": 7,
-        "dealsWon": 2,
-        "wonSum": 223500,
-        "staleDealsCount": 162,
-        "staleDealsSum": 0,
-        "role": "unknown"
-      },
-      "Ирина Лукина": {
-        "leadsReceived": 30,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 179,
-        "staleDealsSum": 152071,
-        "role": "sales"
-      },
-      "Андрей Визильков": {
-        "leadsReceived": 23,
-        "leadsConverted": 5,
-        "conversionRate": 21.7,
-        "dealsInWork": 5,
-        "dealsWon": 3,
-        "wonSum": 109450,
-        "staleDealsCount": 247,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "Илья Ушаков": {
-        "leadsReceived": 16,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 148,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "ID-1956": {
-        "leadsReceived": 1,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 53,
-        "staleDealsSum": 339718,
-        "role": "unknown"
-      },
-      "Евгений Морозов": {
-        "leadsReceived": 17,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 21,
-        "staleDealsSum": 405323,
-        "role": "sales"
-      },
-      "Елена Андреева": {
-        "leadsReceived": 9,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 185,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "Динская Оператор (ops)": {
-        "leadsReceived": 1,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 10,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "Виктория Генадьева": {
-        "leadsReceived": 1,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 327,
-        "staleDealsSum": 345600,
-        "role": "sales"
-      },
-      "Сайт БСТ (service)": {
-        "leadsReceived": 2,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 1,
-        "role": "service"
-      },
-      "Ирина Мухитдинова": {
-        "leadsReceived": 1,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 7,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "ID-296 (не существует)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 25,
-        "staleDealsSum": 0,
-        "role": "unknown"
-      },
-      "ЖБИ Оператор (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 14,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "Тимашевск Оператор (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 16,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "РБУ Кореновск (новый) (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 7,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "Диспетчер Кореновск (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 16,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "Нина Читчян": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 12,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "Инна Николаева (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 8,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "Андреева Е. (старая учётка) (broken)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 2,
-        "staleDealsSum": 0,
-        "role": "broken"
-      },
-      "Татьяна Гладышева": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 4,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "ID-1964": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 15,
-        "staleDealsSum": 0,
-        "role": "unknown"
-      },
-      "ID-320": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "unknown"
-      },
-      "Ирина Аникина (admin)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "admin"
-      },
-      "Ольга Долгопятова": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 6,
-        "staleDealsSum": 110000,
-        "role": "sales"
-      },
-      "Игорь Диденко": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 7,
-        "staleDealsSum": 986578300,
-        "role": "sales"
-      },
-      "Лилия Иванова (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "Михаил Кателевец": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "sales"
-      },
-      "Лилия Иванова (дубль) (ops)": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 1,
-        "staleDealsSum": 0,
-        "role": "ops"
-      },
-      "ID-1672": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 19,
-        "staleDealsSum": 0,
-        "role": "unknown"
-      },
-      "Ангелина Зименко": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 363,
-        "staleDealsSum": 390000,
-        "role": "sales"
-      },
-      "ID-1358": {
-        "leadsReceived": 0,
-        "leadsConverted": 0,
-        "conversionRate": 0,
-        "dealsInWork": 0,
-        "dealsWon": 0,
-        "wonSum": 0,
-        "staleDealsCount": 4,
-        "staleDealsSum": 0,
-        "role": "unknown"
-      }
-    },
-    "staleDeals": {
-      "total": 1168,
-      "sum": 3585413,
-      "sumEstimated": 60161083,
-      "estimatedCount": 1138,
-      "medianWonUsed": 49715,
-      "byBucket": {
-        "7d": 159,
-        "14d": 311,
-        "30d": 698
-      },
-      "byManager": {
-        "Илья Ушаков": 148,
-        "Андрей Визильков": 246,
-        "ID-296 (не существует)": 25,
-        "Елена Андреева": 185,
-        "ID-1962": 162,
-        "Сайт БСТ": 1,
-        "ЖБИ Оператор": 13,
-        "Тимашевск Оператор": 16,
-        "Динская Оператор": 10,
-        "РБУ Кореновск (новый)": 7,
-        "Диспетчер Кореновск": 16,
-        "Нина Читчян": 12,
-        "Инна Николаева": 8,
-        "Андреева Е. (старая учётка)": 2,
-        "Ирина Лукина": 178,
-        "Татьяна Гладышева": 4,
-        "Ирина Мухитдинова": 7,
-        "ID-1964": 15,
-        "ID-320": 1,
-        "Ирина Аникина": 1,
-        "Евгений Морозов": 20,
-        "Ольга Долгопятова": 6,
-        "ID-1956": 53,
-        "Игорь Диденко": 7,
-        "Лилия Иванова": 1,
-        "Михаил Кателевец": 1,
-        "Лилия Иванова (дубль)": 1,
-        "ID-1672": 18,
-        "ID-1358": 4
-      },
-      "byStage": {
-        "Выставлен счет": 59,
-        "Получены закрывающие": 17,
-        "Квалифицирован": 357,
-        "Отправлено КП": 18,
-        "Есть интерес": 405,
-        "Назначить ТС/Логистика": 6,
-        "Оформить документы": 29,
-        "Принять заявку": 248,
-        "Обработать заявку": 20,
-        "Получить документы": 1,
-        "Окончательный рассчет": 1,
-        "Контроль доставки": 3,
-        "Новая": 4
-      },
-      "outliers": [
-        {
-          "id": "113142",
-          "opp": 984000000,
-          "title": "Запрос"
-        }
-      ],
-      "outliersCount": 1,
-      "outliersSum": 984000000
-    },
-    "lostReasons": {
-      "total": 45,
-      "sum": 100000,
-      "byReason": {
-        "Прорабы и подобное": {
-          "count": 35,
-          "sum": 100000
-        },
-        "Архив": {
-          "count": 4,
-          "sum": 0
-        },
-        "Срок работы(не рентабельно)": {
-          "count": 1,
-          "sum": 0
-        },
-        "Общение не с клиентом": {
-          "count": 1,
-          "sum": 0
-        },
-        "Запрос Бетона и ЖБИ": {
-          "count": 1,
-          "sum": 0
-        },
-        "Анализ причина провала": {
-          "count": 3,
-          "sum": 0
-        }
-      }
-    },
-    "channelBenchmarks": {
-      "byChannel": {
-        "Я.Бизнес/Карты": {
-          "rawNames": [
-            "Яндекс.Карты БСТ",
-            "Яндекс.Карты ЖБИ"
-          ],
-          "leads": 26,
-          "deals": 4,
-          "revenue": 148850,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 15.4,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 400,
-              "yellow": 900,
-              "red": 1500
-            },
-            "conversionLeadToDeal": {
-              "green": 20,
-              "yellow": 10,
-              "red": 5
-            },
-            "winRate": {
-              "green": 35,
-              "yellow": 20,
-              "red": 8
-            },
-            "romi": {
-              "green": 300,
-              "yellow": 100,
-              "red": 0
-            },
-            "note": "Геозависимый трафик высокого намерения."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "yellow",
-            "romi": "grey"
-          }
-        },
-        "Авито": {
-          "rawNames": [
-            "Авито ДКБИ-сообщения",
-            "Авито БСТ"
-          ],
-          "leads": 32,
-          "deals": 7,
-          "revenue": 184100,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 21.9,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 250,
-              "yellow": 700,
-              "red": 1300
-            },
-            "conversionLeadToDeal": {
-              "green": 18,
-              "yellow": 8,
-              "red": 3
-            },
-            "winRate": {
-              "green": 35,
-              "yellow": 18,
-              "red": 8
-            },
-            "romi": {
-              "green": 300,
-              "yellow": 100,
-              "red": 0
-            },
-            "note": "Marketplace-канал, дешёвые лиды но качество смешанное."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "green",
-            "romi": "grey"
-          }
-        },
-        "Сайт (SEO/прямые)": {
-          "rawNames": [
-            "Сайт отдел БСТ",
-            "Сайт отдел ЖБИ"
-          ],
-          "leads": 49,
-          "deals": 8,
-          "revenue": 0,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 16.3,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 200,
-              "yellow": 600,
-              "red": 1200
-            },
-            "conversionLeadToDeal": {
-              "green": 25,
-              "yellow": 12,
-              "red": 5
-            },
-            "winRate": {
-              "green": 40,
-              "yellow": 22,
-              "red": 10
-            },
-            "romi": {
-              "green": 400,
-              "yellow": 150,
-              "red": 0
-            },
-            "note": "SEO + прямые заходы — самый качественный канал по конверсии."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "yellow",
-            "romi": "grey"
-          }
-        },
-        "2ГИС": {
-          "rawNames": [
-            "2ГИС ЖБИ",
-            "2ГИС БСТ"
-          ],
-          "leads": 3,
-          "deals": 0,
-          "revenue": 0,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 0,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 500,
-              "yellow": 1000,
-              "red": 1800
-            },
-            "conversionLeadToDeal": {
-              "green": 25,
-              "yellow": 12,
-              "red": 5
-            },
-            "winRate": {
-              "green": 40,
-              "yellow": 20,
-              "red": 10
-            },
-            "romi": {
-              "green": 250,
-              "yellow": 80,
-              "red": 0
-            },
-            "note": "Локальный коммерческий каталог."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "red",
-            "romi": "grey"
-          }
-        },
-        "Email": {
-          "rawNames": [
-            "Электронная почта Info"
-          ],
-          "leads": 14,
-          "deals": 0,
-          "revenue": 0,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 0,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 100,
-              "yellow": 400,
-              "red": 1000
-            },
-            "conversionLeadToDeal": {
-              "green": 30,
-              "yellow": 15,
-              "red": 5
-            },
-            "winRate": {
-              "green": 45,
-              "yellow": 25,
-              "red": 10
-            },
-            "romi": {
-              "green": 500,
-              "yellow": 200,
-              "red": 0
-            },
-            "note": "Самообращения — выше конверсия, ниже объём."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "red",
-            "romi": "grey"
-          }
-        },
-        "Прочее": {
-          "rawNames": [
-            "Яндекс"
-          ],
-          "leads": 4,
-          "deals": 0,
-          "revenue": 0,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 0,
-          "romi": null,
-          "benchmark": null,
-          "status": null
-        },
-        "Telegram": {
-          "rawNames": [
-            "Telegram - Открытая линия Динской комбинат бетонных изделий"
-          ],
-          "leads": 1,
-          "deals": 0,
-          "revenue": 0,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 0,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 300,
-              "yellow": 800,
-              "red": 1500
-            },
-            "conversionLeadToDeal": {
-              "green": 20,
-              "yellow": 10,
-              "red": 4
-            },
-            "winRate": {
-              "green": 35,
-              "yellow": 18,
-              "red": 8
-            },
-            "romi": {
-              "green": 200,
-              "yellow": 60,
-              "red": 0
-            },
-            "note": "Открытая линия + рекламные сообщения."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "red",
-            "romi": "grey"
-          }
-        },
-        "Я.Директ": {
-          "rawNames": [],
-          "leads": 0,
-          "deals": 0,
-          "revenue": 0,
-          "spend": 27953.18,
-          "cpl": null,
-          "conversionLeadToDeal": null,
-          "romi": -100,
-          "benchmark": {
-            "cpl": {
-              "green": 800,
-              "yellow": 1500,
-              "red": 2500
-            },
-            "conversionLeadToDeal": {
-              "green": 15,
-              "yellow": 8,
-              "red": 3
-            },
-            "winRate": {
-              "green": 30,
-              "yellow": 15,
-              "red": 5
-            },
-            "romi": {
-              "green": 200,
-              "yellow": 50,
-              "red": 0
-            },
-            "note": "Поисковая контекстная реклама. B2B-стройка обычно дорогая."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "grey",
-            "romi": "red"
-          }
-        }
-      },
-      "benchmarksSource": "data/benchmarks.json",
-      "updatedAt": "2026-05-17"
-    },
-    "leadConversionTime": {
-      "byChannel": {
-        "РБУ Регина Динская": {
-          "count": 29,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "РБУ Кореновск Новый": {
-          "count": 14,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Ирина Мухитдинова": {
-          "count": 8,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Ангелина Зименко": {
-          "count": 16,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "РБУ Нина Новотиторовка": {
-          "count": 48,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "РБУ Тимашевск": {
-          "count": 16,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Ольга Долгопятова": {
-          "count": 26,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Обзвон по базе": {
-          "count": 4,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 19
-        },
-        "Прямой звонок Менеджеру": {
-          "count": 62,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Яндекс.Карты БСТ": {
-          "count": 4,
-          "medianHours": 36,
-          "medianDays": 1.5,
-          "p90Hours": 72
-        },
-        "Авито БСТ": {
-          "count": 5,
-          "medianHours": 3,
-          "medianDays": 0.1,
-          "p90Hours": 21
-        },
-        "РБУ Кореновск": {
-          "count": 8,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Сайт отдел БСТ": {
-          "count": 6,
-          "medianHours": 11,
-          "medianDays": 0.5,
-          "p90Hours": 49
-        },
-        "Ирина Лукина": {
-          "count": 8,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        },
-        "Виктория Генадьева": {
-          "count": 11,
-          "medianHours": 0,
-          "medianDays": 0,
-          "p90Hours": 0
-        }
-      },
-      "overall": {
-        "count": 268,
-        "medianHours": 0,
-        "medianDays": 0
-      }
-    },
-    "closedThisWeek": {
-      "count": 365,
-      "won": 231,
-      "wonSum": 20498308,
-      "wonMarketing": 4,
-      "wonSumMarketing": 309300,
-      "lost": 134
-    },
-    "salesVelocity": {
-      "overall": {
-        "opportunities": 7,
-        "wonCount": 5,
-        "winRate": 71.4,
-        "avgDealSize": 66590,
-        "avgSalesCycleDays": 6.1,
-        "velocityRubPerDay": 54664
-      },
-      "byManager": {
-        "ID-1962": {
-          "opportunities": 4,
-          "wonCount": 2,
-          "winRate": 50,
-          "avgDealSize": 111750,
-          "avgSalesCycleDays": 1.5,
-          "velocityRubPerDay": 148791
-        },
-        "Андрей Визильков": {
-          "opportunities": 3,
-          "wonCount": 3,
-          "winRate": 100,
-          "avgDealSize": 36483,
-          "avgSalesCycleDays": 10.7,
-          "velocityRubPerDay": 10248
-        }
-      },
-      "sampleSize": 7
-    },
-    "funnelStages": {
-      "totalInWork": 123,
-      "totalWon": 5,
-      "totalLost": 2,
-      "overallWinRate": 71.4,
-      "stages": [
-        {
-          "stageId": "2",
-          "name": "Прорабы и подобное",
-          "semantic": "F",
-          "count": 2,
-          "sumOpportunity": 0,
-          "medianAgeDays": null
-        },
-        {
-          "stageId": "PREPAYMENT_INVOICE",
-          "name": "Есть интерес",
-          "semantic": "P",
-          "count": 85,
-          "sumOpportunity": 0,
-          "medianAgeDays": 19.1
-        },
-        {
-          "stageId": "WON",
-          "name": "Сделка успешна",
-          "semantic": "S",
-          "count": 5,
-          "sumOpportunity": 332950,
-          "medianAgeDays": null
-        },
-        {
-          "stageId": "PREPARATION",
-          "name": "Отправлено КП",
-          "semantic": "P",
-          "count": 6,
-          "sumOpportunity": 0,
-          "medianAgeDays": 19
-        },
-        {
-          "stageId": "EXECUTING",
-          "name": "Выставлен счет",
-          "semantic": "P",
-          "count": 15,
-          "sumOpportunity": 0,
-          "medianAgeDays": 19.1
-        },
-        {
-          "stageId": "FINAL_INVOICE",
-          "name": "Получены закрывающие",
-          "count": 2,
-          "sumOpportunity": 0,
-          "medianAgeDays": null
-        },
-        {
-          "stageId": "NEW",
-          "name": "Квалифицирован",
-          "count": 7,
-          "sumOpportunity": 0,
-          "medianAgeDays": null
-        },
-        {
-          "stageId": "C4:EXECUTING",
-          "name": "Назначить ТС/Логистика",
-          "count": 2,
-          "sumOpportunity": 0,
-          "medianAgeDays": null
-        },
-        {
-          "stageId": "C4:FINAL_INVOICE",
-          "name": "Оформить документы",
-          "count": 1,
-          "sumOpportunity": 0,
-          "medianAgeDays": null
-        },
-        {
-          "stageId": "C4:NEW",
-          "name": "Принять заявку",
-          "count": 5,
-          "sumOpportunity": 19600,
-          "medianAgeDays": null
-        }
-      ],
-      "inWorkStages": [
-        {
-          "stageId": "PREPAYMENT_INVOICE",
-          "name": "Есть интерес",
-          "semantic": "P",
-          "count": 85,
-          "sumOpportunity": 0,
-          "medianAgeDays": 19.1
-        },
-        {
-          "stageId": "EXECUTING",
-          "name": "Выставлен счет",
-          "semantic": "P",
-          "count": 15,
-          "sumOpportunity": 0,
-          "medianAgeDays": 19.1
-        },
-        {
-          "stageId": "PREPARATION",
-          "name": "Отправлено КП",
-          "semantic": "P",
-          "count": 6,
-          "sumOpportunity": 0,
-          "medianAgeDays": 19
-        }
-      ],
-      "bottleneck": {
-        "stageId": "PREPAYMENT_INVOICE",
-        "name": "Есть интерес",
-        "semantic": "P",
-        "count": 85,
-        "sumOpportunity": 0,
-        "medianAgeDays": 19.1
-      }
-    },
-    "googleRecommendations": null,
-    "claudeRecommendations": null,
-    "gsc": null,
-    "topvisor": {
-      "totalKeywords": 1051,
-      "totalWithPosition": 144,
-      "byGroup": {
-        "Бетон": {
-          "keywords": 104,
-          "withPosition": 23,
-          "avgPosition": 16.3,
-          "top10": 16,
-          "top30": 20
-        },
-        "Кольца ЖБИ": {
-          "keywords": 132,
-          "withPosition": 8,
-          "avgPosition": 35.5,
-          "top10": 3,
-          "top30": 5
-        },
-        "Днище колодцев": {
-          "keywords": 161,
-          "withPosition": 40,
-          "avgPosition": 19,
-          "top10": 27,
-          "top30": 32
-        },
-        "Плиты перекрытия": {
-          "keywords": 148,
-          "withPosition": 16,
-          "avgPosition": 43.2,
-          "top10": 3,
-          "top30": 9
-        },
-        "Блоки ФБС": {
-          "keywords": 163,
-          "withPosition": 16,
-          "avgPosition": 51.1,
-          "top10": 3,
-          "top30": 5
-        },
-        "Опоры СВ": {
-          "keywords": 75,
-          "withPosition": 27,
-          "avgPosition": 22.4,
-          "top10": 10,
-          "top30": 23
-        },
-        "Дорожные плиты": {
-          "keywords": 144,
-          "withPosition": 14,
-          "avgPosition": 53.7,
-          "top10": 3,
-          "top30": 6
-        },
-        "Прочее": {
-          "keywords": 124,
-          "withPosition": 0,
-          "avgPosition": null,
-          "top10": 0,
-          "top30": 0
-        }
-      },
-      "noPositionCount": 50
-    },
-    "byProduct": {
-      "beton": {
-        "mkt": {
-          "deals": 19,
-          "won": 5,
-          "wonSum": 332950,
-          "inWork": 12,
-          "inWorkSum": 0,
-          "lost": 2,
-          "lostSum": 0,
-          "noOpp": 12
-        },
-        "all": {
-          "deals": 375,
-          "won": 217,
-          "wonSum": 20461015,
-          "inWork": 117,
-          "inWorkSum": 0,
-          "lost": 41,
-          "lostSum": 100000,
-          "noOpp": 117
-        }
-      },
-      "zhbi": {
-        "mkt": {
-          "deals": 0,
-          "won": 0,
-          "wonSum": 0,
-          "inWork": 0,
-          "inWorkSum": 0,
-          "lost": 0,
-          "lostSum": 0,
-          "noOpp": 0
-        },
-        "all": {
-          "deals": 40,
-          "won": 17,
-          "wonSum": 544186,
-          "inWork": 21,
-          "inWorkSum": 0,
-          "lost": 2,
-          "lostSum": 0,
-          "noOpp": 21
-        }
-      }
-    },
-    "productSplit": {
-      "zhbi": 3,
-      "beton": 14,
-      "unknown": 112,
-      "zhbiSharePct": 18,
-      "zhbiBySource": {
-        "Сайт отдел БСТ": 3
-      }
-    },
-    "dataQuality": {
-      "inWorkMarketing": 12,
-      "inWorkNoOpportunity": 12,
-      "noOppPct": 100,
-      "pipelineSum": 0,
-      "wonMarketing": 5,
-      "zeroRevenueDeals": 1,
-      "zeroRevenuePct": 20,
-      "unknownManagerDeals": 159,
-      "unknownManagers": [
-        "ID-1672",
-        "ID-1956",
-        "ID-1962",
-        "ID-1964",
-        "ID-296"
-      ],
-      "sourceMissingCount": 0,
-      "status": "red"
-    },
-    "ai": {
-      "summary": "Неделя стабильная по лидам, маркет-выручка восстановилась с перевыполнением. Главная проблема — Авито: карточки зарыты алгоритмом, охват критически мал при отличной конверсии в контакт — нужно бесплатное обновление прямо сейчас. Я.Бизнес не собрался — баланс и срок подписки неизвестны, Карты (второй канал по лидам) могут остановиться без предупреждения. Все 12 маркет-сделок в работе имеют нулевую сумму — РОП не контролирует pipeline. РСЯ Ретаргетинг поглощает 45% бюджета Директа при стоимости конверсии в 12 раз выше нормы.",
-      "whatsChanged": [
-        "Маркет-лиды: 129 vs 132 н/н, −2% — стабильно",
-        "Трафик сайта (Метрика): 2 634 vs 3 582 визитов, −26% н/н",
-        "Расход Директа: 27 953 vs 30 106 ₽, −7% н/н",
-        "Стоимость клика Директа: 24.16 vs 22.20 ₽, +9% н/н"
-      ],
-      "risks": [
-        {
-          "text": "Я.Бизнес не собрался — баланс и срок подписки неизвестны. Я.Карты дают 26 лидов/нед (второй по объёму канал). Если daysLeft ≤7 или баланс обнулился — реклама остановится без предупреждения.",
-          "confidence": "medium"
-        },
-        {
-          "text": "Авито-охват 1.8 просмотра/объявление при норме 50–200. Канал держится только за счёт высокой конверсии контакта. Без обновления карточек алгоритм продолжит снижать показы — лиды начнут падать.",
-          "confidence": "high"
-        }
-      ],
-      "actions": [
-        {
-          "text": "Проверить баланс и daysLeft Я.Бизнес вручную в рекламном кабинете. При daysLeft ≤7 или балансе <5 000 ₽ — срочно пополнить.",
-          "owner": "маркетолог",
-          "priority": "срочно",
-          "deadline": "2026-07-28"
-        },
-        {
-          "text": "Обновить топ-20 карточек Авито: новые фото + переформулировать заголовки. Снять объявления с 0 просмотров за 2 недели.",
-          "owner": "маркетолог",
-          "priority": "срочно",
-          "deadline": "2026-07-29"
-        },
-        {
-          "text": "Заполнить суммы сделок у 12 маркет-сделок со статусом в работе в Bitrix — без этого прогноз окупаемости за неделю недостоверен.",
-          "owner": "РОП",
-          "priority": "на этой неделе",
-          "deadline": "2026-07-31"
-        },
-        {
-          "text": "Ограничить частоту показов РСЯ Ретаргетинг до 5–7/нед, исключить покупателей из аудитории. Рассмотреть сокращение бюджета кампании с ~12 000 до 6 000 ₽/нед.",
-          "owner": "маркетолог",
-          "priority": "на этой неделе",
-          "deadline": "2026-07-31"
-        }
-      ],
-      "concrete": "Бетон (БСТ) — каналы стабильны: Сайт БСТ 43 лида, Авито 32, Я.Карты БСТ 25. Выигранные сделки недели: Авито БСТ 184 100 ₽ + Я.Карты БСТ 148 850 ₽. Сайт БСТ дал 8 сделок с нулевой выручкой в CRM — суммы не заполнены.",
-      "zhbi": "ЖБИ-каналы дали 9 лидов из 129 (7%) при норме 25–35% — недогрузка: Сайт ЖБИ 6, 2ГИС ЖБИ 2, Я.Карты ЖБИ 1. Когорта 8w: 0 выигранных ЖБИ-сделок при 15 в работе — цикл не завершён, pipeline живой. Финальных выводов по окупаемости ЖБИ на неделе не делаем.",
-      "model": "claude-sonnet-4-6",
-      "generatedAt": "2026-07-27T12:48:31.975Z"
-    }
-  },
   "latestMonth": {
     "year": 2026,
     "month": 8,
@@ -25621,7 +26928,7 @@
       "dealsBackofficeCount": 8,
       "dealsTrueBlind": 0
     },
-    "cpl": 2780,
+    "cpl": 5701,
     "bySource": {
       "Сайт отдел БСТ": 4,
       "Электронная почта Info": 3,
@@ -26207,93 +27514,11 @@
     },
     "channelBenchmarks": {
       "byChannel": {
-        "Я.Бизнес/Карты": {
-          "rawNames": [
-            "Яндекс.Карты БСТ"
-          ],
-          "leads": 23,
-          "deals": 7,
-          "revenue": 529250,
-          "spend": 17173,
-          "cpl": 747,
-          "conversionLeadToDeal": 30.4,
-          "romi": 2982,
-          "benchmark": {
-            "cpl": {
-              "green": 400,
-              "yellow": 900,
-              "red": 1500
-            },
-            "conversionLeadToDeal": {
-              "green": 20,
-              "yellow": 10,
-              "red": 5
-            },
-            "winRate": {
-              "green": 35,
-              "yellow": 20,
-              "red": 8
-            },
-            "romi": {
-              "green": 300,
-              "yellow": 100,
-              "red": 0
-            },
-            "note": "Геозависимый трафик высокого намерения."
-          },
-          "status": {
-            "cpl": "yellow",
-            "conversion": "green",
-            "romi": "green"
-          }
-        },
-        "Сайт (SEO/прямые)": {
-          "rawNames": [
-            "Сайт отдел БСТ",
-            "Сайт отдел ЖБИ",
-            "Веб-сайт"
-          ],
-          "leads": 48,
-          "deals": 10,
-          "revenue": 606650,
-          "spend": null,
-          "cpl": null,
-          "conversionLeadToDeal": 20.8,
-          "romi": null,
-          "benchmark": {
-            "cpl": {
-              "green": 200,
-              "yellow": 600,
-              "red": 1200
-            },
-            "conversionLeadToDeal": {
-              "green": 25,
-              "yellow": 12,
-              "red": 5
-            },
-            "winRate": {
-              "green": 40,
-              "yellow": 22,
-              "red": 10
-            },
-            "romi": {
-              "green": 400,
-              "yellow": 150,
-              "red": 0
-            },
-            "note": "SEO + прямые заходы — самый качественный канал по конверсии."
-          },
-          "status": {
-            "cpl": "grey",
-            "conversion": "yellow",
-            "romi": "grey"
-          }
-        },
         "Email": {
           "rawNames": [
             "Электронная почта Info"
           ],
-          "leads": 18,
+          "leads": 20,
           "deals": 0,
           "revenue": 0,
           "spend": null,
@@ -26329,23 +27554,65 @@
             "romi": "grey"
           }
         },
-        "2ГИС": {
+        "Я.Бизнес/Карты": {
           "rawNames": [
-            "2ГИС ЖБИ",
-            "2ГИС БСТ"
+            "Яндекс.Карты БСТ",
+            "Яндекс.Карты ЖБИ"
           ],
-          "leads": 7,
-          "deals": 0,
-          "revenue": 0,
+          "leads": 30,
+          "deals": 16,
+          "revenue": 78400,
+          "spend": 17173,
+          "cpl": 572,
+          "conversionLeadToDeal": 53.3,
+          "romi": 357,
+          "benchmark": {
+            "cpl": {
+              "green": 400,
+              "yellow": 900,
+              "red": 1500
+            },
+            "conversionLeadToDeal": {
+              "green": 20,
+              "yellow": 10,
+              "red": 5
+            },
+            "winRate": {
+              "green": 35,
+              "yellow": 20,
+              "red": 8
+            },
+            "romi": {
+              "green": 300,
+              "yellow": 100,
+              "red": 0
+            },
+            "note": "Геозависимый трафик высокого намерения."
+          },
+          "status": {
+            "cpl": "yellow",
+            "conversion": "green",
+            "romi": "green"
+          }
+        },
+        "Сайт (SEO/прямые)": {
+          "rawNames": [
+            "Сайт отдел БСТ",
+            "Сайт отдел ЖБИ",
+            "Веб-сайт"
+          ],
+          "leads": 69,
+          "deals": 23,
+          "revenue": 58750,
           "spend": null,
           "cpl": null,
-          "conversionLeadToDeal": 0,
+          "conversionLeadToDeal": 33.3,
           "romi": null,
           "benchmark": {
             "cpl": {
-              "green": 500,
-              "yellow": 1000,
-              "red": 1800
+              "green": 200,
+              "yellow": 600,
+              "red": 1200
             },
             "conversionLeadToDeal": {
               "green": 25,
@@ -26354,33 +27621,47 @@
             },
             "winRate": {
               "green": 40,
-              "yellow": 20,
+              "yellow": 22,
               "red": 10
             },
             "romi": {
-              "green": 250,
-              "yellow": 80,
+              "green": 400,
+              "yellow": 150,
               "red": 0
             },
-            "note": "Локальный коммерческий каталог."
+            "note": "SEO + прямые заходы — самый качественный канал по конверсии."
           },
           "status": {
             "cpl": "grey",
-            "conversion": "red",
+            "conversion": "green",
             "romi": "grey"
           }
+        },
+        "Прочее": {
+          "rawNames": [
+            "Яндекс"
+          ],
+          "leads": 7,
+          "deals": 0,
+          "revenue": 0,
+          "spend": null,
+          "cpl": null,
+          "conversionLeadToDeal": 0,
+          "romi": null,
+          "benchmark": null,
+          "status": null
         },
         "Авито": {
           "rawNames": [
             "Авито ДКБИ-сообщения",
             "Авито БСТ"
           ],
-          "leads": 23,
-          "deals": 1,
-          "revenue": 30525,
+          "leads": 27,
+          "deals": 7,
+          "revenue": 92375,
           "spend": null,
           "cpl": null,
-          "conversionLeadToDeal": 4.3,
+          "conversionLeadToDeal": 25.9,
           "romi": null,
           "benchmark": {
             "cpl": {
@@ -26407,30 +27688,57 @@
           },
           "status": {
             "cpl": "grey",
-            "conversion": "yellow",
+            "conversion": "green",
             "romi": "grey"
           }
         },
-        "Прочее": {
+        "2ГИС": {
           "rawNames": [
-            "Яндекс"
+            "2ГИС БСТ",
+            "2ГИС ЖБИ"
           ],
-          "leads": 3,
-          "deals": 0,
-          "revenue": 0,
+          "leads": 4,
+          "deals": 2,
+          "revenue": 28100,
           "spend": null,
           "cpl": null,
-          "conversionLeadToDeal": 0,
+          "conversionLeadToDeal": 50,
           "romi": null,
-          "benchmark": null,
-          "status": null
+          "benchmark": {
+            "cpl": {
+              "green": 500,
+              "yellow": 1000,
+              "red": 1800
+            },
+            "conversionLeadToDeal": {
+              "green": 25,
+              "yellow": 12,
+              "red": 5
+            },
+            "winRate": {
+              "green": 40,
+              "yellow": 20,
+              "red": 10
+            },
+            "romi": {
+              "green": 250,
+              "yellow": 80,
+              "red": 0
+            },
+            "note": "Локальный коммерческий каталог."
+          },
+          "status": {
+            "cpl": "grey",
+            "conversion": "green",
+            "romi": "grey"
+          }
         },
         "Я.Директ": {
           "rawNames": [],
           "leads": 0,
           "deals": 0,
           "revenue": 0,
-          "spend": 24534.370000000003,
+          "spend": 26640.550000000003,
           "cpl": null,
           "conversionLeadToDeal": null,
           "romi": -100,
@@ -26469,36 +27777,37 @@
     },
     "fetchedAt": "2026-08-03T06:20:42.806Z",
     "spend": {
-      "total": 41707.37,
-      "direct": 24534.370000000003,
-      "business": 17173,
+      "total": 85520.92000000001,
+      "direct": 51174.920000000006,
+      "business": 34346,
       "twogis": 0
     },
-    "weeksCount": 1,
+    "weeksCount": 2,
     "weeks": [
-      "2026-W31"
+      "2026-W31",
+      "2026-W32"
     ],
     "metrika": {
-      "visits": 5167,
-      "users": 4207,
+      "visits": 10414,
+      "users": 8132,
       "bounceRate": null
     },
     "direct": {
-      "clicks": 716,
-      "impressions": 26179
+      "clicks": 1303,
+      "impressions": 53768
     },
     "avito": {
-      "views": 256,
-      "contacts": 22,
+      "views": 506,
+      "contacts": 44,
       "itemsCount": 124
     },
     "twogis": {
-      "impressions": 332,
-      "views": 14,
-      "calls": 3
+      "impressions": 1028,
+      "views": 62,
+      "calls": 10
     },
     "ai": {
-      "summary": "Неделя 2026-31: маркетинговые лиды держатся, факт маркет-выручки 1 166 425 ₽, прогноз по pipeline 1 166 425 ₽.",
+      "summary": "Неделя 2026-32: маркетинговые лиды держатся, факт маркет-выручки 257 625 ₽, прогноз по pipeline 257 625 ₽.",
       "whatsChanged": [],
       "risks": [],
       "actions": [
@@ -26511,67 +27820,67 @@
       "concrete": "Бетон держится на сайтах и картах. Приоритетом остаётся не объём лидов, а доведение их до сделок и сохранение атрибуции.",
       "zhbi": "ЖБИ остаётся длинным циклом: weekly-факт здесь слабый ориентир, смотреть нужно на когорты 8w/12w.",
       "model": "heuristic-fallback",
-      "generatedAt": "2026-08-03T05:25:48.779Z"
+      "generatedAt": "2026-08-10T05:26:20.673Z"
     },
     "topvisor": {
-      "totalKeywords": 1103,
-      "totalWithPosition": 559,
+      "totalKeywords": 1650,
+      "totalWithPosition": 906,
       "byGroup": {
         "Бетон": {
-          "keywords": 104,
-          "withPosition": 62,
-          "avgPosition": 23.9,
-          "top10": 36,
-          "top30": 45
+          "keywords": 277,
+          "withPosition": 173,
+          "avgPosition": 26.5,
+          "top10": 76,
+          "top30": 118
         },
         "Кольца ЖБИ": {
-          "keywords": 184,
-          "withPosition": 87,
-          "avgPosition": 30.5,
-          "top10": 35,
-          "top30": 57
+          "keywords": 347,
+          "withPosition": 207,
+          "avgPosition": 20.9,
+          "top10": 123,
+          "top30": 164
         },
         "Днище колодцев": {
           "keywords": 161,
-          "withPosition": 90,
-          "avgPosition": 16.2,
-          "top10": 63,
-          "top30": 78
+          "withPosition": 100,
+          "avgPosition": 16,
+          "top10": 64,
+          "top30": 86
         },
         "Плиты перекрытия": {
           "keywords": 148,
           "withPosition": 98,
-          "avgPosition": 30.6,
-          "top10": 43,
-          "top30": 65
+          "avgPosition": 25.8,
+          "top10": 44,
+          "top30": 70
         },
         "Блоки ФБС": {
           "keywords": 163,
-          "withPosition": 80,
-          "avgPosition": 28.1,
-          "top10": 38,
-          "top30": 51
+          "withPosition": 82,
+          "avgPosition": 25,
+          "top10": 43,
+          "top30": 58
         },
         "Опоры СВ": {
           "keywords": 75,
-          "withPosition": 41,
-          "avgPosition": 29.9,
-          "top10": 13,
-          "top30": 29
+          "withPosition": 55,
+          "avgPosition": 22.2,
+          "top10": 22,
+          "top30": 44
         },
         "Дорожные плиты": {
           "keywords": 144,
-          "withPosition": 56,
-          "avgPosition": 38.1,
+          "withPosition": 70,
+          "avgPosition": 38.5,
           "top10": 18,
-          "top30": 32
+          "top30": 42
         },
         "Прочее": {
-          "keywords": 124,
-          "withPosition": 45,
-          "avgPosition": 25.4,
-          "top10": 19,
-          "top30": 35
+          "keywords": 335,
+          "withPosition": 121,
+          "avgPosition": 21.5,
+          "top10": 71,
+          "top30": 93
         }
       },
       "noPositionCount": 50
@@ -26581,24 +27890,24 @@
     "byProduct": {
       "beton": {
         "mkt": {
-          "deals": 18,
-          "won": 9,
-          "wonSum": 1166425,
-          "inWork": 8,
+          "deals": 48,
+          "won": 10,
+          "wonSum": 257625,
+          "inWork": 30,
           "inWorkSum": 0,
-          "lost": 1,
+          "lost": 8,
           "lostSum": 0,
-          "noOpp": 8
+          "noOpp": 30
         },
         "all": {
-          "deals": 417,
-          "won": 262,
-          "wonSum": 26004686,
-          "inWork": 135,
-          "inWorkSum": 0,
-          "lost": 20,
-          "lostSum": 0,
-          "noOpp": 135
+          "deals": 375,
+          "won": 165,
+          "wonSum": 10703907,
+          "inWork": 183,
+          "inWorkSum": 149939,
+          "lost": 27,
+          "lostSum": 108235,
+          "noOpp": 178
         }
       },
       "zhbi": {
@@ -26613,43 +27922,42 @@
           "noOpp": 0
         },
         "all": {
-          "deals": 99,
-          "won": 75,
-          "wonSum": 8727554,
-          "inWork": 24,
-          "inWorkSum": 0,
+          "deals": 59,
+          "won": 21,
+          "wonSum": 2509560,
+          "inWork": 38,
+          "inWorkSum": 282132,
           "lost": 0,
           "lostSum": 0,
-          "noOpp": 24
+          "noOpp": 34
         }
       }
     },
     "productSplit": {
-      "zhbi": 3,
-      "beton": 2,
-      "unknown": 117,
-      "zhbiSharePct": 60,
+      "zhbi": 5,
+      "beton": 7,
+      "unknown": 145,
+      "zhbiSharePct": 42,
       "zhbiBySource": {
-        "Сайт отдел БСТ": 1,
-        "Электронная почта Info": 2
+        "Электронная почта Info": 4,
+        "Веб-сайт": 1
       }
     },
     "dataQuality": {
-      "inWorkMarketing": 8,
-      "inWorkNoOpportunity": 8,
+      "inWorkMarketing": 30,
+      "inWorkNoOpportunity": 30,
       "noOppPct": 100,
       "pipelineSum": 0,
-      "wonMarketing": 9,
-      "zeroRevenueDeals": 0,
-      "zeroRevenuePct": 0,
-      "unknownManagerDeals": 68,
+      "wonMarketing": 10,
+      "zeroRevenueDeals": 3,
+      "zeroRevenuePct": 30,
+      "unknownManagerDeals": 96,
       "unknownManagers": [
         "ID-1672",
         "ID-1956",
-        "ID-1964",
-        "ID-296"
+        "ID-1964"
       ],
-      "sourceMissingCount": 0,
+      "sourceMissingCount": 8,
       "status": "red"
     }
   },
@@ -28072,20 +29380,20 @@
     }
   },
   "allSources": {
-    "Яндекс.Карты БСТ": 270,
-    "Сайт отдел БСТ": 464,
-    "Сайт отдел ЖБИ": 56,
-    "Электронная почта Info": 152,
-    "Авито БСТ": 78,
-    "Яндекс": 22,
-    "2ГИС БСТ": 27,
-    "2ГИС ЖБИ": 27,
-    "Яндекс.Карты ЖБИ": 17,
+    "Яндекс.Карты БСТ": 298,
+    "Сайт отдел БСТ": 521,
+    "Сайт отдел ЖБИ": 62,
+    "Электронная почта Info": 172,
+    "Авито БСТ": 85,
+    "Яндекс": 29,
+    "2ГИС БСТ": 29,
+    "2ГИС ЖБИ": 29,
+    "Яндекс.Карты ЖБИ": 19,
     "Радио": 4,
-    "Авито ДКБИ-сообщения": 208,
+    "Авито ДКБИ-сообщения": 228,
     "Авито ЖБИ": 2,
     "Telegram - Открытая линия Динской комбинат бетонных изделий": 4,
-    "Веб-сайт": 3
+    "Веб-сайт": 9
   },
   "periodOptions": {
     "weeks": [
@@ -28172,6 +29480,12 @@
         "label": "Неделя 31",
         "from": "2026-07-27",
         "to": "2026-08-02"
+      },
+      {
+        "id": "2026-W32",
+        "label": "Неделя 32",
+        "from": "2026-08-03",
+        "to": "2026-08-09"
       }
     ],
     "months": [
