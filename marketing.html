@@ -725,10 +725,13 @@ function renderKPI(week, prev) {
       value: fmt(week.leads.marketing || 0),
       delta: dp(week.leads.marketing, prev?.leads?.marketing),
       // Клиенты периода (01.09.2026): уники/повторники из clientStats (воронки продаж 0/4/14,
-      // повторник = ≥2 сделок внутри периода). Поле есть в месяцах и новых неделях.
-      sub: (week.clientStats?.clients > 0
-        ? `Всего: ${fmt(week.leads.total || 0)} · <span title="Уникальных клиентов по сделкам воронок продаж за период; в скобках — клиенты с ≥2 сделками внутри периода" style="border-bottom:1px dotted var(--text3);cursor:help">клиентов: ${fmt(week.clientStats.clients)} (повт. ${fmt(week.clientStats.repeatClients)})</span>`
-        : `Всего: ${fmt(week.leads.total || 0)}`)
+      // повторник = ≥2 сделок внутри периода). Фоллбек в deals.clientStats — старые данные.
+      sub: (() => {
+        const cs = week.clientStats || week.deals?.clientStats;
+        return cs?.clients > 0
+          ? `Всего: ${fmt(week.leads.total || 0)} · <span title="Уникальных клиентов по сделкам воронок продаж за период; в скобках — клиенты с ≥2 сделками внутри периода" style="border-bottom:1px dotted var(--text3);cursor:help">клиентов: ${fmt(cs.clients)} (повт. ${fmt(cs.repeatClients)})</span>`
+          : `Всего: ${fmt(week.leads.total || 0)}`;
+      })()
     },
     {
       label: 'CPL',
