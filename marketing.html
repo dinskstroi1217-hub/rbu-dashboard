@@ -732,7 +732,11 @@ function renderKPI(week, prev) {
       label: 'Маркет-выручка',
       value: fmtR(revenue),
       delta: dp(revenue, prev?.deals?.wonSumMarketing),
-      sub: `Won: ${fmt(week.deals.wonMarketing || 0)} · всего: ${fmtR(week.deals.wonSum || 0)}`
+      // Восстановленная атрибуция (01.09.2026): сделки контактов с маркет-лидом,
+      // перекрашенные менеджерами в «обзвон» — показываем только если поле есть в данных
+      sub: (week.deals.restoredMarketing?.won > 0
+        ? `Won: ${fmt(week.deals.wonMarketing || 0)} <span title="Восстановленная атрибуция: сделки с source «Обзвон по базе», у контакта которых есть свежий успешный маркет-лид (60 дней). Менеджеры заводят сделку руками — маркет-происхождение теряется." style="border-bottom:1px dotted var(--text3);cursor:help">+${fmt(week.deals.restoredMarketing.won)} восст. (${fmtR(week.deals.restoredMarketing.wonSum)})</span>`
+        : `Won: ${fmt(week.deals.wonMarketing || 0)} · всего: ${fmtR(week.deals.wonSum || 0)}`)
     },
     {
       label: 'ROMI факт',
