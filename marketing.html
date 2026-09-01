@@ -429,9 +429,18 @@ function renderProductMode(p) {
   const pipeTile = pipeDead
     ? `<div class="kpi-card"><div class="kpi-label">Без суммы</div><div class="kpi-value" style="color:var(--red)">${fmt(mkt.inWork)}</div><div class="kpi-sub">в работе, pipeline не заполнен</div></div>`
     : `<div class="kpi-card"><div class="kpi-label">Pipeline</div><div class="kpi-value">${fmt(mkt.inWorkSum)} ₽${dlt(mkt.inWorkSum, prevMkt.inWorkSum, ' ₽')}</div><div class="kpi-sub">${fmt(mkt.inWork)} в работе</div></div>`;
+  // Средний чек (01.09.2026): wonSum/wonPaid по ВСЕЙ воронке категории — только won
+  // с заполненной суммой (wonPaid), иначе нули CRM занижают чек. Поле появляется
+  // после пересчёта снапшотов; для старых недель карточка не рендерится.
+  const avgOf = (x) => (x?.wonPaid > 0 ? Math.round(x.wonSum / x.wonPaid) : null);
+  const avgCur = avgOf(all), avgPrev = avgOf(prevAll);
+  const avgTile = all.wonPaid != null
+    ? `<div class="kpi-card"><div class="kpi-label">Средний чек</div><div class="kpi-value">${avgCur != null ? fmt(avgCur) + ' ₽' : '—'}${avgCur != null && avgPrev != null ? dlt(avgCur, avgPrev, ' ₽') : ''}</div><div class="kpi-sub">${avgCur != null ? `по ${fmt(all.wonPaid)} won с суммой${(all.won || 0) > all.wonPaid ? ` · ${fmt(all.won - all.wonPaid)} без` : ''}` : 'нет won с заполненной суммой'}</div></div>`
+    : '';
   document.getElementById('product-kpis').innerHTML = `
     <div class="kpi-card"><div class="kpi-label">Маркет-сделок</div><div class="kpi-value">${fmt(mkt.deals)}${dlt(mkt.deals, prevMkt.deals)}</div><div class="kpi-sub">won ${fmt(mkt.won)} · в работе ${fmt(mkt.inWork)}</div></div>
     <div class="kpi-card"><div class="kpi-label">Выручка (won)</div><div class="kpi-value">${fmt(mkt.wonSum)} ₽${dlt(mkt.wonSum, prevMkt.wonSum, ' ₽')}</div><div class="kpi-sub">${fmt(mkt.won)} сделок</div></div>
+    ${avgTile}
     ${pipeTile}
     <div class="kpi-card"><div class="kpi-label">Лиды по продукту</div><div class="kpi-value">${leadsProd != null ? fmt(leadsProd) : '—'}${dlt(leadsProd, prevLeads)}</div><div class="kpi-sub">оценка по тексту запроса</div></div>
     <div class="kpi-card"><div class="kpi-label">Всего в воронке</div><div class="kpi-value">${fmt(all.deals)}${dlt(all.deals, prevAll.deals)}</div><div class="kpi-sub">вкл. немаркетинговые</div></div>
@@ -705,7 +714,8 @@ function renderKPI(week, prev) {
   const prevSpend = prev?.spend?.total || 0;
   const revenue = week.deals.wonSumMarketing || 0;
   const prevRevenue = prev?.deals?.wonSumMarketing || 0;
-  const romiFact = romi(revenue, spend);
+  // При spend.noData (месяц вне покрытия недельной истории) ROMI на заниженном расходе — мусор
+  const romiFact = week.spend.noData ? null : romi(revenue, spend);
   const prevRomiFact = romi(prevRevenue, prevSpend);
   const pipeline = week.inWorkSum ?? week.deals.inWorkSumMarketing ?? 0;
 
@@ -714,19 +724,28 @@ function renderKPI(week, prev) {
       label: 'Маркет. лиды',
       value: fmt(week.leads.marketing || 0),
       delta: dp(week.leads.marketing, prev?.leads?.marketing),
-      sub: `Всего: ${fmt(week.leads.total || 0)}`
+      // Клиенты периода (01.09.2026): уники/повторники из clientStats (воронки продаж 0/4/14,
+      // повторник = ≥2 сделок внутри периода). Поле есть в месяцах и новых неделях.
+      sub: (week.clientStats?.clients > 0
+        ? `Всего: ${fmt(week.leads.total || 0)} · <span title="Уникальных клиентов по сделкам воронок продаж за период; в скобках — клиенты с ≥2 сделками внутри периода" style="border-bottom:1px dotted var(--text3);cursor:help">клиентов: ${fmt(week.clientStats.clients)} (повт. ${fmt(week.clientStats.repeatClients)})</span>`
+        : `Всего: ${fmt(week.leads.total || 0)}`)
     },
     {
       label: 'CPL',
-      value: week.cpl ? fmt(week.cpl) + ' ₽' : '—',
+      // Месячный CPL — из оценочного расхода (cplEstimated), помечаем «≈» как и Расход
+      value: week.cpl ? `${week.cplEstimated ? '≈' : ''}${fmt(week.cpl)} ₽` : '—',
       delta: dp(week.cpl, prev?.cpl, true),
-      sub: 'стоимость лида'
+      sub: week.cpl == null && week.spend?.noData ? 'нет данных о расходе' : 'стоимость лида'
     },
     {
       label: 'Расход',
-      value: fmtR(spend),
-      delta: dp(spend, prev?.spend?.total, true),
-      sub: `Директ: ${fmtR(week.spend.direct || 0)}`
+      // У месячных записей расход — оценка по пересечению недельных снапшотов (spend.estimated);
+      // noData = недельная история покрывает <90% месяца, цифра была бы заниженным мусором
+      value: week.spend.noData ? '—' : `${week.spend.estimated ? '≈' : ''}${fmtR(spend)}`,
+      delta: week.spend.noData ? '<span class="kpi-delta neu">—</span>' : dp(spend, prev?.spend?.total, true),
+      sub: week.spend.noData
+        ? 'недельная история не покрывает месяц'
+        : `Директ: ${week.spend.estimated ? '≈' : ''}${fmtR(week.spend.direct || 0)}${week.spend.estimated ? ' · оценка по неделям' : ''}`
     },
     {
       label: 'Маркет-выручка',
@@ -1047,8 +1066,10 @@ function buildAutoInsights(week, prev) {
   const topManager = managerRows.find(r => r.won > 0) || managerRows[0];
 
   const changes = [];
-  if (leadDelta != null) changes.push(`Маркет-лиды ${leadDelta < 0 ? 'снизились' : 'выросли'} на ${Math.abs(leadDelta).toFixed(0)}% к прошлой неделе.`);
-  changes.push(`CPL сейчас ${fmt(cpl)} ₽, ${cpl > 800 ? 'красная зона' : cpl > 500 ? 'жёлтая зона' : 'норма'}.`);
+  if (leadDelta != null) changes.push(`Маркет-лиды ${leadDelta < 0 ? 'снизились' : 'выросли'} на ${Math.abs(leadDelta).toFixed(0)}% к пред. периоду.`);
+  // CPL-строка только при реальном значении (ревью 01.09: месяц без данных о расходе
+  // рапортовал «CPL сейчас 0 ₽, норма»)
+  if (week.cpl != null && cpl > 0) changes.push(`CPL сейчас ${fmt(cpl)} ₽, ${cpl > 800 ? 'красная зона' : cpl > 500 ? 'жёлтая зона' : 'норма'}.`);
   if (topSource) changes.push(`Лучший канал по сделкам: ${topSource.name}, ${fmt(topSource.deals)} сделок на ${fmtR(topSource.revenue)}.`);
 
   const risks = [];
@@ -1062,7 +1083,7 @@ function buildAutoInsights(week, prev) {
   actions.push({ text: 'Отдельно проверить источники с лидами, но без сделок, и закрыть причину: качество трафика или обработка.' });
 
   return {
-    summary: `Автоанализ выбранной недели: ${fmt(leads)} маркет-лидов, расход ${fmtR(spend)}, маркет-выручка ${fmtR(revenue)}, ROMI ${fmtPct(romiFact)}.`,
+    summary: `Автоанализ периода: ${fmt(leads)} маркет-лидов, расход ${week.spend?.estimated ? '≈' : ''}${fmtR(spend)}, маркет-выручка ${fmtR(revenue)}, ROMI ${fmtPct(romiFact)}.`,
     whatsChanged: changes,
     risks,
     actions,
@@ -1288,14 +1309,18 @@ function populatePeriodSelects() {
     return `<option value="${origIdx}">Неделя ${w.isoWeek} · ${fmtDate(w.from)} — ${fmtDate(w.to)}</option>`;
   }).join('');
 
-  // Месяцы — в обратном порядке. Лейбл: "Май 2026 · 1—31 мая"
+  // Месяцы — в обратном порядке. Лейбл: "Май 2026 · 1—31 мая".
+  // Текущий незакончившийся месяц помечен «идёт» и НЕ дефолт (ревью 01.09: иначе
+  // селектор открывался на 1-2 днях данных с фантомными −90% дельтами)
   const monthsSel = document.getElementById('period-month-select');
   const months = (DATA.months || []).slice().reverse();
   monthsSel.innerHTML = months.map(m => {
     const origIdx = DATA.months.findIndex(x => x.yearMonth === m.yearMonth);
     const dateRange = `${fmtDate(m.from)} — ${fmtDate(m.to)}`;
-    return `<option value="${origIdx}">${m.label} · ${dateRange}</option>`;
+    return `<option value="${origIdx}">${m.label}${m.partial ? ' ⏳ идёт' : ''} · ${dateRange}</option>`;
   }).join('');
+  const firstFull = months.findIndex(m => !m.partial);
+  if (firstFull > 0) monthsSel.selectedIndex = firstFull;
 
   // Custom date picker — bounds от истории
   const allWeeks = DATA.weeks || [];
@@ -1332,7 +1357,11 @@ function onWeekChange() {
 }
 
 function onMonthChange() {
+  // Гард (ревью 01.09): без months в данных (старый marketing-data.json) селект пуст,
+  // idx = NaN — молча выходим, не роняя вид и не показывая недельные данные под видом месяца
+  if (!DATA.months || !DATA.months.length) return;
   const idx = +document.getElementById('period-month-select').value;
+  if (!DATA.months[idx]) return;
   activePeriod = { kind: 'month', idx };
   applyPeriod(DATA.months[idx], idx > 0 ? DATA.months[idx - 1] : null);
 }
