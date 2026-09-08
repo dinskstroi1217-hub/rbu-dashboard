@@ -1,0 +1,137 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Разбор корзины «Спам» — 30 дней</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0B0E14;color:#EDF0F5;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding:24px}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px;letter-spacing:-.02em}
+.sub{color:#8C95A3;font-size:13px;margin-bottom:22px}
+.kpis{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+.kpi{flex:1 1 190px;background:#14181F;border:1px solid #262D38;border-radius:10px;padding:14px 16px}
+.kpi b{display:block;font-size:30px;font-weight:700;letter-spacing:-.03em}
+.kpi span{display:block;color:#9AA3B2;font-size:13px;margin-top:2px}
+.kpi em{display:block;color:#626B7A;font-size:11.5px;font-style:normal;margin-top:6px}
+.kpi .up{color:#7BD88F} .kpi .down{color:#E5766B} .kpi .wr{color:#E3B341}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#9AA3B2;margin:30px 0 10px;font-weight:600}
+table{width:100%;border-collapse:collapse;background:#14181F;border:1px solid #262D38;border-radius:10px;overflow:hidden}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:#626B7A;font-weight:600;padding:9px 10px;border-bottom:1px solid #262D38}
+td{padding:8px 10px;border-bottom:1px solid #1B212B;font-size:14px}
+tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ch{max-width:280px}
+.barc{width:30%}
+.bar{background:#1B212B;height:9px;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:#E3B341;border-radius:5px}
+.bar.sCONVERTED i{background:#12A150} .bar.sn i{background:#4A5361}
+.good{color:#7BD88F} .warn{color:#E3B341} .bad{color:#E5766B} .muted{color:#8C95A3}
+.hot{background:#1A1410}
+.id{font-variant-numeric:tabular-nums;color:#8C95A3;font-size:13px}
+p.sub{margin:10px 0 0}
+.chart{display:flex;align-items:flex-end;gap:3px;height:120px;background:#14181F;border:1px solid #262D38;border-radius:10px;padding:12px 10px 4px}
+.day{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.day i{display:block;background:#5B7CFF;border-radius:3px 3px 0 0;min-height:2px}
+.day span{font-size:9px;color:#626B7A;text-align:center;padding-top:3px}
+footer{color:#626B7A;font-size:12px;margin-top:26px;border-top:1px solid #262D38;padding-top:12px}
+</style></head><body><div class="wrap">
+<h1>Разбор корзины «Спам, реклама, сотрудничество»</h1>
+<div class="sub">Bitrix24 · период 2026-08-09 — 2026-09-08 · 340 лидов в статусе «Спам» · разобрано построчно, звонки сверены с историей CRM по номеру</div>
+
+<div class="kpis">
+<div class="kpi"><b>340</b><span>лидов в корзине</span><em>за 30 дней, статус «Спам, реклама, сотрудничество»</em></div>
+<div class="kpi"><b class="up">39</b><span>можно брать в работу</span><em>25 живых запроса + 14 звонка действующих клиентов</em></div>
+<div class="kpi"><b class="wr">143</b><span>звонков без квалификации</span><em>42% корзины: разговор не записан, лид закрыт</em></div>
+<div class="kpi"><b class="down">78</b><span>настоящий спам</span><em>23% — рассылки, чужие КП, не наш профиль</em></div>
+</div>
+
+<h2>Из чего состоит корзина</h2>
+<table>
+<tr><th>Категория</th><th class="num">Лидов</th><th></th><th class="num">Доля</th></tr>
+<tr><td class="ch"><b class="good">Живой запрос — в работу</b></td><td class="num"><b>25</b></td><td class="barc"><div class="bar sCONVERTED"><i style="width:17%"></i></div></td><td class="num muted">7%</td></tr>
+<tr><td class="ch"><b class="good">Звонок действующего клиента</b></td><td class="num"><b>14</b></td><td class="barc"><div class="bar sCONVERTED"><i style="width:10%"></i></div></td><td class="num muted">4%</td></tr>
+<tr><td class="ch"><b class="muted">Звонок-дубль того же дня</b></td><td class="num"><b>27</b></td><td class="barc"><div class="bar sn"><i style="width:19%"></i></div></td><td class="num muted">8%</td></tr>
+<tr><td class="ch"><b class="warn">Звонок без квалификации</b></td><td class="num"><b>143</b></td><td class="barc"><div class="bar "><i style="width:100%"></i></div></td><td class="num muted">42%</td></tr>
+<tr><td class="ch"><b class="muted">Авито-чат, переписка не читалась</b></td><td class="num"><b>24</b></td><td class="barc"><div class="bar sn"><i style="width:17%"></i></div></td><td class="num muted">7%</td></tr>
+<tr><td class="ch"><b class="muted">Служебные и открытые линии</b></td><td class="num"><b>21</b></td><td class="barc"><div class="bar sn"><i style="width:15%"></i></div></td><td class="num muted">6%</td></tr>
+<tr><td class="ch"><b class="muted">Документооборот и бухгалтерия</b></td><td class="num"><b>8</b></td><td class="barc"><div class="bar sn"><i style="width:6%"></i></div></td><td class="num muted">2%</td></tr>
+<tr><td class="ch"><b class="muted">Рассылки и инфомусор</b></td><td class="num"><b>54</b></td><td class="barc"><div class="bar sn"><i style="width:38%"></i></div></td><td class="num muted">16%</td></tr>
+<tr><td class="ch"><b class="muted">КП поставщиков нам</b></td><td class="num"><b>10</b></td><td class="barc"><div class="bar sn"><i style="width:7%"></i></div></td><td class="num muted">3%</td></tr>
+<tr><td class="ch"><b class="muted">Не наш профиль</b></td><td class="num"><b>14</b></td><td class="barc"><div class="bar sn"><i style="width:10%"></i></div></td><td class="num muted">4%</td></tr>
+<tr><td class="ch"><b>Итого</b></td><td class="num"><b>340</b></td><td></td><td class="num muted">100%</td></tr>
+</table>
+<p class="sub">Зелёным — то, что можно вернуть в работу сегодня. Жёлтым — серая зона: входящий звонок, по которому не осталось ни комментария, ни причины отказа. Серым — то, что закрыто правильно.</p>
+
+<h2>Живые запросы, лежащие в спаме — 25</h2>
+<table>
+<tr><th class="num">ID</th><th>Дата</th><th>Что это</th><th>Источник</th></tr>
+<tr class=""><td class="num id">200498</td><td class="muted">10.08</td><td>Поставка смесей по лоту № 29325</td><td class="muted">Эл.почта Info</td></tr>
+<tr class=""><td class="num id">200518</td><td class="muted">10.08</td><td>Заявка ЦСК-СЕРВИС</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">200546</td><td class="muted">10.08</td><td>Запрос на поставку — «ЭЛ5-Энерго»</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">201046</td><td class="muted">12.08</td><td>Запрос цен ООО «Велесстрой» (ОП Дом охотника №5)</td><td class="muted">Эл.почта Info</td></tr>
+<tr class="hot"><td class="num id">201238</td><td class="muted">13.08</td><td><b>Заказ с сайта dkbi.ru №14, самовывоз ЖБИ</b></td><td class="muted">Веб-сайт</td></tr>
+<tr class=""><td class="num id">201656</td><td class="muted">17.08</td><td>Чат: заказ бетона М200, 1,5 куба, адрес доставки указан</td><td class="muted">Открытая линия</td></tr>
+<tr class=""><td class="num id">201894</td><td class="muted">18.08</td><td>Заявка на аренду мобильного бетонного завода</td><td class="muted">Эл.почта Info</td></tr>
+<tr class="hot"><td class="num id">201908</td><td class="muted">18.08</td><td><b>Поставка бетона и смесей — автодорога «Обход Адлера»</b></td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">202108</td><td class="muted">18.08</td><td>Чат: машина 5 кубов, грузоподъёмность до 15 т</td><td class="muted">Открытая линия</td></tr>
+<tr class=""><td class="num id">202196</td><td class="muted">19.08</td><td>Заявка (тема пустая)</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">202262</td><td class="muted">19.08</td><td>Чат: закупка бетона под фундамент</td><td class="muted">Открытая линия</td></tr>
+<tr class=""><td class="num id">202292</td><td class="muted">19.08</td><td>Запрос ЖБИ</td><td class="muted">Эл.почта Info</td></tr>
+<tr class=""><td class="num id">202300</td><td class="muted">19.08</td><td>Чат: упоминание бетона</td><td class="muted">Прямой звонок менеджеру</td></tr>
+<tr class="hot"><td class="num id">202320</td><td class="muted">19.08</td><td><b>Запрос КПП от ООО «ЭнергоСК», объект 718 Динская ТЭС</b></td><td class="muted">Эл.почта Info</td></tr>
+<tr class=""><td class="num id">202628</td><td class="muted">20.08</td><td>Запрос ФКП на поставку товара</td><td class="muted">Эл.почта Info</td></tr>
+<tr class=""><td class="num id">202806</td><td class="muted">21.08</td><td>Заявка (тема пустая)</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">202826</td><td class="muted">21.08</td><td>Запрос КП (тема пустая)</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class="hot"><td class="num id">202854</td><td class="muted">21.08</td><td><b>КП на стойки СВ 1.2-10 и кронштейны К1П</b></td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">203096</td><td class="muted">24.08</td><td>Просьба перезвонить</td><td class="muted">Открытая линия</td></tr>
+<tr class=""><td class="num id">203164</td><td class="muted">24.08</td><td>Запрос (тема пустая)</td><td class="muted">Эл.почта Info</td></tr>
+<tr class="hot"><td class="num id">203870</td><td class="muted">27.08</td><td><b>Цена и сроки, срочно до 15:30 — объект 2885 КВ Алабуга</b></td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">203952</td><td class="muted">27.08</td><td>Запрос КП на поставку бетона</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class="hot"><td class="num id">203980</td><td class="muted">27.08</td><td><b>ПАО «Транснефть», запрос цен «Бетон тяжелый» № 2600-M01-К-21-01746</b></td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">204690</td><td class="muted">01.09</td><td>Запрос КП на бетон, х. Молькин</td><td class="muted">Эл.почта Sale</td></tr>
+<tr class=""><td class="num id">205398</td><td class="muted">04.09</td><td>Плитка</td><td class="muted">Эл.почта Sale</td></tr>
+</table>
+<p class="sub">Подсвечены шесть, где горят сроки или объект крупный: Транснефть, Обход Адлера, стойки СВ под аттестацию Россетей, Динская ТЭС, Алабуга и неотработанный заказ с сайта.</p>
+
+<h2>Откуда пришло то, что закрыли спамом</h2>
+<table>
+<tr><th>Источник</th><th class="num">Звонки</th><th class="num">Текст</th><th></th><th class="num">Всего</th></tr>
+<tr><td class="ch">Сайт отдел БСТ</td><td class="num muted">97</td><td class="num muted">1</td><td class="barc"><div class="bar"><i style="width:100%"></i></div></td><td class="num"><b>98</b></td></tr>
+<tr><td class="ch">Эл.почта Sale</td><td class="num muted">—</td><td class="num muted">81</td><td class="barc"><div class="bar"><i style="width:83%"></i></div></td><td class="num"><b>81</b></td></tr>
+<tr><td class="ch">Яндекс.Карты БСТ</td><td class="num muted">31</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:32%"></i></div></td><td class="num"><b>31</b></td></tr>
+<tr><td class="ch">Эл.почта Info</td><td class="num muted">—</td><td class="num muted">30</td><td class="barc"><div class="bar"><i style="width:31%"></i></div></td><td class="num"><b>30</b></td></tr>
+<tr><td class="ch">Обзвон по базе</td><td class="num muted">29</td><td class="num muted">1</td><td class="barc"><div class="bar"><i style="width:31%"></i></div></td><td class="num"><b>30</b></td></tr>
+<tr><td class="ch">Авито-сообщения</td><td class="num muted">—</td><td class="num muted">24</td><td class="barc"><div class="bar"><i style="width:24%"></i></div></td><td class="num"><b>24</b></td></tr>
+<tr><td class="ch">Открытая линия</td><td class="num muted">1</td><td class="num muted">10</td><td class="barc"><div class="bar"><i style="width:11%"></i></div></td><td class="num"><b>11</b></td></tr>
+<tr><td class="ch">2ГИС ЖБИ</td><td class="num muted">6</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:6%"></i></div></td><td class="num"><b>6</b></td></tr>
+<tr><td class="ch">прочее</td><td class="num muted">4</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:4%"></i></div></td><td class="num"><b>4</b></td></tr>
+<tr><td class="ch">Авито ЖБИ</td><td class="num muted">3</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:3%"></i></div></td><td class="num"><b>3</b></td></tr>
+<tr><td class="ch">Веб-форма</td><td class="num muted">—</td><td class="num muted">3</td><td class="barc"><div class="bar"><i style="width:3%"></i></div></td><td class="num"><b>3</b></td></tr>
+<tr><td class="ch">2ГИС БСТ</td><td class="num muted">3</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:3%"></i></div></td><td class="num"><b>3</b></td></tr>
+<tr><td class="ch">Сайт отдел ЖБИ</td><td class="num muted">3</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:3%"></i></div></td><td class="num"><b>3</b></td></tr>
+<tr><td class="ch">Авито БСТ</td><td class="num muted">3</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:3%"></i></div></td><td class="num"><b>3</b></td></tr>
+<tr><td class="ch">Яндекс.Карты ЖБИ</td><td class="num muted">3</td><td class="num muted">—</td><td class="barc"><div class="bar"><i style="width:3%"></i></div></td><td class="num"><b>3</b></td></tr>
+<tr><td class="ch">РБУ Нина Новотитаровка</td><td class="num muted">—</td><td class="num muted">2</td><td class="barc"><div class="bar"><i style="width:2%"></i></div></td><td class="num"><b>2</b></td></tr>
+<tr><td class="ch">Веб-сайт</td><td class="num muted">—</td><td class="num muted">2</td><td class="barc"><div class="bar"><i style="width:2%"></i></div></td><td class="num"><b>2</b></td></tr>
+<tr><td class="ch">Прямой звонок менеджеру</td><td class="num muted">—</td><td class="num muted">2</td><td class="barc"><div class="bar"><i style="width:2%"></i></div></td><td class="num"><b>2</b></td></tr>
+<tr><td class="ch">Telegram</td><td class="num muted">—</td><td class="num muted">1</td><td class="barc"><div class="bar"><i style="width:1%"></i></div></td><td class="num"><b>1</b></td></tr>
+</table>
+<p class="sub">143 звонка пришли с платных каналов — Сайт отдел БСТ (это Яндекс.Директ), Яндекс.Карты, 2ГИС и Авито. При цене лида 618–898 ₽ по этим каналам корзина стоит около 110 тыс ₽ за месяц.</p>
+
+<h2>По дням</h2>
+<div class="chart">
+<div class="day"><i style="height:17%"></i><span>09</span></div><div class="day"><i style="height:87%"></i><span>10</span></div><div class="day"><i style="height:78%"></i><span>11</span></div><div class="day"><i style="height:83%"></i><span>12</span></div><div class="day"><i style="height:39%"></i><span>13</span></div><div class="day"><i style="height:48%"></i><span>14</span></div><div class="day"><i style="height:13%"></i><span>15</span></div><div class="day"><i style="height:4%"></i><span>16</span></div><div class="day"><i style="height:48%"></i><span>17</span></div><div class="day"><i style="height:91%"></i><span>18</span></div><div class="day"><i style="height:100%"></i><span>19</span></div><div class="day"><i style="height:61%"></i><span>20</span></div><div class="day"><i style="height:61%"></i><span>21</span></div><div class="day"><i style="height:22%"></i><span>22</span></div><div class="day"><i style="height:57%"></i><span>24</span></div><div class="day"><i style="height:100%"></i><span>25</span></div><div class="day"><i style="height:35%"></i><span>26</span></div><div class="day"><i style="height:48%"></i><span>27</span></div><div class="day"><i style="height:57%"></i><span>28</span></div><div class="day"><i style="height:35%"></i><span>30</span></div><div class="day"><i style="height:52%"></i><span>31</span></div><div class="day"><i style="height:48%"></i><span>01</span></div><div class="day"><i style="height:43%"></i><span>02</span></div><div class="day"><i style="height:52%"></i><span>03</span></div><div class="day"><i style="height:78%"></i><span>04</span></div><div class="day"><i style="height:13%"></i><span>05</span></div><div class="day"><i style="height:4%"></i><span>06</span></div><div class="day"><i style="height:100%"></i><span>07</span></div><div class="day"><i style="height:4%"></i><span>08</span></div>
+</div>
+<p class="sub">Поток ровный, пиков нет: корзина набирается по 10–15 лидов в день, а не разовым заливом. Значит дело в правиле обработки, а не в одном плохом дне.</p>
+
+<h2>Что делать</h2>
+<table>
+<tr><th>Шаг</th><th>Объём</th><th>Смысл</th></tr>
+<tr><td><b class="good">Вернуть в работу</b></td><td class="num">25</td><td>Запросы КП и заказы с именем, темой и контактом — продавать заново не нужно</td></tr>
+<tr><td><b class="good">Обзвонить</b></td><td class="num">14</td><td>Номера, которые уже покупали у нас; у восьми последняя сделка в этом году</td></tr>
+<tr><td><b class="warn">Квалифицировать</b></td><td class="num">143</td><td>Звонки без истории — прозвонить и проставить причину, иначе канал не измеряется</td></tr>
+<tr><td><b class="warn">Прочитать переписку</b></td><td class="num">24</td><td>Авито-чаты закрыты спамом без чтения; сам коннектор молчит с 28.08</td></tr>
+<tr><td><b>Развести потоки</b></td><td class="num">62</td><td>Ящик sale@ работает и как продажи, и как бухгалтерия с рассылками — запросы улетают вместе с рекламой</td></tr>
+</table>
+
+<footer>Источник: Bitrix24 crm.lead.list, статус «Спам, реклама, сотрудничество» (STATUS_ID=1), период 09.08–08.09.2026. Звонки сверены с историей CRM через поиск дубликатов по номеру: «действующий клиент» — номер с успешной сделкой ранее текущего окна, «дубль» — второй лид того же номера внутри окна. Телефоны и имена на страницу не выносятся, выгрузка для обзвона отдаётся отдельно. Собрано 2026-09-08.</footer>
+</div></body></html>
