@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-13T08:30:37.991Z",
+  "updated": "2026-09-13T10:30:38.334Z",
   "recipes": {
     "300Б": {
       "cement": 0,
@@ -599311,7 +599311,7 @@
     "2026-09-13": {
       "НТ": {
         "totalVolume": 14,
-        "dispatcherVolume": 80.5,
+        "dispatcherVolume": 142.5,
         "recipes": {
           "М300Б\\Х": {
             "totalVolume": 5,
@@ -599341,7 +599341,7 @@
           },
           "250Б": {
             "totalVolume": 9,
-            "dispatcherVolume": 71.5,
+            "dispatcherVolume": 95,
             "factCement": 2.11,
             "factSand": 9.16,
             "factGravel": 8.73,
@@ -599367,7 +599367,20 @@
           },
           "200Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 9,
+            "dispatcherVolume": 21.5,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "300Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 26,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -599510,7 +599523,7 @@
       },
       "ДИН": {
         "totalVolume": 12.8,
-        "dispatcherVolume": 30.4,
+        "dispatcherVolume": 46.3,
         "recipes": {
           "М250КОЛЬЦА": {
             "totalVolume": 2,
@@ -599601,6 +599614,25 @@
                 "devChem": -9.6
               }
             ]
+          }
+        }
+      },
+      "ТИМ": {
+        "totalVolume": 0,
+        "dispatcherVolume": 7.3,
+        "recipes": {
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 7.3,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       }
