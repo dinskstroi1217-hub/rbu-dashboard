@@ -1,14 +1,14 @@
 {
-  "updated": "2026-09-17T16:30:19.545Z",
+  "updated": "2026-09-17T18:30:18.383Z",
   "source_freshness": {
     "sheets": {
-      "batch_id": "016652807dd643b281392f6dde68272b",
-      "published_at": "2026-09-17T16:15:17.381483+00:00",
+      "batch_id": "a2797fc84eda428fb179b9a36244365e",
+      "published_at": "2026-09-17T18:15:19.818594+00:00",
       "last_refresh_status": "ok",
       "dispatcher_diagnostics": [
         {
           "base": "НТ",
-          "accepted_rows": 4503,
+          "accepted_rows": 4508,
           "unknown_grade_rows": 8
         },
         {
@@ -30,31 +30,31 @@
       "sources": [
         {
           "source": "dispatcher_din",
-          "fetched_at": "2026-09-17T16:15:11.496Z",
+          "fetched_at": "2026-09-17T18:15:13.710Z",
           "event_through": "2026-09-17",
           "rows": 33449
         },
         {
           "source": "dispatcher_kr",
-          "fetched_at": "2026-09-17T16:15:08.754Z",
+          "fetched_at": "2026-09-17T18:15:08.218Z",
           "event_through": "2026-09-17",
           "rows": 16005
         },
         {
           "source": "dispatcher_nt",
-          "fetched_at": "2026-09-17T16:15:06.970Z",
+          "fetched_at": "2026-09-17T18:15:04.831Z",
           "event_through": "2026-09-17",
           "rows": 23111
         },
         {
           "source": "dispatcher_tim",
-          "fetched_at": "2026-09-17T16:15:15.658Z",
+          "fetched_at": "2026-09-17T18:15:18.156Z",
           "event_through": "2026-09-17",
           "rows": 19330
         },
         {
           "source": "recipes",
-          "fetched_at": "2026-09-17T16:15:16.320Z",
+          "fetched_at": "2026-09-17T18:15:18.795Z",
           "event_through": "2024-03-01",
           "rows": 57
         }
@@ -609735,7 +609735,7 @@
     "2026-09-17": {
       "НТ": {
         "totalVolume": 2,
-        "dispatcherVolume": 200.3,
+        "dispatcherVolume": 249.3,
         "recipes": {
           "200Б": {
             "totalVolume": 2,
@@ -609817,7 +609817,7 @@
           },
           "М350ПК": {
             "totalVolume": 0,
-            "dispatcherVolume": 59,
+            "dispatcherVolume": 108,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
