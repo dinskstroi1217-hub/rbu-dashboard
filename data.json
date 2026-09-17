@@ -1,14 +1,14 @@
 {
-  "updated": "2026-09-17T12:30:18.824Z",
+  "updated": "2026-09-17T14:30:17.989Z",
   "source_freshness": {
     "sheets": {
-      "batch_id": "3b26bb8cffc04aa698e25a0911a7faec",
-      "published_at": "2026-09-17T12:15:13.160054+00:00",
+      "batch_id": "50cec887606b4354a933a30fc01d5bda",
+      "published_at": "2026-09-17T14:15:13.446816+00:00",
       "last_refresh_status": "ok",
       "dispatcher_diagnostics": [
         {
           "base": "НТ",
-          "accepted_rows": 4495,
+          "accepted_rows": 4496,
           "unknown_grade_rows": 8
         },
         {
@@ -18,43 +18,43 @@
         },
         {
           "base": "ДИН",
-          "accepted_rows": 5869,
+          "accepted_rows": 5875,
           "unknown_grade_rows": 11
         },
         {
           "base": "ТИМ",
-          "accepted_rows": 2784,
+          "accepted_rows": 2786,
           "unknown_grade_rows": 0
         }
       ],
       "sources": [
         {
           "source": "dispatcher_din",
-          "fetched_at": "2026-09-17T12:15:09.633Z",
+          "fetched_at": "2026-09-17T14:15:10.109Z",
           "event_through": "2026-09-17",
           "rows": 33449
         },
         {
           "source": "dispatcher_kr",
-          "fetched_at": "2026-09-17T12:15:06.950Z",
+          "fetched_at": "2026-09-17T14:15:07.672Z",
           "event_through": "2026-09-17",
           "rows": 16005
         },
         {
           "source": "dispatcher_nt",
-          "fetched_at": "2026-09-17T12:15:05.339Z",
+          "fetched_at": "2026-09-17T14:15:04.178Z",
           "event_through": "2026-09-17",
           "rows": 23111
         },
         {
           "source": "dispatcher_tim",
-          "fetched_at": "2026-09-17T12:15:11.496Z",
+          "fetched_at": "2026-09-17T14:15:11.788Z",
           "event_through": "2026-09-17",
           "rows": 19330
         },
         {
           "source": "recipes",
-          "fetched_at": "2026-09-17T12:15:12.148Z",
+          "fetched_at": "2026-09-17T14:15:12.422Z",
           "event_through": "2024-03-01",
           "rows": 57
         }
@@ -609735,7 +609735,7 @@
     "2026-09-17": {
       "НТ": {
         "totalVolume": 2,
-        "dispatcherVolume": 131.8,
+        "dispatcherVolume": 134.3,
         "recipes": {
           "200Б": {
             "totalVolume": 2,
@@ -609791,7 +609791,7 @@
           },
           "300Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 12,
+            "dispatcherVolume": 14.5,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -609954,7 +609954,7 @@
       },
       "ДИН": {
         "totalVolume": 15.4,
-        "dispatcherVolume": 114.7,
+        "dispatcherVolume": 144.4,
         "recipes": {
           "250Б": {
             "totalVolume": 3,
@@ -610038,11 +610038,11 @@
       },
       "ТИМ": {
         "totalVolume": 0,
-        "dispatcherVolume": 11.5,
+        "dispatcherVolume": 23.5,
         "recipes": {
           "250Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 11.5,
+            "dispatcherVolume": 23.5,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
