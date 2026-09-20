@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-20T16:30:20.187Z",
+  "updated": "2026-09-20T18:30:20.654Z",
   "source_freshness": {
     "sheets": {
-      "batch_id": "b72459636ec241ecb7fdf7030e35315f",
-      "published_at": "2026-09-20T16:15:41.794532+00:00",
+      "batch_id": "8c40c81cf7d24c4990a687d7aee2e691",
+      "published_at": "2026-09-20T18:15:58.943726+00:00",
       "last_refresh_status": "ok",
       "dispatcher_diagnostics": [
         {
@@ -18,7 +18,7 @@
         },
         {
           "base": "ДИН",
-          "accepted_rows": 5988,
+          "accepted_rows": 5990,
           "unknown_grade_rows": 11
         },
         {
@@ -30,115 +30,115 @@
       "sources": [
         {
           "source": "dispatcher_din",
-          "fetched_at": "2026-09-20T16:15:08.640Z",
+          "fetched_at": "2026-09-20T18:15:25.678Z",
           "event_through": "2026-09-20",
           "rows": 33452
         },
         {
           "source": "dispatcher_din_fmt",
-          "fetched_at": "2026-09-20T16:15:19.263Z",
+          "fetched_at": "2026-09-20T18:15:34.870Z",
           "event_through": "2026-09-20",
           "rows": 33452
         },
         {
           "source": "dispatcher_kr",
-          "fetched_at": "2026-09-20T16:15:06.493Z",
+          "fetched_at": "2026-09-20T18:15:19.922Z",
           "event_through": "2026-09-20",
           "rows": 16006
         },
         {
           "source": "dispatcher_kr_fmt",
-          "fetched_at": "2026-09-20T16:15:17.101Z",
+          "fetched_at": "2026-09-20T18:15:32.773Z",
           "event_through": "2026-09-20",
           "rows": 16006
         },
         {
           "source": "dispatcher_nt",
-          "fetched_at": "2026-09-20T16:15:05.006Z",
+          "fetched_at": "2026-09-20T18:15:16.246Z",
           "event_through": "2026-09-20",
           "rows": 23111
         },
         {
           "source": "dispatcher_nt_fmt",
-          "fetched_at": "2026-09-20T16:15:15.824Z",
+          "fetched_at": "2026-09-20T18:15:31.069Z",
           "event_through": "2026-09-20",
           "rows": 23111
         },
         {
           "source": "dispatcher_tim",
-          "fetched_at": "2026-09-20T16:15:12.794Z",
+          "fetched_at": "2026-09-20T18:15:28.067Z",
           "event_through": "2026-09-20",
           "rows": 19330
         },
         {
           "source": "dispatcher_tim_fmt",
-          "fetched_at": "2026-09-20T16:15:21.001Z",
+          "fetched_at": "2026-09-20T18:15:36.232Z",
           "event_through": "2026-09-20",
           "rows": 19330
         },
         {
           "source": "enert_materials_fmt",
-          "fetched_at": "2026-09-20T16:15:39.593Z",
+          "fetched_at": "2026-09-20T18:15:56.630Z",
           "event_through": "2026-09-20",
           "rows": 37993
         },
         {
           "source": "jbi_sales_din",
-          "fetched_at": "2026-09-20T16:15:25.069Z",
+          "fetched_at": "2026-09-20T18:15:39.845Z",
           "event_through": "2026-09-18",
           "rows": 19139
         },
         {
           "source": "jbi_sales_kr",
-          "fetched_at": "2026-09-20T16:15:28.949Z",
+          "fetched_at": "2026-09-20T18:15:43.875Z",
           "event_through": "2026-09-18",
           "rows": 13126
         },
         {
           "source": "jbi_sales_tim",
-          "fetched_at": "2026-09-20T16:15:27.310Z",
+          "fetched_at": "2026-09-20T18:15:42.219Z",
           "event_through": "2026-09-18",
           "rows": 6130
         },
         {
           "source": "kip_din",
-          "fetched_at": "2026-09-20T16:15:30.051Z",
+          "fetched_at": "2026-09-20T18:15:45.788Z",
           "event_through": null,
           "rows": 572
         },
         {
           "source": "kip_kr",
-          "fetched_at": "2026-09-20T16:15:33.036Z",
+          "fetched_at": "2026-09-20T18:15:49.074Z",
           "event_through": null,
           "rows": 436
         },
         {
           "source": "kip_nt",
-          "fetched_at": "2026-09-20T16:15:31.171Z",
+          "fetched_at": "2026-09-20T18:15:47.077Z",
           "event_through": null,
           "rows": 508
         },
         {
           "source": "kip_spectech",
-          "fetched_at": "2026-09-20T16:15:37.376Z",
+          "fetched_at": "2026-09-20T18:15:54.007Z",
           "event_through": null,
           "rows": 688
         },
         {
           "source": "kip_tim",
-          "fetched_at": "2026-09-20T16:15:34.323Z",
+          "fetched_at": "2026-09-20T18:15:50.914Z",
           "event_through": null,
           "rows": 509
         },
         {
           "source": "kip_tyagachi",
-          "fetched_at": "2026-09-20T16:15:35.592Z",
+          "fetched_at": "2026-09-20T18:15:52.556Z",
           "event_through": null,
           "rows": 624
         },
         {
           "source": "recipes",
-          "fetched_at": "2026-09-20T16:15:13.910Z",
+          "fetched_at": "2026-09-20T18:15:29.176Z",
           "event_through": "2024-03-01",
           "rows": 57
         }
@@ -627443,7 +627443,7 @@
       },
       "ДИН": {
         "totalVolume": 0,
-        "dispatcherVolume": 230.9,
+        "dispatcherVolume": 289.6,
         "recipes": {
           "300Б": {
             "totalVolume": 0,
@@ -627513,6 +627513,32 @@
           "200Б": {
             "totalVolume": 0,
             "dispatcherVolume": 1.5,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "М250КОЛЬЦА": {
+            "totalVolume": 0,
+            "dispatcherVolume": 15.7,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
+          },
+          "М100БФБС": {
+            "totalVolume": 0,
+            "dispatcherVolume": 43,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
