@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T05:26:00.079Z",
+  "generatedAt": "2026-10-05T05:26:03.934Z",
   "schemaVersion": 1,
   "funnel": "spec",
   "funnelLabel": "Спецтехника",
@@ -2587,7 +2587,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -2738,7 +2738,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -2855,7 +2855,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3003,7 +3003,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3135,7 +3135,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3272,7 +3272,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3397,7 +3397,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3490,7 +3490,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3590,7 +3590,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3696,7 +3696,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3787,7 +3787,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -3811,6 +3811,97 @@
       "from": "2026-09-28",
       "to": "2026-10-04",
       "isoWeek": 40,
+      "isoYear": 2026,
+      "deals": {
+        "total": 16,
+        "won": 0,
+        "wonSum": 0,
+        "inWork": 16,
+        "inWorkSum": 0,
+        "lost": 0,
+        "lostSum": 0,
+        "winRate": null,
+        "noOppCount": 16,
+        "noOppPct": 100
+      },
+      "byStage": [
+        {
+          "stageId": "C14:NEW",
+          "name": "Новый ЛИД",
+          "count": 16,
+          "sum": 0,
+          "semantics": "P"
+        }
+      ],
+      "stageOrder": [],
+      "byManager": [
+        {
+          "name": "Ангелина Зименко",
+          "total": 16,
+          "won": 0,
+          "wonSum": 0,
+          "inWork": 16,
+          "inWorkSum": 0,
+          "lost": 0,
+          "avgDeal": null,
+          "avgCycleDays": null,
+          "conversionRate": null
+        }
+      ],
+      "lostReasons": {},
+      "kpiBlock": {
+        "КП выставлено": {
+          "stageId": "C14:FINAL_INVOICE",
+          "count": 0,
+          "sum": 0
+        },
+        "Текущая сделка": {
+          "stageId": "C14:PREPAYMENT_INVOIC",
+          "count": 0,
+          "sum": 0
+        },
+        "Поиск исполнителей": {
+          "stageId": "C14:PREPARATION",
+          "count": 0,
+          "sum": 0
+        },
+        "В работе": {
+          "stageId": "C14:EXECUTING",
+          "count": 0,
+          "sum": 0
+        }
+      },
+      "bySource": {
+        "Ангелина Зименко": 16
+      },
+      "avito": {
+        "itemsCount": 0,
+        "views": 0,
+        "contacts": 0,
+        "favorites": 0,
+        "calls": 0,
+        "balance": 27682,
+        "conversion": "—",
+        "rentExpired": 7,
+        "scope": "rent"
+      },
+      "metrika": {
+        "visits": 15,
+        "users": 12,
+        "bounceRate": 40,
+        "depth": 1,
+        "bySource": {
+          "Direct traffic": 9,
+          "Search engine traffic": 6
+        },
+        "goalConversions": {}
+      }
+    },
+    {
+      "label": "Неделя 41",
+      "from": "2026-10-05",
+      "to": "2026-10-11",
+      "isoWeek": 41,
       "isoYear": 2026,
       "deals": {
         "total": 0,
@@ -3857,7 +3948,7 @@
         "contacts": 0,
         "favorites": 0,
         "calls": 0,
-        "balance": 29988.17,
+        "balance": 27682,
         "conversion": "—",
         "rentExpired": 7,
         "scope": "rent"
@@ -4807,10 +4898,10 @@
       "to": "2026-10-04",
       "weeksCount": 4,
       "deals": {
-        "total": 70,
+        "total": 86,
         "won": 0,
         "wonSum": 0,
-        "inWork": 68,
+        "inWork": 84,
         "inWorkSum": 0,
         "lost": 0,
         "winRate": null
@@ -4819,7 +4910,7 @@
         {
           "stageId": "C14:NEW",
           "name": "Новый ЛИД",
-          "count": 61,
+          "count": 77,
           "sum": 0,
           "semantics": "P"
         },
@@ -4834,10 +4925,10 @@
       "byManager": [
         {
           "name": "Ангелина Зименко",
-          "total": 67,
+          "total": 83,
           "won": 0,
           "wonSum": 0,
-          "inWork": 67,
+          "inWork": 83,
           "inWorkSum": 0,
           "lost": 0
         },
@@ -4875,14 +4966,149 @@
         }
       },
       "bySource": {
-        "Ангелина Зименко": 68
+        "Ангелина Зименко": 84
       },
       "year": 2026,
       "month": 9,
       "yearMonth": "2026-09"
+    },
+    {
+      "label": "Октябрь 2026",
+      "from": "2026-10-05",
+      "to": "2026-10-11",
+      "weeksCount": 1,
+      "deals": {
+        "total": 0,
+        "won": 0,
+        "wonSum": 0,
+        "inWork": 0,
+        "inWorkSum": 0,
+        "lost": 0,
+        "winRate": null
+      },
+      "byStage": [],
+      "byManager": [],
+      "lostReasons": {},
+      "kpiBlock": {
+        "КП выставлено": {
+          "stageId": 0,
+          "count": 0,
+          "sum": 0
+        },
+        "Текущая сделка": {
+          "stageId": 0,
+          "count": 0,
+          "sum": 0
+        },
+        "Поиск исполнителей": {
+          "stageId": 0,
+          "count": 0,
+          "sum": 0
+        },
+        "В работе": {
+          "stageId": 0,
+          "count": 0,
+          "sum": 0
+        }
+      },
+      "bySource": {},
+      "year": 2026,
+      "month": 10,
+      "yearMonth": "2026-10"
     }
   ],
   "latest": {
+    "label": "Неделя 40",
+    "from": "2026-09-28",
+    "to": "2026-10-04",
+    "isoWeek": 40,
+    "isoYear": 2026,
+    "deals": {
+      "total": 16,
+      "won": 0,
+      "wonSum": 0,
+      "inWork": 16,
+      "inWorkSum": 0,
+      "lost": 0,
+      "lostSum": 0,
+      "winRate": null,
+      "noOppCount": 16,
+      "noOppPct": 100
+    },
+    "byStage": [
+      {
+        "stageId": "C14:NEW",
+        "name": "Новый ЛИД",
+        "count": 16,
+        "sum": 0,
+        "semantics": "P"
+      }
+    ],
+    "stageOrder": [],
+    "byManager": [
+      {
+        "name": "Ангелина Зименко",
+        "total": 16,
+        "won": 0,
+        "wonSum": 0,
+        "inWork": 16,
+        "inWorkSum": 0,
+        "lost": 0,
+        "avgDeal": null,
+        "avgCycleDays": null,
+        "conversionRate": null
+      }
+    ],
+    "lostReasons": {},
+    "kpiBlock": {
+      "КП выставлено": {
+        "stageId": "C14:FINAL_INVOICE",
+        "count": 0,
+        "sum": 0
+      },
+      "Текущая сделка": {
+        "stageId": "C14:PREPAYMENT_INVOIC",
+        "count": 0,
+        "sum": 0
+      },
+      "Поиск исполнителей": {
+        "stageId": "C14:PREPARATION",
+        "count": 0,
+        "sum": 0
+      },
+      "В работе": {
+        "stageId": "C14:EXECUTING",
+        "count": 0,
+        "sum": 0
+      }
+    },
+    "bySource": {
+      "Ангелина Зименко": 16
+    },
+    "avito": {
+      "itemsCount": 0,
+      "views": 0,
+      "contacts": 0,
+      "favorites": 0,
+      "calls": 0,
+      "balance": 27682,
+      "conversion": "—",
+      "rentExpired": 7,
+      "scope": "rent"
+    },
+    "metrika": {
+      "visits": 15,
+      "users": 12,
+      "bounceRate": 40,
+      "depth": 1,
+      "bySource": {
+        "Direct traffic": 9,
+        "Search engine traffic": 6
+      },
+      "goalConversions": {}
+    }
+  },
+  "prev": {
     "label": "Неделя 39",
     "from": "2026-09-21",
     "to": "2026-09-27",
@@ -4956,7 +5182,7 @@
       "contacts": 0,
       "favorites": 0,
       "calls": 0,
-      "balance": 29988.17,
+      "balance": 27682,
       "conversion": "—",
       "rentExpired": 7,
       "scope": "rent"
@@ -4975,119 +5201,60 @@
       "goalConversions": {}
     }
   },
-  "prev": {
-    "label": "Неделя 38",
-    "from": "2026-09-14",
-    "to": "2026-09-20",
-    "isoWeek": 38,
-    "isoYear": 2026,
+  "latestMonth": {
+    "label": "Октябрь 2026",
+    "from": "2026-10-05",
+    "to": "2026-10-11",
+    "weeksCount": 1,
     "deals": {
-      "total": 32,
+      "total": 0,
       "won": 0,
       "wonSum": 0,
-      "inWork": 32,
+      "inWork": 0,
       "inWorkSum": 0,
       "lost": 0,
-      "lostSum": 0,
-      "winRate": null,
-      "noOppCount": 32,
-      "noOppPct": 100
+      "winRate": null
     },
-    "byStage": [
-      {
-        "stageId": "C14:NEW",
-        "name": "Новый ЛИД",
-        "count": 32,
-        "sum": 0,
-        "semantics": "P"
-      }
-    ],
-    "stageOrder": [],
-    "byManager": [
-      {
-        "name": "Ангелина Зименко",
-        "total": 31,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 31,
-        "inWorkSum": 0,
-        "lost": 0,
-        "avgDeal": null,
-        "avgCycleDays": null,
-        "conversionRate": null
-      },
-      {
-        "name": "Ирина Лукина",
-        "total": 1,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 1,
-        "inWorkSum": 0,
-        "lost": 0,
-        "avgDeal": null,
-        "avgCycleDays": null,
-        "conversionRate": null
-      }
-    ],
+    "byStage": [],
+    "byManager": [],
     "lostReasons": {},
     "kpiBlock": {
       "КП выставлено": {
-        "stageId": "C14:FINAL_INVOICE",
+        "stageId": 0,
         "count": 0,
         "sum": 0
       },
       "Текущая сделка": {
-        "stageId": "C14:PREPAYMENT_INVOIC",
+        "stageId": 0,
         "count": 0,
         "sum": 0
       },
       "Поиск исполнителей": {
-        "stageId": "C14:PREPARATION",
+        "stageId": 0,
         "count": 0,
         "sum": 0
       },
       "В работе": {
-        "stageId": "C14:EXECUTING",
+        "stageId": 0,
         "count": 0,
         "sum": 0
       }
     },
-    "bySource": {
-      "Ангелина Зименко": 32
-    },
-    "avito": {
-      "itemsCount": 0,
-      "views": 0,
-      "contacts": 0,
-      "favorites": 0,
-      "calls": 0,
-      "balance": 29988.17,
-      "conversion": "—",
-      "rentExpired": 7,
-      "scope": "rent"
-    },
-    "metrika": {
-      "visits": 17,
-      "users": 15,
-      "bounceRate": 58.8,
-      "depth": 1,
-      "bySource": {
-        "Direct traffic": 13,
-        "Search engine traffic": 4
-      },
-      "goalConversions": {}
-    }
+    "bySource": {},
+    "year": 2026,
+    "month": 10,
+    "yearMonth": "2026-10"
   },
-  "latestMonth": {
+  "prevMonth": {
     "label": "Сентябрь 2026",
     "from": "2026-09-07",
     "to": "2026-10-04",
     "weeksCount": 4,
     "deals": {
-      "total": 70,
+      "total": 86,
       "won": 0,
       "wonSum": 0,
-      "inWork": 68,
+      "inWork": 84,
       "inWorkSum": 0,
       "lost": 0,
       "winRate": null
@@ -5096,7 +5263,7 @@
       {
         "stageId": "C14:NEW",
         "name": "Новый ЛИД",
-        "count": 61,
+        "count": 77,
         "sum": 0,
         "semantics": "P"
       },
@@ -5111,10 +5278,10 @@
     "byManager": [
       {
         "name": "Ангелина Зименко",
-        "total": 67,
+        "total": 83,
         "won": 0,
         "wonSum": 0,
-        "inWork": 67,
+        "inWork": 83,
         "inWorkSum": 0,
         "lost": 0
       },
@@ -5152,164 +5319,11 @@
       }
     },
     "bySource": {
-      "Ангелина Зименко": 68
+      "Ангелина Зименко": 84
     },
     "year": 2026,
     "month": 9,
     "yearMonth": "2026-09"
-  },
-  "prevMonth": {
-    "label": "Август 2026",
-    "from": "2026-08-03",
-    "to": "2026-09-06",
-    "weeksCount": 5,
-    "deals": {
-      "total": 187,
-      "won": 11,
-      "wonSum": 8063700,
-      "inWork": 110,
-      "inWorkSum": 0,
-      "lost": 30,
-      "winRate": 26.8
-    },
-    "byStage": [
-      {
-        "stageId": "C14:EXECUTING",
-        "name": "В работе",
-        "count": 71,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
-        "stageId": "C14:UC_EVVEK0",
-        "name": "Срок работы(не рентабельно)",
-        "count": 29,
-        "sum": 0,
-        "semantics": "F"
-      },
-      {
-        "stageId": "C14:PREPAYMENT_INVOIC",
-        "name": "Текущая сделка",
-        "count": 23,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
-        "stageId": "C14:UC_6Y05CH",
-        "name": "Реклама\\ Внутренняя Коммуникация",
-        "count": 14,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
-        "stageId": "C14:WON",
-        "name": "Сделка успешна",
-        "count": 11,
-        "sum": 8063700,
-        "semantics": "S"
-      },
-      {
-        "stageId": "C14:FINAL_INVOICE",
-        "name": "КП",
-        "count": 2,
-        "sum": 0,
-        "semantics": "P"
-      },
-      {
-        "stageId": "C14:UC_6V1JR9",
-        "name": "Сроки(не успеваем предоставить)",
-        "count": 1,
-        "sum": 0,
-        "semantics": "F"
-      }
-    ],
-    "byManager": [
-      {
-        "name": "Ангелина Зименко",
-        "total": 145,
-        "won": 11,
-        "wonSum": 8063700,
-        "inWork": 106,
-        "inWorkSum": 0,
-        "lost": 28
-      },
-      {
-        "name": "Елена Андреева",
-        "total": 2,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 1,
-        "inWorkSum": 0,
-        "lost": 1
-      },
-      {
-        "name": "Динская Оператор (ops)",
-        "total": 2,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 2,
-        "inWorkSum": 0,
-        "lost": 0
-      },
-      {
-        "name": "Ирина Лукина",
-        "total": 1,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 0,
-        "inWorkSum": 0,
-        "lost": 1
-      },
-      {
-        "name": "Вильдан Азисов (admin)",
-        "total": 1,
-        "won": 0,
-        "wonSum": 0,
-        "inWork": 1,
-        "inWorkSum": 0,
-        "lost": 0
-      }
-    ],
-    "lostReasons": {
-      "Срок работы (не рентабельно)": {
-        "count": 29,
-        "sum": 0
-      },
-      "Сроки (не успеваем)": {
-        "count": 1,
-        "sum": 0
-      }
-    },
-    "kpiBlock": {
-      "КП выставлено": {
-        "stageId": 0,
-        "count": 2,
-        "sum": 0
-      },
-      "Текущая сделка": {
-        "stageId": 0,
-        "count": 23,
-        "sum": 0
-      },
-      "Поиск исполнителей": {
-        "stageId": 0,
-        "count": 0,
-        "sum": 0
-      },
-      "В работе": {
-        "stageId": 0,
-        "count": 71,
-        "sum": 0
-      }
-    },
-    "bySource": {
-      "Ангелина Зименко": 147,
-      "Виктория Генадьева": 3,
-      "Яндекс": 1
-    },
-    "year": 2026,
-    "month": 8,
-    "yearMonth": "2026-08"
   },
   "periodOptions": {
     "weeks": [
@@ -5492,6 +5506,12 @@
         "label": "Неделя 40",
         "from": "2026-09-28",
         "to": "2026-10-04"
+      },
+      {
+        "id": "2026-W41",
+        "label": "Неделя 41",
+        "from": "2026-10-05",
+        "to": "2026-10-11"
       }
     ],
     "months": [
@@ -5536,6 +5556,12 @@
         "label": "Сентябрь 2026",
         "from": "2026-09-07",
         "to": "2026-10-04"
+      },
+      {
+        "id": "2026-10",
+        "label": "Октябрь 2026",
+        "from": "2026-10-05",
+        "to": "2026-10-11"
       }
     ],
     "ranges": [
