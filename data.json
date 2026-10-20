@@ -1,144 +1,144 @@
 {
-  "updated": "2026-10-20T08:30:20.425Z",
+  "updated": "2026-10-20T10:30:20.334Z",
   "source_freshness": {
     "sheets": {
-      "batch_id": "a44ae161222542929455b845460f3ba0",
-      "published_at": "2026-10-20T08:15:43.027437+00:00",
+      "batch_id": "d213c4972499457783869601839b59e8",
+      "published_at": "2026-10-20T10:15:39.626279+00:00",
       "last_refresh_status": "ok",
       "dispatcher_diagnostics": [
         {
           "base": "НТ",
-          "accepted_rows": 5076,
+          "accepted_rows": 5077,
           "unknown_grade_rows": 9
         },
         {
           "base": "КР",
-          "accepted_rows": 3576,
+          "accepted_rows": 3579,
           "unknown_grade_rows": 2
         },
         {
           "base": "ДИН",
-          "accepted_rows": 6765,
+          "accepted_rows": 6774,
           "unknown_grade_rows": 17
         },
         {
           "base": "ТИМ",
-          "accepted_rows": 3381,
+          "accepted_rows": 3385,
           "unknown_grade_rows": 0
         }
       ],
       "sources": [
         {
           "source": "dispatcher_din",
-          "fetched_at": "2026-10-20T08:15:09.175Z",
+          "fetched_at": "2026-10-20T10:15:09.183Z",
           "event_through": "2026-10-20",
           "rows": 34489
         },
         {
           "source": "dispatcher_din_fmt",
-          "fetched_at": "2026-10-20T08:15:17.476Z",
+          "fetched_at": "2026-10-20T10:15:18.149Z",
           "event_through": "2026-10-20",
           "rows": 34489
         },
         {
           "source": "dispatcher_kr",
-          "fetched_at": "2026-10-20T08:15:06.683Z",
-          "event_through": "2026-10-19",
+          "fetched_at": "2026-10-20T10:15:06.679Z",
+          "event_through": "2026-10-20",
           "rows": 17008
         },
         {
           "source": "dispatcher_kr_fmt",
-          "fetched_at": "2026-10-20T08:15:15.464Z",
-          "event_through": "2026-10-19",
+          "fetched_at": "2026-10-20T10:15:15.645Z",
+          "event_through": "2026-10-20",
           "rows": 17008
         },
         {
           "source": "dispatcher_nt",
-          "fetched_at": "2026-10-20T08:15:04.955Z",
+          "fetched_at": "2026-10-20T10:15:04.456Z",
           "event_through": "2026-10-20",
           "rows": 23116
         },
         {
           "source": "dispatcher_nt_fmt",
-          "fetched_at": "2026-10-20T08:15:13.933Z",
+          "fetched_at": "2026-10-20T10:15:13.632Z",
           "event_through": "2026-10-20",
           "rows": 23116
         },
         {
           "source": "dispatcher_tim",
-          "fetched_at": "2026-10-20T08:15:10.889Z",
+          "fetched_at": "2026-10-20T10:15:10.622Z",
           "event_through": "2026-10-20",
           "rows": 19336
         },
         {
           "source": "dispatcher_tim_fmt",
-          "fetched_at": "2026-10-20T08:15:18.809Z",
+          "fetched_at": "2026-10-20T10:15:19.446Z",
           "event_through": "2026-10-20",
           "rows": 19336
         },
         {
           "source": "enert_materials_fmt",
-          "fetched_at": "2026-10-20T08:15:40.758Z",
+          "fetched_at": "2026-10-20T10:15:37.336Z",
           "event_through": "2026-10-20",
           "rows": 37993
         },
         {
           "source": "jbi_sales_din",
-          "fetched_at": "2026-10-20T08:15:23.846Z",
-          "event_through": "2026-10-19",
+          "fetched_at": "2026-10-20T10:15:23.885Z",
+          "event_through": "2026-10-20",
           "rows": 20140
         },
         {
           "source": "jbi_sales_kr",
-          "fetched_at": "2026-10-20T08:15:27.980Z",
+          "fetched_at": "2026-10-20T10:15:27.080Z",
           "event_through": "2026-10-15",
           "rows": 13126
         },
         {
           "source": "jbi_sales_tim",
-          "fetched_at": "2026-10-20T08:15:25.849Z",
+          "fetched_at": "2026-10-20T10:15:25.359Z",
           "event_through": "2026-10-20",
           "rows": 7132
         },
         {
           "source": "kip_din",
-          "fetched_at": "2026-10-20T08:15:29.492Z",
+          "fetched_at": "2026-10-20T10:15:28.529Z",
           "event_through": null,
           "rows": 599
         },
         {
           "source": "kip_kr",
-          "fetched_at": "2026-10-20T08:15:32.648Z",
+          "fetched_at": "2026-10-20T10:15:31.564Z",
           "event_through": null,
           "rows": 449
         },
         {
           "source": "kip_nt",
-          "fetched_at": "2026-10-20T08:15:30.851Z",
+          "fetched_at": "2026-10-20T10:15:29.958Z",
           "event_through": null,
           "rows": 531
         },
         {
           "source": "kip_spectech",
-          "fetched_at": "2026-10-20T08:15:38.481Z",
+          "fetched_at": "2026-10-20T10:15:35.575Z",
           "event_through": null,
           "rows": 714
         },
         {
           "source": "kip_tim",
-          "fetched_at": "2026-10-20T08:15:36.540Z",
+          "fetched_at": "2026-10-20T10:15:32.945Z",
           "event_through": null,
           "rows": 528
         },
         {
           "source": "kip_tyagachi",
-          "fetched_at": "2026-10-20T08:15:37.626Z",
+          "fetched_at": "2026-10-20T10:15:34.291Z",
           "event_through": null,
           "rows": 644
         },
         {
           "source": "recipes",
-          "fetched_at": "2026-10-20T08:15:11.574Z",
+          "fetched_at": "2026-10-20T10:15:11.315Z",
           "event_through": "2024-03-01",
           "rows": 57
         }
@@ -724523,7 +724523,7 @@
     "2026-10-20": {
       "НТ": {
         "totalVolume": 13.77,
-        "dispatcherVolume": 47.5,
+        "dispatcherVolume": 55.5,
         "recipes": {
           "250Б": {
             "totalVolume": 13,
@@ -724565,7 +724565,7 @@
           },
           "300Б": {
             "totalVolume": 0.77,
-            "dispatcherVolume": 20,
+            "dispatcherVolume": 28,
             "factCement": 0.21,
             "factSand": 1.54,
             "factGravel": 0.7,
@@ -724748,7 +724748,7 @@
       },
       "КР": {
         "totalVolume": 11,
-        "dispatcherVolume": 0,
+        "dispatcherVolume": 19.5,
         "recipes": {
           "М100БФБС": {
             "totalVolume": 1.5,
@@ -724790,7 +724790,7 @@
           },
           "300Б": {
             "totalVolume": 8,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 8,
             "factCement": 2.26,
             "factSand": 7.12,
             "factGravel": 8.35,
@@ -724816,7 +724816,7 @@
           },
           "М150 Р": {
             "totalVolume": 1.5,
-            "dispatcherVolume": 0,
+            "dispatcherVolume": 1.5,
             "factCement": 0.42,
             "factSand": 2.28,
             "factGravel": 0,
@@ -724839,16 +724839,29 @@
                 "devChem": -8.33
               }
             ]
+          },
+          "250Б": {
+            "totalVolume": 0,
+            "dispatcherVolume": 10,
+            "factCement": 0,
+            "factSand": 0,
+            "factGravel": 0,
+            "factChem": 0,
+            "normCement": 0,
+            "normSand": 0,
+            "normGravel": 0,
+            "normChem": 0,
+            "batches": []
           }
         }
       },
       "ТИМ": {
         "totalVolume": 11,
-        "dispatcherVolume": 77.1,
+        "dispatcherVolume": 104.6,
         "recipes": {
           "300Б": {
             "totalVolume": 1,
-            "dispatcherVolume": 32,
+            "dispatcherVolume": 59.5,
             "factCement": 0.28,
             "factSand": 1.9,
             "factGravel": 2,
@@ -724928,7 +724941,7 @@
       },
       "ДИН": {
         "totalVolume": 21.5,
-        "dispatcherVolume": 60.3,
+        "dispatcherVolume": 129.8,
         "recipes": {
           "200Б": {
             "totalVolume": 7,
