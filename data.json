@@ -1,19 +1,19 @@
 {
-  "updated": "2026-10-30T14:30:21.580Z",
+  "updated": "2026-10-30T16:30:22.929Z",
   "source_freshness": {
     "sheets": {
-      "batch_id": "238c5bb7845f4aa587eed5c4fb66dd3b",
-      "published_at": "2026-10-30T14:15:45.976492+00:00",
+      "batch_id": "5fe15d785f5945cd9fe501a8497bda54",
+      "published_at": "2026-10-30T16:16:02.696334+00:00",
       "last_refresh_status": "ok",
       "dispatcher_diagnostics": [
         {
           "base": "НТ",
-          "accepted_rows": 5352,
+          "accepted_rows": 5353,
           "unknown_grade_rows": 11
         },
         {
           "base": "КР",
-          "accepted_rows": 3821,
+          "accepted_rows": 3823,
           "unknown_grade_rows": 4
         },
         {
@@ -30,115 +30,115 @@
       "sources": [
         {
           "source": "dispatcher_din",
-          "fetched_at": "2026-10-30T14:15:09.658Z",
+          "fetched_at": "2026-10-30T16:15:24.956Z",
           "event_through": "2026-10-30",
           "rows": 34506
         },
         {
           "source": "dispatcher_din_fmt",
-          "fetched_at": "2026-10-30T14:15:18.342Z",
+          "fetched_at": "2026-10-30T16:15:36.996Z",
           "event_through": "2026-10-30",
           "rows": 34506
         },
         {
           "source": "dispatcher_kr",
-          "fetched_at": "2026-10-30T14:15:07.440Z",
+          "fetched_at": "2026-10-30T16:15:18.588Z",
           "event_through": "2026-10-30",
           "rows": 17011
         },
         {
           "source": "dispatcher_kr_fmt",
-          "fetched_at": "2026-10-30T14:15:16.216Z",
+          "fetched_at": "2026-10-30T16:15:34.596Z",
           "event_through": "2026-10-30",
           "rows": 17011
         },
         {
           "source": "dispatcher_nt",
-          "fetched_at": "2026-10-30T14:15:05.469Z",
+          "fetched_at": "2026-10-30T16:15:16.845Z",
           "event_through": "2026-10-30",
           "rows": 24118
         },
         {
           "source": "dispatcher_nt_fmt",
-          "fetched_at": "2026-10-30T14:15:14.593Z",
+          "fetched_at": "2026-10-30T16:15:32.870Z",
           "event_through": "2026-10-30",
           "rows": 24118
         },
         {
           "source": "dispatcher_tim",
-          "fetched_at": "2026-10-30T14:15:11.896Z",
+          "fetched_at": "2026-10-30T16:15:29.808Z",
           "event_through": "2026-10-30",
           "rows": 20336
         },
         {
           "source": "dispatcher_tim_fmt",
-          "fetched_at": "2026-10-30T14:15:19.907Z",
+          "fetched_at": "2026-10-30T16:15:39.020Z",
           "event_through": "2026-10-30",
           "rows": 20336
         },
         {
           "source": "enert_materials_fmt",
-          "fetched_at": "2026-10-30T14:15:43.424Z",
+          "fetched_at": "2026-10-30T16:16:00.101Z",
           "event_through": "2026-10-30",
           "rows": 37993
         },
         {
           "source": "jbi_sales_din",
-          "fetched_at": "2026-10-30T14:15:25.680Z",
+          "fetched_at": "2026-10-30T16:15:42.847Z",
           "event_through": "2026-10-30",
           "rows": 20140
         },
         {
           "source": "jbi_sales_kr",
-          "fetched_at": "2026-10-30T14:15:29.286Z",
+          "fetched_at": "2026-10-30T16:15:46.872Z",
           "event_through": "2026-10-15",
           "rows": 13126
         },
         {
           "source": "jbi_sales_tim",
-          "fetched_at": "2026-10-30T14:15:27.685Z",
+          "fetched_at": "2026-10-30T16:15:45.220Z",
           "event_through": "2026-10-30",
           "rows": 7132
         },
         {
           "source": "kip_din",
-          "fetched_at": "2026-10-30T14:15:31.185Z",
+          "fetched_at": "2026-10-30T16:15:48.351Z",
           "event_through": null,
           "rows": 626
         },
         {
           "source": "kip_kr",
-          "fetched_at": "2026-10-30T14:15:33.836Z",
+          "fetched_at": "2026-10-30T16:15:51.629Z",
           "event_through": null,
           "rows": 462
         },
         {
           "source": "kip_nt",
-          "fetched_at": "2026-10-30T14:15:32.997Z",
+          "fetched_at": "2026-10-30T16:15:49.823Z",
           "event_through": null,
           "rows": 554
         },
         {
           "source": "kip_spectech",
-          "fetched_at": "2026-10-30T14:15:39.106Z",
+          "fetched_at": "2026-10-30T16:15:55.858Z",
           "event_through": null,
           "rows": 741
         },
         {
           "source": "kip_tim",
-          "fetched_at": "2026-10-30T14:15:35.452Z",
+          "fetched_at": "2026-10-30T16:15:53.010Z",
           "event_through": null,
           "rows": 547
         },
         {
           "source": "kip_tyagachi",
-          "fetched_at": "2026-10-30T14:15:37.056Z",
+          "fetched_at": "2026-10-30T16:15:54.671Z",
           "event_through": null,
           "rows": 666
         },
         {
           "source": "recipes",
-          "fetched_at": "2026-10-30T14:15:12.502Z",
+          "fetched_at": "2026-10-30T16:15:30.453Z",
           "event_through": "2024-03-01",
           "rows": 57
         }
@@ -761703,7 +761703,7 @@
     "2026-10-30": {
       "НТ": {
         "totalVolume": 8.5,
-        "dispatcherVolume": 182.5,
+        "dispatcherVolume": 184.5,
         "recipes": {
           "400Б": {
             "totalVolume": 8.5,
@@ -761797,7 +761797,7 @@
           },
           "300Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 10,
+            "dispatcherVolume": 12,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
@@ -762010,7 +762010,7 @@
       },
       "КР": {
         "totalVolume": 18,
-        "dispatcherVolume": 107.9,
+        "dispatcherVolume": 122.9,
         "recipes": {
           "350Б": {
             "totalVolume": 18,
@@ -762065,7 +762065,7 @@
           },
           "300Б": {
             "totalVolume": 0,
-            "dispatcherVolume": 14,
+            "dispatcherVolume": 29,
             "factCement": 0,
             "factSand": 0,
             "factGravel": 0,
