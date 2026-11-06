@@ -56,7 +56,7 @@
   .dk-table td .dlt { color: var(--dk-ink-3); }
   .dk-table td .dlt.good { color: var(--dk-success); } .dk-table td .dlt.bad { color: var(--dk-danger); }
   .dlt.good { color: var(--dk-success); } .dlt.bad { color: var(--dk-danger); } .dlt.flat { color: var(--dk-ink-3); }
-  tr.wk-in td { background: var(--dk-primary-tint); }
+  tr.wk-in td, td.wk { background: var(--dk-primary-tint); }
   .mini { display: inline-block; vertical-align: middle; height: 6px; border-radius: 3px; background: var(--dk-primary); margin-left: 6px; }
   .mini.acc { background: var(--dk-accent); }
 </style>
@@ -126,7 +126,7 @@
   <div class="grid2">
     <div class="dk-card">
       <div class="seg split" style="float:right"><button class="dk-btn dk-btn--ghost on" data-split="all">Всего</button><button class="dk-btn dk-btn--ghost" data-split="Бетон">Бетон</button><button class="dk-btn dk-btn--ghost" data-split="ЖБИ">ЖБИ</button></div>
-      <h2>Выручка месяца: откуда пришли деньги</h2>
+      <h2>Выручка месяца по дате закрытия: откуда пришли деньги</h2>
       <div class="dk-muted">Все успешные сделки, закрытые в месяце (по дате завершения), — с происхождением.</div>
       <div id="periodStack"></div>
       <div class="scroll"><table class="dk-table" id="period"></table></div>
@@ -144,8 +144,10 @@
 
   <div class="dk-card">
     <h2>Менеджеры</h2>
-    <div class="dk-muted">Обращения — у кого первый лид обращения (ответственный при первом касании). Выручка — по сделкам, привязанным к этим обращениям.</div>
+    <div class="dk-muted">Обращения — у кого первый лид обращения (принял). Выручка здесь — по сделкам, привязанным к этим обращениям, то есть тоже по принявшему; по менеджеру, закрывшему сделку, — таблица ниже.</div>
     <div class="scroll"><table class="dk-table" id="mgr"></table></div>
+    <h3 style="margin-top:16px">Выручка месяца по менеджеру сделки (по дате закрытия)</h3>
+    <div class="scroll"><table class="dk-table" id="closers"></table></div>
   </div>
 
   <div class="grid2">
@@ -220,11 +222,22 @@
   const prevKey = k => { const ms = Object.keys(DATA.months).sort(); const i = ms.indexOf(k); return i > 0 ? ms[i - 1] : null; };
   const romiCls = v => v == null ? '' : v >= 0 ? 'good' : 'bad';
 
+  // платные каналы блока (с расходом): цена обращения/целевого/покупателя считается по ним, бесплатные входящие (почта, оффлайн) не размывают
+  function paidOf(block) {
+    const rows = (block.channels || []).filter(c => c.kind === 'marketing' && c.spend != null);
+    const s = { requests: 0, target: 0, buyers: 0, buyersNew: 0, spend: block.marketing ? block.marketing.spend : null };
+    rows.forEach(c => { s.requests += c.requests || 0; s.target += c.target || 0; s.buyers += c.buyers || 0; s.buyersNew += c.buyersNew || 0; });
+    const dv = n => (s.spend != null && n) ? s.spend / n : null;
+    s.cpl = dv(s.requests); s.costTarget = dv(s.target); s.costBuyer = dv(s.buyers); s.costBuyerNew = dv(s.buyersNew);
+    return s;
+  }
   function render() {
     const m = DATA.months[month];
     if (view === 'kpi') { renderKPI(); return; }
     const b = m[line];
     const mk = b.marketing;
+    const specView = line === 'spec';   // спецтехника: выручка/клиенты/менеджеры/качество/LTV считаются только по Бетону и ЖБИ — прячем
+    [$('period').closest('.grid2'), $('mgr').closest('.dk-card'), $('ltvCard'), $('quality').closest('.dk-card')].forEach(el => { if (el) el.style.display = specView ? 'none' : ''; });
     const lineName = line === 'main' ? 'Бетон и ЖБИ' : 'Спецтехника';
     $('sub').textContent = `${lineName} · ${m.month} · обращение → успешная сделка → деньги`;
     // баннеры
@@ -232,25 +245,30 @@
     if (m.matureDays < 0) ban.push(`<div class="dk-banner dk-banner--info">Месяц ещё идёт: цифры на сегодня, расход Я.Бизнеса взят пропорционально прошедшим дням. Пересчёт каждую ночь.</div>`);
     else if (m.matureDays < 45) ban.push(`<div class="dk-banner dk-banner--info">Месяц закрыт ${m.matureDays} дн. назад: обращения конца месяца ещё превращаются в сделки, выручка и конверсия будут расти. Пересчёт каждую ночь.</div>`);
     if (line === 'spec' && !b.total.dealsWon) ban.push(`<div class="dk-banner dk-banner--warn">Спецтехника: успешных сделок в Битриксе за месяц нет (последние заведены 05.08.2026), лиды записаны с источником — именем менеджера. Сквозной счёт по Битриксу невозможен, пока продажи спецтехники не заносятся в воронку.</div>`);
+    if (specView) ban.push(`<div class="dk-banner dk-banner--info">Спецтехника: показаны обращения, каналы, недели и расход. Выручка, клиенты, менеджеры и качество цепочки считаются только по Бетону и ЖБИ.</div>`);
     const miss = (mk.spendMissing || []);
     if (miss.length) ban.push(`<div class="dk-banner dk-banner--warn">Расход неполный: ${miss.map(esc).join('; ')}. Цена лида и ROMI по этим каналам занижены или не считаются.</div>`);
     $('banners').innerHTML = ban.join('');
-    // KPI маркетинга. Пока месяц идёт или покупок нет — окупаемость не показываем (ROMI −100 % от нуля выручки вводит в заблуждение)
-    const early = m.matureDays < 0 || !mk.buyers;
-    const pk = prevKey(month), pm = pk ? DATA.months[pk] : null, pb = pm ? pm[line] : null, pmk = pb ? pb.marketing : null;
+    // KPI маркетинга. Месяц идёт или покупок нет — окупаемость не показываем; закрыт < 30 дн — деньги «дозревают», стрелки по ним не красим
+    const running = m.matureDays < 0, early = running || !mk.buyers, fresh = m.matureDays < 30;
+    const whyNo = running ? 'месяц идёт — считать рано' : 'покупок нет';
+    const pd = paidOf(b);
+    const pk = prevKey(month), pm = pk ? DATA.months[pk] : null, pb = pm ? pm[line] : null, pmk = pb ? pb.marketing : null, ppd = pb ? paidOf(pb) : null;
     const lbl = pk ? 'к ' + MNG[+pk.split('-')[1] - 1] : '';
-    const D = (f, o = {}) => (early || !pmk) ? '' : delta(mk[f], pmk[f], { ...o, label: lbl });
+    const MONEY = new Set(['buyers', 'buyersNew', 'revenue', 'conversionTarget', 'costBuyer', 'costBuyerNew', 'costNewBuyer', 'drr', 'romi']);
+    const D = (f, o = {}) => (early || !pmk) ? '' : (fresh && MONEY.has(f)) ? `<div class="dlt flat">дозревает · ${lbl}</div>` : delta(mk[f], pmk[f], { ...o, label: lbl });
+    const Dp = (f, o = {}) => (early || !ppd) ? '' : (fresh && MONEY.has(f)) ? `<div class="dlt flat">дозревает · ${lbl}</div>` : delta(pd[f], ppd[f], { ...o, label: lbl });
     $('kpis').innerHTML = [
       kpi('Расход на рекламу', rub(mk.spend), miss.length ? 'есть пробелы в данных' : 'все сервисы', '', D('spend', { neutral: true })),
       kpi('Обращений с рекламы', num(mk.requests), `лидов ${num(mk.leads)} · новых клиентов ${num(mk.new)}`, '', D('requests')),
       kpi('Целевых', num(mk.target), `мусор (спам, дубли) ${num(mk.junk)}`, '', D('target')),
-      kpi('Купили', num(mk.buyers), `новых покупателей ${num(mk.buyersNew)}`, '', D('buyers')),
+      kpi('Купили', num(mk.buyers), `первая покупка ${num(mk.buyersNew)} (новые + был в базе)`, '', D('buyers')),
       kpi('Конверсия', pc(mk.conversionTarget), 'целевое обращение → покупка', '', D('conversionTarget', { pp: true })),
-      kpi('Выручка с рекламы', rub(mk.revenue), `по воронке ${rub(mk.revenueStrong)}`, '', D('revenue')),
-      kpi('Цена обращения', rub(mk.cpl), `целевого ${rub(mk.costTarget)}`, '', D('cpl', { lower: true })),
-      early ? kpi('Цена покупателя', '—', 'месяц идёт — считать рано') : kpi('Цена покупателя', rub(mk.costBuyer), `нового ${rub(mk.costNewBuyer)}`, '', D('costBuyer', { lower: true })),
-      early ? kpi('ДРР', '—', 'месяц идёт — считать рано') : kpi('ДРР', pc(mk.drr), 'расход / выручка', '', D('drr', { lower: true, pp: true })),
-      early ? kpi('ROMI', '—', 'месяц идёт — считать рано') : kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход', romiCls(mk.romi), D('romi', { pp: true })),
+      kpi('Выручка с рекламы', rub(mk.revenue), `по обращениям месяца · по воронке ${rub(mk.revenueStrong)}`, '', D('revenue')),
+      kpi('Цена обращения', rub(pd.cpl), `платные каналы · целевого ${rub(pd.costTarget)}`, '', Dp('cpl', { lower: true })),
+      early ? kpi('Цена покупателя', '—', whyNo) : kpi('Цена покупателя', rub(pd.costBuyer), `платные каналы · первой покупки ${rub(pd.costBuyerNew)}`, '', Dp('costBuyer', { lower: true })),
+      early ? kpi('ДРР', '—', whyNo) : kpi('ДРР', pc(mk.drr), 'расход / выручка', '', D('drr', { lower: true, pp: true })),
+      early ? kpi('ROMI', '—', whyNo) : kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход · от выручки, не от прибыли', romiCls(mk.romi), D('romi', { pp: true })),
     ].join('');
     // каналы
     const rows = b.channels;
@@ -258,12 +276,13 @@
     const head = '<tr><th>Канал</th><th class="dk-num">Обращ.</th><th class="dk-num">Мусор</th><th class="dk-num">Целевых</th>' +
       '<th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th>' +
       '<th class="dk-num">Расход</th><th class="dk-num">Цена обращ.</th><th class="dk-num">Цена покуп.</th><th class="dk-num">ДРР</th><th class="dk-num">ROMI</th></tr>';
-    const cut = (r, v) => (early || !r.buyers) ? '—' : v;   // окупаемость — только когда есть покупки и месяц закрыт
+    const low = r => r.kind === 'marketing' && ((r.target || 0) < 10 || (r.buyers || 0) < 3);   // конверсия/окупаемость канала — шум
+    const cut = (r, v) => (early || fresh || !r.buyers || low(r)) ? '—' : v;   // окупаемость — когда есть покупки, месяц дозрел и данных достаточно
     const prevCh = n => (pb && !early) ? (pb.channels || []).find(c => c.channel === n) : null;
-    const cd = (r, f, o = {}) => { const pr = r._prev; return pr ? delta(r[f], pr[f], o).replace('<div class="dlt', '<div class="dlt') : ''; };
+    const cd = (r, f, o = {}) => { const pr = r._prev; if (!pr) return ''; if (fresh && (f === 'buyers' || f === 'revenue')) return '<div class="dlt flat">дозревает</div>'; return delta(r[f], pr[f], o); };
     const tr = (r, cls) => `<tr class="${cls || ''}"><td class="name">${esc(r.channel)}${r.spendMissing ? ' <span class="dk-badge dk-badge--warn">расход неполный</span>' : ''}</td>` +
       `<td class="dk-num">${num(r.requests)}${cd(r, 'requests')}</td><td class="dk-num muted0">${num(r.junk)}</td><td class="dk-num">${num(r.target)}</td>` +
-      `<td class="dk-num">${num(r.buyers)}${cd(r, 'buyers')}</td><td class="dk-num">${pc(r.conversionTarget)}</td>` +
+      `<td class="dk-num">${num(r.buyers)}${cd(r, 'buyers')}</td><td class="dk-num${low(r) ? ' muted0' : ''}" title="${low(r) ? 'мало данных: меньше 10 целевых или 3 покупок' : ''}">${pc(r.conversionTarget)}${low(r) ? '*' : ''}</td>` +
       `<td class="dk-num" title="по воронке ${rub(r.revenueStrong)} · от новых клиентов ${rub(r.revenueNewClients)}">${rub(r.revenue)}${cd(r, 'revenue')}</td>` +
       `<td class="dk-num">${rub(r.spend)}</td><td class="dk-num">${rub(r.cpl)}${r.spend == null ? '' : cd(r, 'cpl', { lower: true })}</td>` +
       `<td class="dk-num">${r.spend == null ? '—' : cut(r, rub(r.costBuyer))}</td><td class="dk-num">${r.spend == null ? '—' : cut(r, pc(r.drr))}</td>` +
@@ -276,12 +295,12 @@
       '<tr class="sep"><td colspan="12"><span class="dk-kicker">Продажи и прочие источники (без рекламного расхода)</span></td></tr>' + slRows.map(r => tr(r)).join('') +
       tr({ ...b.nonMarketing, channel: 'Итого продажи', kind: 'sales' }, 'sum') + tr({ ...b.total, channel: 'Всего', kind: 'sales' }, 'sum');
     renderWeeks(m);
-    $('chanNote').textContent = (pk && !early ? 'Стрелки — изменение ' + lbl + ' (зелёный — лучше). ' : '') + 'Наведите на выручку — видно, сколько «по воронке» и от новых клиентов. Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
+    $('chanNote').textContent = '«*» — мало данных (меньше 10 целевых или 3 покупок): конверсия и окупаемость канала — шум. ' + (fresh && !early ? 'Месяц закрыт меньше 30 дн назад — покупки и выручка ещё дозревают, окупаемость не считаем. ' : '') + (pk && !early ? 'Стрелки — изменение ' + lbl + ' (зелёный — лучше). ' : '') + 'Наведите на выручку — видно, сколько «по воронке» и от новых клиентов. Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
       m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» — звонки на номера сайта и заявки с форм: Директ и SEO внутри не разделить (номер на сайте один, метки у форм почти не передаются).';
     // выручка по дате закрытия
     const p = m.period;
     const sp = split !== 'all' && p.byOriginLine && p.byOriginLine[split];
-    const origins = sp ? p.byOriginLine[split] : p.byOrigin;
+    const origins = split === 'all' ? p.byOrigin : (sp ? p.byOriginLine[split] : []);
     const pSum = origins.reduce((a, o) => a + o.sum, 0), pDeals = origins.reduce((a, o) => a + o.deals, 0), tot = Math.max(1, pSum);
     const grp = { marketing: 0, sales: 0, repeat: 0, untraced: 0 };
     Object.entries(p.byLine).filter(([ln]) => !sp || ln === split).forEach(([, v]) => Object.entries(v).forEach(([k, s]) => grp[k] = (grp[k] || 0) + s));
@@ -290,21 +309,22 @@
     $('periodStack').innerHTML = `<div class="stack">${Object.keys(grp).map(k => `<span style="width:${100 * grp[k] / tot}%;background:${colors[k]}"></span>`).join('')}</div>` +
       `<div class="legend">${Object.keys(grp).map(k => `<span><i style="background:${colors[k]}"></i>${names[k]} ${rub(grp[k])} (${pc(Math.round(1000 * grp[k] / tot) / 10)})</span>`).join('')}</div>`;
     $('period').innerHTML = '<tr><th>Происхождение</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th><th class="dk-num">Доля</th></tr>' +
-      origins.map(o => `<tr><td class="name">${esc(o.origin)}</td><td class="dk-num">${num(o.deals)}</td><td class="dk-num">${rub(o.sum)}</td><td class="dk-num">${pc(Math.round(1000 * o.sum / tot) / 10)}</td></tr>`).join('') +
+      (origins.length ? origins : []).map(o => `<tr><td class="name">${esc(o.origin)}</td><td class="dk-num">${num(o.deals)}</td><td class="dk-num">${rub(o.sum)}</td><td class="dk-num">${pc(Math.round(1000 * o.sum / tot) / 10)}</td></tr>`).join('') +
+      (!origins.length ? `<tr><td colspan="4" class="muted0">нет данных по направлению «${esc(split)}» за этот месяц</td></tr>` : '') +
       `<tr class="sum"><td>Всего закрыто в месяце${sp ? ' · ' + split : ''}</td><td class="dk-num">${num(pDeals)}</td><td class="dk-num">${rub(pSum)}</td><td></td></tr>`;
     const tl = (!sp && p.telLines && p.telLines.length) ? p.telLines : [];
     $('telLines').innerHTML = tl.length ? '<tr><th>Повторные продажи: последний звонок клиента за 7 дн до сделки</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th></tr>' +
       tl.slice(0, 15).map(x => `<tr><td class="name">${esc(x.line)}</td><td class="dk-num">${num(x.deals)}</td><td class="dk-num">${rub(x.sum)}</td></tr>`).join('') : '';
     // клиенты и направления
-    const cRow = (n, a) => `<tr><td class="name">${esc(n)}</td><td class="dk-num">${num(a.requests)}</td><td class="dk-num">${num(a.target)}</td><td class="dk-num">${num(a.buyers)}</td><td class="dk-num">${pc(a.conversionTarget)}</td><td class="dk-num">${rub(a.revenue)}</td></tr>`;
+    const cRow = (n, a, badge = '') => `<tr><td class="name">${esc(n)}${badge}</td><td class="dk-num">${num(a.requests)}</td><td class="dk-num">${num(a.target)}</td><td class="dk-num">${num(a.buyers)}</td><td class="dk-num">${pc(a.conversionTarget)}</td><td class="dk-num">${rub(a.revenue)}</td></tr>`;
     const cHead = '<tr><th></th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th></tr>';
-    const bc = split !== 'all' && m.byClientLine && m.byClientLine[split] ? m.byClientLine[split] : m.byClient;
-    $('clients').innerHTML = cHead + Object.entries(bc).map(([k, a]) => cRow(k[0].toUpperCase() + k.slice(1), a)).join('');
-    $('linesTbl').innerHTML = cHead + Object.entries(m.lines).filter(([k]) => line === 'spec' ? k === 'Спецтехника' : k !== 'Спецтехника').map(([k, a]) => cRow(k + ' — всего', a.all) + cRow(k + ' — с рекламы', a.marketing)).join('');
+    const bc = split === 'all' ? m.byClient : (m.byClientLine && m.byClientLine[split]) || null;
+    $('clients').innerHTML = !bc ? `<tr><td class="muted0">нет данных по направлению «${esc(split)}»</td></tr>` : cHead + Object.entries(bc).map(([k, a]) => cRow(k[0].toUpperCase() + k.slice(1), a)).join('');
+    $('linesTbl').innerHTML = cHead + Object.entries(m.lines).filter(([k]) => line === 'spec' ? k === 'Спецтехника' : k !== 'Спецтехника').map(([k, a]) => cRow(k + ' — всего', a.all) + cRow(k + ' — с рекламы', a.marketing, k === 'ЖБИ' ? ' <span class="dk-badge dk-badge--warn" title="400 из 434 успешных сделок ЖБИ без клиента в карточке — продажи с рекламы не связать">деньги не прослеживаются</span>' : '')).join('');
     // менеджеры: операторы РБУ, диспетчеры и служебные учётки — одной строкой внизу
     const OPS = /оператор|диспетчер|рбу|^id-|дударев|зименко|читчян/i;
     const mgrs = m.managers.filter(x => !OPS.test(x.manager) && (x.requests >= 3 || x.revenue > 0));
-    const ops = m.managers.filter(x => OPS.test(x.manager));
+    const ops = m.managers.filter(x => OPS.test(x.manager) || !(x.requests >= 3 || x.revenue > 0));   // операторы + те, у кого 1–2 обращения
     const opsSum = ops.reduce((a, x) => ({ n: a.n + x.requests, b: a.b + x.buyers, r: a.r + x.revenue }), { n: 0, b: 0, r: 0 });
     $('mgr').innerHTML = '<tr><th>Менеджер</th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th>' +
       '<th class="dk-num">Выручка</th><th class="dk-num">Ср. чек</th><th class="dk-num">Рекл. обращ.</th><th class="dk-num">Рекл. купили</th><th class="dk-num">Рекл. конв.</th><th class="dk-num">Рекл. выручка</th><th class="dk-num">Сделок с 0 ₽</th></tr>' +
@@ -313,6 +333,9 @@
         `<td class="dk-num">${num(x.mktRequests)}</td><td class="dk-num">${num(x.mktBuyers)}</td><td class="dk-num">${pc(x.mktConversionTarget)}</td>` +
         `<td class="dk-num">${rub(x.mktRevenue)}</td><td class="dk-num ${x.zeroSumWon ? 'warn' : 'muted0'}">${num(x.zeroSumWon)}</td></tr>`).join('') +
       (ops.length ? `<tr class="sum"><td class="name">Операторы РБУ, диспетчеры, прочие (${ops.length})</td><td class="dk-num">${num(opsSum.n)}</td><td></td><td class="dk-num">${num(opsSum.b)}</td><td></td><td class="dk-num">${rub(opsSum.r)}</td><td colspan="6"></td></tr>` : '');
+    const clo = (p.byCloser || []).filter(x => x.total > 0).slice(0, 25);
+    $('closers').innerHTML = clo.length ? '<tr><th>Менеджер сделки</th><th class="dk-num">С рекламы</th><th class="dk-num">С обращений в продажи</th><th class="dk-num">Повторные</th><th class="dk-num">Не прослеж.</th><th class="dk-num">Итого</th></tr>' +
+      clo.map(x => `<tr><td class="name">${esc(x.manager)}</td><td class="dk-num">${rub(x.marketing || 0)}</td><td class="dk-num">${rub(x.sales || 0)}</td><td class="dk-num">${rub(x.repeat || 0)}</td><td class="dk-num">${rub(x.untraced || 0)}</td><td class="dk-num">${rub(x.total)}</td></tr>`).join('') : '';
     // расходы
     $('spend').innerHTML = '<tr><th>Сервис</th><th>Кабинет</th><th class="dk-num">Сумма</th><th>Откуда</th></tr>' +
       m.spend.filter(s => (line === 'main') === (s.line !== 'spec')).map(s => `<tr><td>${esc(s.service)}</td><td class="name">${esc(s.cabinet)}</td><td class="dk-num">${s.amount == null ? '<span class="dk-badge dk-badge--warn">нет данных</span>' : rub(s.amount)}</td>` +
@@ -344,12 +367,12 @@
   // ── KPI-маркетинг ──
   const KPI = [
     { n: 1, name: 'Целевые обращения с рекламы', unit: 'шт', up: true, zone: 'm', get: m => m.main.marketing.target },
-    { n: 2, name: 'Цена целевого обращения', unit: '₽', up: false, zone: 'm', get: m => m.main.marketing.costTarget },
+    { n: 2, name: 'Цена целевого обращения (платные каналы)', unit: '₽', up: false, zone: 'm', get: m => paidOf(m.main).costTarget },
     { n: 3, name: 'Доля мусора (спам, дубли)', unit: '%', up: false, zone: 'm', pp: true,
       get: m => m.main.marketing.requests ? Math.round(1000 * m.main.marketing.junk / m.main.marketing.requests) / 10 : null },
     { n: 4, name: 'Целевые обращения ЖБИ с рекламы', unit: 'шт', up: true, zone: 'm', get: m => (m.lines['ЖБИ'] || {}).marketing?.target ?? null },
-    { n: 5, name: 'Новые покупатели с рекламы', unit: 'шт', up: true, zone: 's', ripe: true, get: m => m.main.marketing.buyersNew },
-    { n: 6, name: 'Цена нового покупателя', unit: '₽', up: false, zone: 's', ripe: true, get: m => m.main.marketing.costNewBuyer },
+    { n: 5, name: 'Первые покупки с рекламы (новые + был в базе)', unit: 'шт', up: true, zone: 's', ripe: true, get: m => m.main.marketing.buyersNew },
+    { n: 6, name: 'Цена первой покупки (платные каналы)', unit: '₽', up: false, zone: 's', ripe: true, get: m => paidOf(m.main).costBuyerNew },
     { n: 7, name: 'ДРР рекламы (расход / выручка)', unit: '%', up: false, zone: 's', ripe: true, pp: true, get: m => m.main.marketing.drr },
     { n: 8, name: 'ДРР Авито', unit: '%', up: false, zone: 's', ripe: true, pp: true, tkey: 'avitoDrr',
       get: m => { const c = (m.main.channels || []).find(x => x.channel === 'Авито'); return c && c.drr != null ? c.drr : null; } },
@@ -391,12 +414,14 @@
     const cols = ms.slice(Math.max(0, i - 3), i + 1);
     const MNs = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
     const lab = k => MNs[+k.split('-')[1] - 1] + ' ' + k.slice(2, 4);
-    const ripe = cur.matureDays >= 30;
+    const ripe = cur.matureDays >= 30, ripeM = cur.matureDays >= 10;   // 1–4: ~10 дней, пока менеджеры разбирают мусор; 5–8: 30 дней
+    const sm = mo => !!((DATA.months[mo].main.marketing.spendMissing || []).length);
+    $('sub').textContent = `KPI-маркетинг · ${lab(month)} · Бетон и ЖБИ`;
     const tg = manualFor(month), R = RULES();
     const from = new Date(cur.from + 'T00:00:00'), to = new Date(cur.to + 'T00:00:00'), today = new Date();
     const dim = Math.round((to - from) / 864e5) + 1, passed = Math.max(0, Math.min(dim, Math.floor((today - from) / 864e5) + 1));
     $('kpiSub').textContent = `Оценка за ${lab(month)}` + (cur.matureDays < 0 ? ` — месяц идёт (прошло ${passed} из ${dim} дн.), оценка не выставляется; план — прогноз по темпу` : ripe ? '' : ` — месяц закрыт ${cur.matureDays} дн. назад, показатели 5–8 дозревают`) +
-      (tg ? ` · план на месяц задан вручную${tg.note ? ': ' + tg.note : ''}` : ` · план = прошлый закрытый месяц: объёмы +${R.volumePct} %, цены −${R.costPct} %, мусор −${R.junkPp} п.п., ДРР −${R.drrPp} п.п., но не слабее среднего за 3 мес.`);
+      (!ripeM && cur.matureDays >= 0 ? ' · 1–4 предварительно (мусор ещё разбирают)' : '') + (tg ? ` · план на месяц задан вручную${tg.note ? ': ' + tg.note : ''}` : ` · план = прошлый закрытый месяц: объёмы +${R.volumePct} %, цены −${R.costPct} %, мусор −${R.junkPp} п.п., ДРР −${R.drrPp} п.п., но не слабее среднего за 3 мес.`);
     let up = 0, down = 0, flat = 0;
     const row = k => {
       const v = c => k.get(DATA.months[c]);
@@ -406,8 +431,13 @@
       const jp = cur.matureDays < 0 ? null : judge(k, cv, prevK ? v(prevK) : null);
       const ja = cur.matureDays < 0 ? null : judge(k, cv, avg);
       const final = jp || ja;
-      if (final && !(k.ripe && !ripe)) { final.cls === 'up' ? up++ : final.cls === 'down' ? down++ : flat++; }
-      const st = !final ? '<span class="muted0">—</span>' : `<span class="kpi-st ${final.cls}">${final.t}</span>` + (k.ripe && !ripe ? ' <span class="dk-badge dk-badge--info">дозревает</span>' : '');
+      const moneyK = k.unit === '₽' || k.n === 7 || k.n === 8;
+      const spendGap = moneyK && (sm(month) || (prevK && sm(prevK)));                      // «нет данных ≠ 0»: с неполным расходом не судим
+      const prelim = k.zone === 'm' && !ripeM;
+      if (final && !(k.ripe && !ripe) && !spendGap && !prelim) { final.cls === 'up' ? up++ : final.cls === 'down' ? down++ : flat++; }
+      const st = spendGap ? '<span class="kpi-st flat" title="в одном из сравниваемых месяцев расход неполный">расход неполный</span>'
+        : !final ? '<span class="muted0">—</span>'
+        : `<span class="kpi-st ${final.cls}">${final.t}</span>` + (k.ripe && !ripe ? ' <span class="dk-badge dk-badge--info">дозревает</span>' : prelim ? ' <span class="dk-badge dk-badge--info">предварительно</span>' : '');
       const manualV = tg && k.tkey && tg[k.tkey] != null ? tg[k.tkey] : null;
       const tv = manualV != null ? manualV : autoTarget(k, month);
       let plan = '<span class="muted0">—</span>';
@@ -425,12 +455,13 @@
         `<td class="dk-num">${plan}</td><td class="dk-num">${chTxt(k, jp)}</td><td class="dk-num">${fmtK(k, avg == null ? null : Math.round(avg * 10) / 10)}</td><td class="dk-num">${chTxt(k, ja)}</td><td>${st}</td></tr>`;
     };
     const head = '<tr><th>Показатель</th>' + cols.map(c => `<th class="dk-num ${c === month ? 'cur' : ''}">${lab(c)}${DATA.months[c].matureDays < 0 ? ' (идёт)' : ''}</th>`).join('') +
-      '<th class="dk-num">План</th><th class="dk-num">к прошлому мес.</th><th class="dk-num">среднее 3 мес.</th><th class="dk-num">к среднему</th><th>Оценка</th></tr>';
+      '<th class="dk-num">План</th><th class="dk-num">к прошлому мес.</th><th class="dk-num">среднее ' + base.length + ' мес.</th><th class="dk-num">к среднему</th><th>Оценка</th></tr>';
     const g = t => `<tr class="grp"><td colspan="${cols.length + 6}"><span class="dk-kicker">${t}</span></td></tr>`;
     $('kpiTbl').innerHTML = head + g('Зона маркетинга') + KPI.filter(k => k.zone === 'm').map(row).join('') +
       g('Общий результат с продажами') + KPI.filter(k => k.zone === 's').map(row).join('');
     $('kpiSum').innerHTML = cur.matureDays < 0 ? '<span class="kpi-st flat">месяц идёт — оценка появится после закрытия; в колонке «План» — прогноз по темпу</span>'
-      : `<span class="kpi-st up">улучшилось: ${up}</span><span class="kpi-st flat">без изменений: ${flat}</span><span class="kpi-st down">ухудшилось: ${down}</span>` +
+      : !base.length ? '<span class="kpi-st flat">первый месяц в данных — сравнивать не с чем</span>'
+      : `<span class="kpi-st up">улучшилось: ${up}</span><span class="kpi-st flat">без изменений: ${flat}</span><span class="kpi-st down">ухудшилось: ${down}</span>` + (!ripeM ? '<span class="kpi-st flat">1–4 предварительно</span>' : '') +
         (ripe ? '' : '<span class="kpi-st flat">5–8 дозревают — в счёт не идут</span>');
   }
 
@@ -464,8 +495,8 @@
         return `<tr class="${inMonth(w) ? 'wk-in' : ''}"><td class="name">${fmtD(w.from)}–${fmtD(w.to)} <span class="muted0">${k.split('-')[1]}</span>${fresh ? ' <span class="dk-badge dk-badge--info">дозревает</span>' : ''}</td>` +
           `<td class="dk-num">${num(x.requests)}<span class="mini" style="width:${Math.round(40 * x.requests / mx)}px"></span></td><td class="dk-num muted0">${num(x.junk)}</td><td class="dk-num">${num(x.target)}</td>` +
           `<td class="dk-num">${num(x.buyers)}</td><td class="dk-num">${pc(x.conversionTarget)}</td>` +
-          `<td class="dk-num">${rub(x.revenue)}<span class="mini acc" style="width:${Math.round(40 * x.revenue / mr)}px"></span></td><td class="dk-num">${rub(x.spend)}</td>` +
-          `<td class="dk-num">${rub(x.cpl)}</td><td class="dk-num">${fresh || !x.buyers ? '—' : rub(x.costBuyer)}</td><td class="dk-num">${fresh || !x.buyers ? '—' : pc(x.drr)}</td></tr>`; }).join('');
+          `<td class="dk-num">${rub(x.revenue)}<span class="mini acc" style="width:${Math.round(40 * x.revenue / mr)}px"></span></td><td class="dk-num">${rub(x.spend)}${(x.spendMissing || []).length ? ' <span class="dk-badge dk-badge--warn" title="' + esc(x.spendMissing.join('; ')) + '">неполный</span>' : ''}</td>` +
+          `<td class="dk-num">${rub(x.cpl)}</td><td class="dk-num">${fresh || !x.buyers || (x.spendMissing || []).length ? '—' : rub(x.costBuyer)}</td><td class="dk-num">${fresh || !x.buyers || (x.spendMissing || []).length ? '—' : pc(x.drr)}</td></tr>`; }).join('');
     const chs = [...new Set(rowsW.flatMap(({ b }) => b.channels.filter(c => c.kind === 'marketing' && c.requests).map(c => c.channel)))];
     $('weeksCh').innerHTML = '<tr><th>Канал</th>' + rowsW.map(({ k, w }) => `<th class="dk-num">${fmtD(w.from)}</th>`).join('') + '</tr>' +
       chs.map(ch => `<tr><td class="name">${esc(ch)}</td>` + rowsW.map(({ w, b }) => { const c = b.channels.find(x => x.channel === ch);
