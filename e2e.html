@@ -186,7 +186,7 @@
       '<tr class="sep"><td colspan="17"><span class="dk-kicker">Продажи и прочие источники (без рекламного расхода)</span></td></tr>' + slRows.map(r => tr(r)).join('') +
       tr({ ...b.nonMarketing, channel: 'Итого продажи', kind: 'sales' }, 'sum') + tr({ ...b.total, channel: 'Всего', kind: 'sales' }, 'sum');
     $('chanNote').textContent = 'Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
-      m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» включает и SEO: звонки с сайта не помечаются, поэтому часть клиентов Директа сидит в «Прямом звонке».';
+      m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» — звонки на номера сайта и заявки с форм: Директ и SEO внутри не разделить (номер на сайте один, метки у форм почти не передаются).';
     // выручка по дате закрытия
     const p = m.period, tot = Math.max(1, p.sum);
     const grp = { marketing: 0, sales: 0, repeat: 0, untraced: 0 };
