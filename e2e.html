@@ -42,6 +42,14 @@
   .muted0 { color: var(--dk-ink-3); }
   .good { color: var(--dk-success); } .bad { color: var(--dk-danger); } .warn { color: var(--dk-warning); }
   #err { display: none; }
+  .dlt { font-family: var(--dk-font-num); font-size: 11px; margin-top: 2px; white-space: nowrap; }
+  .dk-kpi .dlt { margin-top: 5px; }
+  .dk-table td .dlt { color: var(--dk-ink-3); }
+  .dk-table td .dlt.good { color: var(--dk-success); } .dk-table td .dlt.bad { color: var(--dk-danger); }
+  .dlt.good { color: var(--dk-success); } .dlt.bad { color: var(--dk-danger); } .dlt.flat { color: var(--dk-ink-3); }
+  tr.wk-in td { background: var(--dk-primary-tint); }
+  .mini { display: inline-block; vertical-align: middle; height: 6px; border-radius: 3px; background: var(--dk-primary); margin-left: 6px; }
+  .mini.acc { background: var(--dk-accent); }
 </style>
 </head>
 <body class="dkbi">
@@ -70,6 +78,15 @@
     <div class="dk-muted">Уникальные обращения месяца и всё, что они купили к сегодняшнему дню. Расход — фактические списания сервисов за месяц.</div>
     <div class="scroll"><table class="dk-table" id="chan"></table></div>
     <p class="note" id="chanNote"></p>
+  </div>
+
+  <div class="dk-card" id="weeksCard">
+    <h2>Динамика по неделям</h2>
+    <div class="dk-muted">Реклама: уникальные обращения недели (пн–вс) и всё, что они купили к сегодняшнему дню; расход — за неделю. Подсвечены недели выбранного месяца.</div>
+    <div class="scroll"><table class="dk-table" id="weeks"></table></div>
+    <h3 style="margin-top:18px">По каналам: обращения → покупки</h3>
+    <div class="scroll"><table class="dk-table" id="weeksCh"></table></div>
+    <p class="note">Последняя неделя дозревает: сделки по её обращениям ещё заводятся. Недели считаются по дате первого касания обращения.</p>
   </div>
 
   <div class="grid2">
@@ -134,10 +151,22 @@
     render();
   });
 
-  function kpi(label, value, sub, cls) {
+  function kpi(label, value, sub, cls, dl) {
     return `<div class="dk-kpi"><div class="dk-kpi__label">${esc(label)}</div><div class="dk-kpi__value ${cls || ''}">${value}</div>` +
-      (sub ? `<div class="kpi-sub">${sub}</div>` : '') + '</div>';
+      (sub ? `<div class="kpi-sub">${sub}</div>` : '') + (dl || '') + '</div>';
   }
+  // изменение к прошлому месяцу: lower=true — меньше лучше (цены, ДРР); pp=true — разница в процентных пунктах
+  const MNG = ['январю', 'февралю', 'марту', 'апрелю', 'маю', 'июню', 'июлю', 'августу', 'сентябрю', 'октябрю', 'ноябрю', 'декабрю'];
+  function delta(cur, prev, { lower = false, pp = false, label = '', neutral = false } = {}) {
+    if (cur == null || prev == null || (!pp && !prev)) return '';
+    const v = pp ? cur - prev : 100 * (cur - prev) / Math.abs(prev);
+    if (!isFinite(v)) return '';
+    const r = Math.round(v * 10) / 10;
+    if (Math.abs(r) < 0.5) return `<div class="dlt flat">≈ ${label}</div>`;
+    const good = lower ? r < 0 : r > 0;
+    return `<div class="dlt ${neutral ? 'flat' : good ? 'good' : 'bad'}">${r > 0 ? '▲' : '▼'} ${String(Math.abs(r)).replace('.', ',')}${pp ? ' п.п.' : ' %'} ${label}</div>`;
+  }
+  const prevKey = k => { const ms = Object.keys(DATA.months).sort(); const i = ms.indexOf(k); return i > 0 ? ms[i - 1] : null; };
   const romiCls = v => v == null ? '' : v >= 0 ? 'good' : 'bad';
 
   function render() {
@@ -156,17 +185,20 @@
     $('banners').innerHTML = ban.join('');
     // KPI маркетинга. Пока месяц идёт или покупок нет — окупаемость не показываем (ROMI −100 % от нуля выручки вводит в заблуждение)
     const early = m.matureDays < 0 || !mk.buyers;
+    const pk = prevKey(month), pm = pk ? DATA.months[pk] : null, pb = pm ? pm[line] : null, pmk = pb ? pb.marketing : null;
+    const lbl = pk ? 'к ' + MNG[+pk.split('-')[1] - 1] : '';
+    const D = (f, o = {}) => (early || !pmk) ? '' : delta(mk[f], pmk[f], { ...o, label: lbl });
     $('kpis').innerHTML = [
-      kpi('Расход на рекламу', rub(mk.spend), miss.length ? 'есть пробелы в данных' : 'все сервисы'),
-      kpi('Обращений с рекламы', num(mk.requests), `лидов ${num(mk.leads)} · новых клиентов ${num(mk.new)}`),
-      kpi('Целевых', num(mk.target), `мусор (спам, дубли) ${num(mk.junk)}`),
-      kpi('Купили', num(mk.buyers), `новых покупателей ${num(mk.buyersNew)}`),
-      kpi('Конверсия', pc(mk.conversionTarget), 'целевое обращение → покупка'),
-      kpi('Выручка с рекламы', rub(mk.revenue), `по воронке ${rub(mk.revenueStrong)}`),
-      kpi('Цена обращения', rub(mk.cpl), `целевого ${rub(mk.costTarget)}`),
-      early ? kpi('Цена покупателя', '—', 'месяц идёт — считать рано') : kpi('Цена покупателя', rub(mk.costBuyer), `нового ${rub(mk.costNewBuyer)}`),
-      early ? kpi('ДРР', '—', 'месяц идёт — считать рано') : kpi('ДРР', pc(mk.drr), 'расход / выручка'),
-      early ? kpi('ROMI', '—', 'месяц идёт — считать рано') : kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход', romiCls(mk.romi)),
+      kpi('Расход на рекламу', rub(mk.spend), miss.length ? 'есть пробелы в данных' : 'все сервисы', '', D('spend', { neutral: true })),
+      kpi('Обращений с рекламы', num(mk.requests), `лидов ${num(mk.leads)} · новых клиентов ${num(mk.new)}`, '', D('requests')),
+      kpi('Целевых', num(mk.target), `мусор (спам, дубли) ${num(mk.junk)}`, '', D('target')),
+      kpi('Купили', num(mk.buyers), `новых покупателей ${num(mk.buyersNew)}`, '', D('buyers')),
+      kpi('Конверсия', pc(mk.conversionTarget), 'целевое обращение → покупка', '', D('conversionTarget', { pp: true })),
+      kpi('Выручка с рекламы', rub(mk.revenue), `по воронке ${rub(mk.revenueStrong)}`, '', D('revenue')),
+      kpi('Цена обращения', rub(mk.cpl), `целевого ${rub(mk.costTarget)}`, '', D('cpl', { lower: true })),
+      early ? kpi('Цена покупателя', '—', 'месяц идёт — считать рано') : kpi('Цена покупателя', rub(mk.costBuyer), `нового ${rub(mk.costNewBuyer)}`, '', D('costBuyer', { lower: true })),
+      early ? kpi('ДРР', '—', 'месяц идёт — считать рано') : kpi('ДРР', pc(mk.drr), 'расход / выручка', '', D('drr', { lower: true, pp: true })),
+      early ? kpi('ROMI', '—', 'месяц идёт — считать рано') : kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход', romiCls(mk.romi), D('romi', { pp: true })),
     ].join('');
     // каналы
     const rows = b.channels;
@@ -175,20 +207,24 @@
       '<th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th>' +
       '<th class="dk-num">Расход</th><th class="dk-num">Цена обращ.</th><th class="dk-num">Цена покуп.</th><th class="dk-num">ДРР</th><th class="dk-num">ROMI</th></tr>';
     const cut = (r, v) => (early || !r.buyers) ? '—' : v;   // окупаемость — только когда есть покупки и месяц закрыт
+    const prevCh = n => (pb && !early) ? (pb.channels || []).find(c => c.channel === n) : null;
+    const cd = (r, f, o = {}) => { const pr = r._prev; return pr ? delta(r[f], pr[f], o).replace('<div class="dlt', '<div class="dlt') : ''; };
     const tr = (r, cls) => `<tr class="${cls || ''}"><td class="name">${esc(r.channel)}${r.spendMissing ? ' <span class="dk-badge dk-badge--warn">расход неполный</span>' : ''}</td>` +
-      `<td class="dk-num">${num(r.requests)}</td><td class="dk-num muted0">${num(r.junk)}</td><td class="dk-num">${num(r.target)}</td>` +
-      `<td class="dk-num">${num(r.buyers)}</td><td class="dk-num">${pc(r.conversionTarget)}</td>` +
-      `<td class="dk-num" title="по воронке ${rub(r.revenueStrong)} · от новых клиентов ${rub(r.revenueNewClients)}">${rub(r.revenue)}</td>` +
-      `<td class="dk-num">${rub(r.spend)}</td><td class="dk-num">${rub(r.cpl)}</td>` +
+      `<td class="dk-num">${num(r.requests)}${cd(r, 'requests')}</td><td class="dk-num muted0">${num(r.junk)}</td><td class="dk-num">${num(r.target)}</td>` +
+      `<td class="dk-num">${num(r.buyers)}${cd(r, 'buyers')}</td><td class="dk-num">${pc(r.conversionTarget)}</td>` +
+      `<td class="dk-num" title="по воронке ${rub(r.revenueStrong)} · от новых клиентов ${rub(r.revenueNewClients)}">${rub(r.revenue)}${cd(r, 'revenue')}</td>` +
+      `<td class="dk-num">${rub(r.spend)}</td><td class="dk-num">${rub(r.cpl)}${r.spend == null ? '' : cd(r, 'cpl', { lower: true })}</td>` +
       `<td class="dk-num">${r.spend == null ? '—' : cut(r, rub(r.costBuyer))}</td><td class="dk-num">${r.spend == null ? '—' : cut(r, pc(r.drr))}</td>` +
       `<td class="dk-num ${early || !r.buyers ? '' : romiCls(r.romi)}">${r.spend == null ? '—' : cut(r, pc(r.romi))}</td></tr>`;
+    rows.forEach(r => { r._prev = prevCh(r.channel); });
     const mkRows = rows.filter(r => r.kind === 'marketing'), slRows = rows.filter(r => r.kind !== 'marketing');
     $('chan').innerHTML = head +
       '<tr class="sep"><td colspan="12"><span class="dk-kicker">Реклама</span></td></tr>' + mkRows.map(r => tr(r)).join('') +
-      tr({ ...mk, channel: 'Итого реклама', kind: 'marketing' }, 'sum') +
+      tr({ ...mk, channel: 'Итого реклама', kind: 'marketing', _prev: early ? null : pmk }, 'sum') +
       '<tr class="sep"><td colspan="12"><span class="dk-kicker">Продажи и прочие источники (без рекламного расхода)</span></td></tr>' + slRows.map(r => tr(r)).join('') +
       tr({ ...b.nonMarketing, channel: 'Итого продажи', kind: 'sales' }, 'sum') + tr({ ...b.total, channel: 'Всего', kind: 'sales' }, 'sum');
-    $('chanNote').textContent = 'Наведите на выручку — видно, сколько «по воронке» и от новых клиентов. Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
+    renderWeeks(m);
+    $('chanNote').textContent = (pk && !early ? 'Стрелки — изменение ' + lbl + ' (зелёный — лучше). ' : '') + 'Наведите на выручку — видно, сколько «по воронке» и от новых клиентов. Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
       m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» — звонки на номера сайта и заявки с форм: Директ и SEO внутри не разделить (номер на сайте один, метки у форм почти не передаются).';
     // выручка по дате закрытия
     const p = m.period, tot = Math.max(1, p.sum);
@@ -238,6 +274,29 @@
     $('quality').innerHTML = qRows.map(([a, v]) => `<tr><td class="name">${esc(a)}</td><td class="dk-num">${v}</td></tr>`).join('');
     $('defs').innerHTML = Object.values(m.definitions).map(d => `<li>${esc(d)}</li>`).join('');
     $('gen').textContent = `Пересчитано ${new Date(m.generatedAt).toLocaleString('ru-RU')} · источник: Битрикс24 REST + API Директа, Авито; Я.Бизнес — абонентка; ручные строки помечены.`;
+  }
+
+  function renderWeeks(m) {
+    const W = DATA.weeks || {};
+    const ks = Object.keys(W).sort();
+    if (!ks.length) { $('weeksCard').style.display = 'none'; return; }
+    $('weeksCard').style.display = '';
+    const fmtD = x => x.slice(8, 10) + '.' + x.slice(5, 7);
+    const rowsW = ks.map(k => ({ k, w: W[k], b: W[k][line] })).filter(x => x.b);
+    const mx = Math.max(1, ...rowsW.map(x => x.b.marketing.requests)), mr = Math.max(1, ...rowsW.map(x => x.b.marketing.revenue));
+    const inMonth = w => w.from.slice(0, 7) === month || w.to.slice(0, 7) === month;
+    $('weeks').innerHTML = '<tr><th>Неделя</th><th class="dk-num">Обращ.</th><th class="dk-num">Мусор</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th>' +
+      '<th class="dk-num">Конв.</th><th class="dk-num">Выручка</th><th class="dk-num">Расход</th><th class="dk-num">Цена обращ.</th><th class="dk-num">Цена покуп.</th><th class="dk-num">ДРР</th></tr>' +
+      rowsW.map(({ k, w, b }) => { const x = b.marketing, fresh = w.matureDays < 7;
+        return `<tr class="${inMonth(w) ? 'wk-in' : ''}"><td class="name">${fmtD(w.from)}–${fmtD(w.to)} <span class="muted0">${k.split('-')[1]}</span>${fresh ? ' <span class="dk-badge dk-badge--info">дозревает</span>' : ''}</td>` +
+          `<td class="dk-num">${num(x.requests)}<span class="mini" style="width:${Math.round(40 * x.requests / mx)}px"></span></td><td class="dk-num muted0">${num(x.junk)}</td><td class="dk-num">${num(x.target)}</td>` +
+          `<td class="dk-num">${num(x.buyers)}</td><td class="dk-num">${pc(x.conversionTarget)}</td>` +
+          `<td class="dk-num">${rub(x.revenue)}<span class="mini acc" style="width:${Math.round(40 * x.revenue / mr)}px"></span></td><td class="dk-num">${rub(x.spend)}</td>` +
+          `<td class="dk-num">${rub(x.cpl)}</td><td class="dk-num">${fresh || !x.buyers ? '—' : rub(x.costBuyer)}</td><td class="dk-num">${fresh || !x.buyers ? '—' : pc(x.drr)}</td></tr>`; }).join('');
+    const chs = [...new Set(rowsW.flatMap(({ b }) => b.channels.filter(c => c.kind === 'marketing' && c.requests).map(c => c.channel)))];
+    $('weeksCh').innerHTML = '<tr><th>Канал</th>' + rowsW.map(({ k, w }) => `<th class="dk-num">${fmtD(w.from)}</th>`).join('') + '</tr>' +
+      chs.map(ch => `<tr><td class="name">${esc(ch)}</td>` + rowsW.map(({ w, b }) => { const c = b.channels.find(x => x.channel === ch);
+        return `<td class="dk-num${inMonth(w) ? ' wk' : ''}">${c && c.requests ? `${num(c.requests)} → ${num(c.buyers)}` : '<span class="muted0">—</span>'}</td>`; }).join('') + '</tr>').join('');
   }
 
   fetch('e2e-data.json?t=' + Date.now()).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(d => {
