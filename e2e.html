@@ -114,6 +114,15 @@
     <p class="note">Последняя неделя дозревает: сделки по её обращениям ещё заводятся. Недели считаются по дате первого касания обращения.</p>
   </div>
 
+  <div class="dk-card" id="ltvCard">
+    <h2>Клиенты с рекламы: сколько покупают потом</h2>
+    <div class="dk-muted">Новые клиенты (и «был в базе»), пришедшие с рекламы в выбранном месяце, — все их покупки за 14 / 30 / 60 / 90 / 180 дней после первого обращения. В таблицах выше рекламе засчитаны только первые 14 дней.</div>
+    <div class="scroll"><table class="dk-table" id="ltv"></table></div>
+    <h3 style="margin-top:16px">По каналам</h3>
+    <div class="scroll"><table class="dk-table" id="ltvCh"></table></div>
+    <p class="note">«Дозревает» — с конца месяца прошло меньше дней, чем горизонт: выручка ещё вырастет. Выручка на клиента = выручка горизонта / все клиенты когорты (включая не купивших).</p>
+  </div>
+
   <div class="grid2">
     <div class="dk-card">
       <div class="seg split" style="float:right"><button class="dk-btn dk-btn--ghost on" data-split="all">Всего</button><button class="dk-btn dk-btn--ghost" data-split="Бетон">Бетон</button><button class="dk-btn dk-btn--ghost" data-split="ЖБИ">ЖБИ</button></div>
@@ -121,6 +130,7 @@
       <div class="dk-muted">Все успешные сделки, закрытые в месяце (по дате завершения), — с происхождением.</div>
       <div id="periodStack"></div>
       <div class="scroll"><table class="dk-table" id="period"></table></div>
+      <div class="scroll"><table class="dk-table" id="telLines"></table></div>
     </div>
     <div class="dk-card">
       <div class="seg split" style="float:right"><button class="dk-btn dk-btn--ghost on" data-split="all">Всего</button><button class="dk-btn dk-btn--ghost" data-split="Бетон">Бетон</button><button class="dk-btn dk-btn--ghost" data-split="ЖБИ">ЖБИ</button></div>
@@ -146,6 +156,8 @@
     <div class="dk-card">
       <h2>Качество цепочки</h2>
       <div class="scroll"><table class="dk-table" id="quality"></table></div>
+      <h3 style="margin-top:16px">ЖБИ без карточки клиента: что говорит отметка менеджера</h3>
+      <div class="scroll"><table class="dk-table" id="orphan"></table></div>
     </div>
   </div>
 
@@ -280,6 +292,9 @@
     $('period').innerHTML = '<tr><th>Происхождение</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th><th class="dk-num">Доля</th></tr>' +
       origins.map(o => `<tr><td class="name">${esc(o.origin)}</td><td class="dk-num">${num(o.deals)}</td><td class="dk-num">${rub(o.sum)}</td><td class="dk-num">${pc(Math.round(1000 * o.sum / tot) / 10)}</td></tr>`).join('') +
       `<tr class="sum"><td>Всего закрыто в месяце${sp ? ' · ' + split : ''}</td><td class="dk-num">${num(pDeals)}</td><td class="dk-num">${rub(pSum)}</td><td></td></tr>`;
+    const tl = (!sp && p.telLines && p.telLines.length) ? p.telLines : [];
+    $('telLines').innerHTML = tl.length ? '<tr><th>Повторные продажи: последний звонок клиента за 7 дн до сделки</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th></tr>' +
+      tl.slice(0, 15).map(x => `<tr><td class="name">${esc(x.line)}</td><td class="dk-num">${num(x.deals)}</td><td class="dk-num">${rub(x.sum)}</td></tr>`).join('') : '';
     // клиенты и направления
     const cRow = (n, a) => `<tr><td class="name">${esc(n)}</td><td class="dk-num">${num(a.requests)}</td><td class="dk-num">${num(a.target)}</td><td class="dk-num">${num(a.buyers)}</td><td class="dk-num">${pc(a.conversionTarget)}</td><td class="dk-num">${rub(a.revenue)}</td></tr>`;
     const cHead = '<tr><th></th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th></tr>';
@@ -316,6 +331,12 @@
       ['Обращений, где источник — имя менеджера', num(q.leadSourcePerson)],
     ];
     $('quality').innerHTML = qRows.map(([a, v]) => `<tr><td class="name">${esc(a)}</td><td class="dk-num">${v}</td></tr>`).join('');
+    const oc = p.orphanCheck || [], zc = p.zhbiClientType || [];
+    $('orphan').innerHTML = (oc.length ? '<tr><th>Отметка менеджера «Тип клиента» · есть ли в 1С</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th></tr>' +
+      oc.map(x => `<tr><td class="name">${esc(x.key)}</td><td class="dk-num">${num(x.deals)}</td><td class="dk-num">${rub(x.sum)}</td></tr>`).join('') : '') +
+      (zc.length ? '<tr class="sep"><td colspan="3"><span class="dk-kicker">Все успешные ЖБИ месяца: наш тип клиента · отметка менеджера</span></td></tr>' +
+      zc.map(x => `<tr><td class="name">${esc(x.key)}</td><td class="dk-num">${num(x.deals)}</td><td class="dk-num">${rub(x.sum)}</td></tr>`).join('') : '');
+    renderLTV(m);
     $('defs').innerHTML = Object.values(m.definitions).map(d => `<li>${esc(d)}</li>`).join('');
     $('gen').textContent = `Пересчитано ${new Date(m.generatedAt).toLocaleString('ru-RU')} · источник: Битрикс24 REST + API Директа, Авито; Я.Бизнес — абонентка; ручные строки помечены.`;
   }
@@ -330,7 +351,29 @@
     { n: 5, name: 'Новые покупатели с рекламы', unit: 'шт', up: true, zone: 's', ripe: true, get: m => m.main.marketing.buyersNew },
     { n: 6, name: 'Цена нового покупателя', unit: '₽', up: false, zone: 's', ripe: true, get: m => m.main.marketing.costNewBuyer },
     { n: 7, name: 'ДРР рекламы (расход / выручка)', unit: '%', up: false, zone: 's', ripe: true, pp: true, get: m => m.main.marketing.drr },
+    { n: 8, name: 'ДРР Авито', unit: '%', up: false, zone: 's', ripe: true, pp: true, tkey: 'avitoDrr',
+      get: m => { const c = (m.main.channels || []).find(x => x.channel === 'Авито'); return c && c.drr != null ? c.drr : null; } },
   ];
+  ['target', 'costTarget', 'junkPct', 'zhbiTarget', 'newBuyers', 'costNewBuyer', 'drr', 'avitoDrr'].forEach((t, i) => { KPI[i].tkey = t; });
+  // ручной план на месяц (data/kpi-targets.json → targets[YYYY-MM]); иначе авто по правилам _rules
+  const manualFor = mo => (DATA.targets || {})[mo] || null;
+  const RULES = () => Object.assign({ volumePct: 10, costPct: 10, junkPp: 3, drrPp: 2 }, (DATA.targets || {})._rules || {});
+  // авто-план: прошлый закрытый месяц, усиленный (объёмы +volumePct %, цены −costPct %, мусор −junkPp п.п., ДРР −drrPp п.п.),
+  // но не слабее среднего за 3 последних закрытых месяца (плохой месяц не опускает план)
+  function autoTarget(k, mo) {
+    const R = RULES();
+    const ms = Object.keys(DATA.months).sort();
+    const closed = ms.filter(x => x < mo && DATA.months[x].matureDays >= 0);
+    if (!closed.length) return null;
+    const pv = k.get(DATA.months[closed[closed.length - 1]]);
+    if (pv == null) return null;
+    const vals = closed.slice(-3).map(x => k.get(DATA.months[x])).filter(x => x != null);
+    const avg = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+    let t = k.pp ? (k.up ? pv + R.drrPp : pv - (k.n === 3 ? R.junkPp : R.drrPp)) : (k.up ? pv * (1 + R.volumePct / 100) : pv * (1 - R.costPct / 100));
+    if (avg != null) t = k.up ? Math.max(t, avg) : Math.min(t, avg);
+    if (k.pp) t = Math.max(0, t);
+    return k.unit === 'шт' ? Math.round(t) : k.unit === '₽' ? Math.round(t / 10) * 10 : Math.round(t * 10) / 10;
+  }
   const fmtK = (k, v) => v == null ? '—' : k.unit === '₽' ? rub(v) : k.unit === '%' ? pc(v) : num(v);
   function judge(k, cur, base) {
     if (cur == null || base == null || base === 0) return null;
@@ -349,7 +392,11 @@
     const MNs = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
     const lab = k => MNs[+k.split('-')[1] - 1] + ' ' + k.slice(2, 4);
     const ripe = cur.matureDays >= 30;
-    $('kpiSub').textContent = `Оценка за ${lab(month)}` + (cur.matureDays < 0 ? ' — месяц ещё идёт, оценка не выставляется' : ripe ? '' : ` — месяц закрыт ${cur.matureDays} дн. назад, показатели 5–7 дозревают`);
+    const tg = manualFor(month), R = RULES();
+    const from = new Date(cur.from + 'T00:00:00'), to = new Date(cur.to + 'T00:00:00'), today = new Date();
+    const dim = Math.round((to - from) / 864e5) + 1, passed = Math.max(0, Math.min(dim, Math.floor((today - from) / 864e5) + 1));
+    $('kpiSub').textContent = `Оценка за ${lab(month)}` + (cur.matureDays < 0 ? ` — месяц идёт (прошло ${passed} из ${dim} дн.), оценка не выставляется; план — прогноз по темпу` : ripe ? '' : ` — месяц закрыт ${cur.matureDays} дн. назад, показатели 5–8 дозревают`) +
+      (tg ? ` · план на месяц задан вручную${tg.note ? ': ' + tg.note : ''}` : ` · план = прошлый закрытый месяц: объёмы +${R.volumePct} %, цены −${R.costPct} %, мусор −${R.junkPp} п.п., ДРР −${R.drrPp} п.п., но не слабее среднего за 3 мес.`);
     let up = 0, down = 0, flat = 0;
     const row = k => {
       const v = c => k.get(DATA.months[c]);
@@ -361,17 +408,45 @@
       const final = jp || ja;
       if (final && !(k.ripe && !ripe)) { final.cls === 'up' ? up++ : final.cls === 'down' ? down++ : flat++; }
       const st = !final ? '<span class="muted0">—</span>' : `<span class="kpi-st ${final.cls}">${final.t}</span>` + (k.ripe && !ripe ? ' <span class="dk-badge dk-badge--info">дозревает</span>' : '');
+      const manualV = tg && k.tkey && tg[k.tkey] != null ? tg[k.tkey] : null;
+      const tv = manualV != null ? manualV : autoTarget(k, month);
+      let plan = '<span class="muted0">—</span>';
+      if (tv != null) {
+        if (cur.matureDays < 0) {
+          const proj = k.unit === 'шт' && passed > 0 ? Math.round(cv * dim / passed) : null;
+          const okp = proj == null ? (cv == null ? null : (k.up ? cv >= tv : cv <= tv)) : (k.up ? proj >= tv : proj <= tv);
+          plan = `${fmtK(k, tv)}<div class="dlt ${okp == null ? 'flat' : okp ? 'good' : 'bad'}">${proj != null ? 'прогноз ' + num(proj) : 'на сегодня ' + fmtK(k, cv)}</div>`;
+        } else {
+          const met = cv == null ? null : (k.up ? cv >= tv : cv <= tv);
+          plan = `${fmtK(k, tv)}<div class="dlt ${met == null ? 'flat' : met ? 'good' : 'bad'}">${met == null ? '—' : met ? 'выполнен' : 'не выполнен'}${manualV != null ? ' · ручной' : ''}</div>`;
+        }
+      }
       return `<tr><td class="name">${k.n}. ${esc(k.name)}</td>` + cols.map(c => `<td class="dk-num ${c === month ? 'cur' : ''}">${fmtK(k, v(c))}</td>`).join('') +
-        `<td class="dk-num">${chTxt(k, jp)}</td><td class="dk-num">${fmtK(k, avg == null ? null : Math.round(avg * 10) / 10)}</td><td class="dk-num">${chTxt(k, ja)}</td><td>${st}</td></tr>`;
+        `<td class="dk-num">${plan}</td><td class="dk-num">${chTxt(k, jp)}</td><td class="dk-num">${fmtK(k, avg == null ? null : Math.round(avg * 10) / 10)}</td><td class="dk-num">${chTxt(k, ja)}</td><td>${st}</td></tr>`;
     };
     const head = '<tr><th>Показатель</th>' + cols.map(c => `<th class="dk-num ${c === month ? 'cur' : ''}">${lab(c)}${DATA.months[c].matureDays < 0 ? ' (идёт)' : ''}</th>`).join('') +
-      '<th class="dk-num">к прошлому мес.</th><th class="dk-num">среднее 3 мес.</th><th class="dk-num">к среднему</th><th>Оценка</th></tr>';
-    const g = t => `<tr class="grp"><td colspan="${cols.length + 5}"><span class="dk-kicker">${t}</span></td></tr>`;
+      '<th class="dk-num">План</th><th class="dk-num">к прошлому мес.</th><th class="dk-num">среднее 3 мес.</th><th class="dk-num">к среднему</th><th>Оценка</th></tr>';
+    const g = t => `<tr class="grp"><td colspan="${cols.length + 6}"><span class="dk-kicker">${t}</span></td></tr>`;
     $('kpiTbl').innerHTML = head + g('Зона маркетинга') + KPI.filter(k => k.zone === 'm').map(row).join('') +
       g('Общий результат с продажами') + KPI.filter(k => k.zone === 's').map(row).join('');
-    $('kpiSum').innerHTML = cur.matureDays < 0 ? '<span class="kpi-st flat">месяц идёт — выберите закрытый месяц</span>'
+    $('kpiSum').innerHTML = cur.matureDays < 0 ? '<span class="kpi-st flat">месяц идёт — оценка появится после закрытия; в колонке «План» — прогноз по темпу</span>'
       : `<span class="kpi-st up">улучшилось: ${up}</span><span class="kpi-st flat">без изменений: ${flat}</span><span class="kpi-st down">ухудшилось: ${down}</span>` +
-        (ripe ? '' : '<span class="kpi-st flat">5–7 дозревают — в счёт не идут</span>');
+        (ripe ? '' : '<span class="kpi-st flat">5–8 дозревают — в счёт не идут</span>');
+  }
+
+  function renderLTV(m) {
+    const L = m.ltv;
+    if (!L || !L.total || !L.total.clients) { $('ltvCard').style.display = 'none'; return; }
+    $('ltvCard').style.display = '';
+    const t = L.total, H = L.horizons || [14, 30, 60, 90, 180];
+    $('ltv').innerHTML = `<tr><th>Горизонт</th><th class="dk-num">Клиентов в когорте</th><th class="dk-num">Купили</th><th class="dk-num">Сделок</th><th class="dk-num">Выручка</th><th class="dk-num">На клиента</th><th></th></tr>` +
+      H.map(hh => { const x = t['h' + hh]; return `<tr><td class="name">${hh} дн.</td><td class="dk-num">${num(t.clients)}</td><td class="dk-num">${num(x.buyers)}</td><td class="dk-num">${num(x.deals)}</td>` +
+        `<td class="dk-num">${rub(x.revenue)}</td><td class="dk-num">${rub(t.clients ? x.revenue / t.clients : null)}</td><td>${x.mature ? '' : '<span class="dk-badge dk-badge--info">дозревает</span>'}</td></tr>`; }).join('');
+    const chs = Object.entries(L.byChannel || {}).sort((a, b) => b[1].clients - a[1].clients);
+    const lines = Object.entries(L.byLine || {});
+    const rowC = (name, x) => `<tr><td class="name">${esc(name)}</td><td class="dk-num">${num(x.clients)}</td>` + H.map(hh => `<td class="dk-num">${rub(x['h' + hh].revenue)}${x['h' + hh].mature ? '' : '<span class="muted0">*</span>'}</td>`).join('') + '</tr>';
+    $('ltvCh').innerHTML = '<tr><th>Канал / направление</th><th class="dk-num">Клиентов</th>' + H.map(hh => `<th class="dk-num">${hh} дн.</th>`).join('') + '</tr>' +
+      chs.map(([n, x]) => rowC(n, x)).join('') + (lines.length ? '<tr class="sep"><td colspan="' + (H.length + 2) + '"><span class="dk-kicker">По направлениям</span></td></tr>' + lines.map(([n, x]) => rowC(n, x)).join('') : '');
   }
 
   function renderWeeks(m) {
