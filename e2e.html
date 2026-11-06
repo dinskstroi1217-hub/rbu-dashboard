@@ -154,38 +154,41 @@
     const miss = (mk.spendMissing || []);
     if (miss.length) ban.push(`<div class="dk-banner dk-banner--warn">Расход неполный: ${miss.map(esc).join('; ')}. Цена лида и ROMI по этим каналам занижены или не считаются.</div>`);
     $('banners').innerHTML = ban.join('');
-    // KPI маркетинга
+    // KPI маркетинга. Пока месяц идёт или покупок нет — окупаемость не показываем (ROMI −100 % от нуля выручки вводит в заблуждение)
+    const early = m.matureDays < 0 || !mk.buyers;
     $('kpis').innerHTML = [
       kpi('Расход на рекламу', rub(mk.spend), miss.length ? 'есть пробелы в данных' : 'все сервисы'),
-      kpi('Обращений с рекламы', num(mk.requests), `лидов в Битриксе ${num(mk.leads)}`),
-      kpi('Целевых', num(mk.target), `мусор ${num(mk.junk)} · новых клиентов ${num(mk.new)}`),
+      kpi('Обращений с рекламы', num(mk.requests), `лидов ${num(mk.leads)} · новых клиентов ${num(mk.new)}`),
+      kpi('Целевых', num(mk.target), `мусор (спам, дубли) ${num(mk.junk)}`),
       kpi('Купили', num(mk.buyers), `новых покупателей ${num(mk.buyersNew)}`),
       kpi('Конверсия', pc(mk.conversionTarget), 'целевое обращение → покупка'),
       kpi('Выручка с рекламы', rub(mk.revenue), `по воронке ${rub(mk.revenueStrong)}`),
       kpi('Цена обращения', rub(mk.cpl), `целевого ${rub(mk.costTarget)}`),
-      kpi('Цена покупателя', rub(mk.costBuyer), `нового ${rub(mk.costNewBuyer)}`),
-      kpi('ДРР', pc(mk.drr), 'расход / выручка'),
-      kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход', romiCls(mk.romi)),
+      early ? kpi('Цена покупателя', '—', 'месяц идёт — считать рано') : kpi('Цена покупателя', rub(mk.costBuyer), `нового ${rub(mk.costNewBuyer)}`),
+      early ? kpi('ДРР', '—', 'месяц идёт — считать рано') : kpi('ДРР', pc(mk.drr), 'расход / выручка'),
+      early ? kpi('ROMI', '—', 'месяц идёт — считать рано') : kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход', romiCls(mk.romi)),
     ].join('');
     // каналы
     const rows = b.channels;
     const maxRev = Math.max(1, ...rows.map(r => r.revenue));
-    const head = '<tr><th>Канал</th><th class="dk-num">Обращ.</th><th class="dk-num">Мусор</th><th class="dk-num">Целевых</th><th class="dk-num">Новых</th>' +
-      '<th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th><th class="barcell"></th><th class="dk-num">По воронке</th><th class="dk-num">От новых клиентов</th>' +
-      '<th class="dk-num">Расход</th><th class="dk-num">Цена обращ.</th><th class="dk-num">Цена целев.</th><th class="dk-num">Цена покуп.</th><th class="dk-num">ДРР</th><th class="dk-num">ROMI</th></tr>';
+    const head = '<tr><th>Канал</th><th class="dk-num">Обращ.</th><th class="dk-num">Мусор</th><th class="dk-num">Целевых</th>' +
+      '<th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th>' +
+      '<th class="dk-num">Расход</th><th class="dk-num">Цена обращ.</th><th class="dk-num">Цена покуп.</th><th class="dk-num">ДРР</th><th class="dk-num">ROMI</th></tr>';
+    const cut = (r, v) => (early || !r.buyers) ? '—' : v;   // окупаемость — только когда есть покупки и месяц закрыт
     const tr = (r, cls) => `<tr class="${cls || ''}"><td class="name">${esc(r.channel)}${r.spendMissing ? ' <span class="dk-badge dk-badge--warn">расход неполный</span>' : ''}</td>` +
-      `<td class="dk-num">${num(r.requests)}</td><td class="dk-num muted0">${num(r.junk)}</td><td class="dk-num">${num(r.target)}</td><td class="dk-num">${num(r.new)}</td>` +
-      `<td class="dk-num">${num(r.buyers)}</td><td class="dk-num">${pc(r.conversionTarget)}</td><td class="dk-num">${rub(r.revenue)}</td>` +
-      `<td class="barcell">${r.revenue ? `<div class="bar ${r.kind === 'marketing' ? '' : 'mut'}" style="width:${Math.max(2, 100 * r.revenue / maxRev)}%"></div>` : ''}</td>` +
-      `<td class="dk-num muted0">${rub(r.revenueStrong)}</td><td class="dk-num">${rub(r.revenueNewClients)}</td><td class="dk-num">${rub(r.spend)}</td><td class="dk-num">${rub(r.cpl)}</td><td class="dk-num">${rub(r.costTarget)}</td>` +
-      `<td class="dk-num">${rub(r.costBuyer)}</td><td class="dk-num">${pc(r.drr)}</td><td class="dk-num ${romiCls(r.romi)}">${pc(r.romi)}</td></tr>`;
+      `<td class="dk-num">${num(r.requests)}</td><td class="dk-num muted0">${num(r.junk)}</td><td class="dk-num">${num(r.target)}</td>` +
+      `<td class="dk-num">${num(r.buyers)}</td><td class="dk-num">${pc(r.conversionTarget)}</td>` +
+      `<td class="dk-num" title="по воронке ${rub(r.revenueStrong)} · от новых клиентов ${rub(r.revenueNewClients)}">${rub(r.revenue)}</td>` +
+      `<td class="dk-num">${rub(r.spend)}</td><td class="dk-num">${rub(r.cpl)}</td>` +
+      `<td class="dk-num">${r.spend == null ? '—' : cut(r, rub(r.costBuyer))}</td><td class="dk-num">${r.spend == null ? '—' : cut(r, pc(r.drr))}</td>` +
+      `<td class="dk-num ${early || !r.buyers ? '' : romiCls(r.romi)}">${r.spend == null ? '—' : cut(r, pc(r.romi))}</td></tr>`;
     const mkRows = rows.filter(r => r.kind === 'marketing'), slRows = rows.filter(r => r.kind !== 'marketing');
     $('chan').innerHTML = head +
-      '<tr class="sep"><td colspan="17"><span class="dk-kicker">Реклама</span></td></tr>' + mkRows.map(r => tr(r)).join('') +
+      '<tr class="sep"><td colspan="12"><span class="dk-kicker">Реклама</span></td></tr>' + mkRows.map(r => tr(r)).join('') +
       tr({ ...mk, channel: 'Итого реклама', kind: 'marketing' }, 'sum') +
-      '<tr class="sep"><td colspan="17"><span class="dk-kicker">Продажи и прочие источники (без рекламного расхода)</span></td></tr>' + slRows.map(r => tr(r)).join('') +
+      '<tr class="sep"><td colspan="12"><span class="dk-kicker">Продажи и прочие источники (без рекламного расхода)</span></td></tr>' + slRows.map(r => tr(r)).join('') +
       tr({ ...b.nonMarketing, channel: 'Итого продажи', kind: 'sales' }, 'sum') + tr({ ...b.total, channel: 'Всего', kind: 'sales' }, 'sum');
-    $('chanNote').textContent = 'Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
+    $('chanNote').textContent = 'Наведите на выручку — видно, сколько «по воронке» и от новых клиентов. Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
       m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» — звонки на номера сайта и заявки с форм: Директ и SEO внутри не разделить (номер на сайте один, метки у форм почти не передаются).';
     // выручка по дате закрытия
     const p = m.period, tot = Math.max(1, p.sum);
@@ -202,14 +205,19 @@
     const cRow = (n, a) => `<tr><td class="name">${esc(n)}</td><td class="dk-num">${num(a.requests)}</td><td class="dk-num">${num(a.target)}</td><td class="dk-num">${num(a.buyers)}</td><td class="dk-num">${pc(a.conversionTarget)}</td><td class="dk-num">${rub(a.revenue)}</td></tr>`;
     const cHead = '<tr><th></th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th></tr>';
     $('clients').innerHTML = cHead + Object.entries(m.byClient).map(([k, a]) => cRow(k[0].toUpperCase() + k.slice(1), a)).join('');
-    $('linesTbl').innerHTML = cHead + Object.entries(m.lines).map(([k, a]) => cRow(k + ' — всего', a.all) + cRow(k + ' — с рекламы', a.marketing)).join('');
-    // менеджеры
+    $('linesTbl').innerHTML = cHead + Object.entries(m.lines).filter(([k]) => line === 'spec' ? k === 'Спецтехника' : k !== 'Спецтехника').map(([k, a]) => cRow(k + ' — всего', a.all) + cRow(k + ' — с рекламы', a.marketing)).join('');
+    // менеджеры: операторы РБУ, диспетчеры и служебные учётки — одной строкой внизу
+    const OPS = /оператор|диспетчер|рбу|^id-|дударев|зименко|читчян/i;
+    const mgrs = m.managers.filter(x => !OPS.test(x.manager) && (x.requests >= 3 || x.revenue > 0));
+    const ops = m.managers.filter(x => OPS.test(x.manager));
+    const opsSum = ops.reduce((a, x) => ({ n: a.n + x.requests, b: a.b + x.buyers, r: a.r + x.revenue }), { n: 0, b: 0, r: 0 });
     $('mgr').innerHTML = '<tr><th>Менеджер</th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th>' +
-      '<th class="dk-num">Выручка</th><th class="dk-num">Ср. чек</th><th class="dk-num">Дней до сделки</th><th class="dk-num">Рекл. обращ.</th><th class="dk-num">Рекл. купили</th><th class="dk-num">Рекл. конв.</th><th class="dk-num">Рекл. выручка</th><th class="dk-num">Сделок с 0 ₽</th></tr>' +
-      m.managers.filter(x => x.requests >= 3 || x.revenue > 0).map(x => `<tr><td class="name">${esc(x.manager)}</td><td class="dk-num">${num(x.requests)}</td><td class="dk-num">${num(x.target)}</td>` +
+      '<th class="dk-num">Выручка</th><th class="dk-num">Ср. чек</th><th class="dk-num">Рекл. обращ.</th><th class="dk-num">Рекл. купили</th><th class="dk-num">Рекл. конв.</th><th class="dk-num">Рекл. выручка</th><th class="dk-num">Сделок с 0 ₽</th></tr>' +
+      mgrs.map(x => `<tr><td class="name">${esc(x.manager)}</td><td class="dk-num">${num(x.requests)}</td><td class="dk-num">${num(x.target)}</td>` +
         `<td class="dk-num">${num(x.buyers)}</td><td class="dk-num">${pc(x.conversionTarget)}</td><td class="dk-num">${rub(x.revenue)}</td><td class="dk-num">${rub(x.avgCheck)}</td>` +
-        `<td class="dk-num">${num(x.medianDaysToSale)}</td><td class="dk-num">${num(x.mktRequests)}</td><td class="dk-num">${num(x.mktBuyers)}</td><td class="dk-num">${pc(x.mktConversionTarget)}</td>` +
-        `<td class="dk-num">${rub(x.mktRevenue)}</td><td class="dk-num ${x.zeroSumWon ? 'warn' : 'muted0'}">${num(x.zeroSumWon)}</td></tr>`).join('');
+        `<td class="dk-num">${num(x.mktRequests)}</td><td class="dk-num">${num(x.mktBuyers)}</td><td class="dk-num">${pc(x.mktConversionTarget)}</td>` +
+        `<td class="dk-num">${rub(x.mktRevenue)}</td><td class="dk-num ${x.zeroSumWon ? 'warn' : 'muted0'}">${num(x.zeroSumWon)}</td></tr>`).join('') +
+      (ops.length ? `<tr class="sum"><td class="name">Операторы РБУ, диспетчеры, прочие (${ops.length})</td><td class="dk-num">${num(opsSum.n)}</td><td></td><td class="dk-num">${num(opsSum.b)}</td><td></td><td class="dk-num">${rub(opsSum.r)}</td><td colspan="6"></td></tr>` : '');
     // расходы
     $('spend').innerHTML = '<tr><th>Сервис</th><th>Кабинет</th><th class="dk-num">Сумма</th><th>Откуда</th></tr>' +
       m.spend.filter(s => (line === 'main') === (s.line !== 'spec')).map(s => `<tr><td>${esc(s.service)}</td><td class="name">${esc(s.cabinet)}</td><td class="dk-num">${s.amount == null ? '<span class="dk-badge dk-badge--warn">нет данных</span>' : rub(s.amount)}</td>` +
@@ -235,8 +243,11 @@
   fetch('e2e-data.json?t=' + Date.now()).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(d => {
     DATA = d;
     const ms = Object.keys(d.months).sort();
-    month = ms[ms.length - 1];
-    $('months').innerHTML = ms.map(x => `<button class="dk-btn dk-btn--ghost${x === month ? ' on' : ''}" data-m="${x}">${x}</button>`).join('');
+    const closed = ms.filter(x => d.months[x].matureDays >= 0);
+    month = closed.length ? closed[closed.length - 1] : ms[ms.length - 1];
+    const MN = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+    const mLabel = x => { const [y, mm] = x.split('-'); const t = MN[+mm - 1]; return t[0].toUpperCase() + t.slice(1) + ' ' + y + (d.months[x].matureDays < 0 ? ' (идёт)' : ''); };
+    $('months').innerHTML = ms.map(x => `<button class="dk-btn dk-btn--ghost${x === month ? ' on' : ''}" data-m="${x}">${mLabel(x)}</button>`).join('');
     $('months').querySelectorAll('[data-m]').forEach(b => b.onclick = () => {
       month = b.dataset.m; $('months').querySelectorAll('[data-m]').forEach(x => x.classList.toggle('on', x === b)); render();
     });
