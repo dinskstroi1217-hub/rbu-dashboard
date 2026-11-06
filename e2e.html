@@ -42,6 +42,15 @@
   .muted0 { color: var(--dk-ink-3); }
   .good { color: var(--dk-success); } .bad { color: var(--dk-danger); } .warn { color: var(--dk-warning); }
   #err { display: none; }
+  body.kpi-mode .wrap > *:not(.top):not(#kpiView):not(#err):not(#gen) { display: none; }
+  #kpiView { display: none; } body.kpi-mode #kpiView { display: block; }
+  .kpi-st { display: inline-block; padding: 3px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .kpi-st.up { background: var(--dk-success-tint); color: var(--dk-success-ink); }
+  .kpi-st.down { background: var(--dk-danger-tint); color: var(--dk-danger-ink); }
+  .kpi-st.flat { background: var(--dk-surface-2); color: var(--dk-ink-2); }
+  .kpi-sum { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 4px; }
+  td.cur { font-weight: 700; } th.cur { color: var(--dk-ink); }
+  .grp td { padding-top: 14px; border-bottom: none; }
   .dlt { font-family: var(--dk-font-num); font-size: 11px; margin-top: 2px; white-space: nowrap; }
   .dk-kpi .dlt { margin-top: 5px; }
   .dk-table td .dlt { color: var(--dk-ink-3); }
@@ -62,6 +71,10 @@
     </div>
     <div class="ctrls">
       <div class="seg" id="months"></div>
+      <div class="seg" id="views">
+        <button class="dk-btn dk-btn--ghost on" data-view="e2e">Сквозная аналитика</button>
+        <button class="dk-btn dk-btn--ghost" data-view="kpi">KPI-маркетинг</button>
+      </div>
       <div class="seg" id="lines">
         <button class="dk-btn dk-btn--ghost on" data-line="main">Бетон и ЖБИ</button>
         <button class="dk-btn dk-btn--ghost" data-line="spec">Спецтехника</button>
@@ -70,6 +83,18 @@
     </div>
   </div>
   <div class="dk-banner dk-banner--danger" id="err"></div>
+  <div id="kpiView">
+    <div class="dk-card">
+      <h2>KPI-маркетинг · Бетон и ЖБИ</h2>
+      <div class="dk-muted" id="kpiSub"></div>
+      <div class="kpi-sum" id="kpiSum"></div>
+      <div class="scroll"><table class="dk-table" id="kpiTbl"></table></div>
+      <p class="note">Оценка — изменение выбранного месяца к прошлому месяцу и к среднему за 3 предыдущих: «улучшение» / «ухудшение» при разнице от 5 %, иначе «без изменений».
+        Показатели 1–4 — зона маркетинга (объём и качество рекламного потока, ЖБИ); 5–7 — общий результат с продажами (покупку закрывает менеджер).
+        Месяц дозревает 30 дней после закрытия: сделки по обращениям конца месяца ещё заводятся — оценка по 5–7 предварительная.
+        Расход — фактические списания сервисов (Директ, Авито, Я.Бизнес, 2ГИС). Спецтехника не входит.</p>
+    </div>
+  </div>
   <div id="banners"></div>
   <div class="kpis" id="kpis"></div>
 
@@ -91,12 +116,14 @@
 
   <div class="grid2">
     <div class="dk-card">
+      <div class="seg split" style="float:right"><button class="dk-btn dk-btn--ghost on" data-split="all">Всего</button><button class="dk-btn dk-btn--ghost" data-split="Бетон">Бетон</button><button class="dk-btn dk-btn--ghost" data-split="ЖБИ">ЖБИ</button></div>
       <h2>Выручка месяца: откуда пришли деньги</h2>
       <div class="dk-muted">Все успешные сделки, закрытые в месяце (по дате завершения), — с происхождением.</div>
       <div id="periodStack"></div>
       <div class="scroll"><table class="dk-table" id="period"></table></div>
     </div>
     <div class="dk-card">
+      <div class="seg split" style="float:right"><button class="dk-btn dk-btn--ghost on" data-split="all">Всего</button><button class="dk-btn dk-btn--ghost" data-split="Бетон">Бетон</button><button class="dk-btn dk-btn--ghost" data-split="ЖБИ">ЖБИ</button></div>
       <h2>Новые и действующие клиенты</h2>
       <div class="dk-muted">Тип клиента на момент обращения (все каналы).</div>
       <div class="scroll"><table class="dk-table" id="clients"></table></div>
@@ -138,7 +165,19 @@
   const num = v => v == null ? '—' : nf.format(v);
   const pc = v => v == null ? '—' : String(v).replace('.', ',') + ' %';
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  let DATA = null, month = null, line = 'main';
+  let DATA = null, month = null, line = 'main', split = 'all', view = 'e2e';
+  document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => {
+    view = b.dataset.view;
+    document.querySelectorAll('[data-view]').forEach(x => x.classList.toggle('on', x === b));
+    document.body.classList.toggle('kpi-mode', view === 'kpi');
+    document.getElementById('lines').style.display = view === 'kpi' ? 'none' : '';
+    render();
+  });
+  document.querySelectorAll('[data-split]').forEach(b => b.onclick = () => {
+    split = b.dataset.split;
+    document.querySelectorAll('[data-split]').forEach(x => x.classList.toggle('on', x.dataset.split === split));
+    render();
+  });
   try { const t = localStorage.getItem('dk-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
   $('theme').onclick = () => {
     const t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -171,6 +210,7 @@
 
   function render() {
     const m = DATA.months[month];
+    if (view === 'kpi') { renderKPI(); return; }
     const b = m[line];
     const mk = b.marketing;
     const lineName = line === 'main' ? 'Бетон и ЖБИ' : 'Спецтехника';
@@ -227,20 +267,24 @@
     $('chanNote').textContent = (pk && !early ? 'Стрелки — изменение ' + lbl + ' (зелёный — лучше). ' : '') + 'Наведите на выручку — видно, сколько «по воронке» и от новых клиентов. Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
       m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» — звонки на номера сайта и заявки с форм: Директ и SEO внутри не разделить (номер на сайте один, метки у форм почти не передаются).';
     // выручка по дате закрытия
-    const p = m.period, tot = Math.max(1, p.sum);
+    const p = m.period;
+    const sp = split !== 'all' && p.byOriginLine && p.byOriginLine[split];
+    const origins = sp ? p.byOriginLine[split] : p.byOrigin;
+    const pSum = origins.reduce((a, o) => a + o.sum, 0), pDeals = origins.reduce((a, o) => a + o.deals, 0), tot = Math.max(1, pSum);
     const grp = { marketing: 0, sales: 0, repeat: 0, untraced: 0 };
-    Object.values(p.byLine).forEach(v => Object.entries(v).forEach(([k, s]) => grp[k] = (grp[k] || 0) + s));
+    Object.entries(p.byLine).filter(([ln]) => !sp || ln === split).forEach(([, v]) => Object.entries(v).forEach(([k, s]) => grp[k] = (grp[k] || 0) + s));
     const colors = { marketing: 'var(--dk-accent)', sales: 'var(--dk-primary)', repeat: 'var(--dk-ink-3)', untraced: 'var(--dk-danger)' };
     const names = { marketing: 'с рекламы', sales: 'с обращений в продажи', repeat: 'повторные без обращения', untraced: 'не прослеживается' };
     $('periodStack').innerHTML = `<div class="stack">${Object.keys(grp).map(k => `<span style="width:${100 * grp[k] / tot}%;background:${colors[k]}"></span>`).join('')}</div>` +
       `<div class="legend">${Object.keys(grp).map(k => `<span><i style="background:${colors[k]}"></i>${names[k]} ${rub(grp[k])} (${pc(Math.round(1000 * grp[k] / tot) / 10)})</span>`).join('')}</div>`;
     $('period').innerHTML = '<tr><th>Происхождение</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th><th class="dk-num">Доля</th></tr>' +
-      p.byOrigin.map(o => `<tr><td class="name">${esc(o.origin)}</td><td class="dk-num">${num(o.deals)}</td><td class="dk-num">${rub(o.sum)}</td><td class="dk-num">${pc(Math.round(1000 * o.sum / tot) / 10)}</td></tr>`).join('') +
-      `<tr class="sum"><td>Всего закрыто в месяце</td><td class="dk-num">${num(p.deals)}</td><td class="dk-num">${rub(p.sum)}</td><td></td></tr>`;
+      origins.map(o => `<tr><td class="name">${esc(o.origin)}</td><td class="dk-num">${num(o.deals)}</td><td class="dk-num">${rub(o.sum)}</td><td class="dk-num">${pc(Math.round(1000 * o.sum / tot) / 10)}</td></tr>`).join('') +
+      `<tr class="sum"><td>Всего закрыто в месяце${sp ? ' · ' + split : ''}</td><td class="dk-num">${num(pDeals)}</td><td class="dk-num">${rub(pSum)}</td><td></td></tr>`;
     // клиенты и направления
     const cRow = (n, a) => `<tr><td class="name">${esc(n)}</td><td class="dk-num">${num(a.requests)}</td><td class="dk-num">${num(a.target)}</td><td class="dk-num">${num(a.buyers)}</td><td class="dk-num">${pc(a.conversionTarget)}</td><td class="dk-num">${rub(a.revenue)}</td></tr>`;
     const cHead = '<tr><th></th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th></tr>';
-    $('clients').innerHTML = cHead + Object.entries(m.byClient).map(([k, a]) => cRow(k[0].toUpperCase() + k.slice(1), a)).join('');
+    const bc = split !== 'all' && m.byClientLine && m.byClientLine[split] ? m.byClientLine[split] : m.byClient;
+    $('clients').innerHTML = cHead + Object.entries(bc).map(([k, a]) => cRow(k[0].toUpperCase() + k.slice(1), a)).join('');
     $('linesTbl').innerHTML = cHead + Object.entries(m.lines).filter(([k]) => line === 'spec' ? k === 'Спецтехника' : k !== 'Спецтехника').map(([k, a]) => cRow(k + ' — всего', a.all) + cRow(k + ' — с рекламы', a.marketing)).join('');
     // менеджеры: операторы РБУ, диспетчеры и служебные учётки — одной строкой внизу
     const OPS = /оператор|диспетчер|рбу|^id-|дударев|зименко|читчян/i;
@@ -274,6 +318,60 @@
     $('quality').innerHTML = qRows.map(([a, v]) => `<tr><td class="name">${esc(a)}</td><td class="dk-num">${v}</td></tr>`).join('');
     $('defs').innerHTML = Object.values(m.definitions).map(d => `<li>${esc(d)}</li>`).join('');
     $('gen').textContent = `Пересчитано ${new Date(m.generatedAt).toLocaleString('ru-RU')} · источник: Битрикс24 REST + API Директа, Авито; Я.Бизнес — абонентка; ручные строки помечены.`;
+  }
+
+  // ── KPI-маркетинг ──
+  const KPI = [
+    { n: 1, name: 'Целевые обращения с рекламы', unit: 'шт', up: true, zone: 'm', get: m => m.main.marketing.target },
+    { n: 2, name: 'Цена целевого обращения', unit: '₽', up: false, zone: 'm', get: m => m.main.marketing.costTarget },
+    { n: 3, name: 'Доля мусора (спам, дубли)', unit: '%', up: false, zone: 'm', pp: true,
+      get: m => m.main.marketing.requests ? Math.round(1000 * m.main.marketing.junk / m.main.marketing.requests) / 10 : null },
+    { n: 4, name: 'Целевые обращения ЖБИ с рекламы', unit: 'шт', up: true, zone: 'm', get: m => (m.lines['ЖБИ'] || {}).marketing?.target ?? null },
+    { n: 5, name: 'Новые покупатели с рекламы', unit: 'шт', up: true, zone: 's', ripe: true, get: m => m.main.marketing.buyersNew },
+    { n: 6, name: 'Цена нового покупателя', unit: '₽', up: false, zone: 's', ripe: true, get: m => m.main.marketing.costNewBuyer },
+    { n: 7, name: 'ДРР рекламы (расход / выручка)', unit: '%', up: false, zone: 's', ripe: true, pp: true, get: m => m.main.marketing.drr },
+  ];
+  const fmtK = (k, v) => v == null ? '—' : k.unit === '₽' ? rub(v) : k.unit === '%' ? pc(v) : num(v);
+  function judge(k, cur, base) {
+    if (cur == null || base == null || base === 0) return null;
+    const ch = k.pp ? cur - base : 100 * (cur - base) / Math.abs(base);
+    const thr = k.pp ? 1 : 5;
+    if (Math.abs(ch) < thr) return { cls: 'flat', t: 'без изменений', ch };
+    const better = k.up ? ch > 0 : ch < 0;
+    return { cls: better ? 'up' : 'down', t: better ? 'улучшение' : 'ухудшение', ch };
+  }
+  const chTxt = (k, j) => j ? `${j.ch > 0 ? '▲' : '▼'} ${String(Math.abs(Math.round(j.ch * 10) / 10)).replace('.', ',')}${k.pp ? ' п.п.' : ' %'}` : '—';
+  function renderKPI() {
+    const ms = Object.keys(DATA.months).sort();
+    const i = ms.indexOf(month), cur = DATA.months[month];
+    const prevK = ms[i - 1], base = ms.slice(Math.max(0, i - 3), i);
+    const cols = ms.slice(Math.max(0, i - 3), i + 1);
+    const MNs = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+    const lab = k => MNs[+k.split('-')[1] - 1] + ' ' + k.slice(2, 4);
+    const ripe = cur.matureDays >= 30;
+    $('kpiSub').textContent = `Оценка за ${lab(month)}` + (cur.matureDays < 0 ? ' — месяц ещё идёт, оценка не выставляется' : ripe ? '' : ` — месяц закрыт ${cur.matureDays} дн. назад, показатели 5–7 дозревают`);
+    let up = 0, down = 0, flat = 0;
+    const row = k => {
+      const v = c => k.get(DATA.months[c]);
+      const cv = v(month);
+      const bAvg = base.length ? base.map(v).filter(x => x != null) : [];
+      const avg = bAvg.length ? bAvg.reduce((a, b) => a + b, 0) / bAvg.length : null;
+      const jp = cur.matureDays < 0 ? null : judge(k, cv, prevK ? v(prevK) : null);
+      const ja = cur.matureDays < 0 ? null : judge(k, cv, avg);
+      const final = jp || ja;
+      if (final && !(k.ripe && !ripe)) { final.cls === 'up' ? up++ : final.cls === 'down' ? down++ : flat++; }
+      const st = !final ? '<span class="muted0">—</span>' : `<span class="kpi-st ${final.cls}">${final.t}</span>` + (k.ripe && !ripe ? ' <span class="dk-badge dk-badge--info">дозревает</span>' : '');
+      return `<tr><td class="name">${k.n}. ${esc(k.name)}</td>` + cols.map(c => `<td class="dk-num ${c === month ? 'cur' : ''}">${fmtK(k, v(c))}</td>`).join('') +
+        `<td class="dk-num">${chTxt(k, jp)}</td><td class="dk-num">${fmtK(k, avg == null ? null : Math.round(avg * 10) / 10)}</td><td class="dk-num">${chTxt(k, ja)}</td><td>${st}</td></tr>`;
+    };
+    const head = '<tr><th>Показатель</th>' + cols.map(c => `<th class="dk-num ${c === month ? 'cur' : ''}">${lab(c)}${DATA.months[c].matureDays < 0 ? ' (идёт)' : ''}</th>`).join('') +
+      '<th class="dk-num">к прошлому мес.</th><th class="dk-num">среднее 3 мес.</th><th class="dk-num">к среднему</th><th>Оценка</th></tr>';
+    const g = t => `<tr class="grp"><td colspan="${cols.length + 5}"><span class="dk-kicker">${t}</span></td></tr>`;
+    $('kpiTbl').innerHTML = head + g('Зона маркетинга') + KPI.filter(k => k.zone === 'm').map(row).join('') +
+      g('Общий результат с продажами') + KPI.filter(k => k.zone === 's').map(row).join('');
+    $('kpiSum').innerHTML = cur.matureDays < 0 ? '<span class="kpi-st flat">месяц идёт — выберите закрытый месяц</span>'
+      : `<span class="kpi-st up">улучшилось: ${up}</span><span class="kpi-st flat">без изменений: ${flat}</span><span class="kpi-st down">ухудшилось: ${down}</span>` +
+        (ripe ? '' : '<span class="kpi-st flat">5–7 дозревают — в счёт не идут</span>');
   }
 
   function renderWeeks(m) {
