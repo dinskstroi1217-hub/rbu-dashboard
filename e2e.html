@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сквозная аналитика ДКБИ</title>
+<link rel="stylesheet" href="dkbi-design.css">
+<style>
+  /* только раскладка; цвета и шрифты — токены dkbi-design.css */
+  body { margin: 0; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 20px 16px 48px; box-sizing: border-box; }
+  .top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+  .top h1 { margin: 4px 0 0; }
+  .ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .seg { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+  .seg .dk-btn { padding: 8px 12px; }
+  .seg .dk-btn.on { background: var(--dk-primary); color: var(--dk-on-primary); border-color: var(--dk-primary); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 14px 0; }
+  .kpi-sub { font-family: var(--dk-font-num); font-size: 11px; color: var(--dk-ink-2); margin-top: 4px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid2 > * { min-width: 0; }   /* иначе колонка сетки растягивается по ширине таблицы и страница уезжает вбок на телефоне */
+  @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } }
+  .dk-card { margin-top: 14px; }
+  .dk-card h2 { margin-bottom: 4px; }
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px -6px 0; }
+  .dk-table td, .dk-table th { white-space: nowrap; }
+  .dk-table td.name { white-space: normal; min-width: 150px; }
+  .dk-table tr.sum td { font-weight: 600; border-top: .5px solid var(--dk-line-2); }
+  .dk-table tr.sep td { padding: 14px 12px 6px; border-bottom: none; }
+  .bar { height: 6px; border-radius: 3px; background: var(--dk-primary); min-width: 2px; }
+  .bar.acc { background: var(--dk-accent); }
+  .bar.mut { background: var(--dk-line-2); }
+  .barcell { width: 140px; }
+  .stack { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--dk-surface-2); margin: 6px 0 4px; }
+  .stack > span { display: block; height: 100%; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--dk-ink-2); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+  .note { font-size: 12px; color: var(--dk-ink-2); margin: 6px 0 0; }
+  details summary { cursor: pointer; color: var(--dk-primary); font-weight: 600; }
+  details ul { margin: 8px 0 0; padding-left: 18px; color: var(--dk-ink-2); }
+  .dk-banner { margin-top: 10px; }
+  .muted0 { color: var(--dk-ink-3); }
+  .good { color: var(--dk-success); } .bad { color: var(--dk-danger); } .warn { color: var(--dk-warning); }
+  #err { display: none; }
+</style>
+</head>
+<body class="dkbi">
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="dk-kicker">ДКБИ · маркетинг и продажи</div>
+      <h1>Сквозная аналитика</h1>
+      <div class="dk-muted" id="sub">обращение → успешная сделка → деньги, с расходами рекламных сервисов</div>
+    </div>
+    <div class="ctrls">
+      <div class="seg" id="months"></div>
+      <div class="seg" id="lines">
+        <button class="dk-btn dk-btn--ghost on" data-line="main">Бетон и ЖБИ</button>
+        <button class="dk-btn dk-btn--ghost" data-line="spec">Спецтехника</button>
+      </div>
+      <button class="dk-btn dk-btn--ghost" id="theme" title="Тема">◐</button>
+    </div>
+  </div>
+  <div class="dk-banner dk-banner--danger" id="err"></div>
+  <div id="banners"></div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="dk-card">
+    <h2>Каналы</h2>
+    <div class="dk-muted">Уникальные обращения месяца и всё, что они купили к сегодняшнему дню. Расход — фактические списания сервисов за месяц.</div>
+    <div class="scroll"><table class="dk-table" id="chan"></table></div>
+    <p class="note" id="chanNote"></p>
+  </div>
+
+  <div class="grid2">
+    <div class="dk-card">
+      <h2>Выручка месяца: откуда пришли деньги</h2>
+      <div class="dk-muted">Все успешные сделки, закрытые в месяце (по дате завершения), — с происхождением.</div>
+      <div id="periodStack"></div>
+      <div class="scroll"><table class="dk-table" id="period"></table></div>
+    </div>
+    <div class="dk-card">
+      <h2>Новые и действующие клиенты</h2>
+      <div class="dk-muted">Тип клиента на момент обращения (все каналы).</div>
+      <div class="scroll"><table class="dk-table" id="clients"></table></div>
+      <h3 style="margin-top:16px">Направления</h3>
+      <div class="scroll"><table class="dk-table" id="linesTbl"></table></div>
+    </div>
+  </div>
+
+  <div class="dk-card">
+    <h2>Менеджеры</h2>
+    <div class="dk-muted">Обращения — у кого первый лид обращения (ответственный при первом касании). Выручка — по сделкам, привязанным к этим обращениям.</div>
+    <div class="scroll"><table class="dk-table" id="mgr"></table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="dk-card">
+      <h2>Расходы сервисов</h2>
+      <div class="scroll"><table class="dk-table" id="spend"></table></div>
+    </div>
+    <div class="dk-card">
+      <h2>Качество цепочки</h2>
+      <div class="scroll"><table class="dk-table" id="quality"></table></div>
+    </div>
+  </div>
+
+  <div class="dk-card">
+    <details>
+      <summary>Как считается</summary>
+      <ul id="defs"></ul>
+    </details>
+  </div>
+  <p class="note" id="gen"></p>
+</div>
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const nf = new Intl.NumberFormat('ru-RU');
+  const rub = v => v == null ? '—' : nf.format(Math.round(v)) + ' ₽';
+  const num = v => v == null ? '—' : nf.format(v);
+  const pc = v => v == null ? '—' : String(v).replace('.', ',') + ' %';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  let DATA = null, month = null, line = 'main';
+  try { const t = localStorage.getItem('dk-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  $('theme').onclick = () => {
+    const t = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem('dk-theme', t); } catch (e) {}
+  };
+  document.querySelectorAll('#lines [data-line]').forEach(b => b.onclick = () => {
+    line = b.dataset.line;
+    document.querySelectorAll('#lines [data-line]').forEach(x => x.classList.toggle('on', x === b));
+    render();
+  });
+
+  function kpi(label, value, sub, cls) {
+    return `<div class="dk-kpi"><div class="dk-kpi__label">${esc(label)}</div><div class="dk-kpi__value ${cls || ''}">${value}</div>` +
+      (sub ? `<div class="kpi-sub">${sub}</div>` : '') + '</div>';
+  }
+  const romiCls = v => v == null ? '' : v >= 0 ? 'good' : 'bad';
+
+  function render() {
+    const m = DATA.months[month];
+    const b = m[line];
+    const mk = b.marketing;
+    const lineName = line === 'main' ? 'Бетон и ЖБИ' : 'Спецтехника';
+    $('sub').textContent = `${lineName} · ${m.month} · обращение → успешная сделка → деньги`;
+    // баннеры
+    const ban = [];
+    if (m.matureDays < 0) ban.push(`<div class="dk-banner dk-banner--info">Месяц ещё идёт: цифры на сегодня, расход Я.Бизнеса взят пропорционально прошедшим дням. Пересчёт каждую ночь.</div>`);
+    else if (m.matureDays < 45) ban.push(`<div class="dk-banner dk-banner--info">Месяц закрыт ${m.matureDays} дн. назад: обращения конца месяца ещё превращаются в сделки, выручка и конверсия будут расти. Пересчёт каждую ночь.</div>`);
+    if (line === 'spec' && !b.total.dealsWon) ban.push(`<div class="dk-banner dk-banner--warn">Спецтехника: успешных сделок в Битриксе за месяц нет (последние заведены 05.08.2026), лиды записаны с источником — именем менеджера. Сквозной счёт по Битриксу невозможен, пока продажи спецтехники не заносятся в воронку.</div>`);
+    const miss = (mk.spendMissing || []);
+    if (miss.length) ban.push(`<div class="dk-banner dk-banner--warn">Расход неполный: ${miss.map(esc).join('; ')}. Цена лида и ROMI по этим каналам занижены или не считаются.</div>`);
+    $('banners').innerHTML = ban.join('');
+    // KPI маркетинга
+    $('kpis').innerHTML = [
+      kpi('Расход на рекламу', rub(mk.spend), miss.length ? 'есть пробелы в данных' : 'все сервисы'),
+      kpi('Обращений с рекламы', num(mk.requests), `лидов в Битриксе ${num(mk.leads)}`),
+      kpi('Целевых', num(mk.target), `мусор ${num(mk.junk)} · новых клиентов ${num(mk.new)}`),
+      kpi('Купили', num(mk.buyers), `новых покупателей ${num(mk.buyersNew)}`),
+      kpi('Конверсия', pc(mk.conversionTarget), 'целевое обращение → покупка'),
+      kpi('Выручка с рекламы', rub(mk.revenue), `по воронке ${rub(mk.revenueStrong)}`),
+      kpi('Цена обращения', rub(mk.cpl), `целевого ${rub(mk.costTarget)}`),
+      kpi('Цена покупателя', rub(mk.costBuyer), `нового ${rub(mk.costNewBuyer)}`),
+      kpi('ДРР', pc(mk.drr), 'расход / выручка'),
+      kpi('ROMI', pc(mk.romi), '(выручка − расход) / расход', romiCls(mk.romi)),
+    ].join('');
+    // каналы
+    const rows = b.channels;
+    const maxRev = Math.max(1, ...rows.map(r => r.revenue));
+    const head = '<tr><th>Канал</th><th class="dk-num">Обращ.</th><th class="dk-num">Мусор</th><th class="dk-num">Целевых</th><th class="dk-num">Новых</th>' +
+      '<th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th><th class="barcell"></th><th class="dk-num">По воронке</th><th class="dk-num">От новых клиентов</th>' +
+      '<th class="dk-num">Расход</th><th class="dk-num">Цена обращ.</th><th class="dk-num">Цена целев.</th><th class="dk-num">Цена покуп.</th><th class="dk-num">ДРР</th><th class="dk-num">ROMI</th></tr>';
+    const tr = (r, cls) => `<tr class="${cls || ''}"><td class="name">${esc(r.channel)}${r.spendMissing ? ' <span class="dk-badge dk-badge--warn">расход неполный</span>' : ''}</td>` +
+      `<td class="dk-num">${num(r.requests)}</td><td class="dk-num muted0">${num(r.junk)}</td><td class="dk-num">${num(r.target)}</td><td class="dk-num">${num(r.new)}</td>` +
+      `<td class="dk-num">${num(r.buyers)}</td><td class="dk-num">${pc(r.conversionTarget)}</td><td class="dk-num">${rub(r.revenue)}</td>` +
+      `<td class="barcell">${r.revenue ? `<div class="bar ${r.kind === 'marketing' ? '' : 'mut'}" style="width:${Math.max(2, 100 * r.revenue / maxRev)}%"></div>` : ''}</td>` +
+      `<td class="dk-num muted0">${rub(r.revenueStrong)}</td><td class="dk-num">${rub(r.revenueNewClients)}</td><td class="dk-num">${rub(r.spend)}</td><td class="dk-num">${rub(r.cpl)}</td><td class="dk-num">${rub(r.costTarget)}</td>` +
+      `<td class="dk-num">${rub(r.costBuyer)}</td><td class="dk-num">${pc(r.drr)}</td><td class="dk-num ${romiCls(r.romi)}">${pc(r.romi)}</td></tr>`;
+    const mkRows = rows.filter(r => r.kind === 'marketing'), slRows = rows.filter(r => r.kind !== 'marketing');
+    $('chan').innerHTML = head +
+      '<tr class="sep"><td colspan="17"><span class="dk-kicker">Реклама</span></td></tr>' + mkRows.map(r => tr(r)).join('') +
+      tr({ ...mk, channel: 'Итого реклама', kind: 'marketing' }, 'sum') +
+      '<tr class="sep"><td colspan="17"><span class="dk-kicker">Продажи и прочие источники (без рекламного расхода)</span></td></tr>' + slRows.map(r => tr(r)).join('') +
+      tr({ ...b.nonMarketing, channel: 'Итого продажи', kind: 'sales' }, 'sum') + tr({ ...b.total, channel: 'Всего', kind: 'sales' }, 'sum');
+    $('chanNote').textContent = 'Конверсия — от целевых обращений. «По воронке» — сделки, созданные прямо из лида обращения; остальное — сделки того же клиента в окне ' +
+      m.params.windowDays + ' дн (действующему клиенту — ' + (m.params.windowExistingDays ?? '—') + ' дн). «Сайт и Директ» включает и SEO: звонки с сайта не помечаются, поэтому часть клиентов Директа сидит в «Прямом звонке».';
+    // выручка по дате закрытия
+    const p = m.period, tot = Math.max(1, p.sum);
+    const grp = { marketing: 0, sales: 0, repeat: 0, untraced: 0 };
+    Object.values(p.byLine).forEach(v => Object.entries(v).forEach(([k, s]) => grp[k] = (grp[k] || 0) + s));
+    const colors = { marketing: 'var(--dk-accent)', sales: 'var(--dk-primary)', repeat: 'var(--dk-ink-3)', untraced: 'var(--dk-danger)' };
+    const names = { marketing: 'с рекламы', sales: 'с обращений в продажи', repeat: 'повторные без обращения', untraced: 'не прослеживается' };
+    $('periodStack').innerHTML = `<div class="stack">${Object.keys(grp).map(k => `<span style="width:${100 * grp[k] / tot}%;background:${colors[k]}"></span>`).join('')}</div>` +
+      `<div class="legend">${Object.keys(grp).map(k => `<span><i style="background:${colors[k]}"></i>${names[k]} ${rub(grp[k])} (${pc(Math.round(1000 * grp[k] / tot) / 10)})</span>`).join('')}</div>`;
+    $('period').innerHTML = '<tr><th>Происхождение</th><th class="dk-num">Сделок</th><th class="dk-num">Сумма</th><th class="dk-num">Доля</th></tr>' +
+      p.byOrigin.map(o => `<tr><td class="name">${esc(o.origin)}</td><td class="dk-num">${num(o.deals)}</td><td class="dk-num">${rub(o.sum)}</td><td class="dk-num">${pc(Math.round(1000 * o.sum / tot) / 10)}</td></tr>`).join('') +
+      `<tr class="sum"><td>Всего закрыто в месяце</td><td class="dk-num">${num(p.deals)}</td><td class="dk-num">${rub(p.sum)}</td><td></td></tr>`;
+    // клиенты и направления
+    const cRow = (n, a) => `<tr><td class="name">${esc(n)}</td><td class="dk-num">${num(a.requests)}</td><td class="dk-num">${num(a.target)}</td><td class="dk-num">${num(a.buyers)}</td><td class="dk-num">${pc(a.conversionTarget)}</td><td class="dk-num">${rub(a.revenue)}</td></tr>`;
+    const cHead = '<tr><th></th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th><th class="dk-num">Выручка</th></tr>';
+    $('clients').innerHTML = cHead + Object.entries(m.byClient).map(([k, a]) => cRow(k[0].toUpperCase() + k.slice(1), a)).join('');
+    $('linesTbl').innerHTML = cHead + Object.entries(m.lines).map(([k, a]) => cRow(k + ' — всего', a.all) + cRow(k + ' — с рекламы', a.marketing)).join('');
+    // менеджеры
+    $('mgr').innerHTML = '<tr><th>Менеджер</th><th class="dk-num">Обращ.</th><th class="dk-num">Целевых</th><th class="dk-num">Купили</th><th class="dk-num">Конв.</th>' +
+      '<th class="dk-num">Выручка</th><th class="dk-num">Ср. чек</th><th class="dk-num">Дней до сделки</th><th class="dk-num">Рекл. обращ.</th><th class="dk-num">Рекл. купили</th><th class="dk-num">Рекл. конв.</th><th class="dk-num">Рекл. выручка</th><th class="dk-num">Сделок с 0 ₽</th></tr>' +
+      m.managers.filter(x => x.requests >= 3 || x.revenue > 0).map(x => `<tr><td class="name">${esc(x.manager)}</td><td class="dk-num">${num(x.requests)}</td><td class="dk-num">${num(x.target)}</td>` +
+        `<td class="dk-num">${num(x.buyers)}</td><td class="dk-num">${pc(x.conversionTarget)}</td><td class="dk-num">${rub(x.revenue)}</td><td class="dk-num">${rub(x.avgCheck)}</td>` +
+        `<td class="dk-num">${num(x.medianDaysToSale)}</td><td class="dk-num">${num(x.mktRequests)}</td><td class="dk-num">${num(x.mktBuyers)}</td><td class="dk-num">${pc(x.mktConversionTarget)}</td>` +
+        `<td class="dk-num">${rub(x.mktRevenue)}</td><td class="dk-num ${x.zeroSumWon ? 'warn' : 'muted0'}">${num(x.zeroSumWon)}</td></tr>`).join('');
+    // расходы
+    $('spend').innerHTML = '<tr><th>Сервис</th><th>Кабинет</th><th class="dk-num">Сумма</th><th>Откуда</th></tr>' +
+      m.spend.filter(s => (line === 'main') === (s.line !== 'spec')).map(s => `<tr><td>${esc(s.service)}</td><td class="name">${esc(s.cabinet)}</td><td class="dk-num">${s.amount == null ? '<span class="dk-badge dk-badge--warn">нет данных</span>' : rub(s.amount)}</td>` +
+        `<td class="name">${s.error ? esc(s.error.slice(0, 90)) : s.source === 'manual' ? '<span class="dk-badge dk-badge--info">вручную</span>' : s.source === 'snapshot' ? 'абонентка месяца' : 'API'}</td></tr>`).join('');
+    // качество
+    const q = m.quality, ph = p.linkHow || {}, ch = p.clientHow || {};
+    const qRows = [
+      ['Успешных сделок месяца со ссылкой на лид', pc(p.leadIdShare)],
+      ['Сделок месяца привязано к обращению «по воронке»', num(ph['по воронке'] || 0)],
+      ['…«по клиенту» (тот же клиент, в окне)', num(ph['по клиенту'] || 0)],
+      ['Клиент опознан, но обращения в окне нет', num(ph['клиент есть, обращения нет'] || 0)],
+      ['Клиент опознан по названию контрагента / ИНН', num((ch['название контрагента'] || 0) + (ch['ИНН'] || 0))],
+      ['Сделок без клиента и без лида', num(ch['не опознан'] || 0)],
+      ['Успешных сделок с суммой 0 ₽', num(p.zeroSum)],
+      ['Обращений без телефона', num(q.requestsNoPhone)],
+      ['Обращений, где источник — имя менеджера', num(q.leadSourcePerson)],
+    ];
+    $('quality').innerHTML = qRows.map(([a, v]) => `<tr><td class="name">${esc(a)}</td><td class="dk-num">${v}</td></tr>`).join('');
+    $('defs').innerHTML = Object.values(m.definitions).map(d => `<li>${esc(d)}</li>`).join('');
+    $('gen').textContent = `Пересчитано ${new Date(m.generatedAt).toLocaleString('ru-RU')} · источник: Битрикс24 REST + API Директа, Авито; Я.Бизнес — абонентка; ручные строки помечены.`;
+  }
+
+  fetch('e2e-data.json?t=' + Date.now()).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(d => {
+    DATA = d;
+    const ms = Object.keys(d.months).sort();
+    month = ms[ms.length - 1];
+    $('months').innerHTML = ms.map(x => `<button class="dk-btn dk-btn--ghost${x === month ? ' on' : ''}" data-m="${x}">${x}</button>`).join('');
+    $('months').querySelectorAll('[data-m]').forEach(b => b.onclick = () => {
+      month = b.dataset.m; $('months').querySelectorAll('[data-m]').forEach(x => x.classList.toggle('on', x === b)); render();
+    });
+    render();
+  }).catch(e => { $('err').style.display = 'flex'; $('err').textContent = 'Не удалось загрузить данные: ' + e.message; });
+})();
+</script>
+</body>
+</html>

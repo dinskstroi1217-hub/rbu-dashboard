@@ -153,3 +153,63 @@
 .dk-table td{ padding:10px 12px; border-bottom:.5px solid var(--dk-line); color:var(--dk-ink) }
 .dk-table tr:hover td{ background:var(--dk-surface-2) }
 .dk-table .dk-num{ text-align:right }
+
+/* ═══ v2.1 — мобильные компоненты (PWA для водителей, работа в перчатках и на солнце) ═══
+ * Минимальная зона касания 56px, один главный акшн на экран, крупные цифры.        */
+
+/* кнопки: крупная, во всю ширину, отключённая, опасная */
+.dk-btn--lg{ font-size:17px; min-height:56px; padding:0 22px; border-radius:14px; justify-content:center }
+.dk-btn--block{ width:100%; justify-content:center }
+.dk-btn--danger{ background:var(--dk-danger-tint); color:var(--dk-danger-ink) }
+.dk-btn:disabled,.dk-btn[aria-disabled="true"]{ opacity:.45; cursor:not-allowed }
+.dk-btn:active{ transform:translateY(1px) }
+
+/* статус-точка */
+.dk-dot{ width:8px; height:8px; border-radius:50%; display:inline-block; background:var(--dk-ink-3); flex:none }
+.dk-dot--ok{ background:var(--dk-success) } .dk-dot--warn{ background:var(--dk-warning) } .dk-dot--danger{ background:var(--dk-danger) }
+
+/* баннер-статус (нет сети, ждём весовую, расхождение) */
+.dk-banner{ display:flex; gap:10px; align-items:flex-start; padding:12px 14px; border-radius:var(--dk-r); font-size:14px; line-height:1.4; background:var(--dk-surface-2); color:var(--dk-ink) }
+.dk-banner--ok{ background:var(--dk-success-tint); color:var(--dk-success-ink) }
+.dk-banner--warn{ background:var(--dk-warning-tint); color:var(--dk-warning-ink) }
+.dk-banner--danger{ background:var(--dk-danger-tint); color:var(--dk-danger-ink) }
+.dk-banner--info{ background:var(--dk-primary-tint); color:var(--dk-primary) }
+
+/* российский госномер */
+.dk-plate{ display:inline-flex; align-items:stretch; font-family:var(--dk-font-num); font-weight:600; color:#0E1116; background:#FFFFFF; border:2px solid #0E1116; border-radius:6px; line-height:1; overflow:hidden; white-space:nowrap }
+.dk-plate__num{ padding:5px 8px; font-size:1.25em; letter-spacing:.04em }
+.dk-plate__reg{ padding:3px 6px; font-size:.8em; border-left:2px solid #0E1116; display:flex; align-items:center }
+
+/* выбираемая строка списка (машина, карьер, база) */
+.dk-option{ display:flex; align-items:center; gap:12px; width:100%; min-height:56px; padding:10px 14px; box-sizing:border-box; text-align:left;
+  background:var(--dk-surface); color:var(--dk-ink); border:1px solid var(--dk-line); border-radius:var(--dk-r); font:inherit; cursor:pointer }
+.dk-option + .dk-option{ margin-top:8px }
+.dk-option.is-selected{ border-color:var(--dk-primary); box-shadow:0 0 0 3px var(--dk-primary-tint) }
+.dk-option:disabled{ opacity:.5; cursor:not-allowed }
+
+/* чипы-переключатели (материал) */
+.dk-chips{ display:flex; flex-wrap:wrap; gap:8px }
+.dk-chip{ min-height:48px; padding:0 16px; border-radius:24px; border:1px solid var(--dk-line-2); background:var(--dk-surface); color:var(--dk-ink); font:600 15px var(--dk-font); cursor:pointer }
+.dk-chip.is-selected{ background:var(--dk-primary); border-color:var(--dk-primary); color:var(--dk-on-primary) }
+
+/* шаги процесса (рейс) */
+.dk-steps{ display:flex; gap:4px; list-style:none; margin:0; padding:0 }
+.dk-steps__item{ flex:1; font-family:var(--dk-font-num); font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--dk-ink-3); padding-top:8px; border-top:4px solid var(--dk-line) }
+.dk-steps__item.is-done{ color:var(--dk-ink-2); border-top-color:var(--dk-primary) }
+.dk-steps__item.is-current{ color:var(--dk-ink); border-top-color:var(--dk-accent) }
+
+/* цифровая клавиатура (вес в перчатках) */
+.dk-numpad{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px }
+.dk-numpad__key{ min-height:58px; border-radius:12px; border:none; background:var(--dk-surface-2); color:var(--dk-ink); font:600 24px var(--dk-font-num); cursor:pointer }
+.dk-numpad__key:active{ background:var(--dk-line-2) }
+
+/* нижнее меню */
+.dk-tabbar{ display:flex; background:var(--dk-surface); border-top:1px solid var(--dk-line); padding:6px 6px calc(6px + env(safe-area-inset-bottom)) }
+.dk-tabbar__item{ flex:1; min-height:52px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border:none; background:none; color:var(--dk-ink-3); font:600 11px var(--dk-font); border-radius:10px; cursor:pointer }
+.dk-tabbar__item.is-active{ color:var(--dk-primary) }
+.dk-tabbar__item svg{ width:24px; height:24px }
+
+/* нижняя шторка */
+.dk-backdrop{ position:absolute; inset:0; background:rgba(14,17,22,.45); display:flex; align-items:flex-end; z-index:20 }
+.dk-sheet{ background:var(--dk-page); width:100%; max-height:85%; overflow:auto; border-radius:20px 20px 0 0; padding:8px 16px 24px; box-sizing:border-box }
+.dk-sheet::before{ content:""; display:block; width:40px; height:4px; border-radius:2px; background:var(--dk-line-2); margin:4px auto 14px }
