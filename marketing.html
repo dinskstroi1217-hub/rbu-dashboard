@@ -748,7 +748,7 @@ function renderKPI(week, prev) {
       delta: week.spend.noData ? '<span class="kpi-delta neu">—</span>' : dp(spend, prev?.spend?.total, true),
       sub: week.spend.noData
         ? 'недельная история не покрывает месяц'
-        : `Директ: ${week.spend.estimated ? '≈' : ''}${fmtR(week.spend.direct || 0)}${week.spend.estimated ? ' · оценка по неделям' : ''}`
+        : `Директ: ${week.spend.estimated ? '≈' : ''}${fmtR(week.spend.direct || 0)}${week.spend.avito ? ` · Авито: ${fmtR(week.spend.avito)}` : ''}${week.spend.estimated ? ' · оценка по неделям' : ''}`
     },
     {
       label: 'Маркет-выручка',
@@ -1437,7 +1437,7 @@ function aggregateWeeksFront(subset, label, from, to) {
     label: label || `${subset.length} нед.`,
     from: from || subset[0].from,
     to: to || last.to,
-    spend: { total: sumNum(w => w.spend?.total), direct: sumNum(w => w.spend?.direct), business: sumNum(w => w.spend?.business), twogis: sumNum(w => w.spend?.twogis) },
+    spend: { total: sumNum(w => w.spend?.total), direct: sumNum(w => w.spend?.direct), business: sumNum(w => w.spend?.business), twogis: sumNum(w => w.spend?.twogis), avito: sumNum(w => w.spend?.avito) },
     leads: { total: sumNum(w => w.leads?.total), marketing: sumNum(w => w.leads?.marketing), sales: sumNum(w => w.leads?.sales) },
     deals: {
       total: sumNum(w => w.deals?.total),
