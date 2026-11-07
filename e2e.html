@@ -48,6 +48,9 @@
   .kpi-st.up { background: var(--dk-success-tint); color: var(--dk-success-ink); }
   .kpi-st.down { background: var(--dk-danger-tint); color: var(--dk-danger-ink); }
   .kpi-st.flat { background: var(--dk-surface-2); color: var(--dk-ink-2); }
+  .kpi-st.big { font-size: 15px; padding: 6px 14px; } .kpi-st.big b { font-family: var(--dk-font-num); font-size: 20px; }
+  .wt { color: var(--dk-ink-3); font-size: 11px; font-weight: 400; margin-left: 4px; white-space: nowrap; }
+  tr.score td { border-top: 2px solid var(--dk-line, currentColor); font-weight: 700; }
   .kpi-sum { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 4px; }
   td.cur { font-weight: 700; } th.cur { color: var(--dk-ink); }
   .grp td { padding-top: 14px; border-bottom: none; }
@@ -91,6 +94,7 @@
       <div class="scroll"><table class="dk-table" id="kpiTbl"></table></div>
       <p class="note">Оценка — изменение выбранного месяца к прошлому месяцу и к среднему за 3 предыдущих: «улучшение» / «ухудшение» при разнице от 5 %, иначе «без изменений».
         Показатели 1–4 — зона маркетинга (объём и качество рекламного потока, ЖБИ); 5–7 — общий результат с продажами (покупку закрывает менеджер).
+        Балл месяца (0–100) — сумма по показателям: вес × выполнение плана (объёмы — факт / план, цены — план / факт, мусор и ДРР — минус 10 % веса за каждый п.п. хуже плана; сверх плана не добавляет). Веса: целевые 20, цена целевого 15, мусор 10, ЖБИ 5, первые покупки 20, цена покупки 10, ДРР 15, ДРР Авито 5. Неоценённые показатели (дозревают, расход неполный) исключаются, балл пересчитывается на оставшиеся и помечается «предварительно». 90+ — отлично, 75–89 — хорошо, 60–74 — удовлетворительно, ниже 60 — слабо.
         Месяц дозревает 30 дней после закрытия: сделки по обращениям конца месяца ещё заводятся — оценка по 5–7 предварительная.
         Расход — фактические списания сервисов (Директ, Авито, Я.Бизнес, 2ГИС). Спецтехника не входит.</p>
     </div>
@@ -406,6 +410,36 @@
     const better = k.up ? ch > 0 : ch < 0;
     return { cls: better ? 'up' : 'down', t: better ? 'улучшение' : 'ухудшение', ch };
   }
+  // ── Балл месяца 0–100: вес показателя × выполнение плана (план = авто по _rules или ручной) ──
+  const W = { 1: 20, 2: 15, 3: 10, 4: 5, 5: 20, 6: 10, 7: 15, 8: 5 };
+  function attain(k, cv, tv) {
+    if (cv == null || tv == null) return null;
+    if (k.pp) { const gap = k.up ? tv - cv : cv - tv; return Math.max(0, Math.min(1, 1 - gap / 10)); }   // каждый п.п. хуже плана −10 %
+    if (k.up) return tv > 0 ? Math.max(0, Math.min(1, cv / tv)) : null;
+    return cv > 0 ? Math.max(0, Math.min(1, tv / cv)) : null;
+  }
+  function scoreMonth(mo) {
+    const m = DATA.months[mo];
+    if (!m || m.matureDays < 0) return null;
+    const ms = Object.keys(DATA.months).sort(), prevK = ms[ms.indexOf(mo) - 1];
+    const gap = x => !!x && !!((DATA.months[x].main.marketing.spendMissing || []).length);
+    const tg = manualFor(mo), unripe = m.matureDays < 30;
+    let pts = 0, wSum = 0, judged = 0;
+    const skipped = [], parts = {};
+    for (const k of KPI) {
+      const moneyK = k.unit === '₽' || k.n === 7 || k.n === 8;
+      if (k.ripe && unripe) { skipped.push(k.n + ' дозревает'); continue; }
+      if (moneyK && (gap(mo) || gap(prevK))) { skipped.push(k.n + ' расход неполный'); continue; }
+      const tv = tg && k.tkey && tg[k.tkey] != null ? tg[k.tkey] : autoTarget(k, mo);
+      const a = attain(k, k.get(m), tv);
+      if (a == null) { skipped.push(k.n + ' нет плана'); continue; }
+      parts[k.n] = Math.round(W[k.n] * a * 10) / 10;
+      pts += W[k.n] * a; wSum += W[k.n]; judged++;
+    }
+    if (!wSum) return null;
+    return { score: Math.round(100 * pts / wSum), judged, prelim: unripe || m.matureDays < 10, skipped, parts };
+  }
+  const grade = x => x >= 90 ? ['up', 'отлично'] : x >= 75 ? ['up', 'хорошо'] : x >= 60 ? ['flat', 'удовлетворительно'] : ['down', 'слабо'];
   const chTxt = (k, j) => j ? `${j.ch > 0 ? '▲' : '▼'} ${String(Math.abs(Math.round(j.ch * 10) / 10)).replace('.', ',')}${k.pp ? ' п.п.' : ' %'}` : '—';
   function renderKPI() {
     const ms = Object.keys(DATA.months).sort();
@@ -451,17 +485,24 @@
           plan = `${fmtK(k, tv)}<div class="dlt ${met == null ? 'flat' : met ? 'good' : 'bad'}">${met == null ? '—' : met ? 'выполнен' : 'не выполнен'}${manualV != null ? ' · ручной' : ''}</div>`;
         }
       }
-      return `<tr><td class="name">${k.n}. ${esc(k.name)}</td>` + cols.map(c => `<td class="dk-num ${c === month ? 'cur' : ''}">${fmtK(k, v(c))}</td>`).join('') +
+      return `<tr><td class="name">${k.n}. ${esc(k.name)}<span class="wt">вес ${W[k.n]}</span></td>` + cols.map(c => `<td class="dk-num ${c === month ? 'cur' : ''}">${fmtK(k, v(c))}</td>`).join('') +
         `<td class="dk-num">${plan}</td><td class="dk-num">${chTxt(k, jp)}</td><td class="dk-num">${fmtK(k, avg == null ? null : Math.round(avg * 10) / 10)}</td><td class="dk-num">${chTxt(k, ja)}</td><td>${st}</td></tr>`;
     };
     const head = '<tr><th>Показатель</th>' + cols.map(c => `<th class="dk-num ${c === month ? 'cur' : ''}">${lab(c)}${DATA.months[c].matureDays < 0 ? ' (идёт)' : ''}</th>`).join('') +
       '<th class="dk-num">План</th><th class="dk-num">к прошлому мес.</th><th class="dk-num">среднее ' + base.length + ' мес.</th><th class="dk-num">к среднему</th><th>Оценка</th></tr>';
     const g = t => `<tr class="grp"><td colspan="${cols.length + 6}"><span class="dk-kicker">${t}</span></td></tr>`;
     $('kpiTbl').innerHTML = head + g('Зона маркетинга') + KPI.filter(k => k.zone === 'm').map(row).join('') +
-      g('Общий результат с продажами') + KPI.filter(k => k.zone === 's').map(row).join('');
+      g('Общий результат с продажами') + KPI.filter(k => k.zone === 's').map(row).join('') +
+      '<tr class="score"><td class="name">Балл месяца (из 100)</td>' + cols.map(c => { const sc = scoreMonth(c);
+        return `<td class="dk-num ${c === month ? 'cur' : ''}">${sc ? sc.score + (sc.prelim ? '*' : '') : '—'}</td>`; }).join('') +
+      `<td colspan="5" class="name"><span class="muted0">* предварительно: оценены не все показатели</span></td></tr>`;
+    const S = scoreMonth(month), hist = cols.filter(c => c !== month).map(c => [c, scoreMonth(c)]).filter(x => x[1]);
+    const scoreHtml = !S ? '' : `<span class="kpi-st big ${grade(S.score)[0]}" title="сумма: вес × выполнение плана; не оценённые показатели исключены, балл пересчитан на оценённые">Балл месяца: <b>${S.score}</b>/100 · ${grade(S.score)[1]}</span>` +
+      `<span class="kpi-st flat" title="${esc(S.skipped.join(', '))}">оценено ${S.judged} из ${KPI.length}${S.prelim ? ' · предварительно' : ''}</span>` +
+      (hist.length ? `<span class="kpi-st flat">${hist.map(([c, x]) => lab(c) + ': ' + x.score + (x.prelim ? '*' : '')).join(' · ')}</span>` : '');
     $('kpiSum').innerHTML = cur.matureDays < 0 ? '<span class="kpi-st flat">месяц идёт — оценка появится после закрытия; в колонке «План» — прогноз по темпу</span>'
       : !base.length ? '<span class="kpi-st flat">первый месяц в данных — сравнивать не с чем</span>'
-      : `<span class="kpi-st up">улучшилось: ${up}</span><span class="kpi-st flat">без изменений: ${flat}</span><span class="kpi-st down">ухудшилось: ${down}</span>` + (!ripeM ? '<span class="kpi-st flat">1–4 предварительно</span>' : '') +
+      : scoreHtml + `<span class="kpi-st up">улучшилось: ${up}</span><span class="kpi-st flat">без изменений: ${flat}</span><span class="kpi-st down">ухудшилось: ${down}</span>` + (!ripeM ? '<span class="kpi-st flat">1–4 предварительно</span>' : '') +
         (ripe ? '' : '<span class="kpi-st flat">5–8 дозревают — в счёт не идут</span>');
   }
 
