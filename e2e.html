@@ -99,6 +99,14 @@
         Месяц дозревает 30 дней после закрытия: сделки по обращениям конца месяца ещё заводятся — оценка по 5–7 предварительная.
         Расход — фактические списания сервисов (Директ, Авито, Я.Бизнес, 2ГИС). Спецтехника не входит.</p>
     </div>
+  <div class="dk-card" id="baseCard" style="display:none">
+      <h2>База клиентов</h2>
+      <div class="dk-muted" id="baseSub"></div>
+      <div class="kpis" id="baseKpis"></div>
+      <p class="note">Клиенты — контакты из успешных сделок с суммой (Бетон и ЖБИ; ЖБИ-сделки без контакта не видны). Активная база — купили за 90 дней из купивших за 12 месяцев.
+        Просрочили повторный заказ — не берут дольше обычного интервала × 1,5 (купившим один раз — 45 дней); они первыми идут в задание на звонки менеджеру последней продажи.
+        Вернулись после звонка — клиенты из задания на звонки за 60 дней, купившие после выдачи. Пересчёт пн–пт утром.</p>
+    </div>
   </div>
   <div id="banners"></div>
   <div class="kpis" id="kpis"></div>
@@ -567,6 +575,19 @@
     });
     render();
   }).catch(e => { $('err').style.display = 'flex'; $('err').textContent = 'Не удалось загрузить данные: ' + e.message; });
+  // 07.11.2026: база клиентов (reactivation-overdue.py) — отдельный файл; нет файла — карточка скрыта
+  fetch('base-kpi.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(B => {
+    const H = (B && B.history) || [];
+    if (!H.length) return;
+    const k = H[H.length - 1], p = H.find(x => x.date <= new Date(new Date(k.date) - 28 * 864e5).toISOString().slice(0, 10)) || null;
+    const d = (a, b, pp) => b == null || a == null ? '' : `<div class="dlt flat">4 нед. назад: ${pp ? pc(b) : num(b)}</div>`;
+    $('baseSub').textContent = `на ${new Date(k.date).toLocaleDateString('ru-RU')}` + (p ? '' : ' · сравнение появится через 4 недели накопления');
+    $('baseKpis').innerHTML =
+      kpi('Активная база', pc(k.activeShare), `${num(k.active90)} из ${num(k.clients12m)} клиентов`, '', p && d(k.activeShare, p.activeShare, true)) +
+      kpi('Просрочили повторный заказ', num(k.overdue), `Бетон ${num(k.byLine['Бетон'])} · ЖБИ ${num(k.byLine['ЖБИ'])}`, '', p && d(k.overdue, p.overdue)) +
+      kpi('Вернулись после звонка, 60 дн', num(k.returned60), `из ${num(k.issued60)} выданных · ${rub(k.returnedRevenue60)}`, '', p && d(k.returned60, p.returned60));
+    $('baseCard').style.display = '';
+  }).catch(() => {});
 })();
 </script>
 </body>
