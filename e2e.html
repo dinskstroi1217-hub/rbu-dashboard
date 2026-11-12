@@ -585,7 +585,7 @@
     $('baseKpis').innerHTML =
       kpi('Активная база', pc(k.activeShare), `${num(k.active90)} из ${num(k.clients12m)} клиентов`, '', p && d(k.activeShare, p.activeShare, true)) +
       kpi('Просрочили повторный заказ', num(k.overdue), `Бетон ${num(k.byLine['Бетон'])} · ЖБИ ${num(k.byLine['ЖБИ'])}`, '', p && d(k.overdue, p.overdue)) +
-      kpi('Купили после выдачи в задание, 60 дн', num(k.returned60), `из ${num(k.issued60)} выданных · ${rub(k.returnedRevenue60)}`, '', p && d(k.returned60, p.returned60));
+      kpi('Купили после выдачи в задание, 60 дн', num(k.returned60), `из ${num(k.issued60)} выданных · ${rub(k.returnedRevenue60)}` + (k.control60 ? ` · без звонка (контроль): ${num(k.controlBought60)} из ${num(k.control60)}` : ''), '', p && d(k.returned60, p.returned60));
     $('baseCard').style.display = '';
   }).catch(() => {});
 })();
