@@ -44,6 +44,11 @@
   #err { display: none; }
   body.kpi-mode .wrap > *:not(.top):not(#kpiView):not(#err):not(#gen) { display: none; }
   #kpiView { display: none; } body.kpi-mode #kpiView { display: block; }
+  body.calls-mode .wrap > *:not(.top):not(#callsView):not(#err):not(#gen),
+  body.react-mode .wrap > *:not(.top):not(#reactView):not(#err):not(#gen) { display: none; }
+  #callsView, #reactView { display: none; } body.calls-mode #callsView, body.react-mode #reactView { display: block; }
+  .mk { font-family: var(--dk-font-num); font-size: 12px; white-space: nowrap; }
+  .mk.ok { color: var(--dk-success); } .mk.bad { color: var(--dk-danger); } .mk.na { color: var(--dk-ink-3); }
   .kpi-st { display: inline-block; padding: 3px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; white-space: nowrap; }
   .kpi-st.up { background: var(--dk-success-tint); color: var(--dk-success-ink); }
   .kpi-st.down { background: var(--dk-danger-tint); color: var(--dk-danger-ink); }
@@ -77,6 +82,8 @@
       <div class="seg" id="views">
         <button class="dk-btn dk-btn--ghost on" data-view="e2e">Сквозная аналитика</button>
         <button class="dk-btn dk-btn--ghost" data-view="kpi">KPI-маркетинг</button>
+        <button class="dk-btn dk-btn--ghost" data-view="calls">Качество звонков</button>
+        <button class="dk-btn dk-btn--ghost" data-view="react">Обзвон</button>
       </div>
       <div class="seg" id="lines">
         <button class="dk-btn dk-btn--ghost on" data-line="main">Бетон и ЖБИ</button>
@@ -106,6 +113,33 @@
       <p class="note">Клиенты — контакты из успешных сделок с суммой (Бетон и ЖБИ; ЖБИ-сделки без контакта не видны). Активная база — купили за 90 дней из купивших за 12 месяцев.
         Просрочили повторный заказ — не берут дольше обычного интервала × 1,5 (купившим один раз — 45 дней); они первыми идут в задание на звонки менеджеру последней продажи.
         Купили после выдачи — клиенты из задания на звонки за 60 дней, купившие после выдачи. Это не эффект звонков: без обзвона такие клиенты сами покупают 3–4 % за 3 недели, а звонок был не у всех. Пересчёт пн–пт утром.</p>
+    </div>
+  </div>
+  <div id="callsView">
+    <div class="dk-card">
+      <h2>Качество продажных звонков</h2>
+      <div class="dk-muted" id="callsSub"></div>
+      <div class="dk-banner" id="callsVerdict" style="display:block;margin:12px 0"></div>
+      <div class="kpis" id="callsKpis"></div>
+      <div class="scroll"><table class="dk-table" id="callsWeeks"></table></div>
+      <h3 style="margin-top:16px">БСТ против ЖБИ — последняя неделя</h3>
+      <div class="scroll"><table class="dk-table" id="callsDept"></table></div>
+      <p class="note" id="callsNote"></p>
+    </div>
+    <div class="dk-card" id="calibCard" style="display:none">
+      <h2>Можно ли верить оценкам: сверка с человеком</h2>
+      <div class="dk-muted" id="calibSub"></div>
+      <div class="scroll"><table class="dk-table" id="calibTbl"></table></div>
+    </div>
+  </div>
+  <div id="reactView">
+    <div class="dk-card">
+      <h2>Обзвон клиентской базы</h2>
+      <div class="dk-muted" id="reactSub"></div>
+      <div class="dk-banner" id="reactVerdict" style="display:block;margin:12px 0"></div>
+      <div class="kpis" id="reactKpis"></div>
+      <div class="scroll"><table class="dk-table" id="reactMgr"></table></div>
+      <p class="note" id="reactNote"></p>
     </div>
   </div>
   <div id="banners"></div>
@@ -197,7 +231,10 @@
     view = b.dataset.view;
     document.querySelectorAll('[data-view]').forEach(x => x.classList.toggle('on', x === b));
     document.body.classList.toggle('kpi-mode', view === 'kpi');
-    document.getElementById('lines').style.display = view === 'kpi' ? 'none' : '';
+    document.body.classList.toggle('calls-mode', view === 'calls');
+    document.body.classList.toggle('react-mode', view === 'react');
+    document.getElementById('lines').style.display = view === 'e2e' ? '' : 'none';
+    document.getElementById('months').style.display = (view === 'calls' || view === 'react') ? 'none' : '';
     render();
   });
   document.querySelectorAll('[data-split]').forEach(b => b.onclick = () => {
@@ -244,9 +281,83 @@
     s.cpl = dv(s.requests); s.costTarget = dv(s.target); s.costBuyer = dv(s.buyers); s.costBuyerNew = dv(s.buyersNew);
     return s;
   }
+  // ── 13.11.2026: листы «Качество звонков» и «Обзвон» — вывод для решения + опорные цифры (calls-quality.json, reactivation.json) ──
+  const SIDE = {};
+  const loadSide = (f) => SIDE[f] ? Promise.resolve(SIDE[f]) : fetch(f + '?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(d => (SIDE[f] = d)).catch(() => null);
+  const CRL = { greeting: 'Приветствие', needs: 'Потребность', price: 'Цена', upsell: 'Допродажа', next_step: 'Следующий шаг', tone: 'Тон' };
+  const KEY = ['next_step', 'needs', 'price', 'upsell'];          // критерии, от которых зависит сделка
+  const share = (c) => { const k = (c.yes || 0) + (c.partial || 0) + (c.no || 0); return k ? Math.round(100 * (c.yes || 0) / k) : null; };
+  const wkLabel = (w) => w.days && w.days.length ? `${w.days[0].slice(8, 10)}.${w.days[0].slice(5, 7)}–${w.days[w.days.length - 1].slice(8, 10)}.${w.days[w.days.length - 1].slice(5, 7)}` : w.week.slice(5);
+  const avg = (a) => { const v = a.filter(x => x != null); return v.length ? Math.round(v.reduce((x, y) => x + y, 0) / v.length) : null; };
+  const dpp = (a, b) => a == null || b == null ? '' : `${a - b >= 0 ? '+' : ''}${a - b} п.п. к среднему 4 нед.`;
+  async function renderCalls() {
+    const Q = await loadSide('calls-quality.json');
+    if (!Q || !Q.weeks || !Q.weeks.length) { $('callsSub').textContent = 'Данных пока нет.'; return; }
+    // последняя полная неделя — с ≥ 5 рабочими днями
+    const full = Q.weeks.filter(w => (w.days || []).length >= 5);
+    const W = (full.length ? full : Q.weeks).slice(-5), last = W[W.length - 1], base = W.slice(0, -1);
+    $('callsSub').textContent = `Неделя ${wkLabel(last)}: разобрано ${num(last.sales)} продажных звонков из ${num(last.transcribed)} расшифрованных. Оценки ставит ИИ.`;
+    const cur = Object.fromEntries(KEY.map(c => [c, share(last.criteria[c])]));
+    const ref = Object.fromEntries(KEY.map(c => [c, avg(base.map(w => share(w.criteria[c])))]));
+    const worst = KEY.slice().sort((a, b) => (cur[a] ?? 101) - (cur[b] ?? 101))[0];
+    const dept = Object.entries(last.byDept || {}).filter(([d]) => d !== 'Спецтехника');
+    const gap = dept.length === 2 ? KEY.map(c => [c, share(dept[0][1].criteria[c]), share(dept[1][1].criteria[c])]).filter(x => x[1] != null && x[2] != null).sort((a, b) => Math.abs(b[1] - b[2]) - Math.abs(a[1] - a[2]))[0] : null;
+    const bt = Math.round(100 * last.bitrixText / Math.max(1, last.transcribed)), btPrev = avg(base.map(w => Math.round(100 * w.bitrixText / Math.max(1, w.transcribed))));
+    const C = Q.calibration, trusted = C && C.answered >= 5;
+    const V = [`<b>Слабое место:</b> ${CRL[worst]} — «да» только в ${pc(cur[worst])} продажных звонков${ref[worst] != null ? ` (${dpp(cur[worst], ref[worst])})` : ''}. Это тема разбора с менеджерами на неделю.`];
+    if (gap && Math.abs(gap[1] - gap[2]) >= 10) V.push(`<b>Разница отделов:</b> ${CRL[gap[0]]} — ${dept[0][0]} ${pc(gap[1])} против ${dept[1][0]} ${pc(gap[2])}.`);
+    if (btPrev != null && Math.abs(bt - btPrev) >= 20) V.push(`<b>Осторожно со сравнением недель:</b> доля текстов из Битрикса ${pc(bt)} против ${pc(btPrev)} обычно — оценки по расшифровкам Whisper ниже, часть изменения может быть не поведением менеджеров.`);
+    V.push(trusted ? `<b>Сверка с человеком:</b> см. ниже — критериям с совпадением 4–5 из 5 можно доверять.` : `<b>Оценки пока не сверены с человеком</b> — выводы о конкретных менеджерах не делать; сверка: ${C ? `${C.answered} из ${C.calls.length} звонков` : 'не начата'}.`);
+    $('callsVerdict').innerHTML = V.join('<br>');
+    $('callsKpis').innerHTML = KEY.map(c => kpi(CRL[c] + ' — «да»', pc(cur[c]), dpp(cur[c], ref[c]) || '—')).join('');
+    $('callsWeeks').innerHTML = '<tr><th>Неделя</th><th class="dk-num">Продажных звонков</th>' + KEY.map(c => `<th class="dk-num">${CRL[c]}</th>`).join('') + '</tr>' +
+      W.map(w => `<tr${w === last ? ' class="cur"' : ''}><td class="name">${wkLabel(w)}</td><td class="dk-num">${num(w.sales)}</td>` + KEY.map(c => `<td class="dk-num">${pc(share(w.criteria[c]))}</td>`).join('') + '</tr>').join('');
+    $('callsDept').innerHTML = '<tr><th>Отдел</th><th class="dk-num">Продажных звонков</th>' + KEY.map(c => `<th class="dk-num">${CRL[c]}</th>`).join('') + '</tr>' +
+      dept.map(([d, x]) => `<tr><td class="name">${esc(d)}</td><td class="dk-num">${num(x.sales)}</td>` + KEY.map(c => `<td class="dk-num">${pc(share(x.criteria[c]))}</td>`).join('') + '</tr>').join('');
+    $('callsNote').textContent = 'Доля «да» — среди звонков, где критерий удалось оценить. Разбираются звонки от 45 секунд менеджеров продаж; операторы и диспетчеры — нет. Приветствие и тон почти всегда в норме и здесь не показаны.';
+    if (C && C.calls && C.calls.length) {
+      $('calibCard').style.display = '';
+      const ag = Object.entries(C.agreement || {}).filter(([, v]) => v[1]).map(([c, v]) => `${CRL[c]} ${v[0]} из ${v[1]}`).join(' · ');
+      $('calibSub').textContent = `${C.reviewer}: проверено ${C.answered} из ${C.calls.length}` + (ag ? ` · совпадение ИИ с человеком: ${ag}` : ' · ждём оценок');
+      const L = { yes: 'да', partial: 'частично', no: 'нет', unknown: 'неясно' };
+      $('calibTbl').innerHTML = '<tr><th>№</th><th>Менеджер</th>' + Q.criteria.map(c => `<th>${CRL[c]}<div class="dlt">ИИ / человек</div></th>`).join('') + '</tr>' +
+        C.calls.map(x => `<tr><td class="dk-num">${x.n}</td><td class="name">${esc(x.manager)}</td>` +
+          Q.criteria.map(c => { const a = x.ai[c], h = x.human && x.human[c]; const cls = !h || h === 'unknown' ? 'na' : h === a ? 'ok' : 'bad';
+            return `<td><span class="mk ${cls}">${L[a] || '—'} / ${h ? L[h] : '…'}${h && h !== 'unknown' ? (h === a ? ' ✓' : ' ✗') : ''}</span></td>`; }).join('') + '</tr>').join('');
+    }
+  }
+  async function renderReact() {
+    const R = await loadSide('reactivation.json'), BK = await loadSide('base-kpi.json');
+    if (!R || !R.managers28 || !R.managers28.length) { $('reactSub').textContent = 'Данных пока нет.'; return; }
+    const p = (a, b) => b ? Math.round(100 * a / b) : null;
+    const M = R.managers28.filter(m => m.name !== 'Ангелина Зименко').map(m => ({ ...m, rate: p(m.worked, m.issued), call: p(m.viaBitrix, m.issued) })).sort((a, b) => (a.rate ?? 0) - (b.rate ?? 0));
+    const T = M.reduce((a, m) => ({ issued: a.issued + m.issued, worked: a.worked + m.worked, viaBitrix: a.viaBitrix + m.viaBitrix, reached: a.reached + m.reached }), { issued: 0, worked: 0, viaBitrix: 0, reached: 0 });
+    const H = (BK && BK.history) || [], k = H[H.length - 1];
+    const lazy = M.filter(m => m.issued >= 20 && (m.rate ?? 0) < 15), best = M.filter(m => m.issued >= 20).sort((a, b) => (b.rate ?? 0) - (a.rate ?? 0))[0];
+    const V = [];
+    if (lazy.length) V.push(`<b>Почти не звонят:</b> ${lazy.map(m => `${esc(m.name)} — ${m.worked} из ${m.issued}`).join(', ')}. Разговор РОПа или снять задание.`);
+    if (best) V.push(`<b>Лучший:</b> ${esc(best.name)} — отработано ${pc(best.rate)} выданного.`);
+    const c0 = H.find(h => h.control60 > 0), age = c0 ? Math.round((Date.parse(k.date) - Date.parse(c0.date)) / 864e5) : 0;
+    if (k && k.control60 >= 100 && age >= 28) {
+      const pi = 100 * k.returned60 / k.issued60, pc0 = 100 * k.controlBought60 / k.control60, d = pi - pc0;
+      V.push(`<b>Даёт ли обзвон продажи:</b> купили после выдачи ${pi.toFixed(1)} %, без звонка (контроль) ${pc0.toFixed(1)} % — ` + (Math.abs(d) < 1 ? 'разницы нет: звонки по базе продаж не добавляют, менять скрипт или отбор клиентов.' : d > 0 ? `звонки дают +${d.toFixed(1)} п.п. — обзвон оправдан.` : 'без звонка покупают не хуже — обзвон не работает в текущем виде.'));
+    } else if (k && k.control60) {
+      V.push(`<b>Даёт ли обзвон продажи:</b> пока неизвестно. Купили после выдачи ${num(k.returned60)} из ${num(k.issued60)} (${(100 * k.returned60 / k.issued60).toFixed(1)} %); контрольная группа (${num(k.control60)} клиентов без звонка) собрана ${c0.date.slice(8, 10)}.${c0.date.slice(5, 7)} — честное сравнение после ${new Date(Date.parse(c0.date) + 28 * 864e5).toLocaleDateString('ru-RU')}.`);
+    } else V.push('<b>Даёт ли обзвон продажи:</b> контрольная группа (клиенты без звонка) набирается с 13.11 — сравнение появится через 3–4 недели.');
+    $('reactVerdict').innerHTML = V.join('<br>');
+    $('reactSub').textContent = `Задание на звонки менеджерам Бетона и ЖБИ, последние 4 недели. Обновлено ${new Date(R.built).toLocaleString('ru-RU')}.`;
+    $('reactKpis').innerHTML = kpi('Отработано выданного', pc(p(T.worked, T.issued)), `${num(T.worked)} из ${num(T.issued)}`) +
+      kpi('Звонок через Битрикс', pc(p(T.viaBitrix, T.issued)), `дозвон ${num(T.reached)}`) +
+      (k ? kpi('Активная база', pc(k.activeShare), `${num(k.active90)} из ${num(k.clients12m)} клиентов купили за 90 дн`) : '');
+    $('reactMgr').innerHTML = '<tr><th>Менеджер</th><th class="dk-num">Выдано</th><th class="dk-num">Отработано</th><th class="dk-num">Звонок через Битрикс</th><th class="dk-num">Дозвон</th></tr>' +
+      M.map(m => `<tr><td class="name">${esc(m.name)}</td><td class="dk-num">${num(m.issued)}</td><td class="dk-num ${(m.rate ?? 0) < 15 && m.issued >= 20 ? 'warn' : ''}">${pc(m.rate)}</td><td class="dk-num">${pc(m.call)}</td><td class="dk-num">${num(m.reached)}</td></tr>`).join('');
+    $('reactNote').textContent = R.note || '';
+  }
   function render() {
     const m = DATA.months[month];
     if (view === 'kpi') { renderKPI(); return; }
+    if (view === 'calls') { renderCalls(); return; }
+    if (view === 'react') { renderReact(); return; }
     const b = m[line];
     const mk = b.marketing;
     const specView = line === 'spec';   // спецтехника: выручка/клиенты/менеджеры/качество/LTV считаются только по Бетону и ЖБИ — прячем
