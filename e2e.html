@@ -82,8 +82,7 @@
       <div class="seg" id="views">
         <button class="dk-btn dk-btn--ghost on" data-view="e2e">Сквозная аналитика</button>
         <button class="dk-btn dk-btn--ghost" data-view="kpi">KPI-маркетинг</button>
-        <button class="dk-btn dk-btn--ghost" data-view="calls">Качество звонков</button>
-        <button class="dk-btn dk-btn--ghost" data-view="react">Обзвон</button>
+        <button class="dk-btn dk-btn--ghost" data-view="calls">Звонки менеджеров</button>
       </div>
       <div class="seg" id="lines">
         <button class="dk-btn dk-btn--ghost on" data-line="main">Бетон и ЖБИ</button>
@@ -116,30 +115,27 @@
     </div>
   </div>
   <div id="callsView">
+    <div class="seg" id="wkSeg" style="margin:0 0 12px"></div>
     <div class="dk-card">
       <h2>Качество продажных звонков</h2>
       <div class="dk-muted" id="callsSub"></div>
       <div class="dk-banner" id="callsVerdict" style="display:block;margin:12px 0"></div>
       <div class="kpis" id="callsKpis"></div>
-      <div class="scroll"><table class="dk-table" id="callsWeeks"></table></div>
-      <h3 style="margin-top:16px">БСТ против ЖБИ — последняя неделя</h3>
       <div class="scroll"><table class="dk-table" id="callsDept"></table></div>
-      <p class="note" id="callsNote"></p>
+      <p class="note">Доля «да» — среди звонков, где критерий удалось оценить; оценки ставит ИИ. Разбираются звонки менеджеров продаж от 45 секунд. Приветствие и тон почти всегда в норме и не показаны.</p>
     </div>
-    <div class="dk-card" id="calibCard" style="display:none">
-      <h2>Можно ли верить оценкам: сверка с человеком</h2>
-      <div class="dk-muted" id="calibSub"></div>
-      <div class="scroll"><table class="dk-table" id="calibTbl"></table></div>
-    </div>
-  </div>
-  <div id="reactView">
     <div class="dk-card">
       <h2>Обзвон клиентской базы</h2>
       <div class="dk-muted" id="reactSub"></div>
       <div class="dk-banner" id="reactVerdict" style="display:block;margin:12px 0"></div>
       <div class="kpis" id="reactKpis"></div>
       <div class="scroll"><table class="dk-table" id="reactMgr"></table></div>
-      <p class="note" id="reactNote"></p>
+      <p class="note">«Отработан» — звонок через телефонию Битрикса или отметка ответственного в CRM в день выдачи; звонки с личных телефонов без отметки не видны.</p>
+    </div>
+    <div class="dk-card" id="calibCard" style="display:none">
+      <h2>Можно ли верить оценкам: сверка с человеком</h2>
+      <div class="dk-muted" id="calibSub"></div>
+      <div class="scroll"><table class="dk-table" id="calibTbl"></table></div>
     </div>
   </div>
   <div id="banners"></div>
@@ -281,40 +277,89 @@
     s.cpl = dv(s.requests); s.costTarget = dv(s.target); s.costBuyer = dv(s.buyers); s.costBuyerNew = dv(s.buyersNew);
     return s;
   }
-  // ── 13.11.2026: листы «Качество звонков» и «Обзвон» — вывод для решения + опорные цифры (calls-quality.json, reactivation.json) ──
+  // ── 13.11.2026: вкладка «Звонки менеджеров» — качество звонков + обзвон за выбранную неделю, изменение к предыдущей (calls-quality.json, reactivation.json) ──
   const SIDE = {};
   const loadSide = (f) => SIDE[f] ? Promise.resolve(SIDE[f]) : fetch(f + '?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(d => (SIDE[f] = d)).catch(() => null);
   const CRL = { greeting: 'Приветствие', needs: 'Потребность', price: 'Цена', upsell: 'Допродажа', next_step: 'Следующий шаг', tone: 'Тон' };
-  const KEY = ['next_step', 'needs', 'price', 'upsell'];          // критерии, от которых зависит сделка
-  const share = (c) => { const k = (c.yes || 0) + (c.partial || 0) + (c.no || 0); return k ? Math.round(100 * (c.yes || 0) / k) : null; };
-  const wkLabel = (w) => w.days && w.days.length ? `${w.days[0].slice(8, 10)}.${w.days[0].slice(5, 7)}–${w.days[w.days.length - 1].slice(8, 10)}.${w.days[w.days.length - 1].slice(5, 7)}` : w.week.slice(5);
-  const avg = (a) => { const v = a.filter(x => x != null); return v.length ? Math.round(v.reduce((x, y) => x + y, 0) / v.length) : null; };
-  const dpp = (a, b) => a == null || b == null ? '' : `${a - b >= 0 ? '+' : ''}${a - b} п.п. к среднему 4 нед.`;
+  const KEY = ['next_step', 'needs', 'price', 'upsell'];
+  const share = (c) => { if (!c) return null; const k = (c.yes || 0) + (c.partial || 0) + (c.no || 0); return k ? Math.round(100 * (c.yes || 0) / k) : null; };
+  const rate = (a, b) => b ? Math.round(100 * a / b) : null;
+  const isoMon = (k) => { const [y, w] = k.split('-W').map(Number), j4 = Date.UTC(y, 0, 4), d4 = (new Date(j4).getUTCDay() + 6) % 7; return new Date(j4 - d4 * 864e5 + (w - 1) * 7 * 864e5); };
+  const dm = (d) => `${String(d.getUTCDate()).padStart(2, '0')}.${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+  const wkName = (k) => { const m = isoMon(k); return `${dm(m)}–${dm(new Date(+m + 6 * 864e5))}`; };
+  const DW = 'к пред. нед.';
+  let WK = null;
   async function renderCalls() {
-    const Q = await loadSide('calls-quality.json');
-    if (!Q || !Q.weeks || !Q.weeks.length) { $('callsSub').textContent = 'Данных пока нет.'; return; }
-    // последняя полная неделя — с ≥ 5 рабочими днями
-    const full = Q.weeks.filter(w => (w.days || []).length >= 5);
-    const W = (full.length ? full : Q.weeks).slice(-5), last = W[W.length - 1], base = W.slice(0, -1);
-    $('callsSub').textContent = `Неделя ${wkLabel(last)}: разобрано ${num(last.sales)} продажных звонков из ${num(last.transcribed)} расшифрованных. Оценки ставит ИИ.`;
-    const cur = Object.fromEntries(KEY.map(c => [c, share(last.criteria[c])]));
-    const ref = Object.fromEntries(KEY.map(c => [c, avg(base.map(w => share(w.criteria[c])))]));
-    const worst = KEY.slice().sort((a, b) => (cur[a] ?? 101) - (cur[b] ?? 101))[0];
-    const dept = Object.entries(last.byDept || {}).filter(([d]) => d !== 'Спецтехника');
-    const gap = dept.length === 2 ? KEY.map(c => [c, share(dept[0][1].criteria[c]), share(dept[1][1].criteria[c])]).filter(x => x[1] != null && x[2] != null).sort((a, b) => Math.abs(b[1] - b[2]) - Math.abs(a[1] - a[2]))[0] : null;
-    const bt = Math.round(100 * last.bitrixText / Math.max(1, last.transcribed)), btPrev = avg(base.map(w => Math.round(100 * w.bitrixText / Math.max(1, w.transcribed))));
-    const C = Q.calibration, trusted = C && C.answered >= 5;
-    const V = [`<b>Слабое место:</b> ${CRL[worst]} — «да» только в ${pc(cur[worst])} продажных звонков${ref[worst] != null ? ` (${dpp(cur[worst], ref[worst])})` : ''}. Это тема разбора с менеджерами на неделю.`];
-    if (gap && Math.abs(gap[1] - gap[2]) >= 10) V.push(`<b>Разница отделов:</b> ${CRL[gap[0]]} — ${dept[0][0]} ${pc(gap[1])} против ${dept[1][0]} ${pc(gap[2])}.`);
-    if (btPrev != null && Math.abs(bt - btPrev) >= 20) V.push(`<b>Осторожно со сравнением недель:</b> доля текстов из Битрикса ${pc(bt)} против ${pc(btPrev)} обычно — оценки по расшифровкам Whisper ниже, часть изменения может быть не поведением менеджеров.`);
-    V.push(trusted ? `<b>Сверка с человеком:</b> см. ниже — критериям с совпадением 4–5 из 5 можно доверять.` : `<b>Оценки пока не сверены с человеком</b> — выводы о конкретных менеджерах не делать; сверка: ${C ? `${C.answered} из ${C.calls.length} звонков` : 'не начата'}.`);
-    $('callsVerdict').innerHTML = V.join('<br>');
-    $('callsKpis').innerHTML = KEY.map(c => kpi(CRL[c] + ' — «да»', pc(cur[c]), dpp(cur[c], ref[c]) || '—')).join('');
-    $('callsWeeks').innerHTML = '<tr><th>Неделя</th><th class="dk-num">Продажных звонков</th>' + KEY.map(c => `<th class="dk-num">${CRL[c]}</th>`).join('') + '</tr>' +
-      W.map(w => `<tr${w === last ? ' class="cur"' : ''}><td class="name">${wkLabel(w)}</td><td class="dk-num">${num(w.sales)}</td>` + KEY.map(c => `<td class="dk-num">${pc(share(w.criteria[c]))}</td>`).join('') + '</tr>').join('');
-    $('callsDept').innerHTML = '<tr><th>Отдел</th><th class="dk-num">Продажных звонков</th>' + KEY.map(c => `<th class="dk-num">${CRL[c]}</th>`).join('') + '</tr>' +
-      dept.map(([d, x]) => `<tr><td class="name">${esc(d)}</td><td class="dk-num">${num(x.sales)}</td>` + KEY.map(c => `<td class="dk-num">${pc(share(x.criteria[c]))}</td>`).join('') + '</tr>').join('');
-    $('callsNote').textContent = 'Доля «да» — среди звонков, где критерий удалось оценить. Разбираются звонки от 45 секунд менеджеров продаж; операторы и диспетчеры — нет. Приветствие и тон почти всегда в норме и здесь не показаны.';
+    const [Q, R, BK] = await Promise.all([loadSide('calls-quality.json'), loadSide('reactivation.json'), loadSide('base-kpi.json')]);
+    const qW = Object.fromEntries(((Q && Q.weeks) || []).map(w => [w.week, w])), rW = (R && R.weeks) || {};
+    const ndays = (k) => Math.max((qW[k] && qW[k].days || []).length, (rW[k] && rW[k].days || []).length);
+    const keys = [...new Set([...Object.keys(qW), ...Object.keys(rW)])].sort().slice(-8);
+    if (!keys.length) { $('callsSub').textContent = 'Данных пока нет.'; return; }
+    if (!WK || !keys.includes(WK)) { const full = keys.filter(k => ndays(k) >= 5); WK = full.length ? full[full.length - 1] : keys[keys.length - 1]; }
+    $('wkSeg').innerHTML = keys.map(k => `<button class="dk-btn dk-btn--ghost${k === WK ? ' on' : ''}" data-wk="${k}">${wkName(k)}${ndays(k) < 5 ? ' · идёт' : ''}</button>`).join('');
+    $('wkSeg').querySelectorAll('[data-wk]').forEach(b => b.onclick = () => { WK = b.dataset.wk; renderCalls(); });
+    const PK = keys[keys.indexOf(WK) - 1] || null;
+    const part = ndays(WK) < 5 ? ` Неделя не закрыта (${ndays(WK)} раб. дн.) — количества сравнивать рано, доли можно.` : '';
+    // ── качество ──
+    const w = qW[WK], p = PK && qW[PK];
+    if (!w) { $('callsSub').textContent = 'За эту неделю разборов звонков нет.'; ['callsVerdict', 'callsKpis', 'callsDept'].forEach(i => $(i).innerHTML = ''); }
+    else {
+      $('callsSub').textContent = `Разобрано ${num(w.sales)} продажных звонков из ${num(w.transcribed)} расшифрованных.` + part;
+      const cur = Object.fromEntries(KEY.map(c => [c, share(w.criteria[c])])), prv = Object.fromEntries(KEY.map(c => [c, p ? share(p.criteria[c]) : null]));
+      const worst = KEY.slice().sort((a, b) => (cur[a] ?? 101) - (cur[b] ?? 101))[0];
+      const drops = KEY.filter(c => cur[c] != null && prv[c] != null && cur[c] - prv[c] <= -5).sort((a, b) => (cur[a] - prv[a]) - (cur[b] - prv[b]));
+      const ups = KEY.filter(c => cur[c] != null && prv[c] != null && cur[c] - prv[c] >= 5);
+      const dept = Object.entries(w.byDept || {}).filter(([d]) => d !== 'Спецтехника');
+      const gap = dept.length === 2 ? KEY.map(c => [c, share(dept[0][1].criteria[c]), share(dept[1][1].criteria[c])]).filter(x => x[1] != null && x[2] != null).sort((a, b) => Math.abs(b[1] - b[2]) - Math.abs(a[1] - a[2]))[0] : null;
+      const bt = (x) => x ? Math.round(100 * x.bitrixText / Math.max(1, x.transcribed)) : null;
+      const C = Q.calibration;
+      const V = [`<b>Слабое место:</b> ${CRL[worst]} — «да» в ${pc(cur[worst])} продажных звонков. Тема разбора с менеджерами.`];
+      if (drops.length) V.push(`<b>Просело к прошлой неделе:</b> ${drops.map(c => `${CRL[c]} ${cur[c] - prv[c]} п.п.`).join(', ')}`);
+      if (ups.length) V.push(`<b>Выросло:</b> ${ups.map(c => `${CRL[c]} +${cur[c] - prv[c]} п.п.`).join(', ')}`);
+      if (gap && Math.abs(gap[1] - gap[2]) >= 10) V.push(`<b>Разница отделов:</b> ${CRL[gap[0]]} — ${dept[0][0]} ${pc(gap[1])} против ${dept[1][0]} ${pc(gap[2])}.`);
+      if (p && Math.abs(bt(w) - bt(p)) >= 20) V.push(`<b>Сравнение недель неточное:</b> текстов из Битрикса ${pc(bt(w))} против ${pc(bt(p))} неделей раньше — по расшифровкам Whisper оценки ниже.`);
+      if (!(C && C.answered >= 5)) V.push(`<b>Оценки ИИ ещё не сверены с человеком</b> — по конкретным менеджерам выводов не делать.`);
+      $('callsVerdict').innerHTML = V.join('<br>');
+      $('callsKpis').innerHTML = KEY.map(c => kpi(CRL[c] + ' — «да»', pc(cur[c]), '', '', delta(cur[c], prv[c], { pp: true, label: DW }))).join('') +
+        kpi('Продажных звонков', num(w.sales), '', '', part ? '' : delta(w.sales, p && p.sales, { label: DW, neutral: true }));
+      $('callsDept').innerHTML = '<tr><th>Отдел</th><th class="dk-num">Продажных звонков</th>' + KEY.map(c => `<th class="dk-num">${CRL[c]}</th>`).join('') + '</tr>' +
+        dept.map(([d, x]) => { const px = p && p.byDept && p.byDept[d];
+          return `<tr><td class="name">${esc(d)}</td><td class="dk-num">${num(x.sales)}</td>` + KEY.map(c => `<td class="dk-num">${pc(share(x.criteria[c]))}${px ? delta(share(x.criteria[c]), share(px.criteria[c]), { pp: true }) : ''}</td>`).join('') + '</tr>'; }).join('');
+    }
+    // ── обзвон ──
+    const r = rW[WK], rp = PK && rW[PK];
+    const mgr = (x) => (x ? x.managers : []).filter(m => m.name !== 'Ангелина Зименко').map(m => ({ ...m, rate: rate(m.worked, m.issued), call: rate(m.viaBitrix, m.issued) }));
+    if (!r) { $('reactSub').textContent = 'За эту неделю данных обзвона нет (итоги дня сохраняются с 21.10).'; ['reactVerdict', 'reactKpis', 'reactMgr'].forEach(i => $(i).innerHTML = ''); }
+    else {
+      const M = mgr(r).sort((a, b) => (a.rate ?? 0) - (b.rate ?? 0)), PM = Object.fromEntries(mgr(rp).map(m => [m.name, m]));
+      const T = M.reduce((a, m) => ({ issued: a.issued + m.issued, worked: a.worked + m.worked, viaBitrix: a.viaBitrix + m.viaBitrix, reached: a.reached + m.reached }), { issued: 0, worked: 0, viaBitrix: 0, reached: 0 });
+      const PT = mgr(rp).reduce((a, m) => ({ issued: a.issued + m.issued, worked: a.worked + m.worked, viaBitrix: a.viaBitrix + m.viaBitrix, reached: a.reached + m.reached }), { issued: 0, worked: 0, viaBitrix: 0, reached: 0 });
+      const lazy = M.filter(m => m.issued >= 10 && (m.rate ?? 0) < 15), best = M.filter(m => m.issued >= 10).sort((a, b) => (b.rate ?? 0) - (a.rate ?? 0))[0];
+      const fell = M.filter(m => PM[m.name] && m.issued >= 10 && PM[m.name].issued >= 10 && m.rate - PM[m.name].rate <= -20);
+      const V = [];
+      if (lazy.length) V.push(`<b>Почти не звонят:</b> ${lazy.map(m => `${esc(m.name)} — ${m.worked} из ${m.issued}`).join(', ')}. Разговор РОПа.`);
+      if (fell.length) V.push(`<b>Сдали к прошлой неделе:</b> ${fell.map(m => `${esc(m.name)} ${PM[m.name].rate} → ${m.rate} %`).join(', ')}.`);
+      if (best) V.push(`<b>Лучший:</b> ${esc(best.name)} — отработано ${pc(best.rate)} выданного.`);
+      const H = (BK && BK.history) || [], k = H[H.length - 1], c0 = H.find(h => h.control60 > 0);
+      if (k && c0) {
+        const age = Math.round((Date.parse(k.date) - Date.parse(c0.date)) / 864e5);
+        if (k.control60 >= 100 && age >= 28) { const pi = 100 * k.returned60 / k.issued60, p0 = 100 * k.controlBought60 / k.control60, d = pi - p0;
+          V.push(`<b>Даёт ли обзвон продажи:</b> купили после звонка ${pi.toFixed(1)} %, без звонка ${p0.toFixed(1)} % — ` + (Math.abs(d) < 1 ? 'разницы нет, менять скрипт или отбор клиентов.' : d > 0 ? `звонки дают +${d.toFixed(1)} п.п.` : 'без звонка покупают не хуже — обзвон не работает в текущем виде.'));
+        } else V.push(`<b>Даёт ли обзвон продажи:</b> станет видно после ${new Date(Date.parse(c0.date) + 28 * 864e5).toLocaleDateString('ru-RU')} (контрольная группа без звонка собрана ${dm(new Date(c0.date))}).`);
+      }
+      $('reactVerdict').innerHTML = V.join('<br>') || 'Без замечаний.';
+      $('reactSub').textContent = `Задание на звонки менеджерам Бетона и ЖБИ: выдано ${num(T.issued)} клиентов за ${r.days.length} раб. дн.` + part;
+      $('reactKpis').innerHTML = kpi('Отработано выданного', pc(rate(T.worked, T.issued)), `${num(T.worked)} из ${num(T.issued)}`, '', rp ? delta(rate(T.worked, T.issued), rate(PT.worked, PT.issued), { pp: true, label: DW }) : '') +
+        kpi('Звонок через Битрикс', pc(rate(T.viaBitrix, T.issued)), '', '', rp ? delta(rate(T.viaBitrix, T.issued), rate(PT.viaBitrix, PT.issued), { pp: true, label: DW }) : '') +
+        kpi('Дозвонились', num(T.reached), `${pc(rate(T.reached, T.issued))} выданного`, '', rp && !part ? delta(T.reached, PT.reached, { label: DW }) : '') +
+        (k ? kpi('Активная база', pc(k.activeShare), `${num(k.active90)} из ${num(k.clients12m)} клиентов купили за 90 дн`) : '');
+      $('reactMgr').innerHTML = '<tr><th>Менеджер</th><th class="dk-num">Выдано</th><th class="dk-num">Отработано</th><th class="dk-num">Звонок через Битрикс</th><th class="dk-num">Дозвон</th></tr>' +
+        M.map(m => { const q = PM[m.name];
+          return `<tr><td class="name">${esc(m.name)}</td><td class="dk-num">${num(m.issued)}</td><td class="dk-num ${(m.rate ?? 0) < 15 && m.issued >= 10 ? 'warn' : ''}">${pc(m.rate)}${q ? delta(m.rate, q.rate, { pp: true }) : ''}</td>` +
+            `<td class="dk-num">${pc(m.call)}${q ? delta(m.call, q.call, { pp: true }) : ''}</td><td class="dk-num">${num(m.reached)}</td></tr>`; }).join('');
+    }
+    // ── сверка оценок с человеком ──
+    const C = Q && Q.calibration;
     if (C && C.calls && C.calls.length) {
       $('calibCard').style.display = '';
       const ag = Object.entries(C.agreement || {}).filter(([, v]) => v[1]).map(([c, v]) => `${CRL[c]} ${v[0]} из ${v[1]}`).join(' · ');
@@ -326,33 +371,7 @@
             return `<td><span class="mk ${cls}">${L[a] || '—'} / ${h ? L[h] : '…'}${h && h !== 'unknown' ? (h === a ? ' ✓' : ' ✗') : ''}</span></td>`; }).join('') + '</tr>').join('');
     }
   }
-  async function renderReact() {
-    const R = await loadSide('reactivation.json'), BK = await loadSide('base-kpi.json');
-    if (!R || !R.managers28 || !R.managers28.length) { $('reactSub').textContent = 'Данных пока нет.'; return; }
-    const p = (a, b) => b ? Math.round(100 * a / b) : null;
-    const M = R.managers28.filter(m => m.name !== 'Ангелина Зименко').map(m => ({ ...m, rate: p(m.worked, m.issued), call: p(m.viaBitrix, m.issued) })).sort((a, b) => (a.rate ?? 0) - (b.rate ?? 0));
-    const T = M.reduce((a, m) => ({ issued: a.issued + m.issued, worked: a.worked + m.worked, viaBitrix: a.viaBitrix + m.viaBitrix, reached: a.reached + m.reached }), { issued: 0, worked: 0, viaBitrix: 0, reached: 0 });
-    const H = (BK && BK.history) || [], k = H[H.length - 1];
-    const lazy = M.filter(m => m.issued >= 20 && (m.rate ?? 0) < 15), best = M.filter(m => m.issued >= 20).sort((a, b) => (b.rate ?? 0) - (a.rate ?? 0))[0];
-    const V = [];
-    if (lazy.length) V.push(`<b>Почти не звонят:</b> ${lazy.map(m => `${esc(m.name)} — ${m.worked} из ${m.issued}`).join(', ')}. Разговор РОПа или снять задание.`);
-    if (best) V.push(`<b>Лучший:</b> ${esc(best.name)} — отработано ${pc(best.rate)} выданного.`);
-    const c0 = H.find(h => h.control60 > 0), age = c0 ? Math.round((Date.parse(k.date) - Date.parse(c0.date)) / 864e5) : 0;
-    if (k && k.control60 >= 100 && age >= 28) {
-      const pi = 100 * k.returned60 / k.issued60, pc0 = 100 * k.controlBought60 / k.control60, d = pi - pc0;
-      V.push(`<b>Даёт ли обзвон продажи:</b> купили после выдачи ${pi.toFixed(1)} %, без звонка (контроль) ${pc0.toFixed(1)} % — ` + (Math.abs(d) < 1 ? 'разницы нет: звонки по базе продаж не добавляют, менять скрипт или отбор клиентов.' : d > 0 ? `звонки дают +${d.toFixed(1)} п.п. — обзвон оправдан.` : 'без звонка покупают не хуже — обзвон не работает в текущем виде.'));
-    } else if (k && k.control60) {
-      V.push(`<b>Даёт ли обзвон продажи:</b> пока неизвестно. Купили после выдачи ${num(k.returned60)} из ${num(k.issued60)} (${(100 * k.returned60 / k.issued60).toFixed(1)} %); контрольная группа (${num(k.control60)} клиентов без звонка) собрана ${c0.date.slice(8, 10)}.${c0.date.slice(5, 7)} — честное сравнение после ${new Date(Date.parse(c0.date) + 28 * 864e5).toLocaleDateString('ru-RU')}.`);
-    } else V.push('<b>Даёт ли обзвон продажи:</b> контрольная группа (клиенты без звонка) набирается с 13.11 — сравнение появится через 3–4 недели.');
-    $('reactVerdict').innerHTML = V.join('<br>');
-    $('reactSub').textContent = `Задание на звонки менеджерам Бетона и ЖБИ, последние 4 недели. Обновлено ${new Date(R.built).toLocaleString('ru-RU')}.`;
-    $('reactKpis').innerHTML = kpi('Отработано выданного', pc(p(T.worked, T.issued)), `${num(T.worked)} из ${num(T.issued)}`) +
-      kpi('Звонок через Битрикс', pc(p(T.viaBitrix, T.issued)), `дозвон ${num(T.reached)}`) +
-      (k ? kpi('Активная база', pc(k.activeShare), `${num(k.active90)} из ${num(k.clients12m)} клиентов купили за 90 дн`) : '');
-    $('reactMgr').innerHTML = '<tr><th>Менеджер</th><th class="dk-num">Выдано</th><th class="dk-num">Отработано</th><th class="dk-num">Звонок через Битрикс</th><th class="dk-num">Дозвон</th></tr>' +
-      M.map(m => `<tr><td class="name">${esc(m.name)}</td><td class="dk-num">${num(m.issued)}</td><td class="dk-num ${(m.rate ?? 0) < 15 && m.issued >= 20 ? 'warn' : ''}">${pc(m.rate)}</td><td class="dk-num">${pc(m.call)}</td><td class="dk-num">${num(m.reached)}</td></tr>`).join('');
-    $('reactNote').textContent = R.note || '';
-  }
+  const renderReact = renderCalls;
   function render() {
     const m = DATA.months[month];
     if (view === 'kpi') { renderKPI(); return; }
